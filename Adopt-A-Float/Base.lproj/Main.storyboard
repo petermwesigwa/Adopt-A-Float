@@ -41,13 +41,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8a-6I-SDm" userLabel="History">
-                                <rect key="frame" x="163.5" y="515" width="68.5" height="68.5"/>
+                                <rect key="frame" x="164" y="515" width="68" height="68.5"/>
                                 <state key="normal" backgroundImage="history">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eoT-uS-qTV" userLabel="Instrument">
-                                <rect key="frame" x="257" y="499" width="86" height="85"/>
+                                <rect key="frame" x="257" y="498" width="86" height="85.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="eoT-uS-qTV" secondAttribute="height" multiplier="1:1" id="4VQ-qt-unS"/>
                                 </constraints>
@@ -62,7 +62,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAB-qb-xx3" userLabel="Show All">
-                                <rect key="frame" x="368" y="515" width="68.5" height="68.5"/>
+                                <rect key="frame" x="368" y="515" width="68" height="68.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yAB-qb-xx3" secondAttribute="height" multiplier="1:1" id="Csf-ec-B8m"/>
                                 </constraints>
@@ -70,12 +70,18 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <view contentMode="scaleToFill" restorationIdentifier="MapView" translatesAutoresizingMaskIntoConstraints="NO" id="0Qq-Lj-hMX" userLabel="MapView" customClass="GMSMapView">
+                                <rect key="frame" x="31" y="92" width="538" height="391.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="yAB-qb-xx3" firstAttribute="height" secondItem="e8a-6I-SDm" secondAttribute="height" id="9af-mv-7yj"/>
                             <constraint firstAttribute="width" secondItem="eoT-uS-qTV" secondAttribute="width" multiplier="7" id="Dgf-8K-6ia"/>
                             <constraint firstItem="Bjk-IJ-V5l" firstAttribute="width" secondItem="y6i-yX-lle" secondAttribute="width" id="EPX-L9-0Ld"/>
+                            <constraint firstItem="0Qq-Lj-hMX" firstAttribute="leading" secondItem="y6i-yX-lle" secondAttribute="leadingMargin" constant="15" id="FUl-RR-eXs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0Qq-Lj-hMX" secondAttribute="trailing" constant="15" id="I0K-n0-Qpt"/>
                             <constraint firstAttribute="centerX" secondItem="eoT-uS-qTV" secondAttribute="centerX" id="PkR-f7-eD1"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="yAB-qb-xx3" secondAttribute="trailing" constant="20" id="ScG-Q7-xUS"/>
                             <constraint firstItem="yAB-qb-xx3" firstAttribute="width" secondItem="e8a-6I-SDm" secondAttribute="width" id="UGt-Za-6Os"/>
@@ -83,14 +89,19 @@
                             <constraint firstItem="eoT-uS-qTV" firstAttribute="leading" secondItem="e8a-6I-SDm" secondAttribute="trailing" constant="25" id="adB-eF-iP1"/>
                             <constraint firstItem="ygt-g3-K2P" firstAttribute="top" secondItem="eoT-uS-qTV" secondAttribute="bottom" constant="16" id="eiC-B6-0AH"/>
                             <constraint firstItem="yAB-qb-xx3" firstAttribute="leading" secondItem="eoT-uS-qTV" secondAttribute="trailing" constant="25" id="iBl-2N-Xkn"/>
+                            <constraint firstItem="eoT-uS-qTV" firstAttribute="top" secondItem="0Qq-Lj-hMX" secondAttribute="bottom" constant="15" id="poO-eS-9Xr"/>
                             <constraint firstItem="eoT-uS-qTV" firstAttribute="bottom" secondItem="e8a-6I-SDm" secondAttribute="bottom" id="qQk-8s-GtB"/>
                             <constraint firstItem="yAB-qb-xx3" firstAttribute="width" secondItem="eoT-uS-qTV" secondAttribute="width" multiplier="4/5" id="qcn-Zi-f6t"/>
+                            <constraint firstItem="0Qq-Lj-hMX" firstAttribute="top" secondItem="Bjk-IJ-V5l" secondAttribute="bottom" constant="15" id="s4A-i8-xGz"/>
                             <constraint firstItem="Bjk-IJ-V5l" firstAttribute="top" secondItem="t0Y-rD-8bv" secondAttribute="bottom" constant="20" id="wCQ-wC-McK"/>
                             <constraint firstItem="eoT-uS-qTV" firstAttribute="bottom" secondItem="yAB-qb-xx3" secondAttribute="bottom" id="xD4-L5-REB"/>
                             <constraint firstItem="e8a-6I-SDm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="y6i-yX-lle" secondAttribute="leadingMargin" constant="20" id="xa6-Cp-PVD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3e7-Kr-rIh"/>
+                    <connections>
+                        <outlet property="appMapView" destination="0Qq-Lj-hMX" id="G77-gZ-9iD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fB9-Ru-rRN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
