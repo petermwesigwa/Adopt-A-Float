@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		9500E90D1B267EE000437216 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9500E90C1B267EE000437216 /* main.m */; };
 		9500E9101B267EE000437216 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9500E90F1B267EE000437216 /* AppDelegate.m */; };
-		9500E9131B267EE000437216 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9500E9121B267EE000437216 /* ViewController.m */; };
 		9500E9161B267EE000437216 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9500E9141B267EE000437216 /* Main.storyboard */; };
 		9500E9181B267EE000437216 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9500E9171B267EE000437216 /* Images.xcassets */; };
 		9500E91B1B267EE000437216 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9500E9191B267EE000437216 /* LaunchScreen.xib */; };
 		9500E9271B267EE000437216 /* Adopt_A_FloatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9500E9261B267EE000437216 /* Adopt_A_FloatTests.m */; };
 		95D3AC8F1B35AA3100A3775B /* SignPainter-HouseScript.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95D3AC8E1B35AA3100A3775B /* SignPainter-HouseScript.ttf */; };
+		95D3AC921B35C3A800A3775B /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 95D3AC911B35C3A800A3775B /* MainViewController.m */; };
+		95D3AC941B35C55000A3775B /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 95D3AC931B35C55000A3775B /* Podfile */; };
+		A39BFEA24705CC5837CD9F42 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F442C51B3597548C7CFC93AD /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,13 +30,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A07AE2E261561946704003A /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Adopt-A-Float/Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		30F6434782F1E5FB284E04D2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Adopt-A-Float/Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		9500E9071B267EE000437216 /* Adopt-A-Float.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Adopt-A-Float.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9500E90B1B267EE000437216 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9500E90C1B267EE000437216 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9500E90E1B267EE000437216 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9500E90F1B267EE000437216 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9500E9111B267EE000437216 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		9500E9121B267EE000437216 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		9500E9151B267EE000437216 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9500E9171B267EE000437216 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9500E91A1B267EE000437216 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -42,6 +44,10 @@
 		9500E9251B267EE000437216 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9500E9261B267EE000437216 /* Adopt_A_FloatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Adopt_A_FloatTests.m; sourceTree = "<group>"; };
 		95D3AC8E1B35AA3100A3775B /* SignPainter-HouseScript.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SignPainter-HouseScript.ttf"; sourceTree = "<group>"; };
+		95D3AC901B35C3A800A3775B /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = ../MainViewController.h; sourceTree = "<group>"; };
+		95D3AC911B35C3A800A3775B /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = ../MainViewController.m; sourceTree = "<group>"; };
+		95D3AC931B35C55000A3775B /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F442C51B3597548C7CFC93AD /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A39BFEA24705CC5837CD9F42 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +69,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		412F9E0E381E018B3619F437 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F442C51B3597548C7CFC93AD /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9500E8FE1B267EE000437216 = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +84,8 @@
 				9500E9091B267EE000437216 /* Adopt-A-Float */,
 				9500E9231B267EE000437216 /* Adopt-A-FloatTests */,
 				9500E9081B267EE000437216 /* Products */,
+				E50E7274F0D03DE76C427035 /* Pods */,
+				412F9E0E381E018B3619F437 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -84,11 +101,12 @@
 		9500E9091B267EE000437216 /* Adopt-A-Float */ = {
 			isa = PBXGroup;
 			children = (
+				9500E9141B267EE000437216 /* Main.storyboard */,
 				9500E90E1B267EE000437216 /* AppDelegate.h */,
 				9500E90F1B267EE000437216 /* AppDelegate.m */,
-				9500E9111B267EE000437216 /* ViewController.h */,
-				9500E9121B267EE000437216 /* ViewController.m */,
-				9500E9141B267EE000437216 /* Main.storyboard */,
+				95D3AC901B35C3A800A3775B /* MainViewController.h */,
+				95D3AC911B35C3A800A3775B /* MainViewController.m */,
+				95D3AC931B35C55000A3775B /* Podfile */,
 				9500E9171B267EE000437216 /* Images.xcassets */,
 				9500E9191B267EE000437216 /* LaunchScreen.xib */,
 				9500E90A1B267EE000437216 /* Supporting Files */,
@@ -122,6 +140,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E50E7274F0D03DE76C427035 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				30F6434782F1E5FB284E04D2 /* Pods.debug.xcconfig */,
+				0A07AE2E261561946704003A /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -129,9 +156,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9500E92A1B267EE000437216 /* Build configuration list for PBXNativeTarget "Adopt-A-Float" */;
 			buildPhases = (
+				BAE08B6BF910D03BE71AFFB2 /* Check Pods Manifest.lock */,
 				9500E9031B267EE000437216 /* Sources */,
 				9500E9041B267EE000437216 /* Frameworks */,
 				9500E9051B267EE000437216 /* Resources */,
+				A2420552F869DEB63B5500FD /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -202,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95D3AC941B35C55000A3775B /* Podfile in Resources */,
 				95D3AC8F1B35AA3100A3775B /* SignPainter-HouseScript.ttf in Resources */,
 				9500E9161B267EE000437216 /* Main.storyboard in Resources */,
 				9500E91B1B267EE000437216 /* LaunchScreen.xib in Resources */,
@@ -218,13 +248,46 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A2420552F869DEB63B5500FD /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Adopt-A-Float/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BAE08B6BF910D03BE71AFFB2 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		9500E9031B267EE000437216 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9500E9131B267EE000437216 /* ViewController.m in Sources */,
 				9500E9101B267EE000437216 /* AppDelegate.m in Sources */,
+				95D3AC921B35C3A800A3775B /* MainViewController.m in Sources */,
 				9500E90D1B267EE000437216 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,6 +414,7 @@
 		};
 		9500E92B1B267EE000437216 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30F6434782F1E5FB284E04D2 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Adopt-A-Float/Info.plist";
@@ -361,6 +425,7 @@
 		};
 		9500E92C1B267EE000437216 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A07AE2E261561946704003A /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "Adopt-A-Float/Info.plist";
