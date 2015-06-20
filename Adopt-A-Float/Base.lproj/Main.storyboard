@@ -2,8 +2,15 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pAf-5V-MJO">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="SignPainter-HouseScript.ttf">
+            <string>SignPainter-HouseScript</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="scX-UG-Rjn">
@@ -33,50 +40,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8a-6I-SDm">
-                                <rect key="frame" x="109" y="519" width="65" height="65"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="65" id="BsZ-T2-qLB"/>
-                                    <constraint firstAttribute="height" constant="65" id="Hzi-8M-0dv"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8a-6I-SDm" userLabel="History">
+                                <rect key="frame" x="163.5" y="515" width="68.5" height="68.5"/>
                                 <state key="normal" backgroundImage="history">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eoT-uS-qTV">
-                                <rect key="frame" x="254" y="512" width="92" height="80"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eoT-uS-qTV" userLabel="Instrument">
+                                <rect key="frame" x="257" y="499" width="86" height="85"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="eoT-uS-qTV" secondAttribute="height" multiplier="1:1" id="4VQ-qt-unS"/>
+                                </constraints>
                                 <state key="normal" backgroundImage="instrument">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAB-qb-xx3">
-                                <rect key="frame" x="425" y="515" width="67" height="73"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bjk-IJ-V5l">
+                                <rect key="frame" x="0.0" y="40" width="600" height="37"/>
+                                <fontDescription key="fontDescription" name="SignPainter-HouseScript" family="SignPainter" pointSize="40"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAB-qb-xx3" userLabel="Show All">
+                                <rect key="frame" x="368" y="515" width="68.5" height="68.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="yAB-qb-xx3" secondAttribute="height" multiplier="1:1" id="Csf-ec-B8m"/>
+                                </constraints>
                                 <state key="normal" backgroundImage="showall">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bjk-IJ-V5l">
-                                <rect key="frame" x="37" y="37" width="527" height="62"/>
-                                <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="40"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="yAB-qb-xx3" firstAttribute="centerY" secondItem="e8a-6I-SDm" secondAttribute="centerY" id="4JK-bt-CcL"/>
-                            <constraint firstItem="Bjk-IJ-V5l" firstAttribute="top" secondItem="t0Y-rD-8bv" secondAttribute="bottom" constant="17" id="88M-0j-kPD"/>
-                            <constraint firstItem="ygt-g3-K2P" firstAttribute="top" secondItem="e8a-6I-SDm" secondAttribute="bottom" constant="16" id="DnE-ez-JYJ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="yAB-qb-xx3" secondAttribute="trailing" constant="92" id="Gha-ho-HJ1"/>
-                            <constraint firstItem="e8a-6I-SDm" firstAttribute="leading" secondItem="y6i-yX-lle" secondAttribute="leadingMargin" constant="93" id="JuL-KM-8jS"/>
-                            <constraint firstItem="yAB-qb-xx3" firstAttribute="leading" secondItem="eoT-uS-qTV" secondAttribute="trailing" constant="79" id="Vv4-XV-DAv"/>
-                            <constraint firstAttribute="centerX" secondItem="Bjk-IJ-V5l" secondAttribute="centerX" id="WgH-MM-Aw8"/>
-                            <constraint firstItem="eoT-uS-qTV" firstAttribute="centerX" secondItem="Bjk-IJ-V5l" secondAttribute="centerX" id="ZEa-fs-aQF"/>
-                            <constraint firstItem="yAB-qb-xx3" firstAttribute="centerY" secondItem="eoT-uS-qTV" secondAttribute="centerY" id="ZaT-QX-p85"/>
-                            <constraint firstItem="eoT-uS-qTV" firstAttribute="leading" secondItem="e8a-6I-SDm" secondAttribute="trailing" constant="80" id="pFv-T4-lyh"/>
-                            <constraint firstItem="ygt-g3-K2P" firstAttribute="top" secondItem="eoT-uS-qTV" secondAttribute="bottom" constant="8" symbolic="YES" id="vit-71-8jH"/>
-                            <constraint firstItem="ygt-g3-K2P" firstAttribute="top" secondItem="yAB-qb-xx3" secondAttribute="bottom" constant="12" id="wbB-j1-8N9"/>
-                            <constraint firstItem="Bjk-IJ-V5l" firstAttribute="leading" secondItem="y6i-yX-lle" secondAttribute="leadingMargin" constant="21" id="xXB-WE-er9"/>
+                            <constraint firstItem="yAB-qb-xx3" firstAttribute="height" secondItem="e8a-6I-SDm" secondAttribute="height" id="9af-mv-7yj"/>
+                            <constraint firstAttribute="width" secondItem="eoT-uS-qTV" secondAttribute="width" multiplier="7" id="Dgf-8K-6ia"/>
+                            <constraint firstItem="Bjk-IJ-V5l" firstAttribute="width" secondItem="y6i-yX-lle" secondAttribute="width" id="EPX-L9-0Ld"/>
+                            <constraint firstAttribute="centerX" secondItem="eoT-uS-qTV" secondAttribute="centerX" id="PkR-f7-eD1"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="yAB-qb-xx3" secondAttribute="trailing" constant="20" id="ScG-Q7-xUS"/>
+                            <constraint firstItem="yAB-qb-xx3" firstAttribute="width" secondItem="e8a-6I-SDm" secondAttribute="width" id="UGt-Za-6Os"/>
+                            <constraint firstAttribute="centerX" secondItem="Bjk-IJ-V5l" secondAttribute="centerX" id="ZA0-fp-iIh"/>
+                            <constraint firstItem="eoT-uS-qTV" firstAttribute="leading" secondItem="e8a-6I-SDm" secondAttribute="trailing" constant="25" id="adB-eF-iP1"/>
+                            <constraint firstItem="ygt-g3-K2P" firstAttribute="top" secondItem="eoT-uS-qTV" secondAttribute="bottom" constant="16" id="eiC-B6-0AH"/>
+                            <constraint firstItem="yAB-qb-xx3" firstAttribute="leading" secondItem="eoT-uS-qTV" secondAttribute="trailing" constant="25" id="iBl-2N-Xkn"/>
+                            <constraint firstItem="eoT-uS-qTV" firstAttribute="bottom" secondItem="e8a-6I-SDm" secondAttribute="bottom" id="qQk-8s-GtB"/>
+                            <constraint firstItem="yAB-qb-xx3" firstAttribute="width" secondItem="eoT-uS-qTV" secondAttribute="width" multiplier="4/5" id="qcn-Zi-f6t"/>
+                            <constraint firstItem="Bjk-IJ-V5l" firstAttribute="top" secondItem="t0Y-rD-8bv" secondAttribute="bottom" constant="20" id="wCQ-wC-McK"/>
+                            <constraint firstItem="eoT-uS-qTV" firstAttribute="bottom" secondItem="yAB-qb-xx3" secondAttribute="bottom" id="xD4-L5-REB"/>
+                            <constraint firstItem="e8a-6I-SDm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="y6i-yX-lle" secondAttribute="leadingMargin" constant="20" id="xa6-Cp-PVD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3e7-Kr-rIh"/>

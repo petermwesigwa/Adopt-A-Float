@@ -14,6 +14,7 @@
 		9500E9181B267EE000437216 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9500E9171B267EE000437216 /* Images.xcassets */; };
 		9500E91B1B267EE000437216 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9500E9191B267EE000437216 /* LaunchScreen.xib */; };
 		9500E9271B267EE000437216 /* Adopt_A_FloatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9500E9261B267EE000437216 /* Adopt_A_FloatTests.m */; };
+		95D3AC8F1B35AA3100A3775B /* SignPainter-HouseScript.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95D3AC8E1B35AA3100A3775B /* SignPainter-HouseScript.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		9500E9201B267EE000437216 /* Adopt-A-FloatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Adopt-A-FloatTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9500E9251B267EE000437216 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9500E9261B267EE000437216 /* Adopt_A_FloatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Adopt_A_FloatTests.m; sourceTree = "<group>"; };
+		95D3AC8E1B35AA3100A3775B /* SignPainter-HouseScript.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SignPainter-HouseScript.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 		9500E8FE1B267EE000437216 = {
 			isa = PBXGroup;
 			children = (
+				95D3AC8E1B35AA3100A3775B /* SignPainter-HouseScript.ttf */,
 				9500E9091B267EE000437216 /* Adopt-A-Float */,
 				9500E9231B267EE000437216 /* Adopt-A-FloatTests */,
 				9500E9081B267EE000437216 /* Products */,
@@ -199,6 +202,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95D3AC8F1B35AA3100A3775B /* SignPainter-HouseScript.ttf in Resources */,
 				9500E9161B267EE000437216 /* Main.storyboard in Resources */,
 				9500E91B1B267EE000437216 /* LaunchScreen.xib in Resources */,
 				9500E9181B267EE000437216 /* Images.xcassets in Resources */,
@@ -418,6 +422,7 @@
 				9500E92C1B267EE000437216 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9500E92D1B267EE000437216 /* Build configuration list for PBXNativeTarget "Adopt-A-FloatTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +431,7 @@
 				9500E92F1B267EE000437216 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
