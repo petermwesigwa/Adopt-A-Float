@@ -7,7 +7,10 @@
 //
 
 #import "MainViewController.h"
+#import "Instrument.h"
 #import <GoogleMaps/GoogleMaps.h>
+
+extern NSMutableDictionary* instruments;
 
 @interface MainViewController ()
 
@@ -24,19 +27,25 @@
     
     // Create a GMSCameraPosition that tells the map to display the
     // coordinate -33.86,151.20 at zoom level 6.
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:32.2930
-                                                            longitude:-64.7820
+    Instrument* camIns;
+    camIns = [instruments objectForKey:@"raffa"];
+    float camLat = [camIns.lat[0] floatValue];
+    float camLon = [camIns.lon[0] floatValue];
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:camLat
+                                                            longitude:camLon
                                                                  zoom:11];
     mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapView_.myLocationEnabled = YES;
     appMapView.camera = camera;
     
-    // Creates a marker in the center of the map.
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake(32.2930, -64.7820);
-    marker.title = @"Hamilton";
-    marker.snippet = @"Bermuda";
-    marker.map = appMapView;
+    // Create markers for the first 5 data points
+    for (int i = 0; i < 5; i++) {
+        GMSMarker *marker = [[GMSMarker alloc] init];
+        marker.position = CLLocationCoordinate2DMake([camIns.lat[i] floatValue], [camIns.lon[i] floatValue]);
+        marker.title = camIns.name;
+        marker.snippet = [[NSNumber numberWithInt:i] stringValue];
+        marker.map = appMapView;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
