@@ -19,6 +19,7 @@ extern NSMutableDictionary* instruments;
     Instrument *curr;
     __weak IBOutlet UILabel *titleLabel;
     int defaultMarkerNumber;
+    int markerNumber;
     NSMutableArray *onMarkers;
 }
 
@@ -65,6 +66,7 @@ extern NSMutableDictionary* instruments;
     
     // Show first 5 markers for default instrument
     defaultMarkerNumber = 5;
+    markerNumber = defaultMarkerNumber;
     curr = [instruments allValues][0]; //Whichever instrument is the first in the array
     [self instrumentSetup];
     
@@ -177,6 +179,29 @@ extern NSMutableDictionary* instruments;
     }
 }
 
+- (IBAction)touchHistoryButton:(id)sender {
+    if (!historyButton.isSelected) {
+        [historyButton setSelected:YES];
+        [self clearOnMarkers];
+        markerNumber = (int)[curr.lat count];
+        [self instrumentSetup];
+    }
+    else {
+        [historyButton setSelected:NO];
+        [self clearOnMarkers];
+        markerNumber = defaultMarkerNumber;
+        [self instrumentSetup];
+    }
+}
+
+- (void) clearOnMarkers {
+    while (onMarkers.count > 0)
+        [self turnOffMarker:[onMarkers lastObject]];
+}
+
+- (IBAction)touchShowAllButton:(id)sender {
+}
+
 - (void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     //Only have 1 picker view so don't need an if-else statement
     NSString *name = [self pickerView:pickerView titleForRow:row forComponent:0];
@@ -187,8 +212,8 @@ extern NSMutableDictionary* instruments;
 
 - (void) instrumentSetup {
     //Turn on new markers
-    for (int i = 0; i < defaultMarkerNumber; i++) {
-        float opac = 1 - (i/(defaultMarkerNumber+1.0));
+    for (int i = 0; i < markerNumber; i++) {
+        float opac = 1 - (i/(markerNumber+1.0));
         [self turnOnMarker:[markers objectForKey:curr.name][i] withOpacity:opac];
     }
     

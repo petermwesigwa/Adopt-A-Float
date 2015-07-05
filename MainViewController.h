@@ -11,6 +11,8 @@
 
 @interface MainViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate> {
     
+    __weak IBOutlet UIButton *showAllButton;
+    __weak IBOutlet UIButton *historyButton;
     __weak IBOutlet GMSMapView *appMapView;
     __weak IBOutlet UIPickerView *instrumentPicker;
     __weak IBOutlet UIButton *instrumentButton;
