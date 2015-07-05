@@ -41,11 +41,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d1s-yY-0ak">
-                                <rect key="frame" x="93" y="303.5" width="414" height="162"/>
+                                <rect key="frame" x="93" y="301.5" width="414" height="162"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8a-6I-SDm" userLabel="History">
-                                <rect key="frame" x="163.5" y="515" width="68" height="68.5"/>
+                                <rect key="frame" x="163" y="515" width="68.5" height="68.5"/>
                                 <state key="normal" backgroundImage="history">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -62,14 +62,14 @@
                                     <action selector="touchInstrumentButton:" destination="2rn-Nl-3Cg" eventType="touchUpInside" id="zUI-nx-gUW"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Label" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bjk-IJ-V5l">
-                                <rect key="frame" x="0.0" y="40" width="600" height="37"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Label" textAlignment="center" lineBreakMode="clip" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Bjk-IJ-V5l">
+                                <rect key="frame" x="0.0" y="30" width="600" height="37"/>
                                 <fontDescription key="fontDescription" name="SignPainter-HouseScript" family="SignPainter" pointSize="40"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAB-qb-xx3" userLabel="Show All">
-                                <rect key="frame" x="368" y="515" width="68" height="68.5"/>
+                                <rect key="frame" x="368" y="515" width="68.5" height="68.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yAB-qb-xx3" secondAttribute="height" multiplier="1:1" id="Csf-ec-B8m"/>
                                 </constraints>
@@ -78,7 +78,7 @@
                                 </state>
                             </button>
                             <view contentMode="scaleToFill" restorationIdentifier="MapView" translatesAutoresizingMaskIntoConstraints="NO" id="0Qq-Lj-hMX" userLabel="MapView" customClass="GMSMapView">
-                                <rect key="frame" x="31" y="92" width="538" height="391.5"/>
+                                <rect key="frame" x="31" y="77" width="538" height="406.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -103,8 +103,8 @@
                             <constraint firstItem="eoT-uS-qTV" firstAttribute="top" secondItem="0Qq-Lj-hMX" secondAttribute="bottom" constant="15" id="poO-eS-9Xr"/>
                             <constraint firstItem="eoT-uS-qTV" firstAttribute="bottom" secondItem="e8a-6I-SDm" secondAttribute="bottom" id="qQk-8s-GtB"/>
                             <constraint firstItem="yAB-qb-xx3" firstAttribute="width" secondItem="eoT-uS-qTV" secondAttribute="width" multiplier="4/5" id="qcn-Zi-f6t"/>
-                            <constraint firstItem="0Qq-Lj-hMX" firstAttribute="top" secondItem="Bjk-IJ-V5l" secondAttribute="bottom" constant="15" id="s4A-i8-xGz"/>
-                            <constraint firstItem="Bjk-IJ-V5l" firstAttribute="top" secondItem="t0Y-rD-8bv" secondAttribute="bottom" constant="20" id="wCQ-wC-McK"/>
+                            <constraint firstItem="0Qq-Lj-hMX" firstAttribute="top" secondItem="Bjk-IJ-V5l" secondAttribute="bottom" constant="10" id="s4A-i8-xGz"/>
+                            <constraint firstItem="Bjk-IJ-V5l" firstAttribute="top" secondItem="t0Y-rD-8bv" secondAttribute="bottom" constant="10" id="wCQ-wC-McK"/>
                             <constraint firstItem="eoT-uS-qTV" firstAttribute="bottom" secondItem="yAB-qb-xx3" secondAttribute="bottom" id="xD4-L5-REB"/>
                             <constraint firstItem="e8a-6I-SDm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="y6i-yX-lle" secondAttribute="leadingMargin" constant="20" id="xa6-Cp-PVD"/>
                         </constraints>

@@ -76,6 +76,7 @@ extern NSMutableDictionary* instruments;
     mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     mapView_.myLocationEnabled = YES;
     appMapView.camera = camera;
+    appMapView.mapType = kGMSTypeSatellite;
     NSLog(@"After setting the camera");
     
     //Update the camera position

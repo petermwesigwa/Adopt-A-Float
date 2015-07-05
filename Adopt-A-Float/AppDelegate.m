@@ -35,16 +35,16 @@ NSMutableDictionary *instruments;
     NSArray *latRobin = [NSArray arrayWithObjects:[NSNumber numberWithFloat:32.32253485], [NSNumber numberWithFloat:32.55406395], [NSNumber numberWithFloat:32.74084086], [NSNumber numberWithFloat:33.0966131], [NSNumber numberWithFloat:33.32179166], [NSNumber numberWithFloat:33.5660654], [NSNumber numberWithFloat:33.69581062], [NSNumber numberWithFloat:33.72580145], [NSNumber numberWithFloat:33.69710254], [NSNumber numberWithFloat:33.93563737], [NSNumber numberWithFloat:34.10906569], [NSNumber numberWithFloat:34.20625329], [NSNumber numberWithFloat:34.27765948], [NSNumber numberWithFloat:34.51461111], [NSNumber numberWithFloat:34.7238303], [NSNumber numberWithFloat:34.99205281], [NSNumber numberWithFloat:35.27384779], [NSNumber numberWithFloat:35.45891754], [NSNumber numberWithFloat:35.46810343], [NSNumber numberWithFloat:35.40107056], [NSNumber numberWithFloat:35.62964254], [NSNumber numberWithFloat:35.80729093], [NSNumber numberWithFloat:35.95776498], [NSNumber numberWithFloat:36.01118665], [NSNumber numberWithFloat:36.03342385], [NSNumber numberWithFloat:36.22768264], [NSNumber numberWithFloat:36.51571571], [NSNumber numberWithFloat:36.64302033], [NSNumber numberWithFloat:36.98007379], [NSNumber numberWithFloat:36.94588127], [NSNumber numberWithFloat:37.06564616], nil];
     
     // If no objects exist under name, create new object
-    if(![instruments objectForKey:@"raffa"]) {
+    if(![instruments objectForKey:@"Raffa"]) {
         NSLog(@"Doesn't contain raffa");
-        Instrument *raffa = [[Instrument alloc] initWithName:@"raffa" andLat:latRaffa andLon:lonRaffa];
-        [instruments setObject:raffa forKey:@"raffa"];
+        Instrument *raffa = [[Instrument alloc] initWithName:@"Raffa" andLat:latRaffa andLon:lonRaffa];
+        [instruments setObject:raffa forKey:@"Raffa"];
         NSLog(@"Now contains raffa");
     }
-    if(![instruments objectForKey:@"robin"]) {
+    if(![instruments objectForKey:@"Robin"]) {
         NSLog(@"Doesn't contain robin");
-        Instrument *robin = [[Instrument alloc] initWithName:@"robin" andLat:latRobin andLon:lonRobin];
-        [instruments setObject:robin forKey:@"robin"];
+        Instrument *robin = [[Instrument alloc] initWithName:@"Robin" andLat:latRobin andLon:lonRobin];
+        [instruments setObject:robin forKey:@"Robin"];
         NSLog(@"Now contains robin");
     }
     
