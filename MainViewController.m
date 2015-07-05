@@ -77,7 +77,7 @@ extern NSMutableDictionary* instruments;
     defaultMarkerNumber = 5;
     markerNumber = defaultMarkerNumber;
     curr = [instruments allValues][0]; //Whichever instrument is the first in the array
-    [self instrumentSetup];
+    [self instrumentSetup:curr];
     
     // Create a GMSCameraPosition for the initial camera
     NSLog(@"before setting the camera");
@@ -193,13 +193,25 @@ extern NSMutableDictionary* instruments;
         [historyButton setSelected:YES];
         [self clearOnMarkers];
         markerNumber = (int)[curr.lat count];
-        [self instrumentSetup];
+        if (!showAllButton.selected)
+            [self instrumentSetup:curr];
+        else {
+            for (Instrument* ins in [instruments allValues]) {
+                [self instrumentSetup:ins];
+            }
+        }
     }
     else {
         [historyButton setSelected:NO];
         [self clearOnMarkers];
         markerNumber = defaultMarkerNumber;
-        [self instrumentSetup];
+        if (!showAllButton.selected)
+            [self instrumentSetup:curr];
+        else {
+            for (Instrument* ins in [instruments allValues]) {
+                [self instrumentSetup:ins];
+            }
+        }
     }
 }
 
@@ -209,21 +221,36 @@ extern NSMutableDictionary* instruments;
 }
 
 - (IBAction)touchShowAllButton:(id)sender {
+    if (!showAllButton.isSelected) {
+        titleLabel.text = @"All";
+        [showAllButton setSelected:YES];
+        [self clearOnMarkers];
+        for (Instrument* ins in [instruments allValues]) {
+            [self instrumentSetup:ins];
+        }
+    }
+    else {
+        [showAllButton setSelected:NO];
+        [self clearOnMarkers];
+        [self instrumentSetup:curr];
+    }
 }
 
 - (void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     //Only have 1 picker view so don't need an if-else statement
     NSString *name = [self pickerView:pickerView titleForRow:row forComponent:0];
-    [self instrumentTakeDown:curr];
+    if (!showAllButton.selected)
+        [self instrumentTakeDown:curr];
     curr = [instruments objectForKey:name];
-    [self instrumentSetup];
+    if (!showAllButton.selected)
+        [self instrumentSetup:curr];
 }
 
-- (void) instrumentSetup {
+- (void) instrumentSetup:(Instrument*)instrument {
     //Turn on new markers
     for (int i = 0; i < markerNumber; i++) {
         float opac = 1 - (i/(markerNumber+1.0));
-        [self turnOnMarker:[markers objectForKey:curr.name][i] withOpacity:opac];
+        [self turnOnMarker:[markers objectForKey:instrument.name][i] withOpacity:opac];
     }
     
     //Change label
