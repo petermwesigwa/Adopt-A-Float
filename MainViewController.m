@@ -21,6 +21,7 @@ extern NSMutableDictionary* instruments;
     int defaultMarkerNumber;
     int markerNumber;
     NSMutableArray *onMarkers;
+    NSArray *colors;
 }
 
 @end
@@ -42,6 +43,9 @@ extern NSMutableDictionary* instruments;
     instrumentPicker.delegate = self;
     NSLog(@"Picker view data, data source, and delegate are set");
     
+    //Make colors array
+    colors = @[[UIColor redColor], [UIColor greenColor], [UIColor blueColor], [UIColor cyanColor], [UIColor yellowColor], [UIColor magentaColor], [UIColor orangeColor], [UIColor brownColor], [UIColor purpleColor], [UIColor blackColor], [UIColor grayColor], [UIColor whiteColor]];
+    
     //round picker view edges
     instrumentPicker.layer.cornerRadius = 5;
     instrumentPicker.layer.masksToBounds = YES;
@@ -52,16 +56,21 @@ extern NSMutableDictionary* instruments;
     markers = [[NSMutableDictionary alloc] init];
     onMarkers = [[NSMutableArray alloc] init];
     NSArray* instrumentNames = [instruments allKeys];
-    //UIImage *icon = [UIImage imageNamed:@"instrument"]; < ****this works, just need smaller image size
-    UIImage *icon = [UIImage imageWithContentsOfFile:@"returnTheDefault"];
+    int j = 0;
     for(NSString*name in instrumentNames) {
         Instrument* instr = [instruments objectForKey:name];
+        //set icon color
+        //UIImage *icon = [UIImage imageNamed:@"instrument"]; < ****this works to change image
+        if (j == colors.count) j = 0; //to make sure there's no overflow
+        UIImage *icon = [GMSMarker markerImageWithColor:[colors objectAtIndex:j]];
+        
         NSMutableArray* markersForInstr = [[NSMutableArray alloc] init];
         for (int i = 0; i < instr.lon.count; i++) { //count of lon and lat should be the same
             GMSMarker* marker = [self createMarkerWithLat:instr.lat[i] andLong:instr.lon[i] andTitle:instr.name andSnippet:[NSString stringWithFormat:@"t-%d hours", i] andIcon:icon];
             [markersForInstr addObject:marker];
         }
         [markers setObject:markersForInstr forKey:name];
+        j++;
     }
     
     // Show first 5 markers for default instrument
