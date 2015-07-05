@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GoogleMaps/GoogleMaps.h>
 
-@interface MainViewController : UIViewController
+@interface MainViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate> {
+    
+    __weak IBOutlet GMSMapView *appMapView;
+    __weak IBOutlet UIPickerView *instrumentPicker;
+    __weak IBOutlet UIButton *instrumentButton;
+    int draw1;
+}
+- (IBAction)touchInstrumentButton:(id)sender;
+
 
 @end

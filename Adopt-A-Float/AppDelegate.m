@@ -36,14 +36,16 @@ NSMutableDictionary *instruments;
     
     // If no objects exist under name, create new object
     if(![instruments objectForKey:@"raffa"]) {
-        NSLog(@"Doesn't contains raffa");
+        NSLog(@"Doesn't contain raffa");
         Instrument *raffa = [[Instrument alloc] initWithName:@"raffa" andLat:latRaffa andLon:lonRaffa];
         [instruments setObject:raffa forKey:@"raffa"];
+        NSLog(@"Now contains raffa");
     }
     if(![instruments objectForKey:@"robin"]) {
-        NSLog(@"Doesn't contains robin");
+        NSLog(@"Doesn't contain robin");
         Instrument *robin = [[Instrument alloc] initWithName:@"robin" andLat:latRobin andLon:lonRobin];
         [instruments setObject:robin forKey:@"robin"];
+        NSLog(@"Now contains robin");
     }
     
     

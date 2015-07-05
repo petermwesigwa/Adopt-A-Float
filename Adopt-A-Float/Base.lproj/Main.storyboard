@@ -40,8 +40,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d1s-yY-0ak">
+                                <rect key="frame" x="93" y="303.5" width="414" height="162"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8a-6I-SDm" userLabel="History">
-                                <rect key="frame" x="164" y="515" width="68" height="68.5"/>
+                                <rect key="frame" x="163.5" y="515" width="68" height="68.5"/>
                                 <state key="normal" backgroundImage="history">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -54,11 +58,14 @@
                                 <state key="normal" backgroundImage="instrument">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="touchInstrumentButton:" destination="2rn-Nl-3Cg" eventType="touchUpInside" id="zUI-nx-gUW"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bjk-IJ-V5l">
                                 <rect key="frame" x="0.0" y="40" width="600" height="37"/>
                                 <fontDescription key="fontDescription" name="SignPainter-HouseScript" family="SignPainter" pointSize="40"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAB-qb-xx3" userLabel="Show All">
@@ -80,15 +87,19 @@
                             <constraint firstItem="yAB-qb-xx3" firstAttribute="height" secondItem="e8a-6I-SDm" secondAttribute="height" id="9af-mv-7yj"/>
                             <constraint firstAttribute="width" secondItem="eoT-uS-qTV" secondAttribute="width" multiplier="7" id="Dgf-8K-6ia"/>
                             <constraint firstItem="Bjk-IJ-V5l" firstAttribute="width" secondItem="y6i-yX-lle" secondAttribute="width" id="EPX-L9-0Ld"/>
+                            <constraint firstItem="0Qq-Lj-hMX" firstAttribute="bottom" secondItem="d1s-yY-0ak" secondAttribute="bottom" constant="50" id="EoJ-f1-HTa"/>
                             <constraint firstItem="0Qq-Lj-hMX" firstAttribute="leading" secondItem="y6i-yX-lle" secondAttribute="leadingMargin" constant="15" id="FUl-RR-eXs"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0Qq-Lj-hMX" secondAttribute="trailing" constant="15" id="I0K-n0-Qpt"/>
+                            <constraint firstItem="0Qq-Lj-hMX" firstAttribute="leading" secondItem="d1s-yY-0ak" secondAttribute="leading" multiplier="1/3" id="Its-jV-N32"/>
                             <constraint firstAttribute="centerX" secondItem="eoT-uS-qTV" secondAttribute="centerX" id="PkR-f7-eD1"/>
                             <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="yAB-qb-xx3" secondAttribute="trailing" constant="20" id="ScG-Q7-xUS"/>
+                            <constraint firstItem="0Qq-Lj-hMX" firstAttribute="height" secondItem="d1s-yY-0ak" secondAttribute="height" multiplier="4" id="Scl-0F-kRx"/>
                             <constraint firstItem="yAB-qb-xx3" firstAttribute="width" secondItem="e8a-6I-SDm" secondAttribute="width" id="UGt-Za-6Os"/>
                             <constraint firstAttribute="centerX" secondItem="Bjk-IJ-V5l" secondAttribute="centerX" id="ZA0-fp-iIh"/>
                             <constraint firstItem="eoT-uS-qTV" firstAttribute="leading" secondItem="e8a-6I-SDm" secondAttribute="trailing" constant="25" id="adB-eF-iP1"/>
                             <constraint firstItem="ygt-g3-K2P" firstAttribute="top" secondItem="eoT-uS-qTV" secondAttribute="bottom" constant="16" id="eiC-B6-0AH"/>
                             <constraint firstItem="yAB-qb-xx3" firstAttribute="leading" secondItem="eoT-uS-qTV" secondAttribute="trailing" constant="25" id="iBl-2N-Xkn"/>
+                            <constraint firstAttribute="centerX" secondItem="d1s-yY-0ak" secondAttribute="centerX" id="ieg-FG-HDZ"/>
                             <constraint firstItem="eoT-uS-qTV" firstAttribute="top" secondItem="0Qq-Lj-hMX" secondAttribute="bottom" constant="15" id="poO-eS-9Xr"/>
                             <constraint firstItem="eoT-uS-qTV" firstAttribute="bottom" secondItem="e8a-6I-SDm" secondAttribute="bottom" id="qQk-8s-GtB"/>
                             <constraint firstItem="yAB-qb-xx3" firstAttribute="width" secondItem="eoT-uS-qTV" secondAttribute="width" multiplier="4/5" id="qcn-Zi-f6t"/>
@@ -101,6 +112,9 @@
                     <navigationItem key="navigationItem" id="3e7-Kr-rIh"/>
                     <connections>
                         <outlet property="appMapView" destination="0Qq-Lj-hMX" id="G77-gZ-9iD"/>
+                        <outlet property="instrumentButton" destination="eoT-uS-qTV" id="jJ0-cL-3kR"/>
+                        <outlet property="instrumentPicker" destination="d1s-yY-0ak" id="AYN-MD-Uan"/>
+                        <outlet property="titleLabel" destination="Bjk-IJ-V5l" id="5tj-TN-zrY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fB9-Ru-rRN" userLabel="First Responder" sceneMemberID="firstResponder"/>
