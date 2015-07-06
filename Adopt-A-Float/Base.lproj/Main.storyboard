@@ -41,11 +41,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d1s-yY-0ak">
-                                <rect key="frame" x="200" y="294" width="200" height="162"/>
+                                <rect key="frame" x="200" y="294.5" width="200" height="162"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8a-6I-SDm" userLabel="History">
-                                <rect key="frame" x="163" y="515" width="68.5" height="68.5"/>
+                                <rect key="frame" x="163.5" y="515" width="68" height="68.5"/>
                                 <state key="normal" backgroundImage="history">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -54,7 +54,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eoT-uS-qTV" userLabel="Instrument">
-                                <rect key="frame" x="257" y="498" width="86" height="85.5"/>
+                                <rect key="frame" x="257" y="498.5" width="86" height="85"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="eoT-uS-qTV" secondAttribute="height" multiplier="1:1" id="4VQ-qt-unS"/>
                                 </constraints>
@@ -66,7 +66,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAB-qb-xx3" userLabel="Show All">
-                                <rect key="frame" x="368" y="515" width="68.5" height="68.5"/>
+                                <rect key="frame" x="368" y="515" width="68" height="68.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yAB-qb-xx3" secondAttribute="height" multiplier="1:1" id="Csf-ec-B8m"/>
                                 </constraints>
@@ -78,11 +78,11 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" restorationIdentifier="MapView" translatesAutoresizingMaskIntoConstraints="NO" id="0Qq-Lj-hMX" userLabel="MapView" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="20" width="600" height="463"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="463.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Label" textAlignment="center" lineBreakMode="clip" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Bjk-IJ-V5l">
-                                <rect key="frame" x="150" y="35" width="300" height="46"/>
+                                <rect key="frame" x="150" y="35" width="300" height="57.5"/>
                                 <fontDescription key="fontDescription" name="SignPainter-HouseScript" family="SignPainter" pointSize="50"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
