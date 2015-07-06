@@ -37,6 +37,8 @@ extern NSMutableDictionary* instruments;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    //to make status bar white
+    [self setNeedsStatusBarAppearanceUpdate];
     
     //Basic initializations
     polylineStrokeWidth = 3;
@@ -314,6 +316,11 @@ extern NSMutableDictionary* instruments;
         [self turnOffMarker:marker];
     }
     [self clearOnPolylines];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 /*
