@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Instrument.h"
+#import "getData.h"
 #import <GoogleMaps/GoogleMaps.h>
 
 NSMutableDictionary *instruments;
@@ -27,6 +28,11 @@ NSMutableDictionary *instruments;
     //Create the set of intrstruments if doesn't exist
     if (!instruments)
         instruments = [[NSMutableDictionary alloc] init];
+    
+    // Load real data
+    NSURL *robinAllDataURL = [NSURL URLWithString:@"http://geoweb.princeton.edu/people/simons/SOM/ROBIN_all.txt"];
+    NSData *data = [getData stringWithUrl:robinAllDataURL];
+    
     
     // Hardwire coordinates (just for now) (see python program for how I got them)
     NSArray *lonRaffa = [NSArray arrayWithObjects:[NSNumber numberWithFloat:-64.67376709], [NSNumber numberWithFloat:-64.44495272], [NSNumber numberWithFloat:-64.30903689], [NSNumber numberWithFloat:-64.30557581], [NSNumber numberWithFloat:-64.26360183], [NSNumber numberWithFloat:-64.19727214], [NSNumber numberWithFloat:-64.09671235], [NSNumber numberWithFloat:-64.06193689], [NSNumber numberWithFloat:-63.74066703], [NSNumber numberWithFloat:-63.51913755], [NSNumber numberWithFloat:-63.51371962], [NSNumber numberWithFloat:-63.44720067], [NSNumber numberWithFloat:-63.2409576], [NSNumber numberWithFloat:-63.11549568], [NSNumber numberWithFloat:-63.04995181], [NSNumber numberWithFloat:-62.83452571], [NSNumber numberWithFloat:-62.74190995], [NSNumber numberWithFloat:-62.64867614], [NSNumber numberWithFloat:-62.44863952], [NSNumber numberWithFloat:-62.34062274], [NSNumber numberWithFloat:-61.96676187], [NSNumber numberWithFloat:-61.67655471], [NSNumber numberWithFloat:-61.5834078], [NSNumber numberWithFloat:-61.47707522], [NSNumber numberWithFloat:-61.38182528], [NSNumber numberWithFloat:-61.15265907], [NSNumber numberWithFloat:-61.07876972], [NSNumber numberWithFloat:-61.05148333], [NSNumber numberWithFloat:-60.89784303], [NSNumber numberWithFloat:-60.60853857], [NSNumber numberWithFloat:-60.66624886], nil];
