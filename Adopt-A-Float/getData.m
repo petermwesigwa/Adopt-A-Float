@@ -27,8 +27,10 @@
     
     // Construct a String around the Data from the response
     NSString *returnString = [[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
-    NSArray *indivLines = [returnString componentsSeparatedByString:@"\n"];
-    // **remove last string of array, which is blank
+    NSMutableArray *indivLines = [[NSMutableArray alloc] initWithArray:[returnString componentsSeparatedByString:@"\n"]];
+
+    // Remove last string of array, which is blank
+    [indivLines removeObjectAtIndex:[indivLines count]-1];
     NSMutableArray *twoByTwo = [[NSMutableArray alloc] init];
     for (NSString* string in indivLines) {
         
@@ -40,7 +42,6 @@
     }
     
     return twoByTwo;
-    
 }
 
 @end
