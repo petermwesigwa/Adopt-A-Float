@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "Instrument.h"
+#import "FloatDataRow.h"
 #import <QuartzCore/QuartzCore.h>
 #import <math.h>
 
@@ -68,7 +69,7 @@ extern NSMutableDictionary* instruments;
     NSArray* instrumentNames = [instruments allKeys];
     int j = 0;
     for(NSString *name in instrumentNames) {
-        Instrument* instr = [instruments objectForKey:name];
+
         //set icon color
         //UIImage *icon = [UIImage imageNamed:@"instrument"]; < ****this works to change image
         if (j == colors.count) j = 0; //to make sure there's no overflow
@@ -77,13 +78,17 @@ extern NSMutableDictionary* instruments;
         // make an array of markers and a path for each object
         NSMutableArray* markersForInstr = [[NSMutableArray alloc] init];
         GMSMutablePath *newPath = [GMSMutablePath path];
-        for (int i = 0; i < instr.lon.count; i++) { //count of lon and lat should be the same
+        int i = 0;
+        Instrument* instr = [instruments objectForKey:name];
+        for (FloatDataRow *row in instr.floatData) {
+            
             //Create new marker and add to marker array
-            GMSMarker* marker = [self createMarkerWithLat:instr.lat[i] andLong:instr.lon[i] andTitle:instr.name andSnippet:[NSString stringWithFormat:@"t-%d hours", i] andIcon:icon];
+            GMSMarker* marker = [self createMarkerWithLat:row.gpsLat andLong:row.gpsLon andTitle:name andSnippet:[NSString stringWithFormat:@"t-%d hours", i] andIcon:icon];
             [markersForInstr addObject:marker];
             
             //Add location to path
-            [newPath addLatitude:[instr.lat[i] doubleValue] longitude:[instr.lon[i] doubleValue]];
+            [newPath addLatitude:[row.gpsLat doubleValue] longitude:[row.gpsLon doubleValue]];
+            i++;
         }
         [mutablePaths setObject:newPath forKey:name];
         [markers setObject:markersForInstr forKey:name];
@@ -142,7 +147,7 @@ extern NSMutableDictionary* instruments;
     else [appMapView animateWithCameraUpdate:update];
 }
 
-- (GMSMarker*)createMarkerWithLat:(NSNumber*)lat andLong:(NSNumber*)lon andTitle:(NSString*)title andSnippet:(NSString*)snip andIcon:(UIImage*)icon {
+- (GMSMarker*)createMarkerWithLat:(const NSNumber*)lat andLong:(const NSNumber*)lon andTitle:(NSString*)title andSnippet:(NSString*)snip andIcon:(UIImage*)icon {
     GMSMarker *marker = [[GMSMarker alloc] init];
     marker.position = CLLocationCoordinate2DMake([lat floatValue], [lon floatValue]);
     marker.title = title;

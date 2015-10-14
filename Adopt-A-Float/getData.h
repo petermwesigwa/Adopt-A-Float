@@ -10,6 +10,6 @@
 
 @interface getData : NSObject
 
-+ (NSData *)stringWithUrl:(NSURL *)url;
++ (NSMutableDictionary*) getData:(NSMutableDictionary*) instruments;
 
 @end

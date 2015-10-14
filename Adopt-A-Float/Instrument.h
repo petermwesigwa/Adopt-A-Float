@@ -11,9 +11,8 @@
 @interface Instrument : NSObject
 
 @property NSString *name;
-@property NSMutableArray *lat;
-@property NSMutableArray *lon;
+@property NSMutableArray *floatData;
 
-- (id)initWithName:(NSString*) name andLat:(NSArray*) lat andLon:(NSArray*) lon;
+- (id)initWithName:(NSString*) name andfloatData:(NSMutableArray *)floatData;
 
 @end
