@@ -83,11 +83,23 @@ extern NSMutableDictionary* instruments;
         for (FloatDataRow *row in instr.floatData) {
             
             //Create new marker and add to marker array
-            GMSMarker* marker = [self createMarkerWithLat:row.gpsLat andLong:row.gpsLon andTitle:name andSnippet:[NSString stringWithFormat:@"t-%d hours", i] andIcon:icon];
+            GMSMarker* marker;
+            bool gps = !([row.gpsLon floatValue] == 0); //if equal to 0, then NaN
+            if (!gps) {
+                marker = [self createMarkerWithLat:row.dopLat andLong:row.dopLon andTitle:name andSnippet:[NSString stringWithFormat:@"t-%d hours", i] andIcon:icon];
+            }
+            else {
+                marker = [self createMarkerWithLat:row.gpsLat andLong:row.gpsLon andTitle:name andSnippet:[NSString stringWithFormat:@"t-%d hours", i] andIcon:icon];
+            }
             [markersForInstr addObject:marker];
             
             //Add location to path
-            [newPath addLatitude:[row.gpsLat doubleValue] longitude:[row.gpsLon doubleValue]];
+            if (gps) {
+                [newPath addLatitude:[row.gpsLat doubleValue] longitude:[row.gpsLon doubleValue]];
+            }
+            else {
+                [newPath addLatitude:[row.dopLat doubleValue] longitude:[row.dopLon doubleValue]];
+            }
             i++;
         }
         [mutablePaths setObject:newPath forKey:name];

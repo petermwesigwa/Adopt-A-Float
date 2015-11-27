@@ -69,10 +69,10 @@
     [_dopComponents setHour:(NSInteger)raw[20]];
     [_dopComponents setMinute:(NSInteger)raw[21]];
     [_dopComponents setSecond:(NSInteger)raw[22]];
-    [_dopComponents setNanosecond:(NSInteger)(raw[23])*10^-8];
     _dopDate = [cal dateFromComponents:_dopComponents];
-    _dopLat = [NSNumber numberWithFloat:[raw[24] floatValue]];
-    _dopLon = [NSNumber numberWithFloat:[raw[25] floatValue]];
+    _dopLat = [NSNumber numberWithFloat:[raw[23] floatValue]];
+    _dopLon = [NSNumber numberWithFloat:[raw[24] floatValue]];
+    _CEPrad = [NSNumber numberWithFloat:[raw[25] floatValue]];
     
     return self;
     
