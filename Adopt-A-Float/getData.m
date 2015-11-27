@@ -28,6 +28,7 @@
     NSURL *raffa30URL = [NSURL URLWithString:@"http://geoweb.princeton.edu/people/simons/SOM/RAFFA_030.txt"];
     NSArray *raffaArray = [NSArray arrayWithObjects:@"raffa",raffa30URL, nil];
     
+    // define the names of the objects
     NSArray *urls = [NSArray arrayWithObjects:
                      robinArray,
                      raffaArray,
@@ -54,11 +55,11 @@
     // If no objects exist under name, create new object
     if(![instruments objectForKey:name]) {
         NSLog(@"Doesn't contain %@", name);
-        Instrument *newInstrument = [[Instrument alloc] initWithName:name andfloatData:output];
-        [instruments setValue:newInstrument forKey:newInstrument.name];
-        NSLog(@"Now contains %@", newInstrument.name);
     }
-    
+    Instrument *newInstrument = [[Instrument alloc] initWithName:name andfloatData:output];
+    [instruments setValue:newInstrument forKey:newInstrument.name];
+    NSLog(@"Instrument was added/updated %@", newInstrument.name);
+
     return instruments;
 }
 

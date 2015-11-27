@@ -13,7 +13,7 @@
 		9500E9181B267EE000437216 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9500E9171B267EE000437216 /* Images.xcassets */; };
 		9500E91B1B267EE000437216 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9500E9191B267EE000437216 /* LaunchScreen.xib */; };
 		9500E9271B267EE000437216 /* Adopt_A_FloatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9500E9261B267EE000437216 /* Adopt_A_FloatTests.m */; };
-		9501AADE1BC95FE2002F8FF8 /* FloatDataRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 9501AADD1BC95FE2002F8FF8 /* FloatDataRow.m */; settings = {ASSET_TAGS = (); }; };
+		9501AADE1BC95FE2002F8FF8 /* FloatDataRow.m in Sources */ = {isa = PBXBuildFile; fileRef = 9501AADD1BC95FE2002F8FF8 /* FloatDataRow.m */; };
 		95092F5A1B40C59500420024 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = 95092F591B40C59500420024 /* Instrument.m */; };
 		951772B31B7AA8C000897ED8 /* getData.m in Sources */ = {isa = PBXBuildFile; fileRef = 951772B21B7AA8C000897ED8 /* getData.m */; };
 		95D3AC8F1B35AA3100A3775B /* SignPainter-HouseScript.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95D3AC8E1B35AA3100A3775B /* SignPainter-HouseScript.ttf */; };
@@ -210,7 +210,7 @@
 		9500E8FF1B267EE000437216 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Son-O-Mermaid";
 				TargetAttributes = {
 					9500E9061B267EE000437216 = {
@@ -370,6 +370,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -437,10 +438,48 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_NO_COMMON_BLOCKS = NO;
 				INFOPLIST_FILE = "Adopt-A-Float/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"CoreBluetooth\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"GoogleMaps\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.AdoptAFloat.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -450,10 +489,48 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_NO_COMMON_BLOCKS = NO;
 				INFOPLIST_FILE = "Adopt-A-Float/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-l\"c++\"",
+					"-l\"icucore\"",
+					"-l\"z\"",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"Accelerate\"",
+					"-framework",
+					"\"CoreBluetooth\"",
+					"-framework",
+					"\"CoreData\"",
+					"-framework",
+					"\"CoreGraphics\"",
+					"-framework",
+					"\"CoreLocation\"",
+					"-framework",
+					"\"CoreText\"",
+					"-framework",
+					"\"GLKit\"",
+					"-framework",
+					"\"GoogleMaps\"",
+					"-framework",
+					"\"ImageIO\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-framework",
+					"\"Security\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.AdoptAFloat.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -471,6 +548,7 @@
 				);
 				INFOPLIST_FILE = "Adopt-A-FloatTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "app.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Adopt-A-Float.app/Adopt-A-Float";
 			};
@@ -486,6 +564,7 @@
 				);
 				INFOPLIST_FILE = "Adopt-A-FloatTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "app.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Adopt-A-Float.app/Adopt-A-Float";
 			};

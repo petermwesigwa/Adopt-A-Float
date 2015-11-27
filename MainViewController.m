@@ -215,7 +215,7 @@ extern NSMutableDictionary* instruments;
         [historyButton setSelected:YES];
         [self clearOnMarkers];
         [self clearOnPolylines];
-        markerNumber = (int)[curr.lat count];
+        markerNumber = (int)[curr.floatData count];
         if (!showAllButton.selected)
             [self instrumentSetup:curr];
         else {
