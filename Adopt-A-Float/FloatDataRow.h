@@ -12,7 +12,7 @@ const NSCalendar *cal; //set to gregorian calendar
 
 @interface FloatDataRow : NSObject
 
-@property const NSDate *gpsDate; //
+@property const NSDate* gpsDate; //
 @property const NSDateComponents *gpsComponents;
 @property const NSNumber* gpsLat; //latitude
 @property const NSNumber* gpsLon; //longitude

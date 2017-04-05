@@ -1,26 +1,29 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="pAf-5V-MJO">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pAf-5V-MJO">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="SignPainter-HouseScript.ttf">
+        <array key="SignPainter-HouseScript.ttf">
             <string>SignPainter-HouseScript</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <scenes>
         <!--Navigation Controller-->
         <scene sceneID="scX-UG-Rjn">
             <objects>
                 <navigationController navigationBarHidden="YES" id="pAf-5V-MJO" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vDj-v1-fgb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="vDj-v1-fgb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="2rn-Nl-3Cg" kind="relationship" relationship="rootViewController" id="jAE-6e-UfG"/>
@@ -39,65 +42,58 @@
                         <viewControllerLayoutGuide type="bottom" id="ygt-g3-K2P"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="y6i-yX-lle">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d1s-yY-0ak">
                                 <rect key="frame" x="200" y="294.5" width="200" height="162"/>
-                                <animations/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8a-6I-SDm" userLabel="History">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8a-6I-SDm" userLabel="History">
                                 <rect key="frame" x="163.5" y="515" width="68" height="68.5"/>
-                                <animations/>
                                 <state key="normal" backgroundImage="history">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="touchHistoryButton:" destination="2rn-Nl-3Cg" eventType="touchUpInside" id="IPh-cb-QY6"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eoT-uS-qTV" userLabel="Instrument">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eoT-uS-qTV" userLabel="Instrument">
                                 <rect key="frame" x="257" y="498.5" width="86" height="85"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="eoT-uS-qTV" secondAttribute="height" multiplier="1:1" id="4VQ-qt-unS"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="instrument">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="touchInstrumentButton:" destination="2rn-Nl-3Cg" eventType="touchUpInside" id="zUI-nx-gUW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAB-qb-xx3" userLabel="Show All">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAB-qb-xx3" userLabel="Show All">
                                 <rect key="frame" x="368" y="515" width="68" height="68.5"/>
-                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yAB-qb-xx3" secondAttribute="height" multiplier="1:1" id="Csf-ec-B8m"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="showall">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="touchShowAllButton:" destination="2rn-Nl-3Cg" eventType="touchUpInside" id="Yhe-mF-NVj"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" restorationIdentifier="MapView" translatesAutoresizingMaskIntoConstraints="NO" id="0Qq-Lj-hMX" userLabel="MapView" customClass="GMSMapView">
+                            <view contentMode="scaleToFill" misplaced="YES" restorationIdentifier="MapView" translatesAutoresizingMaskIntoConstraints="NO" id="0Qq-Lj-hMX" userLabel="MapView" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="20" width="600" height="463.5"/>
-                                <animations/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Label" textAlignment="center" lineBreakMode="clip" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Bjk-IJ-V5l">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title Label" textAlignment="center" lineBreakMode="clip" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Bjk-IJ-V5l">
                                 <rect key="frame" x="150" y="35" width="300" height="57.5"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" name="SignPainter-HouseScript" family="SignPainter" pointSize="50"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="0Qq-Lj-hMX" secondAttribute="centerX" id="03d-xi-DO9"/>
                             <constraint firstItem="0Qq-Lj-hMX" firstAttribute="top" secondItem="t0Y-rD-8bv" secondAttribute="top" id="2gs-ye-qB7"/>
