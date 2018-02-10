@@ -2,8 +2,8 @@
 //  main.m
 //  Adopt-A-Float
 //
-//  Created by Ben Leizman on 6/8/15.
-//  Copyright (c) 2015 Son-O-Mermaid. All rights reserved.
+//  Created by William Ughetta on 2/10/18.
+//  Copyright © 2018 Frederik Simons. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

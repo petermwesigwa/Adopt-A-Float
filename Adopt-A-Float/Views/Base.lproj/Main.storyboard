@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pAf-5V-MJO">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SignPainter-HouseScript.ttf">
+            <string>SignPainter-HouseScript</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="scX-UG-Rjn">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="pAf-5V-MJO" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="vDj-v1-fgb">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="2rn-Nl-3Cg" kind="relationship" relationship="rootViewController" id="jAE-6e-UfG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2ej-HX-XvZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1542" y="106"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="CTe-vF-7KO">
+            <objects>
+                <viewController id="2rn-Nl-3Cg" customClass="MainViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="t0Y-rD-8bv"/>
+                        <viewControllerLayoutGuide type="bottom" id="ygt-g3-K2P"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="y6i-yX-lle">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d1s-yY-0ak">
+                                <rect key="frame" x="125" y="392" width="125" height="140.5"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8a-6I-SDm" userLabel="History">
+                                <rect key="frame" x="93" y="609" width="42" height="42"/>
+                                <state key="normal" backgroundImage="history">
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchHistoryButton:" destination="2rn-Nl-3Cg" eventType="touchUpInside" id="IPh-cb-QY6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eoT-uS-qTV" userLabel="Instrument">
+                                <rect key="frame" x="160.5" y="597.5" width="54" height="53.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="eoT-uS-qTV" secondAttribute="height" multiplier="1:1" id="4VQ-qt-unS"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="instrument">
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchInstrumentButton:" destination="2rn-Nl-3Cg" eventType="touchUpInside" id="zUI-nx-gUW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yAB-qb-xx3" userLabel="Show All">
+                                <rect key="frame" x="239.5" y="609" width="42" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="yAB-qb-xx3" secondAttribute="height" multiplier="1:1" id="Csf-ec-B8m"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="showall">
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="touchShowAllButton:" destination="2rn-Nl-3Cg" eventType="touchUpInside" id="Yhe-mF-NVj"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" restorationIdentifier="MapView" translatesAutoresizingMaskIntoConstraints="NO" id="0Qq-Lj-hMX" userLabel="MapView" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="562.5"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Label" textAlignment="center" lineBreakMode="clip" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Bjk-IJ-V5l">
+                                <rect key="frame" x="94" y="35" width="187.5" height="45"/>
+                                <fontDescription key="fontDescription" name="SignPainter-HouseScript" family="SignPainter" pointSize="50"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="0Qq-Lj-hMX" secondAttribute="centerX" id="03d-xi-DO9"/>
+                            <constraint firstItem="0Qq-Lj-hMX" firstAttribute="top" secondItem="t0Y-rD-8bv" secondAttribute="top" id="2gs-ye-qB7"/>
+                            <constraint firstItem="yAB-qb-xx3" firstAttribute="height" secondItem="e8a-6I-SDm" secondAttribute="height" id="9af-mv-7yj"/>
+                            <constraint firstAttribute="width" secondItem="eoT-uS-qTV" secondAttribute="width" multiplier="7" id="Dgf-8K-6ia"/>
+                            <constraint firstAttribute="width" secondItem="Bjk-IJ-V5l" secondAttribute="width" multiplier="2" id="EPX-L9-0Ld"/>
+                            <constraint firstItem="0Qq-Lj-hMX" firstAttribute="bottom" secondItem="d1s-yY-0ak" secondAttribute="bottom" constant="50" id="EoJ-f1-HTa"/>
+                            <constraint firstAttribute="centerX" secondItem="eoT-uS-qTV" secondAttribute="centerX" id="PkR-f7-eD1"/>
+                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="yAB-qb-xx3" secondAttribute="trailing" constant="20" id="ScG-Q7-xUS"/>
+                            <constraint firstItem="0Qq-Lj-hMX" firstAttribute="height" secondItem="d1s-yY-0ak" secondAttribute="height" multiplier="4" id="Scl-0F-kRx"/>
+                            <constraint firstItem="yAB-qb-xx3" firstAttribute="width" secondItem="e8a-6I-SDm" secondAttribute="width" id="UGt-Za-6Os"/>
+                            <constraint firstAttribute="centerX" secondItem="Bjk-IJ-V5l" secondAttribute="centerX" id="ZA0-fp-iIh"/>
+                            <constraint firstAttribute="width" secondItem="0Qq-Lj-hMX" secondAttribute="width" id="Zjz-75-fmK"/>
+                            <constraint firstItem="eoT-uS-qTV" firstAttribute="leading" secondItem="e8a-6I-SDm" secondAttribute="trailing" constant="25" id="adB-eF-iP1"/>
+                            <constraint firstItem="ygt-g3-K2P" firstAttribute="top" secondItem="eoT-uS-qTV" secondAttribute="bottom" constant="16" id="eiC-B6-0AH"/>
+                            <constraint firstItem="yAB-qb-xx3" firstAttribute="leading" secondItem="eoT-uS-qTV" secondAttribute="trailing" constant="25" id="iBl-2N-Xkn"/>
+                            <constraint firstAttribute="centerX" secondItem="d1s-yY-0ak" secondAttribute="centerX" id="ieg-FG-HDZ"/>
+                            <constraint firstItem="eoT-uS-qTV" firstAttribute="top" secondItem="0Qq-Lj-hMX" secondAttribute="bottom" constant="15" id="poO-eS-9Xr"/>
+                            <constraint firstItem="eoT-uS-qTV" firstAttribute="bottom" secondItem="e8a-6I-SDm" secondAttribute="bottom" id="qQk-8s-GtB"/>
+                            <constraint firstItem="yAB-qb-xx3" firstAttribute="width" secondItem="eoT-uS-qTV" secondAttribute="width" multiplier="4/5" id="qcn-Zi-f6t"/>
+                            <constraint firstItem="Bjk-IJ-V5l" firstAttribute="top" secondItem="t0Y-rD-8bv" secondAttribute="bottom" constant="15" id="wGk-iO-Bb3"/>
+                            <constraint firstItem="eoT-uS-qTV" firstAttribute="bottom" secondItem="yAB-qb-xx3" secondAttribute="bottom" id="xD4-L5-REB"/>
+                            <constraint firstItem="e8a-6I-SDm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="y6i-yX-lle" secondAttribute="leadingMargin" constant="20" id="xa6-Cp-PVD"/>
+                            <constraint firstItem="0Qq-Lj-hMX" firstAttribute="width" secondItem="d1s-yY-0ak" secondAttribute="width" multiplier="3" id="yw6-BF-M52"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="3e7-Kr-rIh"/>
+                    <connections>
+                        <outlet property="appMapView" destination="0Qq-Lj-hMX" id="G77-gZ-9iD"/>
+                        <outlet property="historyButton" destination="e8a-6I-SDm" id="hBG-BC-LVn"/>
+                        <outlet property="instrumentButton" destination="eoT-uS-qTV" id="jJ0-cL-3kR"/>
+                        <outlet property="instrumentPicker" destination="d1s-yY-0ak" id="AYN-MD-Uan"/>
+                        <outlet property="showAllButton" destination="yAB-qb-xx3" id="ZeY-Wm-J2r"/>
+                        <outlet property="titleLabel" destination="Bjk-IJ-V5l" id="5tj-TN-zrY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fB9-Ru-rRN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-596" y="106"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="history" width="128" height="128"/>
+        <image name="instrument" width="380" height="400"/>
+        <image name="showall" width="626" height="593"/>
+    </resources>
+</document>

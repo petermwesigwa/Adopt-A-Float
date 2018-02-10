@@ -2,11 +2,10 @@
 //  Adopt_A_FloatTests.m
 //  Adopt-A-FloatTests
 //
-//  Created by Ben Leizman on 6/8/15.
-//  Copyright (c) 2015 Son-O-Mermaid. All rights reserved.
+//  Created by William Ughetta on 2/10/18.
+//  Copyright © 2018 Frederik Simons. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
 @interface Adopt_A_FloatTests : XCTestCase
@@ -27,7 +26,7 @@
 
 - (void)testExample {
     // This is an example of a functional test case.
-    XCTAssert(YES, @"Pass");
+    // Use XCTAssert and related functions to verify your tests produce the correct results.
 }
 
 - (void)testPerformanceExample {

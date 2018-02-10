@@ -3,13 +3,12 @@
 //  Adopt-A-Float
 //
 //  Created by Ben Leizman on 6/8/15.
-//  Copyright (c) 2015 Son-O-Mermaid. All rights reserved.
+//  Copyright © 2018 Frederik Simons. All rights reserved.
 //
 
 #import "AppDelegate.h"
 #import "Instrument.h"
 #import "getData.h"
-#import "FloatDataRow.h"
 #import <GoogleMaps/GoogleMaps.h>
 
 NSMutableDictionary *instruments;
@@ -23,16 +22,14 @@ NSMutableDictionary *instruments;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    // TODO: Remove hard-coded APIKey
     [GMSServices provideAPIKey:@"AIzaSyANYDMiNKs6R6eJmQfki8igApPrnzgkET8"];
     // Override point for customization after application launch.
     
     //Create the set of intrstruments if doesn't exist
     if (!instruments)
         instruments = [[NSMutableDictionary alloc] init];
-    
-    //set calendar
-    cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-    
+        
     //update instrument data
     instruments = [getData getData:instruments];
     
