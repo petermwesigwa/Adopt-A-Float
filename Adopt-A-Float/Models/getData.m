@@ -21,18 +21,16 @@
 @implementation getData
 
 + (NSMutableDictionary*) getData:(NSMutableDictionary*) instruments {
+    
     // Load real data from urls
     NSURL *robin30URL = [NSURL URLWithString:@"https://geoweb.princeton.edu/people/simons/SOM/ROBIN_030.txt"];
-    NSArray *robinArray = [NSArray arrayWithObjects:@"robin",robin30URL, nil];
+    NSArray *robinArray = [NSArray arrayWithObjects:@"robin", robin30URL, nil];
     
     NSURL *raffa30URL = [NSURL URLWithString:@"https://geoweb.princeton.edu/people/simons/SOM/RAFFA_030.txt"];
-    NSArray *raffaArray = [NSArray arrayWithObjects:@"raffa",raffa30URL, nil];
+    NSArray *raffaArray = [NSArray arrayWithObjects:@"raffa", raffa30URL, nil];
     
     // define the names of the objects
-    NSArray *urls = [NSArray arrayWithObjects:
-                     robinArray,
-                     raffaArray,
-                     nil];
+    NSArray *urls = [NSArray arrayWithObjects: robinArray, raffaArray, nil];
     for (id array in urls)
         instruments = [self dataToInstrumentObject:array andInstruments:instruments];
     return instruments;
@@ -54,62 +52,45 @@
     
     // If no objects exist under name, create new object
     if(![instruments objectForKey:name]) {
-        // NSLog(@"Doesn't contain %@", name); // TODO: removing NSLog
+        Instrument *newInstrument = [[Instrument alloc] initWithName:name andfloatData:output];
+        [instruments setValue:newInstrument forKey:newInstrument.name];
     }
-    Instrument *newInstrument = [[Instrument alloc] initWithName:name andfloatData:output];
-    [instruments setValue:newInstrument forKey:newInstrument.name];
-    // NSLog(@"Instrument was added/updated %@", newInstrument.name); // TODO: removing NSLog
 
     return instruments;
 }
 
-
 + (NSMutableArray *)stringWithUrl:(NSURL *)url {
-    NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url
-                                                cachePolicy:NSURLRequestReturnCacheDataElseLoad
-                                            timeoutInterval:30];
     // Fetch the JSON response
-    NSData *urlData;
-    NSURLResponse *response;
-    NSError *error;
+    __block NSMutableArray *twoByTwo = [[NSMutableArray alloc] init];
+    dispatch_semaphore_t sem = dispatch_semaphore_create(0);
 
-    // Make synchronous request
-    // TODO: fix deprecated call and logged errors
-    urlData = [NSURLConnection sendSynchronousRequest:urlRequest
-                                    returningResponse:&response
-                                                error:&error];
+    // Make asynchronous request
+    NSURLSession *session = [NSURLSession sharedSession];
+    [[session dataTaskWithURL:url completionHandler:
+      ^(NSData *data, NSURLResponse *response, NSError *error) {
+          
+          // Construct a String around the Data from the response
+          NSString *returnString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+          NSMutableArray *indivLines = [[NSMutableArray alloc] initWithArray:[returnString componentsSeparatedByString:@"\n"]];
+          
+          // Remove last string of array, which is blank
+          [indivLines removeObjectAtIndex:[indivLines count]-1];
+          for (NSString* string in indivLines) {
+              //Method proposed on stack overflow, which works great
+              NSPredicate *nonEmptyValue = [NSPredicate predicateWithFormat:@"SELF != ''"];
+              NSArray *parts = [string componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+              NSArray *finalArr = [parts filteredArrayUsingPredicate:nonEmptyValue];
+              NSMutableArray *finalMutArr = [NSMutableArray arrayWithArray:finalArr];
+              [twoByTwo addObject:finalMutArr];
+          }
+          
+          // Signal ready to return `twoByTwo`
+          dispatch_semaphore_signal(sem);
+          
+      }] resume];
     
-    // Construct a String around the Data from the response
-    NSString *returnString = [[NSString alloc] initWithData:urlData encoding:NSUTF8StringEncoding];
-    NSMutableArray *indivLines = [[NSMutableArray alloc] initWithArray:[returnString componentsSeparatedByString:@"\n"]];
-
-    // Remove last string of array, which is blank
-    [indivLines removeObjectAtIndex:[indivLines count]-1];
-    NSMutableArray *twoByTwo = [[NSMutableArray alloc] init];
-    for (NSString* string in indivLines) {
-        
-        //Method proposed on stack overflow, which works great
-        NSPredicate *nonEmptyValue = [NSPredicate predicateWithFormat:@"SELF != ''"];
-        NSArray *parts = [string componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        NSArray *finalArr = [parts filteredArrayUsingPredicate:nonEmptyValue];
-        NSMutableArray *finalMutArr = [NSMutableArray arrayWithArray:finalArr];
-        [twoByTwo addObject:finalMutArr];
-    }
-    // Convert all to NSNumbers
-    /*for (NSMutableArray *line in twoByTwo) {
-        for (int i = 0; i < [line count]; i++) {
-            if (i <= 6 | ) {
-                line[i] = [NSNumber numberWithInt:(int)line[i]];
-            }
-            else if ((7 <= i && i <= 15) ) {
-                line[i] = [NSNumber numberWithFloat:line[i]];
-            }
-            
-                
-        }
-    }*/
-        
-    
+    // Wait for request to finish
+    dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
     
     return twoByTwo;
 }

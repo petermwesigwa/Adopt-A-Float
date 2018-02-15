@@ -31,13 +31,11 @@ extern NSMutableDictionary* instruments;
 @end
 
 @implementation MainViewController {
-    GMSMapView *mapView_;
+    GMSMapView *_mapView;
 }
-//@synthesize instrumentPicker;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     //to make status bar white
     [self setNeedsStatusBarAppearanceUpdate];
     
@@ -45,12 +43,10 @@ extern NSMutableDictionary* instruments;
     polylineStrokeWidth = 3;
     
     //Make the pop-up picker view
-    // NSLog(@"Before making the picker view"); // TODO: Removing NSLog
     draw1 = 0;
     _instrumentPickerData = [instruments allKeys];
     instrumentPicker.dataSource = self;
     instrumentPicker.delegate = self;
-    // NSLog(@"Picker view data, data source, and delegate are set"); TODO: Removing NSLog
     
     //Make colors array
     colors = @[[UIColor redColor], [UIColor greenColor], [UIColor blueColor], [UIColor cyanColor], [UIColor yellowColor], [UIColor magentaColor], [UIColor orangeColor], [UIColor brownColor], [UIColor purpleColor], [UIColor blackColor], [UIColor grayColor], [UIColor whiteColor]];
@@ -71,7 +67,6 @@ extern NSMutableDictionary* instruments;
     for(NSString *name in instrumentNames) {
 
         //set icon color
-        //UIImage *icon = [UIImage imageNamed:@"instrument"]; < ****this works to change image
         if (j == colors.count) j = 0; //to make sure there's no overflow
         UIImage *icon = [GMSMarker markerImageWithColor:[colors objectAtIndex:j]];
         
@@ -110,19 +105,14 @@ extern NSMutableDictionary* instruments;
     // Show first 5 markers for default instrument
     defaultMarkerNumber = 5;
     markerNumber = defaultMarkerNumber;
-    curr = [instruments allValues][0]; //Whichever instrument is the first in the array
+    curr = [instruments allValues][0];  // Whichever instrument is the first in the array
     [self instrumentSetup:curr];
     
     // Create a GMSCameraPosition for the initial camera
-    // NSLog(@"before setting the camera"); // TODO: Removing NSLog
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:0.0
-                                                            longitude:0.0
-                                                                 zoom:1];
-    mapView_ = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-    // mapView_.myLocationEnabled = NO; // TODO: Removed location access
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:0.0 longitude:0.0 zoom:1];
+    _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     appMapView.camera = camera;
     appMapView.mapType = kGMSTypeHybrid;
-    // NSLog(@"After setting the camera"); // TODO: Removing NSLog
     
     //Update the camera position
     [self updateCameraPositionWithAnimation:NO];
@@ -134,7 +124,6 @@ extern NSMutableDictionary* instruments;
     double latMin = MAXFLOAT;
     double latMax = -MAXFLOAT;
     for (GMSMarker *marker in onMarkers) {
-        // NSLog(@"The comparison is happening"); // TODO: Removing NSLog
         if (marker.position.longitude < lonMin)
             lonMin = marker.position.longitude;
         if (marker.position.longitude > lonMax)
@@ -144,12 +133,8 @@ extern NSMutableDictionary* instruments;
         if (marker.position.latitude > latMax)
             latMax = marker.position.latitude;
     }
-    // NSLog(@"lonMin = %f", lonMin); // TODO: Removing NSLog
-    // NSLog(@"lonMax = %f", lonMax); // TODO: Removing NSLog
-    // NSLog(@"latMin = %f", latMin); // TODO: Removing NSLog
-    // NSLog(@"latMax = %f", latMax); // TODO: Removing NSLog
-    //Potential bug in these coordinates, but don't know how to fix
-     //Relating to which coord is more east and which is more west (wraparound)
+    
+    // Attetion: relating to which coord is more east and which is more west (wraparound)
     CLLocationCoordinate2D northEast = CLLocationCoordinate2DMake(latMax, lonMax);
     CLLocationCoordinate2D southWest = CLLocationCoordinate2DMake(latMin, lonMin);
     GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:northEast coordinate:southWest];
@@ -217,8 +202,6 @@ extern NSMutableDictionary* instruments;
     } else {
         draw1 = 0;
         instrumentPicker.hidden = YES;
-        // If want instrument to change not when moving the picker but when
-         // finished with it (touch button again), add that here
     }
 }
 
@@ -301,7 +284,8 @@ extern NSMutableDictionary* instruments;
     int j = (int)[[instruments allKeys] indexOfObject:instrument.name];
     while (j >= colors.count) {
         j -= colors.count;
-    } //to make sure there's no overflow
+    }
+    //to make sure there's no overflow
     newPolyline.strokeColor = [colors objectAtIndex:j];
     
     newPolyline.map = appMapView;
@@ -310,7 +294,6 @@ extern NSMutableDictionary* instruments;
     //Change label
     if (showAllButton.selected) titleLabel.text = @"All";
     else titleLabel.text = curr.name;
-    // NSLog(@"Current instrument is %@", [titleLabel text]); // TODO: Removing NSLog
     
     //Update the camera position
     [self updateCameraPositionWithAnimation:YES];
@@ -339,15 +322,5 @@ extern NSMutableDictionary* instruments;
 {
     return UIStatusBarStyleLightContent;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

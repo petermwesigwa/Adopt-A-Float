@@ -29,15 +29,14 @@
  %    (26) CEPrad*   Estimate of unit location accuracy (circle radius) in km
  */
 
-/*  
- Example of input:
- 
- 5  22 2015  15  37  13   0  32.3702167 -64.6956000     20.25300     -0.02000  1.40     0.00000  0.85   0.00   9   4   5  22 2015  15  37  26  32.36812 -64.72869   6
+/* Example of input:
+ 5  22 2015  15  37  13   0  32.3702167 -64.6956000     20.25300     -0.02000  1.40     \
+ 0.00000  0.85   0.00   9   4   5  22 2015  15  37  26  32.36812 -64.72869   6
  */
 
 @interface FloatDataRow ()
 
-@property NSCalendar *cal; //set to gregorian calendar
+@property NSCalendar *cal;
 
 @end
 
@@ -59,7 +58,7 @@
     [_gpsComponents setMinute:(NSInteger)raw[4]];
     [_gpsComponents setSecond:(NSInteger)raw[5]];
     [_gpsComponents setNanosecond:(NSInteger)(raw[6])*10^-8];
-    _gpsDate = [_cal dateFromComponents: (NSDateComponents *) _gpsComponents]; // TODO: verify cast
+    _gpsDate = [_cal dateFromComponents: (NSDateComponents *) _gpsComponents];
     _gpsLat = [NSNumber numberWithFloat:[raw[7] floatValue]];
     _gpsLon = [NSNumber numberWithFloat:[raw[8] floatValue]];
     _alt = [NSNumber numberWithFloat:[raw[9] floatValue]];
@@ -79,7 +78,7 @@
     [_dopComponents setHour:(NSInteger)raw[20]];
     [_dopComponents setMinute:(NSInteger)raw[21]];
     [_dopComponents setSecond:(NSInteger)raw[22]];
-    _dopDate = [_cal dateFromComponents: (NSDateComponents *) _dopComponents]; // TODO: verify cast
+    _dopDate = [_cal dateFromComponents: (NSDateComponents *) _dopComponents];
     _dopLat = [NSNumber numberWithFloat:[raw[23] floatValue]];
     _dopLon = [NSNumber numberWithFloat:[raw[24] floatValue]];
     _CEPrad = [NSNumber numberWithFloat:[raw[25] floatValue]];
