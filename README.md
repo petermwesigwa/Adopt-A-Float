@@ -8,5 +8,5 @@ http://geoweb.princeton.edu/people/simons/Son-O-Mermaid.html
 
 ## Running locally with Xcode
 1) Open `Adopt-A-Float.xcworkspace`, not the .xcodeproj
-2) Change the [API Key](https://developers.google.com/maps/documentation/ios-sdk/) in Adopt-A-Float/AppDelegate.m
+2) Change the filename `_private.plist` to `private.plist` and enter your [Google Maps API Key](https://developers.google.com/maps/documentation/ios-sdk/). (Or use your exisintg file. It is not uploaded to GitHub).
 3) Run

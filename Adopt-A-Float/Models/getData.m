@@ -22,21 +22,21 @@
 
 + (NSMutableDictionary*) getData:(NSMutableDictionary*) instruments {
     
-    // Load real data from urls
-    NSURL *robin30URL = [NSURL URLWithString:@"https://geoweb.princeton.edu/people/simons/SOM/ROBIN_030.txt"];
-    NSArray *robinArray = [NSArray arrayWithObjects:@"robin", robin30URL, nil];
+    // Load real data from urls in `source.plist` with the form "{name:url, name:url, ...}"
+    NSString *sourcePath = [[NSBundle mainBundle] pathForResource:@"source" ofType:@"plist"];
+    NSDictionary *sourceContents = [NSDictionary dictionaryWithContentsOfFile: sourcePath];
+
+    // Create a new instrument for each data source
+    for (NSString *key in sourceContents) {
+        NSArray *instrumentArray = [NSArray arrayWithObjects:key,
+                                    [NSURL URLWithString:[sourceContents objectForKey:key]], nil];
+        instruments = [self dataToInstrumentObject:instrumentArray andInstruments:instruments];
+    }
     
-    NSURL *raffa30URL = [NSURL URLWithString:@"https://geoweb.princeton.edu/people/simons/SOM/RAFFA_030.txt"];
-    NSArray *raffaArray = [NSArray arrayWithObjects:@"raffa", raffa30URL, nil];
-    
-    // define the names of the objects
-    NSArray *urls = [NSArray arrayWithObjects: robinArray, raffaArray, nil];
-    for (id array in urls)
-        instruments = [self dataToInstrumentObject:array andInstruments:instruments];
     return instruments;
 }
 
-+ (NSMutableDictionary*) dataToInstrumentObject:(NSArray*) inputArray andInstruments:(NSMutableDictionary *)instruments {
++ (NSMutableDictionary*) dataToInstrumentObject:(NSArray*)inputArray andInstruments:(NSMutableDictionary *)instruments {
     
     // Not going to store all data, just last 30 days
     NSString *name = inputArray[0];
@@ -59,7 +59,9 @@
     return instruments;
 }
 
+// Returns an array of rows (arrays) with each value from the dataset
 + (NSMutableArray *)stringWithUrl:(NSURL *)url {
+    
     // Fetch the JSON response
     __block NSMutableArray *twoByTwo = [[NSMutableArray alloc] init];
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);

@@ -22,9 +22,11 @@ NSMutableDictionary *instruments;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    // TODO: Remove hard-coded APIKey
-    [GMSServices provideAPIKey:@"AIzaSyANYDMiNKs6R6eJmQfki8igApPrnzgkET8"];
-    // Override point for customization after application launch.
+    // Get the Google Maps API Key from private.plist from the @"GoogleMapsAPIKey" row.
+    // Get a new key from: https://developers.google.com/maps/documentation/ios-sdk/
+    NSString *privatePath = [[NSBundle mainBundle] pathForResource:@"private" ofType:@"plist"];
+    NSDictionary *privateContents = [NSDictionary dictionaryWithContentsOfFile: privatePath];
+    [GMSServices provideAPIKey:[privateContents objectForKey:@"GoogleMapsAPIKey"]];
     
     //Create the set of intrstruments if doesn't exist
     if (!instruments)
