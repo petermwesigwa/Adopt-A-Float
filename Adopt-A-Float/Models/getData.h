@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FloatDataRow.h"
+#import "Instrument.h"
 
 @interface getData : NSObject
 

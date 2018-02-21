@@ -7,9 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "Instrument.h"
-#import "getData.h"
-#import <GoogleMaps/GoogleMaps.h>
 
 NSMutableDictionary *instruments;
 

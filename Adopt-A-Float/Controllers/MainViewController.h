@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <GoogleMaps/GoogleMaps.h>
+#import <QuartzCore/QuartzCore.h>
+#import <math.h>
+#import "Instrument.h"
+#import "FloatDataRow.h"
 
 @interface MainViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate> {
     

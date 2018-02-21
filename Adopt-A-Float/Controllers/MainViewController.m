@@ -7,10 +7,6 @@
 //
 
 #import "MainViewController.h"
-#import "Instrument.h"
-#import "FloatDataRow.h"
-#import <QuartzCore/QuartzCore.h>
-#import <math.h>
 
 extern NSMutableDictionary* instruments;
 

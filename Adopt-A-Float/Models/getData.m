@@ -6,10 +6,7 @@
 //  Copyright © 2018 Frederik Simons. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "getData.h"
-#import "FloatDataRow.h"
-#import "Instrument.h"
 
 @interface getData ()
 

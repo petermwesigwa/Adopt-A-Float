@@ -6,7 +6,6 @@
 //  Copyright © 2018 Frederik Simons. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "Instrument.h"
 
 @implementation Instrument
