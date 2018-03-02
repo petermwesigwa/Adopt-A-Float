@@ -64,7 +64,10 @@
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);
 
     // Make asynchronous request
-    NSURLSession *session = [NSURLSession sharedSession];
+    // Without caching (https://stackoverflow.com/a/24329317)
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    configuration.requestCachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
     [[session dataTaskWithURL:url completionHandler:
       ^(NSData *data, NSURLResponse *response, NSError *error) {
           
