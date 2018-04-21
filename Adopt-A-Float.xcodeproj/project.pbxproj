@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,9 +15,9 @@
 		AD720526202F553100F55BD7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD720524202F553100F55BD7 /* LaunchScreen.storyboard */; };
 		AD720529202F553100F55BD7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720528202F553100F55BD7 /* main.m */; };
 		AD720533202F553100F55BD7 /* Adopt_A_FloatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720532202F553100F55BD7 /* Adopt_A_FloatTests.m */; };
-		AD720544202F58D900F55BD7 /* getData.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720540202F58D800F55BD7 /* getData.m */; };
+		AD720544202F58D900F55BD7 /* DataUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720540202F58D800F55BD7 /* DataUtility.m */; };
 		AD720545202F58D900F55BD7 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720542202F58D900F55BD7 /* Instrument.m */; };
-		AD720548202F598B00F55BD7 /* FloatDataRow.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720547202F598B00F55BD7 /* FloatDataRow.m */; };
+		AD720548202F598B00F55BD7 /* FloatData.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720547202F598B00F55BD7 /* FloatData.m */; };
 		AD72054B202F5D2900F55BD7 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720549202F5D2800F55BD7 /* MainViewController.m */; };
 		AD87D8B8203B5DDC0046C257 /* _private.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD87D8B7203B5DDB0046C257 /* _private.plist */; };
 		ADB225A82039219B005B6CC8 /* private.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADB225A72039219B005B6CC8 /* private.plist */; };
@@ -50,12 +50,12 @@
 		AD72052E202F553100F55BD7 /* Adopt-A-FloatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Adopt-A-FloatTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD720532202F553100F55BD7 /* Adopt_A_FloatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Adopt_A_FloatTests.m; sourceTree = "<group>"; };
 		AD720534202F553100F55BD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AD72053E202F58D700F55BD7 /* getData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = getData.h; sourceTree = "<group>"; };
+		AD72053E202F58D700F55BD7 /* DataUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataUtility.h; sourceTree = "<group>"; };
 		AD72053F202F58D800F55BD7 /* Instrument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instrument.h; sourceTree = "<group>"; };
-		AD720540202F58D800F55BD7 /* getData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = getData.m; sourceTree = "<group>"; wrapsLines = 0; };
+		AD720540202F58D800F55BD7 /* DataUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataUtility.m; sourceTree = "<group>"; wrapsLines = 0; };
 		AD720542202F58D900F55BD7 /* Instrument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instrument.m; sourceTree = "<group>"; };
-		AD720546202F598B00F55BD7 /* FloatDataRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatDataRow.h; sourceTree = "<group>"; };
-		AD720547202F598B00F55BD7 /* FloatDataRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatDataRow.m; sourceTree = "<group>"; };
+		AD720546202F598B00F55BD7 /* FloatData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatData.h; sourceTree = "<group>"; };
+		AD720547202F598B00F55BD7 /* FloatData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatData.m; sourceTree = "<group>"; };
 		AD720549202F5D2800F55BD7 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		AD72054A202F5D2900F55BD7 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		AD87D8B7203B5DDB0046C257 /* _private.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = _private.plist; sourceTree = "<group>"; };
@@ -164,10 +164,10 @@
 		AD72054D202F5D9F00F55BD7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AD72053E202F58D700F55BD7 /* getData.h */,
-				AD720540202F58D800F55BD7 /* getData.m */,
-				AD720546202F598B00F55BD7 /* FloatDataRow.h */,
-				AD720547202F598B00F55BD7 /* FloatDataRow.m */,
+				AD72053E202F58D700F55BD7 /* DataUtility.h */,
+				AD720540202F58D800F55BD7 /* DataUtility.m */,
+				AD720546202F598B00F55BD7 /* FloatData.h */,
+				AD720547202F598B00F55BD7 /* FloatData.m */,
 				AD72053F202F58D800F55BD7 /* Instrument.h */,
 				AD720542202F58D900F55BD7 /* Instrument.m */,
 			);
@@ -233,7 +233,7 @@
 		AD72050E202F553100F55BD7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Frederik Simons";
 				TargetAttributes = {
 					AD720515202F553100F55BD7 = {
@@ -248,7 +248,7 @@
 				};
 			};
 			buildConfigurationList = AD720511202F553100F55BD7 /* Build configuration list for PBXProject "Adopt-A-Float" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -399,9 +399,9 @@
 				AD720529202F553100F55BD7 /* main.m in Sources */,
 				AD72054B202F5D2900F55BD7 /* MainViewController.m in Sources */,
 				AD720545202F58D900F55BD7 /* Instrument.m in Sources */,
-				AD720544202F58D900F55BD7 /* getData.m in Sources */,
+				AD720544202F58D900F55BD7 /* DataUtility.m in Sources */,
 				AD72051B202F553100F55BD7 /* AppDelegate.m in Sources */,
-				AD720548202F598B00F55BD7 /* FloatDataRow.m in Sources */,
+				AD720548202F598B00F55BD7 /* FloatData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +457,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -464,6 +465,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -512,6 +514,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -519,6 +522,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -553,6 +557,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Adopt-A-Float/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.frederik.Adopt-A-Float";
@@ -567,6 +572,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Adopt-A-Float/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.frederik.Adopt-A-Float";
