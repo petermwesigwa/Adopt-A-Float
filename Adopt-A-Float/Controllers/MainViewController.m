@@ -8,27 +8,34 @@
 
 #import "MainViewController.h"
 
-extern NSMutableDictionary* instruments;
+extern NSMutableDictionary<NSString *, Instrument *> *instruments;
 
-@interface MainViewController () {
-    NSArray *_instrumentPickerData;
-    NSMutableDictionary *markers;
-    NSMutableDictionary *mutablePaths;
-    Instrument *curr;
-    __weak IBOutlet UILabel *titleLabel;
-    int defaultMarkerNumber;
-    int markerNumber;
-    NSMutableArray *onMarkers;
-    NSMutableArray *onPolylines;
-    NSArray *colors;
-    int polylineStrokeWidth;
-}
+@interface MainViewController ()
+    @property (strong) NSArray *instrumentPickerData;
+    @property (strong) NSMutableDictionary *markers;
+    @property (strong) NSMutableDictionary *mutablePaths;
+    @property (strong) Instrument *curr;
+    @property (weak) IBOutlet UILabel *titleLabel;
+    @property (assign) int defaultMarkerNumber;
+    @property (assign) int markerNumber;
+    @property (strong) NSMutableArray *onMarkers;
+    @property (strong) NSMutableArray *onPolylines;
+    @property (strong) NSArray *colors;
+    @property (assign) int polylineStrokeWidth;
+
+    @property (weak) IBOutlet UIButton *showAllButton;
+    @property (weak) IBOutlet UIButton *historyButton;
+    @property (weak) IBOutlet GMSMapView *appMapView;
+    @property (weak) IBOutlet UIPickerView *instrumentPicker;
+    @property (weak) IBOutlet UIButton *instrumentButton;
+
+    @property (assign) int draw1;
+
+    @property (strong) GMSMapView *mapView;
 
 @end
 
-@implementation MainViewController {
-    GMSMapView *_mapView;
-}
+@implementation MainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,42 +43,42 @@ extern NSMutableDictionary* instruments;
     [self setNeedsStatusBarAppearanceUpdate];
     
     //Basic initializations
-    polylineStrokeWidth = 3;
+    self.polylineStrokeWidth = 3;
     
     //Make the pop-up picker view
-    draw1 = 0;
-    _instrumentPickerData = [instruments allKeys];
-    instrumentPicker.dataSource = self;
-    instrumentPicker.delegate = self;
+    self.draw1 = 0;
+    self.instrumentPickerData = [instruments allKeys];
+    self.instrumentPicker.dataSource = self;
+    self.instrumentPicker.delegate = self;
     
     //Make colors array
-    colors = @[[UIColor redColor], [UIColor greenColor], [UIColor blueColor], [UIColor cyanColor], [UIColor yellowColor], [UIColor magentaColor], [UIColor orangeColor], [UIColor brownColor], [UIColor purpleColor], [UIColor blackColor], [UIColor grayColor], [UIColor whiteColor]];
+    self.colors = @[[UIColor redColor], [UIColor greenColor], [UIColor blueColor], [UIColor cyanColor], [UIColor yellowColor], [UIColor magentaColor], [UIColor orangeColor], [UIColor brownColor], [UIColor purpleColor], [UIColor blackColor], [UIColor grayColor], [UIColor whiteColor]];
     
     //round picker view edges
-    instrumentPicker.layer.cornerRadius = 5;
-    instrumentPicker.layer.masksToBounds = YES;
+    self.instrumentPicker.layer.cornerRadius = 5;
+    self.instrumentPicker.layer.masksToBounds = YES;
     //hide picker initially
-    instrumentPicker.hidden = YES;
+    self.instrumentPicker.hidden = YES;
     
     // Create markers and paths for all positions of all floats
-    markers = [[NSMutableDictionary alloc] init];
-    mutablePaths = [[NSMutableDictionary alloc] init];
-    onMarkers = [[NSMutableArray alloc] init];
-    onPolylines = [[NSMutableArray alloc] init];
+    self.markers = [[NSMutableDictionary alloc] init];
+    self.mutablePaths = [[NSMutableDictionary alloc] init];
+    self.onMarkers = [[NSMutableArray alloc] init];
+    self.onPolylines = [[NSMutableArray alloc] init];
     NSArray* instrumentNames = [instruments allKeys];
     int j = 0;
     for(NSString *name in instrumentNames) {
 
         //set icon color
-        if (j == colors.count) j = 0; //to make sure there's no overflow
-        UIImage *icon = [GMSMarker markerImageWithColor:[colors objectAtIndex:j]];
+        if (j == self.colors.count) j = 0; //to make sure there's no overflow
+        UIImage *icon = [GMSMarker markerImageWithColor:[self.colors objectAtIndex:j]];
         
         // make an array of markers and a path for each object
         NSMutableArray* markersForInstr = [[NSMutableArray alloc] init];
         GMSMutablePath *newPath = [GMSMutablePath path];
         int i = 0;
         Instrument* instr = [instruments objectForKey:name];
-        for (FloatDataRow *row in instr.floatData) {
+        for (FloatData *row in instr.floatData) {
             
             //Create new marker and add to marker array
             GMSMarker* marker;
@@ -93,22 +100,23 @@ extern NSMutableDictionary* instruments;
             }
             i++;
         }
-        [mutablePaths setObject:newPath forKey:name];
-        [markers setObject:markersForInstr forKey:name];
+        [self.mutablePaths setObject:newPath forKey:name];
+        [self.markers setObject:markersForInstr forKey:name];
         j++;
     }
     
     // Show first 5 markers for default instrument
-    defaultMarkerNumber = 5;
-    markerNumber = defaultMarkerNumber;
-    curr = [instruments allValues][0];  // Whichever instrument is the first in the array
-    [self instrumentSetup:curr];
+    self.defaultMarkerNumber = 5;
+    self.markerNumber = self.defaultMarkerNumber;
+// TODO bug if no instrument
+    self.curr = [instruments allValues][0];  // Whichever instrument is the first in the array
+    [self instrumentSetup:self.curr];
     
     // Create a GMSCameraPosition for the initial camera
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:0.0 longitude:0.0 zoom:1];
-    _mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-    appMapView.camera = camera;
-    appMapView.mapType = kGMSTypeHybrid;
+    self.mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    self.appMapView.camera = camera;
+    self.appMapView.mapType = kGMSTypeHybrid;
     
     //Update the camera position
     [self updateCameraPositionWithAnimation:NO];
@@ -119,7 +127,7 @@ extern NSMutableDictionary* instruments;
     double lonMax = -MAXFLOAT;
     double latMin = MAXFLOAT;
     double latMax = -MAXFLOAT;
-    for (GMSMarker *marker in onMarkers) {
+    for (GMSMarker *marker in self.onMarkers) {
         if (marker.position.longitude < lonMin)
             lonMin = marker.position.longitude;
         if (marker.position.longitude > lonMax)
@@ -136,8 +144,8 @@ extern NSMutableDictionary* instruments;
     GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] initWithCoordinate:northEast coordinate:southWest];
     GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds];
     if (animation == NO)
-        [appMapView moveCamera:update];
-    else [appMapView animateWithCameraUpdate:update];
+        [self.appMapView moveCamera:update];
+    else [self.appMapView animateWithCameraUpdate:update];
 }
 
 - (GMSMarker*)createMarkerWithLat:(const NSNumber*)lat andLong:(const NSNumber*)lon andTitle:(NSString*)title andSnippet:(NSString*)snip andIcon:(UIImage*)icon {
@@ -152,17 +160,17 @@ extern NSMutableDictionary* instruments;
 
 - (void)turnOffMarker:(GMSMarker*) marker {
     marker.map = nil;
-    [onMarkers removeObject:marker];
+    [self.onMarkers removeObject:marker];
 }
 
 - (void)turnOnMarker:(GMSMarker*) marker withOpacity:(float)opac {
     marker.opacity = opac;
-    [onMarkers addObject:marker];
+    [self.onMarkers addObject:marker];
 }
 
 - (void) addOnMarkersToMap {
-    for (GMSMarker* marker in onMarkers) {
-        marker.map = appMapView;
+    for (GMSMarker* marker in self.onMarkers) {
+        marker.map = self.appMapView;
         marker.appearAnimation = YES;
     }
 }
@@ -191,24 +199,24 @@ extern NSMutableDictionary* instruments;
 }
 
 - (IBAction)touchInstrumentButton:(id)sender {
-    if (draw1 ==0) {
-        draw1 = 1;
-        [self.view bringSubviewToFront:instrumentPicker];
-        instrumentPicker.hidden = NO;
+    if (self.draw1 ==0) {
+        self.draw1 = 1;
+        [self.view bringSubviewToFront:self.instrumentPicker];
+        self.instrumentPicker.hidden = NO;
     } else {
-        draw1 = 0;
-        instrumentPicker.hidden = YES;
+        self.draw1 = 0;
+        self.instrumentPicker.hidden = YES;
     }
 }
 
 - (IBAction)touchHistoryButton:(id)sender {
-    if (!historyButton.isSelected) {
-        [historyButton setSelected:YES];
+    if (!self.historyButton.isSelected) {
+        [self.historyButton setSelected:YES];
         [self clearOnMarkers];
         [self clearOnPolylines];
-        markerNumber = (int)[curr.floatData count];
-        if (!showAllButton.selected)
-            [self instrumentSetup:curr];
+        self.markerNumber = (int)[self.curr.floatData count];
+        if (!self.showAllButton.selected)
+            [self instrumentSetup:self.curr];
         else {
             for (Instrument* ins in [instruments allValues]) {
                 [self instrumentSetup:ins];
@@ -216,12 +224,12 @@ extern NSMutableDictionary* instruments;
         }
     }
     else {
-        [historyButton setSelected:NO];
+        [self.historyButton setSelected:NO];
         [self clearOnMarkers];
         [self clearOnPolylines];
-        markerNumber = defaultMarkerNumber;
-        if (!showAllButton.selected)
-            [self instrumentSetup:curr];
+        self.markerNumber = self.defaultMarkerNumber;
+        if (!self.showAllButton.selected)
+            [self instrumentSetup:self.curr];
         else {
             for (Instrument* ins in [instruments allValues]) {
                 [self instrumentSetup:ins];
@@ -231,13 +239,13 @@ extern NSMutableDictionary* instruments;
 }
 
 - (void) clearOnMarkers {
-    while (onMarkers.count > 0)
-        [self turnOffMarker:[onMarkers lastObject]];
+    while (self.onMarkers.count > 0)
+        [self turnOffMarker:[self.onMarkers lastObject]];
 }
 
 - (IBAction)touchShowAllButton:(id)sender {
-    if (!showAllButton.isSelected) {
-        [showAllButton setSelected:YES];
+    if (!self.showAllButton.isSelected) {
+        [self.showAllButton setSelected:YES];
         [self clearOnMarkers];
         [self clearOnPolylines];
         for (Instrument* ins in [instruments allValues]) {
@@ -245,51 +253,51 @@ extern NSMutableDictionary* instruments;
         }
     }
     else {
-        [showAllButton setSelected:NO];
+        [self.showAllButton setSelected:NO];
         [self clearOnMarkers];
         [self clearOnPolylines];
-        [self instrumentSetup:curr];
+        [self instrumentSetup:self.curr];
     }
 }
 
 - (void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     //Only have 1 picker view so don't need an if-else statement
     NSString *name = [self pickerView:pickerView titleForRow:row forComponent:0];
-    if (!showAllButton.selected)
-        [self instrumentTakeDown:curr];
-    curr = [instruments objectForKey:name];
-    if (!showAllButton.selected)
-        [self instrumentSetup:curr];
+    if (!self.showAllButton.selected)
+        [self instrumentTakeDown:self.curr];
+    self.curr = [instruments objectForKey:name];
+    if (!self.showAllButton.selected)
+        [self instrumentSetup:self.curr];
 }
 
 - (void) instrumentSetup:(Instrument*)instrument {
     //Turn on new markers and make new path
-    GMSMutablePath *originalPath = [mutablePaths objectForKey:instrument.name];
+    GMSMutablePath *originalPath = [self.mutablePaths objectForKey:instrument.name];
     GMSMutablePath *mutablePathForPolyline = [GMSMutablePath path];
-    for (int i = 0; i < markerNumber; i++) {
-        float opac = 1 - (i/(markerNumber+1.0));
-        [self turnOnMarker:[markers objectForKey:instrument.name][i] withOpacity:opac];
+    for (int i = 0; i < self.markerNumber; i++) {
+        float opac = 1 - (i/(self.markerNumber+1.0));
+        [self turnOnMarker:[self.markers objectForKey:instrument.name][i] withOpacity:opac];
         [mutablePathForPolyline addCoordinate:[originalPath coordinateAtIndex:i]];
     }
     
     // Make the polyline
     GMSPolyline* newPolyline = [GMSPolyline polylineWithPath:mutablePathForPolyline];
-    newPolyline.strokeWidth = polylineStrokeWidth;
+    newPolyline.strokeWidth = self.polylineStrokeWidth;
     
     //set the polyline to the right color
     int j = (int)[[instruments allKeys] indexOfObject:instrument.name];
-    while (j >= colors.count) {
-        j -= colors.count;
+    while (j >= self.colors.count) {
+        j -= self.colors.count;
     }
     //to make sure there's no overflow
-    newPolyline.strokeColor = [colors objectAtIndex:j];
+    newPolyline.strokeColor = [self.colors objectAtIndex:j];
     
-    newPolyline.map = appMapView;
-    [onPolylines addObject:newPolyline];
+    newPolyline.map = self.appMapView;
+    [self.onPolylines addObject:newPolyline];
     
     //Change label
-    if (showAllButton.selected) titleLabel.text = @"All";
-    else titleLabel.text = curr.name;
+    if (self.showAllButton.selected) self.titleLabel.text = @"All";
+    else self.titleLabel.text = self.curr.name;
     
     //Update the camera position
     [self updateCameraPositionWithAnimation:YES];
@@ -299,16 +307,16 @@ extern NSMutableDictionary* instruments;
 }
 
 - (void) clearOnPolylines {
-    while (onPolylines.count > 0) {
-        GMSPolyline *polylineToRemove = [onPolylines lastObject];
+    while (self.onPolylines.count > 0) {
+        GMSPolyline *polylineToRemove = [self.onPolylines lastObject];
         polylineToRemove.map = nil;
-        [onPolylines removeObject:polylineToRemove];
+        [self.onPolylines removeObject:polylineToRemove];
     }
 }
 
 - (void) instrumentTakeDown:(Instrument*) old {
     //Turn off all old markers
-    for (GMSMarker* marker in [markers objectForKey:old.name]) {
+    for (GMSMarker* marker in [self.markers objectForKey:old.name]) {
         [self turnOffMarker:marker];
     }
     [self clearOnPolylines];

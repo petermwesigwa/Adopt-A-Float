@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <GoogleMaps/GoogleMaps.h>
 #import "Instrument.h"
-#import "getData.h"
+#import "DataUtility.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

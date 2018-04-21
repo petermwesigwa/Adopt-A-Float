@@ -7,12 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FloatData.h"
 
 @interface Instrument : NSObject
 
-@property NSString *name;
-@property NSMutableArray *floatData;
+@property (strong, readonly) NSString *name;
+@property (strong, readonly) NSMutableArray<FloatData *> *floatData;
 
-- (id)initWithName:(NSString*) name andfloatData:(NSMutableArray *)floatData;
+// Create a new instrument
+- (id)initWithName:(NSString *)name andfloatData:(NSMutableArray<FloatData *> *)floatData;
+
+// Return a data point
+- (FloatData *)getADataPoint;
 
 @end

@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 
-NSMutableDictionary *instruments;
+NSMutableDictionary<NSString *, Instrument *> *instruments;
 
 @interface AppDelegate ()
 
@@ -30,7 +30,7 @@ NSMutableDictionary *instruments;
         instruments = [[NSMutableDictionary alloc] init];
         
     //update instrument data
-    instruments = [getData getData:instruments];
+    instruments = [DataUtility createInstruments];
     
     return YES;
 }

@@ -11,18 +11,10 @@
 #import <QuartzCore/QuartzCore.h>
 #import <math.h>
 #import "Instrument.h"
-#import "FloatDataRow.h"
+#import "FloatData.h"
 
-@interface MainViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate> {
-    
-    __weak IBOutlet UIButton *showAllButton;
-    __weak IBOutlet UIButton *historyButton;
-    __weak IBOutlet GMSMapView *appMapView;
-    __weak IBOutlet UIPickerView *instrumentPicker;
-    __weak IBOutlet UIButton *instrumentButton;
-    int draw1;
-}
+@interface MainViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>
+
 - (IBAction)touchInstrumentButton:(id)sender;
-
 
 @end

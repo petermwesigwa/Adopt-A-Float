@@ -8,19 +8,33 @@
 
 #import "Instrument.h"
 
+@interface Instrument ()
+
+@property (strong) NSString *name;
+@property (strong) NSMutableArray<FloatData *> *floatData;
+
+@end
+
 @implementation Instrument
 
-- (id)init
-{
+- (id)initWithName:(NSString *)name andfloatData:(NSMutableArray<FloatData *> *)floatData {
     self = [super init];
+    if (self) {
+        self.name = name;
+        self.floatData = floatData; // Not defensively copied
+    }
     return self;
 }
 
-- (id)initWithName:(NSString*) name andfloatData:(NSMutableArray *)floatData {
-    self = [super init];
-    self.name = name;
-    self.floatData = floatData;
-    return self;
+- (FloatData *)getADataPoint {
+    if (self.floatData.count > 0) {
+        return self.floatData[0];
+    }
+    return NULL;
+}
+
+- (NSString *)getName {
+    return self.name;
 }
 
 @end
