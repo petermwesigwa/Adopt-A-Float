@@ -19,7 +19,6 @@
 		AD720545202F58D900F55BD7 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720542202F58D900F55BD7 /* Instrument.m */; };
 		AD720548202F598B00F55BD7 /* FloatData.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720547202F598B00F55BD7 /* FloatData.m */; };
 		AD72054B202F5D2900F55BD7 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720549202F5D2800F55BD7 /* MainViewController.m */; };
-		AD87D8B8203B5DDC0046C257 /* _private.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD87D8B7203B5DDB0046C257 /* _private.plist */; };
 		ADB225A82039219B005B6CC8 /* private.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADB225A72039219B005B6CC8 /* private.plist */; };
 		ADB225AA203922B4005B6CC8 /* source.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADB225A9203922B4005B6CC8 /* source.plist */; };
 /* End PBXBuildFile section */
@@ -58,7 +57,6 @@
 		AD720547202F598B00F55BD7 /* FloatData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatData.m; sourceTree = "<group>"; };
 		AD720549202F5D2800F55BD7 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		AD72054A202F5D2900F55BD7 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		AD87D8B7203B5DDB0046C257 /* _private.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = _private.plist; sourceTree = "<group>"; };
 		ADB225A72039219B005B6CC8 /* private.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = private.plist; sourceTree = "<group>"; };
 		ADB225A9203922B4005B6CC8 /* source.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = source.plist; sourceTree = "<group>"; };
 		E34F7B87C9FA874B4C6DF556 /* libPods-Adopt-A-FloatTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Adopt-A-FloatTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,7 +134,6 @@
 				AD720522202F553100F55BD7 /* Assets.xcassets */,
 				AD720527202F553100F55BD7 /* Info.plist */,
 				ADB225A72039219B005B6CC8 /* private.plist */,
-				AD87D8B7203B5DDB0046C257 /* _private.plist */,
 				ADB225A9203922B4005B6CC8 /* source.plist */,
 				AD720528202F553100F55BD7 /* main.m */,
 			);
@@ -275,7 +272,6 @@
 				AD720526202F553100F55BD7 /* LaunchScreen.storyboard in Resources */,
 				AD720523202F553100F55BD7 /* Assets.xcassets in Resources */,
 				ADB225A82039219B005B6CC8 /* private.plist in Resources */,
-				AD87D8B8203B5DDC0046C257 /* _private.plist in Resources */,
 				AD720521202F553100F55BD7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

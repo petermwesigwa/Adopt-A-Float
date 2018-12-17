@@ -10,6 +10,7 @@
 
 @interface FloatData : NSObject
 
+@property (strong, readonly) const NSString *name;                      //name of instrument
 @property (strong, readonly) const NSDate *gpsDate;
 @property (strong, readonly) const NSDateComponents *gpsComponents;
 @property (strong, readonly) const NSNumber *gpsLat;                   //latitude
