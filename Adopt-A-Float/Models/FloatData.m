@@ -37,6 +37,7 @@
  */
 
 // Raw Data retrieved from online
+@property (strong) const NSString *deviceName;
 @property (strong) const NSDate *gpsDate;
 @property (strong) const NSDateComponents *gpsComponents;
 @property (strong) const NSNumber *gpsLat;                   //latitude
@@ -62,47 +63,50 @@
 
 @implementation FloatData
 
-const int N_DATA_ELEMS = 26;
+const int N_DATA_ELEMS = 27;
 
 - (id)initWithRaw:(NSMutableArray<NSString *> *)orderedData {
     self = [super init];
     if (self && [FloatData isValidRaw:orderedData]) {
         //set calendar
-        _cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian]; 
+        _cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+        
+        // read in the name of the instrument
+        _deviceName = orderedData[0];
         
         // GPS variables
         _gpsComponents = [[NSDateComponents alloc] init];
-        [_gpsComponents setMonth:(NSInteger)orderedData[0]];
-        [_gpsComponents setDay:(NSInteger)orderedData[1]];
-        [_gpsComponents setYear:(NSInteger)orderedData[2]];
-        [_gpsComponents setHour:(NSInteger)orderedData[3]];
-        [_gpsComponents setMinute:(NSInteger)orderedData[4]];
-        [_gpsComponents setSecond:(NSInteger)orderedData[5]];
-        [_gpsComponents setNanosecond:(NSInteger)(orderedData[6])*10^-8];
+        [_gpsComponents setMonth:(NSInteger)orderedData[1]];
+        [_gpsComponents setDay:(NSInteger)orderedData[2]];
+        [_gpsComponents setYear:(NSInteger)orderedData[3]];
+        [_gpsComponents setHour:(NSInteger)orderedData[4]];
+        [_gpsComponents setMinute:(NSInteger)orderedData[5]];
+        [_gpsComponents setSecond:(NSInteger)orderedData[6]];
+        [_gpsComponents setNanosecond:(NSInteger)(orderedData[7])*10^-8];
         _gpsDate = [_cal dateFromComponents: (NSDateComponents *) _gpsComponents];
-        _gpsLat = [NSNumber numberWithFloat:[orderedData[7] floatValue]];
-        _gpsLon = [NSNumber numberWithFloat:[orderedData[8] floatValue]];
-        _alt = [NSNumber numberWithFloat:[orderedData[9] floatValue]];
-        _vsp = [NSNumber numberWithFloat:[orderedData[10] floatValue]];
-        _vdop = [NSNumber numberWithFloat:[orderedData[11] floatValue]];
-        _gsp = [NSNumber numberWithFloat:[orderedData[12] floatValue]];
-        _hdop = [NSNumber numberWithFloat:[orderedData[13] floatValue]];
-        _crs = [NSNumber numberWithFloat:[orderedData[14] floatValue]];
-        _sat = [NSNumber numberWithInteger:[orderedData[15] integerValue]];
-        _iByte = [NSNumber numberWithInteger:[orderedData[16] integerValue]];
+        _gpsLat = [NSNumber numberWithFloat:[orderedData[8] floatValue]];
+        _gpsLon = [NSNumber numberWithFloat:[orderedData[9] floatValue]];
+        _alt = [NSNumber numberWithFloat:[orderedData[10] floatValue]];
+        _vsp = [NSNumber numberWithFloat:[orderedData[11] floatValue]];
+        _vdop = [NSNumber numberWithFloat:[orderedData[12] floatValue]];
+        _gsp = [NSNumber numberWithFloat:[orderedData[13] floatValue]];
+        _hdop = [NSNumber numberWithFloat:[orderedData[14] floatValue]];
+        _crs = [NSNumber numberWithFloat:[orderedData[15] floatValue]];
+        _sat = [NSNumber numberWithInteger:[orderedData[16] integerValue]];
+        _iByte = [NSNumber numberWithInteger:[orderedData[17] integerValue]];
         
         // Doppler variables
         _dopComponents = [[NSDateComponents alloc] init];
-        [_dopComponents setMonth:(NSInteger)orderedData[17]];
-        [_dopComponents setDay:(NSInteger)orderedData[18]];
-        [_dopComponents setYear:(NSInteger)orderedData[19]];
-        [_dopComponents setHour:(NSInteger)orderedData[20]];
-        [_dopComponents setMinute:(NSInteger)orderedData[21]];
-        [_dopComponents setSecond:(NSInteger)orderedData[22]];
+        [_dopComponents setMonth:(NSInteger)orderedData[18]];
+        [_dopComponents setDay:(NSInteger)orderedData[19]];
+        [_dopComponents setYear:(NSInteger)orderedData[20]];
+        [_dopComponents setHour:(NSInteger)orderedData[21]];
+        [_dopComponents setMinute:(NSInteger)orderedData[22]];
+        [_dopComponents setSecond:(NSInteger)orderedData[23]];
         _dopDate = [_cal dateFromComponents: (NSDateComponents *) _dopComponents];
-        _dopLat = [NSNumber numberWithFloat:[orderedData[23] floatValue]];
-        _dopLon = [NSNumber numberWithFloat:[orderedData[24] floatValue]];
-        _CEPrad = [NSNumber numberWithFloat:[orderedData[25] floatValue]];
+        _dopLat = [NSNumber numberWithFloat:[orderedData[24] floatValue]];
+        _dopLon = [NSNumber numberWithFloat:[orderedData[25] floatValue]];
+        _CEPrad = [NSNumber numberWithFloat:[orderedData[26] floatValue]];
     }
     return self;
 }

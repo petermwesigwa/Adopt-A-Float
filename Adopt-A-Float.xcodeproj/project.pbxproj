@@ -19,7 +19,6 @@
 		AD720545202F58D900F55BD7 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720542202F58D900F55BD7 /* Instrument.m */; };
 		AD720548202F598B00F55BD7 /* FloatData.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720547202F598B00F55BD7 /* FloatData.m */; };
 		AD72054B202F5D2900F55BD7 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720549202F5D2800F55BD7 /* MainViewController.m */; };
-		AD87D8B8203B5DDC0046C257 /* _private.plist in Resources */ = {isa = PBXBuildFile; fileRef = AD87D8B7203B5DDB0046C257 /* _private.plist */; };
 		ADB225A82039219B005B6CC8 /* private.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADB225A72039219B005B6CC8 /* private.plist */; };
 		ADB225AA203922B4005B6CC8 /* source.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADB225A9203922B4005B6CC8 /* source.plist */; };
 /* End PBXBuildFile section */
@@ -58,7 +57,6 @@
 		AD720547202F598B00F55BD7 /* FloatData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatData.m; sourceTree = "<group>"; };
 		AD720549202F5D2800F55BD7 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		AD72054A202F5D2900F55BD7 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
-		AD87D8B7203B5DDB0046C257 /* _private.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = _private.plist; sourceTree = "<group>"; };
 		ADB225A72039219B005B6CC8 /* private.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = private.plist; sourceTree = "<group>"; };
 		ADB225A9203922B4005B6CC8 /* source.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = source.plist; sourceTree = "<group>"; };
 		E34F7B87C9FA874B4C6DF556 /* libPods-Adopt-A-FloatTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Adopt-A-FloatTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -136,7 +134,6 @@
 				AD720522202F553100F55BD7 /* Assets.xcassets */,
 				AD720527202F553100F55BD7 /* Info.plist */,
 				ADB225A72039219B005B6CC8 /* private.plist */,
-				AD87D8B7203B5DDB0046C257 /* _private.plist */,
 				ADB225A9203922B4005B6CC8 /* source.plist */,
 				AD720528202F553100F55BD7 /* main.m */,
 			);
@@ -194,7 +191,6 @@
 				AD720512202F553100F55BD7 /* Sources */,
 				AD720513202F553100F55BD7 /* Frameworks */,
 				AD720514202F553100F55BD7 /* Resources */,
-				B2C681B636EAAB4A6CA4E56A /* [CP] Embed Pods Frameworks */,
 				F2A7E02587912459CA8E62BD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -214,8 +210,6 @@
 				AD72052A202F553100F55BD7 /* Sources */,
 				AD72052B202F553100F55BD7 /* Frameworks */,
 				AD72052C202F553100F55BD7 /* Resources */,
-				CF67D5F4E2A1EC108B6A786A /* [CP] Embed Pods Frameworks */,
-				BE8018D80D60725449C04232 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -275,7 +269,6 @@
 				AD720526202F553100F55BD7 /* LaunchScreen.storyboard in Resources */,
 				AD720523202F553100F55BD7 /* Assets.xcassets in Resources */,
 				ADB225A82039219B005B6CC8 /* private.plist in Resources */,
-				AD87D8B8203B5DDC0046C257 /* _private.plist in Resources */,
 				AD720521202F553100F55BD7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,21 +283,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		B2C681B636EAAB4A6CA4E56A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Adopt-A-Float/Pods-Adopt-A-Float-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		BDECDBC2EB1030C06CAA1908 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -321,36 +299,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BE8018D80D60725449C04232 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Adopt-A-FloatTests/Pods-Adopt-A-FloatTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CF67D5F4E2A1EC108B6A786A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Adopt-A-FloatTests/Pods-Adopt-A-FloatTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F10D1A82E85015388E37EC0D /* [CP] Check Pods Manifest.lock */ = {
