@@ -25,7 +25,7 @@ NSMutableDictionary<NSString *, Instrument *> *instruments;
     NSDictionary *privateContents = [NSDictionary dictionaryWithContentsOfFile: privatePath];
     [GMSServices provideAPIKey:[privateContents objectForKey:@"GoogleMapsAPIKey"]];
     
-    //Create the set of intrstruments if doesn't exist
+    //Create the set of instruments if doesn't exist
     if (!instruments)
         instruments = [[NSMutableDictionary alloc] init];
         

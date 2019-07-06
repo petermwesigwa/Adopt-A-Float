@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>raffa</key>
-	<string>https://geoweb.princeton.edu/people/simons/SOM/all.txt</string>
+	<string>https://geoweb.princeton.edu/people/simons/SOM/P020_030.txt</string>
 	<key>xyz</key>
-	<string>https://geoweb.princeton.edu/people/simons/SOM/xyz.txt</string>
+	<string>https://geoweb.princeton.edu/people/simons/SOM/P019.txt</string>
 	<key>robin</key>
-	<string>https://geoweb.princeton.edu/people/simons/SOM/ROBIN_030.txt</string>
+	<string>https://geoweb.princeton.edu/people/simons/SOM/P018_030.txt</string>
 </dict>
 </plist>
