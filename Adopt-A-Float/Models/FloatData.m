@@ -84,17 +84,17 @@ const int N_DATA_ELEMS = 15;
         [dateString appendString:@" "];
         [dateString appendString:orderedData[2]];
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-        [formatter setDateFormat:@"dd-mmm-yyyy HH:mm:ss"];
+        [formatter setDateFormat:@"dd-MMM-yyyy HH:mm:ss"];
     
         
         _gpsDate = [formatter dateFromString:dateString];
         _gpsLat = [NSNumber numberWithFloat:[orderedData[3] floatValue]];
         _gpsLon = [NSNumber numberWithFloat:[orderedData[4] floatValue]];
-        _alt = [NSNumber numberWithFloat:[orderedData[10] floatValue]];
-        _vsp = [NSNumber numberWithFloat:[orderedData[11] floatValue]];
-        _vdop = [NSNumber numberWithFloat:[orderedData[12] floatValue]];
-        _gsp = [NSNumber numberWithFloat:[orderedData[13] floatValue]];
-        _hdop = [NSNumber numberWithFloat:[orderedData[14] floatValue]];
+        _alt = [NSNumber numberWithFloat:[orderedData[5] floatValue]];
+        _vsp = [NSNumber numberWithFloat:[orderedData[6] floatValue]];
+        _vdop = [NSNumber numberWithFloat:[orderedData[7] floatValue]];
+        _gsp = [NSNumber numberWithFloat:[orderedData[8] floatValue]];
+        _hdop = [NSNumber numberWithFloat:[orderedData[9] floatValue]];
         //_crs = [NSNumber numberWithFloat:[orderedData[15] floatValue]];
         //_sat = [NSNumber numberWithInteger:[orderedData[16] integerValue]];
         //_iByte = [NSNumber numberWithInteger:[orderedData[17] integerValue]];
@@ -108,8 +108,8 @@ const int N_DATA_ELEMS = 15;
        // [_dopComponents setMinute:(NSInteger)orderedData[22]];
        // [_dopComponents setSecond:(NSInteger)orderedData[23]];
         //_dopDate = [_cal dateFromComponents: (NSDateComponents *) _dopComponents];
-       // _dopLat = [NSNumber numberWithFloat:[orderedData[24] floatValue]];
-       // _dopLon = [NSNumber numberWithFloat:[orderedData[25] floatValue]];
+       _dopLat = [NSNumber numberWithFloat:[orderedData[3] floatValue]];
+        _dopLon = [NSNumber numberWithFloat:[orderedData[4] floatValue]];
       //  _CEPrad = [NSNumber numberWithFloat:[orderedData[26] floatValue]];
     }
     return self;
