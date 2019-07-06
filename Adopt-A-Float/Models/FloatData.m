@@ -11,6 +11,12 @@
 @interface FloatData ()
 
 /* Column headers for data:
+ %   Device name
+ %   Matlab Date String
+ %   Longitude
+ %   Latitude
+ %   Bunch of other random numbers
+ 
  %   (1:3) Date      1x3 double; [month day year]
  %   (4:7) time      1x4 double; [hour min sec tenthsec]
  %     (8) lat       Latitude (decimal degrees), north is positive
@@ -32,14 +38,13 @@
  */
 
 /* Example of input:
- 5  22 2015  15  37  13   0  32.3702167 -64.6956000     20.25300     -0.02000  1.40     \
- 0.00000  0.85   0.00   9   4   5  22 2015  15  37  26  32.36812 -64.72869   6
+ P017   19-Dec-2018 07:27:52   -10.781833  -137.062517   0.660
+ 1.380    14715  13936 79207   353   20     7   0   0
  */
 
 // Raw Data retrieved from online
 @property (strong) const NSString *deviceName;
 @property (strong) const NSDate *gpsDate;
-@property (strong) const NSDateComponents *gpsComponents;
 @property (strong) const NSNumber *gpsLat;                   //latitude
 @property (strong) const NSNumber *gpsLon;                   //longitude
 @property (strong) const NSNumber *alt;                      //altitude (m)
@@ -47,14 +52,14 @@
 @property (strong) const NSNumber *vdop;                     //vertical dilution of precision
 @property (strong) const NSNumber *gsp;                      //ground speed (m/s)
 @property (strong) const NSNumber *hdop;                     //horizontal dop
-@property (strong) const NSNumber *crs;                      //course
-@property (strong) const NSNumber *sat;                      //Number of satelites used
-@property (strong) const NSNumber *iByte;                    //Indicator byte
-@property (strong) const NSDate *dopDate;                    // date from doppler
-@property (strong) const NSDateComponents *dopComponents;
-@property (strong) const NSNumber *dopLat;
-@property (strong) const NSNumber *dopLon;
-@property (strong) const NSNumber *CEPrad;                   //Estimate of unit location accuracy (circle radius) in km
+//@property (strong) const NSNumber *crs;                      //course
+//@property (strong) const NSNumber *sat;                      //Number of satelites used
+//@property (strong) const NSNumber *iByte;                    //Indicator byte
+//@property (strong) const NSDate *dopDate;                    // date from doppler
+//@property (strong) const NSDateComponents *dopComponents;
+//@property (strong) const NSNumber *dopLat;
+//@property (strong) const NSNumber *dopLon;
+//@property (strong) const NSNumber *CEPrad;                   //Estimate of unit location accuracy (circle radius) in km
 
 // Utility
 @property (strong) NSCalendar *cal;
@@ -63,7 +68,7 @@
 
 @implementation FloatData
 
-const int N_DATA_ELEMS = 27;
+const int N_DATA_ELEMS = 15;
 
 - (id)initWithRaw:(NSMutableArray<NSString *> *)orderedData {
     self = [super init];
@@ -74,48 +79,47 @@ const int N_DATA_ELEMS = 27;
         // read in the name of the instrument
         _deviceName = orderedData[0];
         
-        // GPS variables
-        _gpsComponents = [[NSDateComponents alloc] init];
-        [_gpsComponents setMonth:(NSInteger)orderedData[1]];
-        [_gpsComponents setDay:(NSInteger)orderedData[2]];
-        [_gpsComponents setYear:(NSInteger)orderedData[3]];
-        [_gpsComponents setHour:(NSInteger)orderedData[4]];
-        [_gpsComponents setMinute:(NSInteger)orderedData[5]];
-        [_gpsComponents setSecond:(NSInteger)orderedData[6]];
-        [_gpsComponents setNanosecond:(NSInteger)(orderedData[7])*10^-8];
-        _gpsDate = [_cal dateFromComponents: (NSDateComponents *) _gpsComponents];
-        _gpsLat = [NSNumber numberWithFloat:[orderedData[8] floatValue]];
-        _gpsLon = [NSNumber numberWithFloat:[orderedData[9] floatValue]];
+        // get the date at which the observation was made
+        NSMutableString *dateString = [[NSMutableString alloc]initWithString:orderedData[1]];
+        [dateString appendString:@" "];
+        [dateString appendString:orderedData[2]];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        [formatter setDateFormat:@"dd-mmm-yyyy HH:mm:ss"];
+    
+        
+        _gpsDate = [formatter dateFromString:dateString];
+        _gpsLat = [NSNumber numberWithFloat:[orderedData[3] floatValue]];
+        _gpsLon = [NSNumber numberWithFloat:[orderedData[4] floatValue]];
         _alt = [NSNumber numberWithFloat:[orderedData[10] floatValue]];
         _vsp = [NSNumber numberWithFloat:[orderedData[11] floatValue]];
         _vdop = [NSNumber numberWithFloat:[orderedData[12] floatValue]];
         _gsp = [NSNumber numberWithFloat:[orderedData[13] floatValue]];
         _hdop = [NSNumber numberWithFloat:[orderedData[14] floatValue]];
-        _crs = [NSNumber numberWithFloat:[orderedData[15] floatValue]];
-        _sat = [NSNumber numberWithInteger:[orderedData[16] integerValue]];
-        _iByte = [NSNumber numberWithInteger:[orderedData[17] integerValue]];
+        //_crs = [NSNumber numberWithFloat:[orderedData[15] floatValue]];
+        //_sat = [NSNumber numberWithInteger:[orderedData[16] integerValue]];
+        //_iByte = [NSNumber numberWithInteger:[orderedData[17] integerValue]];
         
         // Doppler variables
-        _dopComponents = [[NSDateComponents alloc] init];
-        [_dopComponents setMonth:(NSInteger)orderedData[18]];
-        [_dopComponents setDay:(NSInteger)orderedData[19]];
-        [_dopComponents setYear:(NSInteger)orderedData[20]];
-        [_dopComponents setHour:(NSInteger)orderedData[21]];
-        [_dopComponents setMinute:(NSInteger)orderedData[22]];
-        [_dopComponents setSecond:(NSInteger)orderedData[23]];
-        _dopDate = [_cal dateFromComponents: (NSDateComponents *) _dopComponents];
-        _dopLat = [NSNumber numberWithFloat:[orderedData[24] floatValue]];
-        _dopLon = [NSNumber numberWithFloat:[orderedData[25] floatValue]];
-        _CEPrad = [NSNumber numberWithFloat:[orderedData[26] floatValue]];
+        //_dopComponents = [[NSDateComponents alloc] init];
+        //[_dopComponents setMonth:(NSInteger)orderedData[18]];
+       // [_dopComponents setDay:(NSInteger)orderedData[19]];
+        //[_dopComponents setYear:(NSInteger)orderedData[20]];
+       // [_dopComponents setHour:(NSInteger)orderedData[21]];
+       // [_dopComponents setMinute:(NSInteger)orderedData[22]];
+       // [_dopComponents setSecond:(NSInteger)orderedData[23]];
+        //_dopDate = [_cal dateFromComponents: (NSDateComponents *) _dopComponents];
+       // _dopLat = [NSNumber numberWithFloat:[orderedData[24] floatValue]];
+       // _dopLon = [NSNumber numberWithFloat:[orderedData[25] floatValue]];
+      //  _CEPrad = [NSNumber numberWithFloat:[orderedData[26] floatValue]];
     }
     return self;
 }
 
 + (BOOL)isValidRaw:(NSMutableArray<NSString *> *)raw {
-    // Check array length
-    if (raw.count != N_DATA_ELEMS)
-        return NO;
     // TODO
+    if (raw.count != N_DATA_ELEMS) {
+        return NO;
+    }
     return YES;
 }
 
