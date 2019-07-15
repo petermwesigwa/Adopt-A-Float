@@ -52,7 +52,7 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
     self.instrumentPicker.delegate = self;
     
     //Make colors array
-    self.colors = @[[UIColor redColor], [UIColor greenColor], [UIColor blueColor], [UIColor cyanColor], [UIColor yellowColor], [UIColor magentaColor], [UIColor orangeColor], [UIColor brownColor], [UIColor purpleColor], [UIColor blackColor], [UIColor grayColor], [UIColor whiteColor]];
+    self.colors = @[[UIColor redColor], [UIColor greenColor], [UIColor blueColor], [UIColor cyanColor], [UIColor yellowColor], [UIColor magentaColor], [UIColor orangeColor], [UIColor brownColor], [UIColor purpleColor], [UIColor blackColor], [UIColor grayColor], [UIColor whiteColor], [UIColor darkGrayColor], [UIColor lightGrayColor]];
     
     //round picker view edges
     self.instrumentPicker.layer.cornerRadius = 5;
