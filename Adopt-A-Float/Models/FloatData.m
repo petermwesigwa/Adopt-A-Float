@@ -107,10 +107,10 @@ const int N_DATA_ELEMS = 15;
        // [_dopComponents setHour:(NSInteger)orderedData[21]];
        // [_dopComponents setMinute:(NSInteger)orderedData[22]];
        // [_dopComponents setSecond:(NSInteger)orderedData[23]];
-        //_dopDate = [_cal dateFromComponents: (NSDateComponents *) _dopComponents];
-       _dopLat = [NSNumber numberWithFloat:[orderedData[3] floatValue]];
-        _dopLon = [NSNumber numberWithFloat:[orderedData[4] floatValue]];
-      //  _CEPrad = [NSNumber numberWithFloat:[orderedData[26] floatValue]];
+//        _dopDate = [formatter dateFromString:dateString];
+//       _dopLat = [NSNumber numberWithFloat:[orderedData[3] floatValue]];
+//        _dopLon = [NSNumber numberWithFloat:[orderedData[4] floatValue]];
+//      //  _CEPrad = [NSNumber numberWithFloat:[orderedData[26] floatValue]];
     }
     return self;
 }
