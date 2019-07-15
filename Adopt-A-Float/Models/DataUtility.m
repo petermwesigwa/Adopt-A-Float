@@ -11,7 +11,6 @@
 @interface DataUtility ()
 
 @property (strong) NSDictionary *sources;
-
 @end
 
 @implementation DataUtility
@@ -21,15 +20,41 @@ NSString *const SOURCE_TYPE = @"plist";
 
 + (NSMutableDictionary<NSString *, Instrument *> *)createInstruments {
     NSMutableDictionary<NSString *, Instrument *> *result = [NSMutableDictionary new];
+    NSArray *floatNames = [NSArray new];
     NSDictionary *sourceUrls = [DataUtility getSourceURLs];
     for (NSString *name in sourceUrls) {
-        // Create new instrument with name and array of FloatData objects
+        // store the names of all the floats
+        if ([name isEqualToString:@"All Instruments"]) {
+            floatNames = [DataUtility getFloatNames:
+                                   [NSURL URLWithString:[sourceUrls objectForKey:name]]];
+            continue;
+        }
+        
+        // create instruments for the floats 
         Instrument *i = [[Instrument alloc] initWithName:name andfloatData:
                          [DataUtility getDataFromURL:
                           [NSURL URLWithString:[sourceUrls objectForKey:name]]]];
         [result setObject:i forKey:name];
     }
     return result;
+}
+
+// return an array of the float names obtained from
+// http://geoweb.princeton.edu/people/simons/SOM/all.txt
++ (NSMutableArray<NSString *> *) getFloatNames: (NSURL *) url {
+    NSMutableArray *floatNames = [NSMutableArray new];
+    NSString *response = [DataUtility downloadString:url];
+    
+    // split by lines and then extract the first word of each line
+    NSMutableArray<NSString *> *lines = [DataUtility splitString:response withSet:
+                                         [NSCharacterSet newlineCharacterSet]];
+    for (NSString *line in lines) {
+        NSMutableArray<NSString *> *values = [DataUtility splitString:line withSet:
+                                              [NSCharacterSet whitespaceCharacterSet]];
+        [floatNames addObject:[values objectAtIndex:0]];
+    }
+    
+    return floatNames;
 }
 
 // Return an array of FloatData objects retrieved from the url
