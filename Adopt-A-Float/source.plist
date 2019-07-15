@@ -3,10 +3,8 @@
 <plist version="1.0">
 <dict>
 	<key>P020</key>
-	<string>https://geoweb.princeton.edu/people/simons/SOM/P020_030.txt</string>
-	<key>P019</key>
-	<string>https://geoweb.princeton.edu/people/simons/SOM/P019_030.txt</string>
-	<key>P018</key>
-	<string>https://geoweb.princeton.edu/people/simons/SOM/P018_030.txt</string>
+	<string>http://geoweb.princeton.edu/people/simons/SOM/P020_030.txt</string>
+	<key>All Instruments</key>
+	<string>http://geoweb.princeton.edu/people/simons/SOM/all.txt</string>
 </dict>
 </plist>
