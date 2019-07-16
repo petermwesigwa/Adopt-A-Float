@@ -18,39 +18,44 @@
 NSString *const SOURCE_NAME = @"source";
 NSString *const SOURCE_TYPE = @"plist";
 
+// these urls are stored in source.plist
+NSString *const URL_ALL = @"URL_ALL"; // retrieves the url for all the instruments
+NSString *const URL_ONE = @"URL_ONE"; // retrieves url for the data for one instrument
+
+
+/***************************************
+ Create instruments and retrieves their data
+ Returns a dictionary with keys of instrument names and values of instrument objects
+ ***********************************/
 + (NSMutableDictionary<NSString *, Instrument *> *)createInstruments {
     NSMutableDictionary<NSString *, Instrument *> *result = [NSMutableDictionary new];
     NSArray *floatNames = [NSArray new];
     NSDictionary *sourceUrls = [DataUtility getSourceURLs];
-    for (NSString *name in sourceUrls) {
-        // read in the names of all the instruments
-        if ([name isEqualToString:@"All Instruments"]) {
-            floatNames = [DataUtility getFloatNames:
-                                   [NSURL URLWithString:[sourceUrls objectForKey:name]]];
-        }
-    }
     
-    // create instruments for the floats
+    // read in the names of all the floats
+    floatNames = [DataUtility getFloatNames:
+                  [NSURL URLWithString:[sourceUrls objectForKey:URL_ALL]]];
+    
+    // obtain the data for all the instruments
     for (NSString *name in floatNames) {
         // url for this specific instrument
-        NSURL *data_url = [DataUtility getURLFromName:name];
+        NSURL *data_url = [DataUtility getURLFromName:name
+                                          usingFormat:[sourceUrls objectForKey:URL_ONE]];
         
-        // get the data for the instrument
+        // make a request to the url
         NSMutableArray<FloatData *> *float_data = [DataUtility getDataFromURL:data_url];
         
-        // add instrument if request was successful
+        // create instrument with data if request succeeded
         if ([float_data count] > 0) {
             Instrument *i = [[Instrument alloc]
-                             initWithName:name andfloatData:
-                             [DataUtility getDataFromURL:[DataUtility getURLFromName:name]]];
+                             initWithName:name andfloatData:float_data];
             [result setObject:i forKey:name];
         }
     }
     return result;
 }
 
-// return an array of the float names obtained from
-// http://geoweb.princeton.edu/people/simons/SOM/all.txt
+// return an array of the float names obtained from URL_ALL
 + (NSMutableArray<NSString *> *) getFloatNames: (NSURL *) url {
     NSMutableArray *floatNames = [NSMutableArray new];
     
@@ -70,10 +75,10 @@ NSString *const SOURCE_TYPE = @"plist";
 }
 
 // deduce the url for retrieving the instrument's data from it's name
-+ (NSURL *) getURLFromName: (NSString *) floatName {
++ (NSURL *) getURLFromName: (NSString *) floatName usingFormat:(NSString *)format_URL {
     return [NSURL URLWithString:
             [NSString stringWithFormat:
-             @"http://geoweb.princeton.edu/people/simons/SOM/%@_030.txt", floatName]];
+             format_URL, floatName]];
 }
 
 // Return an array of FloatData objects retrieved from the url
@@ -82,7 +87,7 @@ NSString *const SOURCE_TYPE = @"plist";
     // retrieve response from server
     NSString *response = [DataUtility downloadString:url];
     
-    // return empty dataset of resource not found
+    // return empty dataset if resource not found
     if ([response containsString:@"404 Not Found"]) {
         return dataSet;
     }

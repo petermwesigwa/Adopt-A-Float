@@ -2,9 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>P020</key>
-	<string>http://geoweb.princeton.edu/people/simons/SOM/P020_030.txt</string>
-	<key>All Instruments</key>
+	<key>URL_ONE</key>
+	<string>http://geoweb.princeton.edu/people/simons/SOM/%@_030.txt</string>
+	<key>URL_ALL</key>
 	<string>http://geoweb.princeton.edu/people/simons/SOM/all.txt</string>
 </dict>
 </plist>
