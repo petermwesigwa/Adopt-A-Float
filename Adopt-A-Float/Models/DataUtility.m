@@ -120,7 +120,7 @@ NSString *const URL_ONE = @"URL_ONE"; // retrieves url for the data for one inst
         [data addObject:values];
     }
     
-    return data;
+    return (NSMutableArray<NSMutableArray<NSString *> *> *)[[[data reverseObjectEnumerator] allObjects ] mutableCopy];
 }
 
 // Splits the string with the given set and removes empty elements
