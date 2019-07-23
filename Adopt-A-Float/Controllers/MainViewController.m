@@ -84,7 +84,7 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
             GMSMarker* marker;
             bool gps = !([row.gpsLon floatValue] == 0); //if equal to 0, then NaN
             if (!gps) {
-                marker = [self createMarkerWithLat:row.gpsLat andLong:row.gpsLon andTitle:name andSnippet:[NSString stringWithFormat:@"t-%d hours", i] andIcon:icon];
+                marker = [self createMarkerWithLat:row.dopLat andLong:row.dopLon andTitle:name andSnippet:[NSString stringWithFormat:@"t-%d hours", i] andIcon:icon];
             }
             else {
                 marker = [self createMarkerWithLat:row.gpsLat andLong:row.gpsLon andTitle:name andSnippet:[NSString stringWithFormat:@"t-%d hours", i] andIcon:icon];
@@ -96,7 +96,7 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
                 [newPath addLatitude:[row.gpsLat doubleValue] longitude:[row.gpsLon doubleValue]];
             }
             else {
-                [newPath addLatitude:[row.gpsLat doubleValue] longitude:[row.gpsLon doubleValue]];
+                [newPath addLatitude:[row.dopLat doubleValue] longitude:[row.dopLon doubleValue]];
             }
             i++;
         }
@@ -147,21 +147,6 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
         [self.appMapView moveCamera:update];
     else [self.appMapView animateWithCameraUpdate:update];
 }
-- (GMSMarker*)createMarkerWithData:(FloatData *)row andRowNumber:(const NSNumber*)i andTitle:(NSString*)title andIcon:(UIImage *)icon {
-    GMSMarker *marker = [[GMSMarker alloc]init];
-    marker.position = CLLocationCoordinate2DMake([row.gpsLat floatValue], [row.gpsLon floatValue]);
-    marker.title = title;
-    
-    
-    NSString *format_string = @"t -%d hours\nLong:%f\nLat%f\nhDop:%f\nvdop:%f\nBattery:%d mV\nIntPressure:%d Pa\n,ExtPressure:%d mbar\n";
-    marker.snippet = [NSString stringWithFormat:format_string, i, [row.gpsLat floatValue], [row.gpsLon floatValue],
-                      [row.hdop floatValue], [row.vdop floatValue], [row.vbat integerValue],
-                      [row.int_pressure integerValue], [row.ext_pressure integerValue]];
-    marker.map = nil;
-    marker.icon = icon;
-    return marker;
-}
-
 
 - (GMSMarker*)createMarkerWithLat:(const NSNumber*)lat andLong:(const NSNumber*)lon andTitle:(NSString*)title andSnippet:(NSString*)snip andIcon:(UIImage*)icon {
     GMSMarker *marker = [[GMSMarker alloc] init];
