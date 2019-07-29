@@ -173,8 +173,6 @@
 				AD720547202F598B00F55BD7 /* FloatData.m */,
 				AD72053F202F58D800F55BD7 /* Instrument.h */,
 				AD720542202F58D900F55BD7 /* Instrument.m */,
-				D0571DAB22EF7BA800D88E1D /* mapIconView.h */,
-				D0571DAC22EF7BA800D88E1D /* mapIconView.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -182,6 +180,8 @@
 		AD72054E202F5DBD00F55BD7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D0571DAB22EF7BA800D88E1D /* mapIconView.h */,
+				D0571DAC22EF7BA800D88E1D /* mapIconView.m */,
 				AD72054A202F5D2900F55BD7 /* MainViewController.h */,
 				AD720549202F5D2800F55BD7 /* MainViewController.m */,
 			);

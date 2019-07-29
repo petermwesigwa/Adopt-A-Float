@@ -84,10 +84,10 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
             GMSMarker* marker;
             bool gps = !([row.gpsLon floatValue] == 0); //if equal to 0, then NaN
             if (!gps) {
-                marker = [self createMarkerWithLat:row.gpsLat andLong:row.gpsLon andTitle:name andSnippet:[NSString stringWithFormat:@"t-%d hours", i] andIcon:icon];
+                marker = [self createMarkerWithData:row andIcon:icon];
             }
             else {
-                marker = [self createMarkerWithLat:row.gpsLat andLong:row.gpsLon andTitle:name andSnippet:[NSString stringWithFormat:@"t-%d hours", i] andIcon:icon];
+                marker = [self createMarkerWithData:row andIcon:icon];
             }
             [markersForInstr addObject:marker];
             
@@ -150,12 +150,23 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
 
 - (GMSMarker*)createMarkerWithLat:(const NSNumber*)lat andLong:(const NSNumber*)lon andTitle:(NSString*)title andSnippet:(NSString*)snip andIcon:(UIImage*)icon {
     GMSMarker *marker = [[GMSMarker alloc] init];
-
+    
     marker.position = CLLocationCoordinate2DMake([lat floatValue], [lon floatValue]);
     marker.title = title;
     marker.snippet = snip;
     marker.map = nil;
     marker.icon = icon;
+    return marker;
+}
+
+- (GMSMarker*)createMarkerWithData:(FloatData*)data andIcon:(UIImage*)icon {
+    GMSMarker *marker = [[GMSMarker alloc] init];
+    
+    marker.position = CLLocationCoordinate2DMake([data.gpsLat floatValue], [data.gpsLon floatValue]);
+    marker.title = (NSString*) data.deviceName;
+    marker.map = nil;
+    marker.icon = icon;
+    
     return marker;
 }
 
@@ -271,8 +282,9 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
     if (!self.showAllButton.selected)
         [self instrumentTakeDown:self.curr];
     self.curr = [instruments objectForKey:name];
-    if (!self.showAllButton.selected)
-        [self instrumentSetup:self.curr];
+    self.markerNumber = (int) self.curr.floatData.count;
+    //if (!self.showAllButton.selected)
+    [self instrumentSetup:self.curr];
 }
 
 - (void) instrumentSetup:(Instrument*)instrument {

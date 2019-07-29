@@ -20,15 +20,15 @@
  */
 
 // Raw Data retrieved from online
-@property (strong) const NSString *deviceName;
-@property (strong) const NSDate *gpsDate;
-@property (strong) const NSNumber *gpsLat;                   //latitude
-@property (strong) const NSNumber *gpsLon;                   //longitude
-@property (strong) const NSNumber *hDop;                      //horizontal dilution of precision
-@property (strong) const NSNumber *vBat;                      //battery level in millivolts
-@property (strong) const NSNumber *vdop;                     //vertical dilution of precision
-@property (strong) const NSNumber *pInt;                      // Internal pressure
-@property (strong) const NSNumber *pExt;                     // External pressure
+//@property (strong) const NSString *deviceName;
+//@property (strong) const NSDate *gpsDate;
+//@property (strong) const NSNumber *gpsLat;                   //latitude
+//@property (strong) const NSNumber *gpsLon;                   //longitude
+//@property (strong) const NSNumber *hDop;                      //horizontal dilution of precision
+//@property (strong) const NSNumber *vBat;                      //battery level in millivolts
+//@property (strong) const NSNumber *vdop;                     //vertical dilution of precision
+//@property (strong) const NSNumber *pInt;                      // Internal pressure
+//@property (strong) const NSNumber *pExt;                     // External pressure
 @property (strong) NSCalendar *cal;
 
 @end
