@@ -84,7 +84,7 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
             GMSMarker* marker;
             bool gps = !([row.gpsLon floatValue] == 0); //if equal to 0, then NaN
             if (!gps) {
-                marker = [self createMarkerWithLat:row.dopLat andLong:row.dopLon andTitle:name andSnippet:[NSString stringWithFormat:@"t-%d hours", i] andIcon:icon];
+                marker = [self createMarkerWithLat:row.gpsLat andLong:row.gpsLon andTitle:name andSnippet:[NSString stringWithFormat:@"t-%d hours", i] andIcon:icon];
             }
             else {
                 marker = [self createMarkerWithLat:row.gpsLat andLong:row.gpsLon andTitle:name andSnippet:[NSString stringWithFormat:@"t-%d hours", i] andIcon:icon];
@@ -96,7 +96,7 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
                 [newPath addLatitude:[row.gpsLat doubleValue] longitude:[row.gpsLon doubleValue]];
             }
             else {
-                [newPath addLatitude:[row.dopLat doubleValue] longitude:[row.dopLon doubleValue]];
+                [newPath addLatitude:[row.gpsLon doubleValue] longitude:[row.gpsLon doubleValue]];
             }
             i++;
         }
@@ -150,12 +150,17 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
 
 - (GMSMarker*)createMarkerWithLat:(const NSNumber*)lat andLong:(const NSNumber*)lon andTitle:(NSString*)title andSnippet:(NSString*)snip andIcon:(UIImage*)icon {
     GMSMarker *marker = [[GMSMarker alloc] init];
+
     marker.position = CLLocationCoordinate2DMake([lat floatValue], [lon floatValue]);
     marker.title = title;
     marker.snippet = snip;
     marker.map = nil;
     marker.icon = icon;
     return marker;
+}
+
+- (void)showDetailedInfoForMarker:(const NSNumber*)lon {
+    NSLog(@"The method worked!");
 }
 
 - (void)turnOffMarker:(GMSMarker*) marker {
