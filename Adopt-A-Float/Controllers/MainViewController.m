@@ -282,17 +282,26 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
     if (!self.showAllButton.selected)
         [self instrumentTakeDown:self.curr];
     self.curr = [instruments objectForKey:name];
-    self.markerNumber = (int) self.curr.floatData.count;
-    //if (!self.showAllButton.selected)
-    [self instrumentSetup:self.curr];
+    // self.markerNumber = (int) self.curr.floatData.count;
+    if (!self.showAllButton.selected) {
+        self.markerNumber = (int) self.curr.floatData.count;
+        [self instrumentSetup:self.curr];
+    }
+    
 }
 
 - (void) instrumentSetup:(Instrument*)instrument {
     //Turn on new markers and make new path
     GMSMutablePath *originalPath = [self.mutablePaths objectForKey:instrument.name];
     GMSMutablePath *mutablePathForPolyline = [GMSMutablePath path];
-    for (int i = 0; i < self.markerNumber; i++) {
-        float opac = 1 - (i/(self.markerNumber+1.0));
+    int n = 0;
+    if (self.historyButton.isSelected) {
+        n = (int) instrument.floatData.count;
+    } else {
+        n = self.defaultMarkerNumber;
+    }
+    for (int i = 0; i < n; i++) {
+        float opac = 1 - (i/(n+1.0));
         [self turnOnMarker:[self.markers objectForKey:instrument.name][i] withOpacity:opac];
         [mutablePathForPolyline addCoordinate:[originalPath coordinateAtIndex:i]];
     }
