@@ -7,7 +7,6 @@
 //
 
 #import "MainViewController.h"
-#import "mapIconView.h"
 
 extern NSMutableDictionary<NSString *, Instrument *> *instruments;
 
@@ -107,7 +106,7 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
     }
     
     // Show first 5 markers for default instrument
-    self.defaultMarkerNumber = 5;
+    self.defaultMarkerNumber = 1;
     self.markerNumber = self.defaultMarkerNumber;
 // TODO bug if no instrument
     self.curr = [instruments allValues][0];  // Whichever instrument is the first in the array
