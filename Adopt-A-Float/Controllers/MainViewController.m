@@ -105,8 +105,8 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
         j++;
     }
     
-    // Show first 5 markers for default instrument
-    self.defaultMarkerNumber = 1;
+    // Show first 3 markers for default instrument
+    self.defaultMarkerNumber = 3;
     self.markerNumber = self.defaultMarkerNumber;
 // TODO bug if no instrument
     self.curr = [instruments allValues][0];  // Whichever instrument is the first in the array
