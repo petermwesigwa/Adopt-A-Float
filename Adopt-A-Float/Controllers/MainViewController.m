@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+#import "mapIconView.h"
 
 extern NSMutableDictionary<NSString *, Instrument *> *instruments;
 
@@ -115,6 +116,7 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
     // Create a GMSCameraPosition for the initial camera
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:0.0 longitude:0.0 zoom:1];
     self.mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    self.appMapView.delegate = self;
     self.appMapView.camera = camera;
     self.appMapView.mapType = kGMSTypeHybrid;
     
@@ -148,28 +150,29 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
     else [self.appMapView animateWithCameraUpdate:update];
 }
 
-- (GMSMarker*)createMarkerWithLat:(const NSNumber*)lat andLong:(const NSNumber*)lon andTitle:(NSString*)title andSnippet:(NSString*)snip andIcon:(UIImage*)icon {
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    
-    marker.position = CLLocationCoordinate2DMake([lat floatValue], [lon floatValue]);
-    marker.title = title;
-    marker.snippet = snip;
-    marker.map = nil;
-    marker.icon = icon;
-    return marker;
-}
-
+// Creates a GMSmarker for each FloatData object
 - (GMSMarker*)createMarkerWithData:(FloatData*)data andIcon:(UIImage*)icon {
     GMSMarker *marker = [[GMSMarker alloc] init];
-    
+
     marker.position = CLLocationCoordinate2DMake([data.gpsLat floatValue], [data.gpsLon floatValue]);
-    marker.title = (NSString*) data.deviceName;
+    marker.infoWindowAnchor = CGPointMake(0.44f, 0.45f);
     marker.map = nil;
     marker.icon = icon;
+    marker.userData = data;
     
     return marker;
 }
 
+// Displays custom marker icon info window with all the mermaid data
+- (UIView *) mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker {
+     mapIconView *iconView = [[[NSBundle mainBundle] loadNibNamed:@"mapmarkericonview" owner:self options:nil] objectAtIndex:0];
+    FloatData *data = (FloatData *) marker.userData;
+    [iconView provideFloatData:data];
+    iconView.layer.cornerRadius = 15;
+    iconView.layer.opacity = 0.7;
+    
+    return iconView;
+}
 - (void)showDetailedInfoForMarker:(const NSNumber*)lon {
     NSLog(@"The method worked!");
 }

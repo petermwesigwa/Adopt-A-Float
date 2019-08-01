@@ -13,7 +13,7 @@
 #import "Instrument.h"
 #import "FloatData.h"
 
-@interface MainViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>
+@interface MainViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate, GMSMapViewDelegate>
 
 - (IBAction)touchInstrumentButton:(id)sender;
 
