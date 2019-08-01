@@ -17,12 +17,33 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="2rn-Nl-3Cg" kind="relationship" relationship="rootViewController" id="jAE-6e-UfG"/>
+                        <segue destination="bSR-U5-Ig6" kind="presentation" id="P96-aQ-7P3"/>
+                        <segue destination="2rn-Nl-3Cg" kind="presentation" id="Mfj-aV-2yd"/>
+                        <segue destination="2rn-Nl-3Cg" kind="relationship" relationship="rootViewController" id="HNX-BV-EOq"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2ej-HX-XvZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1542" y="106"/>
+        </scene>
+        <!--Float Information-->
+        <scene sceneID="dvm-12-hpH">
+            <objects>
+                <viewController title="Float Information" id="bSR-U5-Ig6" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gB7-ph-Njj"/>
+                        <viewControllerLayoutGuide type="bottom" id="wKM-bL-mjD"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Nf3-KV-SnW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ZLO-Bz-yY1"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="alq-Or-B2m" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-655" y="520"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="CTe-vF-7KO">
@@ -42,6 +63,7 @@
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8a-6I-SDm" userLabel="History">
                                 <rect key="frame" x="93" y="608" width="42.5" height="43"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <state key="normal" backgroundImage="history">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -54,6 +76,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="eoT-uS-qTV" secondAttribute="height" multiplier="1:1" id="4VQ-qt-unS"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" backgroundImage="instrument">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -66,6 +89,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yAB-qb-xx3" secondAttribute="height" multiplier="1:1" id="Csf-ec-B8m"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" backgroundImage="showall">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -73,18 +97,18 @@
                                     <action selector="touchShowAllButton:" destination="2rn-Nl-3Cg" eventType="touchUpInside" id="Yhe-mF-NVj"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" restorationIdentifier="MapView" translatesAutoresizingMaskIntoConstraints="NO" id="0Qq-Lj-hMX" userLabel="MapView" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="20" width="375" height="562.5"/>
+                            <view contentMode="scaleToFill" misplaced="YES" restorationIdentifier="MapView" translatesAutoresizingMaskIntoConstraints="NO" id="0Qq-Lj-hMX" userLabel="MapView" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="580"/>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Label" textAlignment="center" lineBreakMode="clip" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Bjk-IJ-V5l">
                                 <rect key="frame" x="95" y="35" width="188" height="45"/>
-                                <fontDescription key="fontDescription" name="SignPainter-HouseScript" family="SignPainter" pointSize="50"/>
+                                <fontDescription key="fontDescription" name="SignPainter-HouseScript" family="SignPainter" pointSize="49"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.80452120545476524" green="0.93295283808609364" blue="0.69723255574599985" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="0Qq-Lj-hMX" secondAttribute="centerX" id="03d-xi-DO9"/>
                             <constraint firstItem="0Qq-Lj-hMX" firstAttribute="top" secondItem="t0Y-rD-8bv" secondAttribute="top" id="2gs-ye-qB7"/>
@@ -123,7 +147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fB9-Ru-rRN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-596" y="105.69715142428787"/>
+            <point key="canvasLocation" x="-655" y="-237"/>
         </scene>
     </scenes>
     <resources>
@@ -131,4 +155,7 @@
         <image name="instrument" width="380" height="400"/>
         <image name="showall" width="626" height="593"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Mfj-aV-2yd"/>
+    </inferredMetricsTieBreakers>
 </document>
