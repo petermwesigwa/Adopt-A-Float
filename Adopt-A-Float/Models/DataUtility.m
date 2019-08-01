@@ -76,9 +76,11 @@ NSString *const URL_ONE = @"URL_ONE"; // retrieves url for the data for one inst
 
 // deduce the url for retrieving the instrument's data from it's name
 + (NSURL *) getURLFromName: (NSString *) floatName usingFormat:(NSString *)format_URL {
-    return [NSURL URLWithString:
-            [NSString stringWithFormat:
-             format_URL, floatName]];
+    // Change all float names starting with N to P for the url (eg from N001 to P001)
+    floatName = [floatName stringByReplacingOccurrencesOfString:@"N" withString:@"P"];
+    
+    return [NSURL URLWithString:[NSString stringWithFormat:
+                                 format_URL, floatName]];
 }
 
 // Return an array of FloatData objects retrieved from the url

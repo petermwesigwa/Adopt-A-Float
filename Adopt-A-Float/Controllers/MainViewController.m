@@ -84,10 +84,10 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
             GMSMarker* marker;
             bool gps = !([row.gpsLon floatValue] == 0); //if equal to 0, then NaN
             if (!gps) {
-                marker = [self createMarkerWithLat:row.dopLat andLong:row.dopLon andTitle:name andSnippet:[NSString stringWithFormat:@"t-%d hours", i] andIcon:icon];
+                marker = [self createMarkerWithData:row andIcon:icon];
             }
             else {
-                marker = [self createMarkerWithLat:row.gpsLat andLong:row.gpsLon andTitle:name andSnippet:[NSString stringWithFormat:@"t-%d hours", i] andIcon:icon];
+                marker = [self createMarkerWithData:row andIcon:icon];
             }
             [markersForInstr addObject:marker];
             
@@ -96,7 +96,7 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
                 [newPath addLatitude:[row.gpsLat doubleValue] longitude:[row.gpsLon doubleValue]];
             }
             else {
-                [newPath addLatitude:[row.dopLat doubleValue] longitude:[row.dopLon doubleValue]];
+                [newPath addLatitude:[row.gpsLon doubleValue] longitude:[row.gpsLon doubleValue]];
             }
             i++;
         }
@@ -105,8 +105,8 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
         j++;
     }
     
-    // Show first 5 markers for default instrument
-    self.defaultMarkerNumber = 5;
+    // Show first 3 markers for default instrument
+    self.defaultMarkerNumber = 3;
     self.markerNumber = self.defaultMarkerNumber;
 // TODO bug if no instrument
     self.curr = [instruments allValues][0];  // Whichever instrument is the first in the array
@@ -115,6 +115,7 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
     // Create a GMSCameraPosition for the initial camera
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:0.0 longitude:0.0 zoom:1];
     self.mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
+    self.appMapView.delegate = self;
     self.appMapView.camera = camera;
     self.appMapView.mapType = kGMSTypeHybrid;
     
@@ -148,14 +149,31 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
     else [self.appMapView animateWithCameraUpdate:update];
 }
 
-- (GMSMarker*)createMarkerWithLat:(const NSNumber*)lat andLong:(const NSNumber*)lon andTitle:(NSString*)title andSnippet:(NSString*)snip andIcon:(UIImage*)icon {
+// Creates a GMSmarker for each FloatData object
+- (GMSMarker*)createMarkerWithData:(FloatData*)data andIcon:(UIImage*)icon {
     GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake([lat floatValue], [lon floatValue]);
-    marker.title = title;
-    marker.snippet = snip;
+
+    marker.position = CLLocationCoordinate2DMake([data.gpsLat floatValue], [data.gpsLon floatValue]);
+    marker.infoWindowAnchor = CGPointMake(0.44f, 0.45f);
     marker.map = nil;
     marker.icon = icon;
+    marker.userData = data;
+    
     return marker;
+}
+
+// Displays custom marker icon info window with all the mermaid data
+- (UIView *) mapView:(GMSMapView *)mapView markerInfoWindow:(GMSMarker *)marker {
+     mapIconView *iconView = [[[NSBundle mainBundle] loadNibNamed:@"mapmarkericonview" owner:self options:nil] objectAtIndex:0];
+    FloatData *data = (FloatData *) marker.userData;
+    [iconView provideFloatData:data];
+    iconView.layer.cornerRadius = 15;
+    iconView.layer.opacity = 0.7;
+    
+    return iconView;
+}
+- (void)showDetailedInfoForMarker:(const NSNumber*)lon {
+    NSLog(@"The method worked!");
 }
 
 - (void)turnOffMarker:(GMSMarker*) marker {
@@ -266,16 +284,26 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
     if (!self.showAllButton.selected)
         [self instrumentTakeDown:self.curr];
     self.curr = [instruments objectForKey:name];
-    if (!self.showAllButton.selected)
+    // self.markerNumber = (int) self.curr.floatData.count;
+    if (!self.showAllButton.selected) {
+        self.markerNumber = (int) self.curr.floatData.count;
         [self instrumentSetup:self.curr];
+    }
+    
 }
 
 - (void) instrumentSetup:(Instrument*)instrument {
     //Turn on new markers and make new path
     GMSMutablePath *originalPath = [self.mutablePaths objectForKey:instrument.name];
     GMSMutablePath *mutablePathForPolyline = [GMSMutablePath path];
-    for (int i = 0; i < self.markerNumber; i++) {
-        float opac = 1 - (i/(self.markerNumber+1.0));
+    int n = 0;
+    if (self.historyButton.isSelected) {
+        n = (int) instrument.floatData.count;
+    } else {
+        n = self.defaultMarkerNumber;
+    }
+    for (int i = 0; i < n; i++) {
+        float opac = 1 - (i/(n+1.0));
         [self turnOnMarker:[self.markers objectForKey:instrument.name][i] withOpacity:opac];
         [mutablePathForPolyline addCoordinate:[originalPath coordinateAtIndex:i]];
     }
