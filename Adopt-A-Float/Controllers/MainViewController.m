@@ -71,7 +71,7 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
 
         //set icon color
         if (j == self.colors.count) j = 0; //to make sure there's no overflow
-        UIImage *icon = [GMSMarker markerImageWithColor:[self.colors objectAtIndex:j]];
+        UIImage *icon = [GMSMarker markerImageWithColor:[UIColor grayColor]];
         
         // make an array of markers and a path for each object
         NSMutableArray* markersForInstr = [[NSMutableArray alloc] init];
@@ -109,8 +109,12 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
     self.defaultMarkerNumber = 3;
     self.markerNumber = self.defaultMarkerNumber;
 // TODO bug if no instrument
-    self.curr = [instruments allValues][0];  // Whichever instrument is the first in the array
-    [self instrumentSetup:self.curr];
+    //self.curr = [instruments allValues][0];  // Whichever instrument is the first in the array
+    //[self instrumentSetup:self.curr];
+    
+    for (Instrument *ins in [instruments allValues]) {
+        [self instrumentSetup:ins];
+    }
     
     // Create a GMSCameraPosition for the initial camera
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:0.0 longitude:0.0 zoom:1];
@@ -289,6 +293,14 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
         self.markerNumber = (int) self.curr.floatData.count;
         [self instrumentSetup:self.curr];
     }
+    
+}
+
+- (IBAction)discardSettings:(UIStoryboardSegue*)unwindSegue {
+    
+}
+
+- (IBAction)applySettings:(UIStoryboardSegue*)unwindSegue {
     
 }
 

@@ -17,5 +17,7 @@
 @interface MainViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate, GMSMapViewDelegate>
 
 - (IBAction)touchInstrumentButton:(id)sender;
+- (IBAction)discardSettings:(UIStoryboardSegue*)unwindSegue;
+- (IBAction)applySettings:(UIStoryboardSegue*)unwindSegue;
 
 @end
