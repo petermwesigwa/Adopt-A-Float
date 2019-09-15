@@ -14,10 +14,6 @@
 #import "FloatData.h"
 #import "mapIconView.h"
 
-@interface MainViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate, GMSMapViewDelegate>
-
-- (IBAction)touchInstrumentButton:(id)sender;
-- (IBAction)discardSettings:(UIStoryboardSegue*)unwindSegue;
-- (IBAction)applySettings:(UIStoryboardSegue*)unwindSegue;
+@interface MainViewController : UIViewController<UIPickerViewDelegate, GMSMapViewDelegate>
 
 @end
