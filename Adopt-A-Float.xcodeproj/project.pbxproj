@@ -20,6 +20,9 @@
 		AD720548202F598B00F55BD7 /* FloatData.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720547202F598B00F55BD7 /* FloatData.m */; };
 		AD72054B202F5D2900F55BD7 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720549202F5D2800F55BD7 /* MainViewController.m */; };
 		ADB225AA203922B4005B6CC8 /* source.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADB225A9203922B4005B6CC8 /* source.plist */; };
+		D055B9352313DD38006CD40D /* SelectFloatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D055B9342313DD38006CD40D /* SelectFloatTableViewController.m */; };
+		D055B93823141F1C006CD40D /* SelectMarkerNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D055B93723141F1C006CD40D /* SelectMarkerNumberViewController.m */; };
+		D055B93B231422A4006CD40D /* OptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D055B93A231422A4006CD40D /* OptionsViewController.m */; };
 		D0571DAA22EF7A0900D88E1D /* mapmarkericonview.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0571DA922EF7A0900D88E1D /* mapmarkericonview.xib */; };
 		D0571DAD22EF7BA800D88E1D /* mapIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0571DAC22EF7BA800D88E1D /* mapIconView.m */; };
 		D05E012F22CBD4FA00A55488 /* private.plist in Resources */ = {isa = PBXBuildFile; fileRef = D05E012E22CBD4FA00A55488 /* private.plist */; };
@@ -60,6 +63,12 @@
 		AD720549202F5D2800F55BD7 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		AD72054A202F5D2900F55BD7 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		ADB225A9203922B4005B6CC8 /* source.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = source.plist; sourceTree = "<group>"; };
+		D055B9332313DD38006CD40D /* SelectFloatTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectFloatTableViewController.h; sourceTree = "<group>"; };
+		D055B9342313DD38006CD40D /* SelectFloatTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectFloatTableViewController.m; sourceTree = "<group>"; };
+		D055B93623141F1C006CD40D /* SelectMarkerNumberViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectMarkerNumberViewController.h; sourceTree = "<group>"; };
+		D055B93723141F1C006CD40D /* SelectMarkerNumberViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectMarkerNumberViewController.m; sourceTree = "<group>"; };
+		D055B939231422A4006CD40D /* OptionsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OptionsViewController.h; sourceTree = "<group>"; };
+		D055B93A231422A4006CD40D /* OptionsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OptionsViewController.m; sourceTree = "<group>"; };
 		D0571DA922EF7A0900D88E1D /* mapmarkericonview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = mapmarkericonview.xib; sourceTree = "<group>"; };
 		D0571DAB22EF7BA800D88E1D /* mapIconView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mapIconView.h; sourceTree = "<group>"; };
 		D0571DAC22EF7BA800D88E1D /* mapIconView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mapIconView.m; sourceTree = "<group>"; };
@@ -184,6 +193,12 @@
 				D0571DAC22EF7BA800D88E1D /* mapIconView.m */,
 				AD72054A202F5D2900F55BD7 /* MainViewController.h */,
 				AD720549202F5D2800F55BD7 /* MainViewController.m */,
+				D055B939231422A4006CD40D /* OptionsViewController.h */,
+				D055B93A231422A4006CD40D /* OptionsViewController.m */,
+				D055B9332313DD38006CD40D /* SelectFloatTableViewController.h */,
+				D055B9342313DD38006CD40D /* SelectFloatTableViewController.m */,
+				D055B93623141F1C006CD40D /* SelectMarkerNumberViewController.h */,
+				D055B93723141F1C006CD40D /* SelectMarkerNumberViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -353,12 +368,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D055B9352313DD38006CD40D /* SelectFloatTableViewController.m in Sources */,
 				AD720529202F553100F55BD7 /* main.m in Sources */,
 				AD72054B202F5D2900F55BD7 /* MainViewController.m in Sources */,
 				AD720545202F58D900F55BD7 /* Instrument.m in Sources */,
 				AD720544202F58D900F55BD7 /* DataUtility.m in Sources */,
 				AD72051B202F553100F55BD7 /* AppDelegate.m in Sources */,
 				D0571DAD22EF7BA800D88E1D /* mapIconView.m in Sources */,
+				D055B93B231422A4006CD40D /* OptionsViewController.m in Sources */,
+				D055B93823141F1C006CD40D /* SelectMarkerNumberViewController.m in Sources */,
 				AD720548202F598B00F55BD7 /* FloatData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -520,7 +538,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.frederik.Adopt-A-Float";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -535,7 +553,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.frederik.Adopt-A-Float";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
