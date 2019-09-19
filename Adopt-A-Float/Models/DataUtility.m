@@ -78,6 +78,9 @@ NSString *const URL_ONE = @"URL_ONE"; // retrieves url for the data for one inst
 + (NSURL *) getURLFromName: (NSString *) floatName usingFormat:(NSString *)format_URL {
     // Change all float names starting with N to P for the url (eg from N001 to P001)
     floatName = [floatName stringByReplacingOccurrencesOfString:@"N" withString:@"P"];
+    if ([floatName length] > 4) {
+        floatName = [floatName stringByReplacingOccurrencesOfString:@"00" withString:@"0"];
+    }
     
     return [NSURL URLWithString:[NSString stringWithFormat:
                                  format_URL, floatName]];

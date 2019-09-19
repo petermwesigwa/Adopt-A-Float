@@ -63,7 +63,7 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
     //Basic initializations
     self.polylineStrokeWidth = 3;
     
-    self.instrumentNames = [instruments allKeys];
+    self.instrumentNames = [[instruments allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     self.currentIndex = 0;
     
     //Make colors array
