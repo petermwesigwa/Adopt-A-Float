@@ -8,6 +8,7 @@
 
 #import "OptionsViewController.h"
 #import "SelectFloatTableViewController.h"
+#import "SelectMarkerNumberViewController.h"
 
 @interface OptionsViewController ()
 
@@ -41,6 +42,10 @@
 
 - (IBAction)discardChanges:(UIStoryboardSegue*)unwindSegue {
     
+}
+
+- (IBAction)changeMarkerNumber: (UIStoryboardSegue*)unwindSegue {
+    SelectMarkerNumberViewController *source = unwindSegue.sourceViewController;
 }
 
 - (IBAction)changeFloatName:(UIStoryboardSegue*)unwindSegue {

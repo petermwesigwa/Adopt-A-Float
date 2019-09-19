@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    _options = @[@"All Locations", @"Last 30 Locations"];
+    _options = @[@"Most Recent Location", @"Last 30 Locations", @"All Locations"];
 }
 
 #pragma mark - Table view data source
@@ -36,6 +36,12 @@
     cell.textLabel.text = [_options objectAtIndex:indexPath.row];
     return cell;
 }
+
+- (NSIndexPath *) tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return indexPath;
+}
+
 
 
 /*
