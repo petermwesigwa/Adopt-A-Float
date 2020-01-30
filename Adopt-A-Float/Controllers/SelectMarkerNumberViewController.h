@@ -13,8 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface SelectMarkerNumberViewController : UITableViewController
 @property (strong) NSArray<NSString*> *options;
 @property (strong) NSArray<NSNumber*> *counts;
-@property (assign) int *selectedFloatIndex;
-@property (assign) int *selectedMarkerNumber;
+@property (assign) int selectedMarkerNumberIndex;
+@property (assign) int markerNumber;
+
 
 @end
 
