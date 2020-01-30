@@ -115,8 +115,8 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
         j++;
     }
     
-    // Show first 3 markers for default instrument
-    self.defaultMarkerNumber = 3;
+    // Show most recent marker for instrument by default
+    self.defaultMarkerNumber = 1;
     self.markerNumber = self.defaultMarkerNumber;
     
     for (Instrument *ins in [instruments allValues]) {
@@ -222,10 +222,14 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
         if (self.curr) {
             destination.currentInstrument= self.curr.name;
             destination.currentInstrumentLabel.text = self.curr.name;
-            destination.currentIndex = self.currentIndex;
+            destination.currentFloatNameIndex = self.currentIndex;
+            destination.markerNumber = self.markerNumber;
+            destination.markerNumberLabel.text = [NSString stringWithFormat:@"%d", self.markerNumber];
         }
         else {
             destination.currentInstrument=@"All";
+            destination.markerNumber = self.markerNumber;
+            destination.markerNumberLabel.text = [NSString stringWithFormat:@"%d", self.markerNumber];
         }
     }
 }
@@ -233,7 +237,8 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
 - (IBAction) backToMap:(UIStoryboardSegue *)unwindSegue {
     OptionsViewController *source = unwindSegue.sourceViewController;
     self.curr = [instruments objectForKey:source.currentInstrument];
-    self.currentIndex = source.currentIndex;
+    self.currentIndex = source.currentFloatNameIndex;
+    self.markerNumber = source.markerNumber;
 }
 
 
@@ -241,7 +246,10 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
     //Turn on new markers and make new path
     GMSMutablePath *originalPath = [self.mutablePaths objectForKey:instrument.name];
     GMSMutablePath *mutablePathForPolyline = [GMSMutablePath path];
-    int n = self.defaultMarkerNumber;
+    int n = self.markerNumber;
+    if (n > [instrument.floatData count]) {
+        n = (int) [instrument.floatData count];
+    }
     
     for (int i = 0; i < n; i++) {
         float opac = 1 - (i/(n+1.0));

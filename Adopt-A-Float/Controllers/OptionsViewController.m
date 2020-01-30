@@ -36,7 +36,10 @@
         SelectFloatTableViewController * destination = segue.destinationViewController;
         destination.instruments = _instruments;
         destination.selectedFloat = _currentInstrument;
-        destination.selectedFloatIndex = _currentIndex;
+        destination.selectedFloatIndex = _currentFloatNameIndex;
+    } else if ([segue.identifier isEqualToString:@"SelectHistory"]) {
+        SelectMarkerNumberViewController *dest = segue.destinationViewController;
+        dest.selectedMarkerNumberIndex = self.currentMarkerNumberIndex;
     }
 }
 
@@ -46,12 +49,15 @@
 
 - (IBAction)changeMarkerNumber: (UIStoryboardSegue*)unwindSegue {
     SelectMarkerNumberViewController *source = unwindSegue.sourceViewController;
+    self.currentMarkerNumberIndex = source.selectedMarkerNumberIndex;
+    self.markerNumber = source.markerNumber;
+    self.markerNumberLabel.text = [NSString stringWithFormat:@"%d", source.markerNumber];
 }
 
 - (IBAction)changeFloatName:(UIStoryboardSegue*)unwindSegue {
     SelectFloatTableViewController *source = unwindSegue.sourceViewController;
     self.currentInstrument = source.selectedFloat;
-    self.currentIndex = source.selectedFloatIndex;
+    self.currentFloatNameIndex = source.selectedFloatIndex;
     self.currentInstrumentLabel.text = source.selectedFloat;
 }
 @end
