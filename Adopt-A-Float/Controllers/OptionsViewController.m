@@ -17,6 +17,8 @@
 @implementation OptionsViewController
 - (void)viewDidAppear:(BOOL)animated {
     self.currentInstrumentLabel.text = self.currentInstrument;
+    self.markerNumberLabel.text = [NSString stringWithFormat:@"Past %d location(s)", _markerNumber];
+
 }
 
 - (void)viewDidLoad {

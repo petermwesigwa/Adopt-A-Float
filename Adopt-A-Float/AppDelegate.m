@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 
 NSMutableDictionary<NSString *, Instrument *> *instruments;
+NSMutableDictionary<NSString *, UIColor *> *categories;
 
 @interface AppDelegate ()
 
@@ -31,6 +32,7 @@ NSMutableDictionary<NSString *, Instrument *> *instruments;
         
     //update instrument data
     instruments = [DataUtility createInstruments];
+    categories = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[UIColor blueColor], @"GeoAzur", [UIColor yellowColor], @"SUSTech", [UIColor orangeColor], @"Princeton", [UIColor redColor], @"JAMSTEC", [UIColor grayColor], @"Inactive", nil];
     
     return YES;
 }
