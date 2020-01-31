@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong) NSString *currentInstrument; // current instrument on display
 @property (strong) NSMutableArray<NSString*>* instruments;
 @property (assign) int currentFloatNameIndex;
-@property (assign) int currentMarkerNumberIndex;
+@property (assign) NSInteger *currentMarkerNumberIndex;
 @property (assign) int markerNumber;
 
 @property (weak, nonatomic) IBOutlet UILabel *currentInstrumentLabel;

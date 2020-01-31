@@ -80,14 +80,18 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
     for(NSString *name in instrumentNames) {
 
         //set icon color
-        if (j == self.colors.count) j = 0; //to make sure there's no overflow
-        UIImage *icon = [GMSMarker markerImageWithColor:[UIColor grayColor]];
+//        if (j == self.colors.count) j = 0; //to make sure there's no overflow
+//        UIImage *icon = [GMSMarker markerImageWithColor:[UIColor grayColor]];
+//
         
         // make an array of markers and a path for each object
         NSMutableArray* markersForInstr = [[NSMutableArray alloc] init];
         GMSMutablePath *newPath = [GMSMutablePath path];
         int i = 0;
         Instrument* instr = [instruments objectForKey:name];
+        
+        //set icon
+        UIImage *icon = [GMSMarker markerImageWithColor:[instr getColor]];
         for (FloatData *row in instr.floatData) {
             
             //Create new marker and add to marker array
@@ -224,12 +228,12 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
             destination.currentInstrumentLabel.text = self.curr.name;
             destination.currentFloatNameIndex = self.currentIndex;
             destination.markerNumber = self.markerNumber;
-            destination.markerNumberLabel.text = [NSString stringWithFormat:@"%d", self.markerNumber];
+            destination.markerNumberLabel.text = [NSString stringWithFormat:@"Past %d location(s)", self.markerNumber];
         }
         else {
             destination.currentInstrument=@"All";
             destination.markerNumber = self.markerNumber;
-            destination.markerNumberLabel.text = [NSString stringWithFormat:@"%d", self.markerNumber];
+            destination.markerNumberLabel.text = [NSString stringWithFormat:@"Past %d location(s)", self.markerNumber];
         }
     }
 }
