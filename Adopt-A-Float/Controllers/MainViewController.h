@@ -14,8 +14,6 @@
 #import "FloatData.h"
 #import "mapIconView.h"
 
-@interface MainViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate, GMSMapViewDelegate>
-
-- (IBAction)touchInstrumentButton:(id)sender;
+@interface MainViewController : UIViewController<UIPickerViewDelegate, GMSMapViewDelegate>
 
 @end

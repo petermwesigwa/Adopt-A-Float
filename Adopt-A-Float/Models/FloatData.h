@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface FloatData : NSObject
 
@@ -19,6 +20,7 @@
 @property (strong, readonly) const NSNumber *vbat;                      //battery level
 @property (strong, readonly) const NSNumber *pInt;                      //internal pressure
 @property (strong, readonly) const NSNumber *pExt;                      // external pressure
+@property (strong, readonly) const UIColor *color;
 
 // Returns a new FloatData object or NULL if orderedData is invalid
 - (id)initWithRaw:(NSMutableArray<NSString *> *)orderedData;

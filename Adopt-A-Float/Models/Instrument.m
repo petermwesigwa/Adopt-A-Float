@@ -22,6 +22,8 @@
     if (self) {
         self.name = name;
         self.floatData = floatData; // Not defensively copied
+        _color = [Instrument assignColor:name];
+
     }
     return self;
 }
@@ -35,6 +37,27 @@
 
 - (NSString *)getName {
     return self.name;
+}
+
++ (UIColor *)assignColor:(NSString*)floatName {
+    int float_id = [[floatName substringFromIndex:1] intValue];
+    if (float_id == 6) {
+        return [UIColor blueColor];
+    }
+    if (float_id == 3 || float_id == 7) {
+        return [UIColor grayColor];
+    }
+    if (float_id > 26 && float_id < 49) {
+        return [UIColor yellowColor];
+    }
+    if ([floatName hasPrefix:@"P"]) {
+        return [UIColor orangeColor];
+    }
+    return [UIColor redColor];
+}
+
+- (UIColor *)getColor {
+    return self.color;
 }
 
 @end
