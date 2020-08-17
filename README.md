@@ -18,4 +18,4 @@ use your exisintg file. It is not uploaded to GitHub).
 3) Create a .gitignore file in the folder whose contents is just the
 line "private.plist". This will keep your API key private when pushing
 changes to GitHub.  
-4) Run it.
+4) Run it now.
