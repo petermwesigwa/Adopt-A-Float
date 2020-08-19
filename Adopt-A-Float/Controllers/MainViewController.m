@@ -28,8 +28,8 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
     @property (weak) IBOutlet GMSMapView *appMapView;
 
 
-    @property (assign) int currentIndex;
-
+    @property (assign) int currentFloatIndex;
+    @property (assign) int currentMarkerNumberIndex;
     @property (strong) GMSMapView *mapView;
 
 @end
@@ -38,7 +38,7 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
 
 
 - (void) viewDidAppear:(BOOL)animated {
-    //take down all the instruments
+    //take down all visible instruments
     for (Instrument *ins in [instruments allValues]) {
         [self instrumentTakeDown:ins];
     }
@@ -67,7 +67,7 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
     self.polylineStrokeWidth = 3;
     
     self.instrumentNames = [[instruments allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-    self.currentIndex = 0;
+    self.currentFloatIndex = 0;
     
     //Make colors array
     self.colors = @[[UIColor redColor], [UIColor greenColor], [UIColor blueColor], [UIColor cyanColor], [UIColor yellowColor], [UIColor magentaColor], [UIColor orangeColor], [UIColor brownColor], [UIColor purpleColor], [UIColor blackColor], [UIColor grayColor], [UIColor whiteColor], [UIColor darkGrayColor], [UIColor lightGrayColor]];
@@ -229,23 +229,23 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
         if (self.curr) {
             destination.currentInstrument= self.curr.name;
             destination.currentInstrumentLabel.text = self.curr.name;
-            destination.currentFloatNameIndex = self.currentIndex;
-            destination.markerNumber = self.markerNumber;
-            destination.markerNumberLabel.text = [NSString stringWithFormat:@"Past %d location(s)", self.markerNumber];
+            destination.currentFloatNameIndex = self.currentFloatIndex;
         }
         else {
             destination.currentInstrument=@"All";
-            destination.markerNumber = self.markerNumber;
-            destination.markerNumberLabel.text = [NSString stringWithFormat:@"Past %d location(s)", self.markerNumber];
         }
+        destination.currentMarkerNumberIndex = self.currentMarkerNumberIndex;
+        destination.markerNumber = self.markerNumber;
+        destination.markerNumberLabel.text = [NSString stringWithFormat:@"Past %d location(s)", self.markerNumber];
     }
 }
 
 - (IBAction) backToMap:(UIStoryboardSegue *)unwindSegue {
     OptionsViewController *source = unwindSegue.sourceViewController;
     self.curr = [instruments objectForKey:source.currentInstrument];
-    self.currentIndex = source.currentFloatNameIndex;
+    self.currentFloatIndex = source.currentFloatNameIndex;
     self.markerNumber = source.markerNumber;
+    self.currentMarkerNumberIndex = source.currentMarkerNumberIndex;
 }
 
 
