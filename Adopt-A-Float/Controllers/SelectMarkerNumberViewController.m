@@ -21,6 +21,10 @@
     _counts = @[@1, @5, @10, @20];
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+    // nothing here yet
+}
+
 #pragma mark - Table view data source
 // method needed to implement UITableViewController class
 // Returns the number of sections in the table (in this case this number should be 1)
