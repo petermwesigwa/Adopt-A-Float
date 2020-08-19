@@ -3,6 +3,7 @@
 //  Adopt-A-Float
 //
 //  Created by Ben Leizman on 6/20/15.
+//  Modified by Peter Mwesigwa on 8/18/20.
 //  Copyright © 2018 Frederik Simons. All rights reserved.
 //
 
@@ -37,11 +38,13 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
 
 
 - (void) viewDidAppear:(BOOL)animated {
+    //take down all the instruments
+    for (Instrument *ins in [instruments allValues]) {
+        [self instrumentTakeDown:ins];
+    }
+    
     // if instrument is chosen set it up
     if (self.curr) {
-        for (Instrument *ins in [instruments allValues]) {
-            [self instrumentTakeDown:ins];
-        }
         [self instrumentSetup:self.curr];
         self.navigationItem.title = self.curr.name;
     }
