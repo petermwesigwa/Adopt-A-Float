@@ -6,18 +6,22 @@
 //  Copyright © 2019 Frederik Simons. All rights reserved.
 //
 
+// Implementation ofm mapiconView.h
 #import "mapIconView.h"
 
 
 @implementation mapIconView
 
-// set
+
 - (void)provideFloatData:(FloatData *)data {
+    // set up formatter to read in date screen
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterMediumStyle];
     
+    // populate each of the UIlabels for the view with information from the FloatData object
+    // with the measurement
     self.deviceName.text = (NSString*) data.deviceName;
     self.gpsDate.text = [formatter stringFromDate:(NSDate*)data.gpsDate];
     self.gpsLat.text = [data.gpsLat stringValue];

@@ -38,6 +38,7 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
 
 
 - (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     //take down all visible instruments
     for (Instrument *ins in [instruments allValues]) {
         [self instrumentTakeDown:ins];

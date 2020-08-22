@@ -53,6 +53,7 @@
     
 }
 
+// change marker number with user selection from select marker number s
 - (IBAction)changeMarkerNumber: (UIStoryboardSegue*)unwindSegue {
     SelectMarkerNumberViewController *source = unwindSegue.sourceViewController;
     self.currentMarkerNumberIndex = source.selectedMarkerNumberIndex;
