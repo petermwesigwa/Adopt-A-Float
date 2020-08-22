@@ -67,7 +67,6 @@
     cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     return indexPath;
-    return indexPath;
 }
 
 

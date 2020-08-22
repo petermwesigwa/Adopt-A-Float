@@ -42,19 +42,19 @@
 
 + (UIColor *)assignColor:(NSString*)floatName {
     int float_id = [[floatName substringFromIndex:1] intValue];
-    if (float_id == 6) {
+    if (float_id == 6) { // GeoAzur
         return [UIColor blueColor];
     }
-    if (float_id == 3 || float_id == 7) {
+    if (float_id == 3 || float_id == 7) { // Dead
         return [UIColor grayColor];
     }
-    if (float_id > 26 && float_id < 49) {
+    if (float_id > 26 && float_id < 49) { // SUSTech
         return [UIColor yellowColor];
     }
-    if ([floatName hasPrefix:@"P"]) {
+    if ([floatName hasPrefix:@"P"]) { // Princeton
         return [UIColor orangeColor];
     }
-    return [UIColor redColor];
+    return [UIColor redColor]; // JAMSTEC
 }
 
 - (UIColor *)getColor {
