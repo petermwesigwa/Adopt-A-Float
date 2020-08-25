@@ -11,11 +11,15 @@
 #import "FloatData.h"
 #import "Instrument.h"
 
+/*
+Description:
+ This file is useful for reading in data and setting up the 
+ */
+
 @interface DataUtility : NSObject
 
-// Tools for retrieveing instruments from online
+
+// This is the most important method provided by this class. This method creates all the instruments, initializing them with all the necessary observations using data fetched from the remote server. Returns a dictionary where each instrument can be retrieved by name.
 + (NSMutableDictionary<NSString *, Instrument *> *)createInstruments;
-+ (NSDictionary *)getSourceURLs;
-+ (NSMutableArray<FloatData *> *)getDataFromURL:(NSURL *)url;
 
 @end

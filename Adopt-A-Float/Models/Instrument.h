@@ -8,7 +8,8 @@
 
 /*
     This class represents a single mermaid instrument along with all its recorded readings.
-    Each instrument is assigned a display color on the map to show which organization it belongs to
+    Each instrument is assigned a display color on the map to show which organization
+    it belongs to.
  */
 
 #import <Foundation/Foundation.h>
