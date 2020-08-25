@@ -9,22 +9,18 @@
 
 #import "Instrument.h"
 
-@interface Instrument ()
-
-@property (strong) NSString *name;
-@property (strong) NSMutableArray<FloatData *> *floatData;
-
-@end
+//@interface Instrument ()
+//
+//@end
 
 @implementation Instrument
 
 - (id)initWithName:(NSString *)name andfloatData:(NSMutableArray<FloatData *> *)floatData {
     self = [super init];
     if (self) {
-        self.name = name;
-        self.floatData = floatData; // Not defensively copied
+        _name = name;
+        _floatData = floatData;
         _color = [Instrument assignColor:name];
-
     }
     return self;
 }

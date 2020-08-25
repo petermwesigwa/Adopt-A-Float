@@ -10,29 +10,13 @@
 #import "MainViewController.h"
 #import "OptionsViewController.h"
 
+
+/*
+ This dictionary contains each of the instruments and the data that they have recorded
+ All the instrument setup and population of the data therein happens in the AppDelegate.m
+ file.
+ */
 extern NSMutableDictionary<NSString *, Instrument *> *instruments;
-
-@interface MainViewController ()
-    @property (strong) NSMutableDictionary *markers;
-    @property (strong) NSMutableDictionary *mutablePaths;
-    @property (strong) Instrument *curr;
-    @property (weak) IBOutlet UILabel *titleLabel;
-    @property (assign) int defaultMarkerNumber;
-    @property (assign) int markerNumber;
-    @property (strong) NSMutableArray *onMarkers;
-    @property (strong) NSMutableArray *onPolylines;
-    @property (strong) NSArray *colors;
-    @property (assign) int polylineStrokeWidth;
-    @property (strong) NSArray<NSString *> *instrumentNames;
-
-    @property (weak) IBOutlet GMSMapView *appMapView;
-
-
-    @property (assign) int currentFloatIndex;
-    @property (assign) int currentMarkerNumberIndex;
-    @property (strong) GMSMapView *mapView;
-
-@end
 
 @implementation MainViewController
 
