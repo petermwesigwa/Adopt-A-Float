@@ -31,7 +31,7 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
     // if instrument is chosen set it up
     if (self.curr) {
         [self instrumentSetup:self.curr];
-        self.navigationItem.title = self.curr.name;
+        self.navigationItem.title = [self.curr getName];
     }
     
     // otherwise display all the instruments
@@ -80,7 +80,7 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
         
         //set icon
         UIImage *icon = [GMSMarker markerImageWithColor:[instr getColor]];
-        for (FloatData *row in instr.floatData) {
+        for (FloatData *row in [instr getFloatData]) {
             
             //Create new marker and add to marker array
             GMSMarker* marker;
@@ -212,8 +212,8 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
         destination.instruments = [[NSMutableArray alloc] initWithObjects:@"All", nil];
         [destination.instruments addObjectsFromArray:self.instrumentNames];
         if (self.curr) {
-            destination.currentInstrument= self.curr.name;
-            destination.currentInstrumentLabel.text = self.curr.name;
+            destination.currentInstrument= [self.curr getName];
+            destination.currentInstrumentLabel.text = [self.curr getName];
             destination.currentFloatNameIndex = self.currentFloatIndex;
         }
         else {
@@ -236,16 +236,16 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
 
 - (void) instrumentSetup:(Instrument*)instrument {
     //Turn on new markers and make new path
-    GMSMutablePath *originalPath = [self.mutablePaths objectForKey:instrument.name];
+    GMSMutablePath *originalPath = [self.mutablePaths objectForKey:[instrument getName]];
     GMSMutablePath *mutablePathForPolyline = [GMSMutablePath path];
     int n = self.markerNumber;
-    if (n > [instrument.floatData count]) {
-        n = (int) [instrument.floatData count];
+    if (n > [[instrument getFloatData] count]) {
+        n = (int) [[instrument getFloatData] count];
     }
     
     for (int i = 0; i < n; i++) {
         float opac = 1 - (i/(n+1.0));
-        [self turnOnMarker:[self.markers objectForKey:instrument.name][i] withOpacity:opac];
+        [self turnOnMarker:[self.markers objectForKey:[instrument getName]][i] withOpacity:opac];
         [mutablePathForPolyline addCoordinate:[originalPath coordinateAtIndex:i]];
     }
     
@@ -254,7 +254,7 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
     newPolyline.strokeWidth = self.polylineStrokeWidth;
     
     //set the polyline to the right color
-    int j = (int)[[instruments allKeys] indexOfObject:instrument.name];
+    int j = (int)[[instruments allKeys] indexOfObject:[instrument getName]];
     while (j >= self.colors.count) {
         j -= self.colors.count;
     }
@@ -281,7 +281,7 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
 
 - (void) instrumentTakeDown:(Instrument*) old {
     //Turn off all old markers
-    for (GMSMarker* marker in [self.markers objectForKey:old.name]) {
+    for (GMSMarker* marker in [self.markers objectForKey:[old getName]]) {
         [self turnOffMarker:marker];
     }
     [self clearOnPolylines];

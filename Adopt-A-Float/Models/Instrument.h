@@ -17,25 +17,15 @@
 #import "FloatData.h"
 
 @interface Instrument : NSObject
-
-@property (strong, readonly) NSString *name; // name of the mermaid
-
-// array of all the readings recorded by this mermaid
-@property (strong, readonly) NSMutableArray<FloatData *> *floatData;
-
-// display color of mermaid on map
-@property (strong, readonly) UIColor *color;
-
-// Create a new instrument
+/* Create an instrument by passing in its name and an array of FloatData objects for each of its readings */
 - (id)initWithName:(NSString *)name andfloatData:(NSMutableArray<FloatData *> *)floatData;
 
-// Return a data point
-- (FloatData *)getADataPoint;
+/* retrieve the name of the instrument */
+- (NSString *)getName;
 
-// get color assigned to instrument
+- (NSMutableArray<FloatData *> *)getFloatData;
+
+/* retrieve the color of the instrument for display on the map */
 - (UIColor *)getColor;
-
-// This assigns instruments its color
-+ (UIColor *)assignColor: (NSString *)floatName;
 
 @end
