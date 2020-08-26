@@ -9,9 +9,17 @@
 
 #import "Instrument.h"
 
-//@interface Instrument ()
-//
-//@end
+@interface Instrument ()
+    /* name of the instrument */
+    @property (strong, readonly) NSString *name;
+
+    /* Array of all readings by this instrument. Each reading is stored as a FloatData object. These readings should be arranged with the most recent coming first. */
+    @property (strong, readonly) NSMutableArray<FloatData *> *floatData;
+
+    /* Display color of instrument on map */
+    @property (strong, readonly) UIColor *color;
+
+@end
 
 @implementation Instrument
 
@@ -24,18 +32,19 @@
     }
     return self;
 }
-
-- (FloatData *)getADataPoint {
-    if (self.floatData.count > 0) {
-        return self.floatData[0];
-    }
-    return NULL;
-}
-
 - (NSString *)getName {
     return self.name;
 }
 
+- (NSMutableArray<FloatData *> *)getFloatData {
+    return self.floatData;
+}
+
+- (UIColor *)getColor {
+    return self.color;
+}
+
+/* Assign an instrument its color based off of the organization it belongs to. We can deduce the organization from the instrument's name*/
 + (UIColor *)assignColor:(NSString*)floatName {
     int float_id = [[floatName substringFromIndex:1] intValue];
     if (float_id == 6) { // GeoAzur
@@ -51,10 +60,6 @@
         return [UIColor orangeColor];
     }
     return [UIColor redColor]; // JAMSTEC
-}
-
-- (UIColor *)getColor {
-    return self.color;
 }
 
 @end

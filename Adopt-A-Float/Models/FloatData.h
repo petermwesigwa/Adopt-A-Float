@@ -24,17 +24,16 @@
 #import <UIKit/UIKit.h>
 
 @interface FloatData : NSObject
-
-@property (strong, readonly) const NSString *deviceName;                // name of the mermaid
-@property (strong, readonly) const NSDate *gpsDate;                     // date of reading
-@property (strong, readonly) const NSNumber *gpsLat;                   //latitude
-@property (strong, readonly) const NSNumber *gpsLon;                   //longitude
-@property (strong, readonly) const NSNumber *hdop;                      //horizontal dilution of precision
-@property (strong, readonly) const NSNumber *vdop;                     //vertical dilution of precision
-@property (strong, readonly) const NSNumber *vbat;                      //battery level
-@property (strong, readonly) const NSNumber *pInt;                      //internal pressure
-@property (strong, readonly) const NSNumber *pExt;                      // external pressure
-@property (strong, readonly) const UIColor *color;
+    @property (strong, readonly) const NSString *deviceName;                // name of the mermaid
+    @property (strong, readonly) const NSDate *gpsDate;                     // date of reading
+    @property (strong, readonly) const NSNumber *gpsLat;                   //latitude
+    @property (strong, readonly) const NSNumber *gpsLon;                   //longitude
+    @property (strong, readonly) const NSNumber *hdop;                      //horizontal dilution of precision
+    @property (strong, readonly) const NSNumber *vdop;                     //vertical dilution of precision
+    @property (strong, readonly) const NSNumber *vbat;                      //battery level
+    @property (strong, readonly) const NSNumber *pInt;                      //internal pressure
+    @property (strong, readonly) const NSNumber *pExt;                      // external pressure
+    @property (strong, readonly) const UIColor *color;
 
 // Returns a new FloatData object or NULL if orderedData is invalid
 - (id)initWithRaw:(NSMutableArray<NSString *> *)orderedData;
