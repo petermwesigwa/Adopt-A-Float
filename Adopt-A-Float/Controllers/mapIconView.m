@@ -14,7 +14,7 @@
 
 
 - (void)provideFloatData:(FloatData *)data {
-    // set up formatter to read in date screen
+    // set up formatter to read in date
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
