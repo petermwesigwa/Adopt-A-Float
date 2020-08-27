@@ -3,47 +3,35 @@
 //  Adopt-A-Float
 //
 //  Created by Ben Leizman on 6/20/15.
+//  Modified by Peter Mwesigwa on 8/18/20.
 //  Copyright © 2018 Frederik Simons. All rights reserved.
 //
 
 #import "MainViewController.h"
 #import "OptionsViewController.h"
 
+
+/*
+ This dictionary contains each of the instruments and the data that they have recorded
+ All the instrument setup and population of the data therein happens in the AppDelegate.m
+ file.
+ */
 extern NSMutableDictionary<NSString *, Instrument *> *instruments;
-
-@interface MainViewController ()
-    @property (strong) NSMutableDictionary *markers;
-    @property (strong) NSMutableDictionary *mutablePaths;
-    @property (strong) Instrument *curr;
-    @property (weak) IBOutlet UILabel *titleLabel;
-    @property (assign) int defaultMarkerNumber;
-    @property (assign) int markerNumber;
-    @property (strong) NSMutableArray *onMarkers;
-    @property (strong) NSMutableArray *onPolylines;
-    @property (strong) NSArray *colors;
-    @property (assign) int polylineStrokeWidth;
-    @property (strong) NSArray<NSString *> *instrumentNames;
-
-    @property (weak) IBOutlet GMSMapView *appMapView;
-
-
-    @property (assign) int currentIndex;
-
-    @property (strong) GMSMapView *mapView;
-
-@end
 
 @implementation MainViewController
 
 
 - (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    //take down all visible instruments
+    for (Instrument *ins in [instruments allValues]) {
+        [self instrumentTakeDown:ins];
+    }
+    
     // if instrument is chosen set it up
     if (self.curr) {
-        for (Instrument *ins in [instruments allValues]) {
-            [self instrumentTakeDown:ins];
-        }
         [self instrumentSetup:self.curr];
-        self.navigationItem.title = self.curr.name;
+        self.navigationItem.title = [self.curr getName];
     }
     
     // otherwise display all the instruments
@@ -64,7 +52,7 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
     self.polylineStrokeWidth = 3;
     
     self.instrumentNames = [[instruments allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
-    self.currentIndex = 0;
+    self.currentFloatIndex = 0;
     
     //Make colors array
     self.colors = @[[UIColor redColor], [UIColor greenColor], [UIColor blueColor], [UIColor cyanColor], [UIColor yellowColor], [UIColor magentaColor], [UIColor orangeColor], [UIColor brownColor], [UIColor purpleColor], [UIColor blackColor], [UIColor grayColor], [UIColor whiteColor], [UIColor darkGrayColor], [UIColor lightGrayColor]];
@@ -92,7 +80,7 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
         
         //set icon
         UIImage *icon = [GMSMarker markerImageWithColor:[instr getColor]];
-        for (FloatData *row in instr.floatData) {
+        for (FloatData *row in [instr getFloatData]) {
             
             //Create new marker and add to marker array
             GMSMarker* marker;
@@ -224,40 +212,40 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
         destination.instruments = [[NSMutableArray alloc] initWithObjects:@"All", nil];
         [destination.instruments addObjectsFromArray:self.instrumentNames];
         if (self.curr) {
-            destination.currentInstrument= self.curr.name;
-            destination.currentInstrumentLabel.text = self.curr.name;
-            destination.currentFloatNameIndex = self.currentIndex;
-            destination.markerNumber = self.markerNumber;
-            destination.markerNumberLabel.text = [NSString stringWithFormat:@"Past %d location(s)", self.markerNumber];
+            destination.currentInstrument= [self.curr getName];
+            destination.currentInstrumentLabel.text = [self.curr getName];
+            destination.currentFloatNameIndex = self.currentFloatIndex;
         }
         else {
             destination.currentInstrument=@"All";
-            destination.markerNumber = self.markerNumber;
-            destination.markerNumberLabel.text = [NSString stringWithFormat:@"Past %d location(s)", self.markerNumber];
         }
+        destination.currentMarkerNumberIndex = self.currentMarkerNumberIndex;
+        destination.markerNumber = self.markerNumber;
+        destination.markerNumberLabel.text = [NSString stringWithFormat:@"Past %d location(s)", self.markerNumber];
     }
 }
 
 - (IBAction) backToMap:(UIStoryboardSegue *)unwindSegue {
     OptionsViewController *source = unwindSegue.sourceViewController;
     self.curr = [instruments objectForKey:source.currentInstrument];
-    self.currentIndex = source.currentFloatNameIndex;
+    self.currentFloatIndex = source.currentFloatNameIndex;
     self.markerNumber = source.markerNumber;
+    self.currentMarkerNumberIndex = source.currentMarkerNumberIndex;
 }
 
 
 - (void) instrumentSetup:(Instrument*)instrument {
     //Turn on new markers and make new path
-    GMSMutablePath *originalPath = [self.mutablePaths objectForKey:instrument.name];
+    GMSMutablePath *originalPath = [self.mutablePaths objectForKey:[instrument getName]];
     GMSMutablePath *mutablePathForPolyline = [GMSMutablePath path];
     int n = self.markerNumber;
-    if (n > [instrument.floatData count]) {
-        n = (int) [instrument.floatData count];
+    if (n > [[instrument getFloatData] count]) {
+        n = (int) [[instrument getFloatData] count];
     }
     
     for (int i = 0; i < n; i++) {
         float opac = 1 - (i/(n+1.0));
-        [self turnOnMarker:[self.markers objectForKey:instrument.name][i] withOpacity:opac];
+        [self turnOnMarker:[self.markers objectForKey:[instrument getName]][i] withOpacity:opac];
         [mutablePathForPolyline addCoordinate:[originalPath coordinateAtIndex:i]];
     }
     
@@ -266,7 +254,7 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
     newPolyline.strokeWidth = self.polylineStrokeWidth;
     
     //set the polyline to the right color
-    int j = (int)[[instruments allKeys] indexOfObject:instrument.name];
+    int j = (int)[[instruments allKeys] indexOfObject:[instrument getName]];
     while (j >= self.colors.count) {
         j -= self.colors.count;
     }
@@ -293,7 +281,7 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
 
 - (void) instrumentTakeDown:(Instrument*) old {
     //Turn off all old markers
-    for (GMSMarker* marker in [self.markers objectForKey:old.name]) {
+    for (GMSMarker* marker in [self.markers objectForKey:[old getName]]) {
         [self turnOffMarker:marker];
     }
     [self clearOnPolylines];

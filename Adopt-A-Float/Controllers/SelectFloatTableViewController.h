@@ -12,8 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SelectFloatTableViewController : UITableViewController
 
+// lost of all the instrument names
 @property (strong) NSMutableArray<NSString*> *instruments;
+
+// name of the currently selected instrument
 @property (strong) NSString *selectedFloat;
+
+// index to locate selected instrument within array
 @property (assign) int selectedFloatIndex;
 
 @end

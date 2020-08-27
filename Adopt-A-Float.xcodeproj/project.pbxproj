@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		416F27B6275D4476F8BC8599 /* libPods-Adopt-A-Float.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 48E13079419B426B6AE7DCD7 /* libPods-Adopt-A-Float.a */; };
-		8E7317B76C5975885B8F4893 /* libPods-Adopt-A-FloatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E34F7B87C9FA874B4C6DF556 /* libPods-Adopt-A-FloatTests.a */; };
+		113137612E1A707722F8296F /* libPods-Adopt-A-Float.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E905623F5C64F276C620210 /* libPods-Adopt-A-Float.a */; };
+		416D31C9D349697AA36119EA /* libPods-Adopt-A-FloatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BAB9C0873338DDFA9F165195 /* libPods-Adopt-A-FloatTests.a */; };
 		AD72051B202F553100F55BD7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD72051A202F553100F55BD7 /* AppDelegate.m */; };
 		AD720521202F553100F55BD7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD72051F202F553100F55BD7 /* Main.storyboard */; };
 		AD720523202F553100F55BD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD720522202F553100F55BD7 /* Assets.xcassets */; };
@@ -39,10 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		052C1D2D68BF80E6C21DC2A3 /* Pods-Adopt-A-FloatTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Adopt-A-FloatTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Adopt-A-FloatTests/Pods-Adopt-A-FloatTests.release.xcconfig"; sourceTree = "<group>"; };
-		2FAF12CE6C5894FDBF261A92 /* Pods-Adopt-A-FloatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Adopt-A-FloatTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Adopt-A-FloatTests/Pods-Adopt-A-FloatTests.debug.xcconfig"; sourceTree = "<group>"; };
-		3EF9655187DDD9146D0F67F6 /* Pods-Adopt-A-Float.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Adopt-A-Float.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Adopt-A-Float/Pods-Adopt-A-Float.debug.xcconfig"; sourceTree = "<group>"; };
-		48E13079419B426B6AE7DCD7 /* libPods-Adopt-A-Float.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Adopt-A-Float.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E905623F5C64F276C620210 /* libPods-Adopt-A-Float.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Adopt-A-Float.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6885A0C0D9B83595BE40C048 /* Pods-Adopt-A-FloatTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Adopt-A-FloatTests.release.xcconfig"; path = "Target Support Files/Pods-Adopt-A-FloatTests/Pods-Adopt-A-FloatTests.release.xcconfig"; sourceTree = "<group>"; };
+		6D1C5C91A0607AA852A53BE7 /* Pods-Adopt-A-Float.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Adopt-A-Float.release.xcconfig"; path = "Target Support Files/Pods-Adopt-A-Float/Pods-Adopt-A-Float.release.xcconfig"; sourceTree = "<group>"; };
+		7E65C46C84E9F40C51C47920 /* Pods-Adopt-A-Float.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Adopt-A-Float.debug.xcconfig"; path = "Target Support Files/Pods-Adopt-A-Float/Pods-Adopt-A-Float.debug.xcconfig"; sourceTree = "<group>"; };
 		AD720516202F553100F55BD7 /* Adopt-A-Float.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Adopt-A-Float.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD720519202F553100F55BD7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AD72051A202F553100F55BD7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -63,6 +63,7 @@
 		AD720549202F5D2800F55BD7 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		AD72054A202F5D2900F55BD7 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		ADB225A9203922B4005B6CC8 /* source.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = source.plist; sourceTree = "<group>"; };
+		BAB9C0873338DDFA9F165195 /* libPods-Adopt-A-FloatTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Adopt-A-FloatTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D055B9332313DD38006CD40D /* SelectFloatTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectFloatTableViewController.h; sourceTree = "<group>"; };
 		D055B9342313DD38006CD40D /* SelectFloatTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectFloatTableViewController.m; sourceTree = "<group>"; };
 		D055B93623141F1C006CD40D /* SelectMarkerNumberViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectMarkerNumberViewController.h; sourceTree = "<group>"; };
@@ -73,8 +74,7 @@
 		D0571DAB22EF7BA800D88E1D /* mapIconView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mapIconView.h; sourceTree = "<group>"; };
 		D0571DAC22EF7BA800D88E1D /* mapIconView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mapIconView.m; sourceTree = "<group>"; };
 		D05E012E22CBD4FA00A55488 /* private.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = private.plist; sourceTree = "<group>"; };
-		E34F7B87C9FA874B4C6DF556 /* libPods-Adopt-A-FloatTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Adopt-A-FloatTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E8FE4ABA2E0C7A28A3E63AE7 /* Pods-Adopt-A-Float.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Adopt-A-Float.release.xcconfig"; path = "Pods/Target Support Files/Pods-Adopt-A-Float/Pods-Adopt-A-Float.release.xcconfig"; sourceTree = "<group>"; };
+		F93EFF74D5BA283451D8FF7D /* Pods-Adopt-A-FloatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Adopt-A-FloatTests.debug.xcconfig"; path = "Target Support Files/Pods-Adopt-A-FloatTests/Pods-Adopt-A-FloatTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				416F27B6275D4476F8BC8599 /* libPods-Adopt-A-Float.a in Frameworks */,
+				113137612E1A707722F8296F /* libPods-Adopt-A-Float.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,31 +90,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E7317B76C5975885B8F4893 /* libPods-Adopt-A-FloatTests.a in Frameworks */,
+				416D31C9D349697AA36119EA /* libPods-Adopt-A-FloatTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		143154937D8635761DBA7E59 /* Frameworks */ = {
+		262725B4959EAA7ADF151935 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				48E13079419B426B6AE7DCD7 /* libPods-Adopt-A-Float.a */,
-				E34F7B87C9FA874B4C6DF556 /* libPods-Adopt-A-FloatTests.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		AA0AC20B5F9F5B56F3C51F4B /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				3EF9655187DDD9146D0F67F6 /* Pods-Adopt-A-Float.debug.xcconfig */,
-				E8FE4ABA2E0C7A28A3E63AE7 /* Pods-Adopt-A-Float.release.xcconfig */,
-				2FAF12CE6C5894FDBF261A92 /* Pods-Adopt-A-FloatTests.debug.xcconfig */,
-				052C1D2D68BF80E6C21DC2A3 /* Pods-Adopt-A-FloatTests.release.xcconfig */,
+				7E65C46C84E9F40C51C47920 /* Pods-Adopt-A-Float.debug.xcconfig */,
+				6D1C5C91A0607AA852A53BE7 /* Pods-Adopt-A-Float.release.xcconfig */,
+				F93EFF74D5BA283451D8FF7D /* Pods-Adopt-A-FloatTests.debug.xcconfig */,
+				6885A0C0D9B83595BE40C048 /* Pods-Adopt-A-FloatTests.release.xcconfig */,
 			);
 			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		AD72050D202F553100F55BD7 = {
@@ -123,8 +115,8 @@
 				AD720518202F553100F55BD7 /* Adopt-A-Float */,
 				AD720531202F553100F55BD7 /* Adopt-A-FloatTests */,
 				AD720517202F553100F55BD7 /* Products */,
-				AA0AC20B5F9F5B56F3C51F4B /* Pods */,
-				143154937D8635761DBA7E59 /* Frameworks */,
+				262725B4959EAA7ADF151935 /* Pods */,
+				FD9D7B89DD0AEE5EDCC3E8EE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -203,6 +195,15 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		FD9D7B89DD0AEE5EDCC3E8EE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1E905623F5C64F276C620210 /* libPods-Adopt-A-Float.a */,
+				BAB9C0873338DDFA9F165195 /* libPods-Adopt-A-FloatTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -210,11 +211,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AD720537202F553100F55BD7 /* Build configuration list for PBXNativeTarget "Adopt-A-Float" */;
 			buildPhases = (
-				F10D1A82E85015388E37EC0D /* [CP] Check Pods Manifest.lock */,
+				F5A13A091FCD0541BABDF703 /* [CP] Check Pods Manifest.lock */,
 				AD720512202F553100F55BD7 /* Sources */,
 				AD720513202F553100F55BD7 /* Frameworks */,
 				AD720514202F553100F55BD7 /* Resources */,
-				F2A7E02587912459CA8E62BD /* [CP] Copy Pods Resources */,
+				484C0538D47AB26F736F4569 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -229,7 +230,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AD72053A202F553100F55BD7 /* Build configuration list for PBXNativeTarget "Adopt-A-FloatTests" */;
 			buildPhases = (
-				BDECDBC2EB1030C06CAA1908 /* [CP] Check Pods Manifest.lock */,
+				7F02D4D1DF4A71E4B5F3692D /* [CP] Check Pods Manifest.lock */,
 				AD72052A202F553100F55BD7 /* Sources */,
 				AD72052B202F553100F55BD7 /* Frameworks */,
 				AD72052C202F553100F55BD7 /* Resources */,
@@ -307,49 +308,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		BDECDBC2EB1030C06CAA1908 /* [CP] Check Pods Manifest.lock */ = {
+		484C0538D47AB26F736F4569 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Adopt-A-FloatTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F10D1A82E85015388E37EC0D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Adopt-A-Float-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F2A7E02587912459CA8E62BD /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Adopt-A-Float/Pods-Adopt-A-Float-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Adopt-A-Float/Pods-Adopt-A-Float-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -358,7 +323,51 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Adopt-A-Float/Pods-Adopt-A-Float-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Adopt-A-Float/Pods-Adopt-A-Float-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F02D4D1DF4A71E4B5F3692D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Adopt-A-FloatTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5A13A091FCD0541BABDF703 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Adopt-A-Float-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -529,14 +538,15 @@
 		};
 		AD720538202F553100F55BD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3EF9655187DDD9146D0F67F6 /* Pods-Adopt-A-Float.debug.xcconfig */;
+			baseConfigurationReference = 7E65C46C84E9F40C51C47920 /* Pods-Adopt-A-Float.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = SHB7FM7N96;
 				INFOPLIST_FILE = "Adopt-A-Float/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "frederik.Adopt-A-Float";
@@ -548,14 +558,15 @@
 		};
 		AD720539202F553100F55BD7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E8FE4ABA2E0C7A28A3E63AE7 /* Pods-Adopt-A-Float.release.xcconfig */;
+			baseConfigurationReference = 6D1C5C91A0607AA852A53BE7 /* Pods-Adopt-A-Float.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = SHB7FM7N96;
 				INFOPLIST_FILE = "Adopt-A-Float/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "frederik.Adopt-A-Float";
@@ -567,7 +578,7 @@
 		};
 		AD72053B202F553100F55BD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2FAF12CE6C5894FDBF261A92 /* Pods-Adopt-A-FloatTests.debug.xcconfig */;
+			baseConfigurationReference = F93EFF74D5BA283451D8FF7D /* Pods-Adopt-A-FloatTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -583,7 +594,7 @@
 		};
 		AD72053C202F553100F55BD7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 052C1D2D68BF80E6C21DC2A3 /* Pods-Adopt-A-FloatTests.release.xcconfig */;
+			baseConfigurationReference = 6885A0C0D9B83595BE40C048 /* Pods-Adopt-A-FloatTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;

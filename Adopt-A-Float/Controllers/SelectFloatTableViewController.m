@@ -24,11 +24,12 @@
     return 1;
 }
 
+// needed for implementation of UITableViewController class
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _instruments.count;
 }
 
-
+// needed for implementation of UITableViewController class
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InstrumentNameCell" forIndexPath:indexPath];
     cell.textLabel.text = [_instruments objectAtIndex:indexPath.row];
@@ -40,7 +41,7 @@
     return cell;
 }
 
-
+// needed for implementation of UITableViewController class
 - (NSIndexPath *)tableView:(UITableView*)tableView willSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:true];
     
