@@ -6,6 +6,11 @@
 //  Copyright © 2019 Frederik Simons. All rights reserved.
 //
 
+/*
+ This presents the info bubble when someone clicks on a marker on the map
+ Info bubble contains the FloatData object corresponding to that specific point
+ */
+
 #import <UIKit/UIKit.h>
 #import "../Models/FloatData.h"
 

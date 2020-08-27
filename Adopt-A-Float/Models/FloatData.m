@@ -3,6 +3,7 @@
 //  Adopt-A-Float
 //
 //  Created by Ben Leizman on 10/10/15.
+//  Modified by Peter Mwesigwa on 8/18/20
 //  Copyright © 2018 Frederik Simons. All rights reserved.
 //
 
@@ -19,16 +20,6 @@
  1.380    14715  13936 79207   353   20     7   0   0
  */
 
-// Raw Data retrieved from online
-//@property (strong) const NSString *deviceName;
-//@property (strong) const NSDate *gpsDate;
-//@property (strong) const NSNumber *gpsLat;                   //latitude
-//@property (strong) const NSNumber *gpsLon;                   //longitude
-//@property (strong) const NSNumber *hDop;                      //horizontal dilution of precision
-//@property (strong) const NSNumber *vBat;                      //battery level in millivolts
-//@property (strong) const NSNumber *vdop;                     //vertical dilution of precision
-//@property (strong) const NSNumber *pInt;                      // Internal pressure
-//@property (strong) const NSNumber *pExt;                     // External pressure
 @property (strong) NSCalendar *cal;
 
 @end
