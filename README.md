@@ -24,7 +24,7 @@ changes to GitHub.
 3) Click the Play button at the top of the Xcode editor to run the application
 
 ## Troubleshooting errors
-In case of any errors when running the app, troubleshooting using error pages like Github and Stackoverflow is helpful.
+In case of any errors when running the app, troubleshooting using error pages like Github and Stackoverflow is helpful. For any bugs in the app or its code, you can create an issue on Github.
 
 ## Becoming a beta tester
 The app is nearing the beta testing phase! If you are interested in becoming a tester email mwesigwa@princeton.edu to be added to the waitlist
