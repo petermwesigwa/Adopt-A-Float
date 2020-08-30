@@ -21,6 +21,7 @@
 		AD72054B202F5D2900F55BD7 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720549202F5D2800F55BD7 /* MainViewController.m */; };
 		ADB225A82039219B005B6CC8 /* private.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADB225A72039219B005B6CC8 /* private.plist */; };
 		ADB225AA203922B4005B6CC8 /* source.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADB225A9203922B4005B6CC8 /* source.plist */; };
+		D030C89E24FB08C2009E279F /* AppState.m in Sources */ = {isa = PBXBuildFile; fileRef = D030C89D24FB08C2009E279F /* AppState.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,8 @@
 		AD72054A202F5D2900F55BD7 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		ADB225A72039219B005B6CC8 /* private.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = private.plist; sourceTree = "<group>"; };
 		ADB225A9203922B4005B6CC8 /* source.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = source.plist; sourceTree = "<group>"; };
+		D030C89C24FB08C2009E279F /* AppState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppState.h; sourceTree = "<group>"; };
+		D030C89D24FB08C2009E279F /* AppState.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppState.m; sourceTree = "<group>"; };
 		E34F7B87C9FA874B4C6DF556 /* libPods-Adopt-A-FloatTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Adopt-A-FloatTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8FE4ABA2E0C7A28A3E63AE7 /* Pods-Adopt-A-Float.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Adopt-A-Float.release.xcconfig"; path = "Pods/Target Support Files/Pods-Adopt-A-Float/Pods-Adopt-A-Float.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,6 +170,8 @@
 				AD720547202F598B00F55BD7 /* FloatData.m */,
 				AD72053F202F58D800F55BD7 /* Instrument.h */,
 				AD720542202F58D900F55BD7 /* Instrument.m */,
+				D030C89C24FB08C2009E279F /* AppState.h */,
+				D030C89D24FB08C2009E279F /* AppState.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -345,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD720529202F553100F55BD7 /* main.m in Sources */,
+				D030C89E24FB08C2009E279F /* AppState.m in Sources */,
 				AD72054B202F5D2900F55BD7 /* MainViewController.m in Sources */,
 				AD720545202F58D900F55BD7 /* Instrument.m in Sources */,
 				AD720544202F58D900F55BD7 /* DataUtility.m in Sources */,
