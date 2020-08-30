@@ -3,6 +3,7 @@
 //  Adopt-A-Float
 //
 //  Created by Ben Leizman on 8/11/15.
+//  Modified by Peter Mwesigwa on 8/18/20
 //  Copyright © 2018 Frederik Simons. All rights reserved.
 //
 
@@ -11,7 +12,6 @@
 @interface DataUtility ()
 
 @property (strong) NSDictionary *sources;
-
 @end
 
 @implementation DataUtility
@@ -19,23 +19,92 @@
 NSString *const SOURCE_NAME = @"source";
 NSString *const SOURCE_TYPE = @"plist";
 
+// these urls are stored in source.plist
+NSString *const URL_ALL = @"URL_ALL"; // retrieves the url for all the instruments
+NSString *const URL_ONE = @"URL_ONE"; // retrieves url for the data for one instrument
+
+
 + (NSMutableDictionary<NSString *, Instrument *> *)createInstruments {
     NSMutableDictionary<NSString *, Instrument *> *result = [NSMutableDictionary new];
-    NSDictionary *sourceUrls = [DataUtility getSourceURLs];
-    for (NSString *name in sourceUrls) {
-        // Create new instrument with name and array of FloatData objects
-        Instrument *i = [[Instrument alloc] initWithName:name andfloatData:
-                         [DataUtility getDataFromURL:
-                          [NSURL URLWithString:[sourceUrls objectForKey:name]]]];
-        [result setObject:i forKey:name];
+    NSArray *floatNames = [NSArray new];
+    NSDictionary<NSString *, NSString*> *sourceUrls = [DataUtility getSourceURLs];
+    
+    // read in the names of all the floats
+    floatNames = [DataUtility getFloatNames:
+                  [NSURL URLWithString:[sourceUrls objectForKey:URL_ALL]]];
+    
+    // obtain the data for all the instruments
+    for (NSString *name in floatNames) {
+        // url for this specific instrument
+        NSURL *data_url = [DataUtility getURLFromName:name
+                                          usingFormat:[sourceUrls objectForKey:URL_ONE]];
+        
+        // make a request to the url
+        NSMutableArray<FloatData *> *float_data = [DataUtility getDataFromURL:data_url];
+        
+        // create instrument with data if request succeeded
+        if ([float_data count] > 0) {
+            Instrument *i = [[Instrument alloc]
+                             initWithName:name andfloatData:float_data];
+            [result setObject:i forKey:name];
+        }
     }
     return result;
 }
 
+
+// THis method takes in the url and filters the data
++ (NSMutableArray<NSString *> *) getFloatNames: (NSURL *) url {
+    NSMutableArray *floatNames = [NSMutableArray new];
+    
+    // retrieve information from server
+    NSString *response = [DataUtility downloadString:url];
+    
+    // split by lines and then extract the first word of each line
+    NSMutableArray<NSString *> *lines = [DataUtility splitString:response withSet:
+                                         [NSCharacterSet newlineCharacterSet]];
+    for (NSString *line in lines) {
+        NSMutableArray<NSString *> *values = [DataUtility splitString:line withSet:
+                                              [NSCharacterSet whitespaceCharacterSet]];
+        [floatNames addObject:[values objectAtIndex:0]];
+    }
+    
+    return floatNames;
+}
+
+/*
+Returns a URL that can be used to get all past observations reported by an instrument.
+The parameter floatName is the name of the instrument. The uurl is construacted using a
+format string format_URL (usually retrieved from the source.plist file as URL_ONE.
+ 
+Quick warning that this method might be refined in the near future as the way that the names
+ are stored int he database is not the same way that they are inserted into the URL in order to
+ get the instrument data.
+*/
++ (NSURL *) getURLFromName: (NSString *) floatName usingFormat:(NSString *)format_URL {
+    // Change all float names starting with N to P for the url (eg from N001 to P001)
+    floatName = [floatName stringByReplacingOccurrencesOfString:@"N" withString:@"P"];
+    
+    // some strings have too many zeros (eg P0029) so replace multiple zeros with just one.
+    if ([floatName length] > 4) {
+        floatName = [floatName stringByReplacingOccurrencesOfString:@"00" withString:@"0"];
+    }
+    
+    return [NSURL URLWithString:[NSString stringWithFormat:
+                                 format_URL, floatName]];
+}
+
 // Return an array of FloatData objects retrieved from the url
 + (NSMutableArray<FloatData *> *)getDataFromURL:(NSURL *)url {
-    NSString *response = [DataUtility downloadString:url];
     NSMutableArray *dataSet = [NSMutableArray new];
+    // retrieve response from server
+    NSString *response = [DataUtility downloadString:url];
+    
+    // return empty dataset if resource not found
+    if ([response containsString:@"404 Not Found"]) {
+        return dataSet;
+    }
+    
     // Create a FloatData object for each raw data row
     for (NSMutableArray *rawData in [DataUtility splitDataRows:response]) {
         if ([FloatData isValidRaw:rawData]) {
@@ -46,7 +115,11 @@ NSString *const SOURCE_TYPE = @"plist";
 }
 
 // Load data source urls from `source.plist` with the form "{name:url, name:url, ...}"
-+ (NSDictionary *)getSourceURLs {
+
+// This method retrieves all the necessary urls for retrieving data from the server.
+// Returns a dictionary containing formats urls for retrieving all the instrument data
+// or data for a specific instrument
++ (NSDictionary <NSString *, NSString *> *)getSourceURLs {
     return [NSDictionary dictionaryWithContentsOfFile: 
         [[NSBundle mainBundle] pathForResource:SOURCE_NAME ofType:SOURCE_TYPE]];
 }
@@ -64,18 +137,22 @@ NSString *const SOURCE_TYPE = @"plist";
         [data addObject:values];
     }
     
-    return data;
+    return (NSMutableArray<NSMutableArray<NSString *> *> *)
+    [[[data reverseObjectEnumerator] allObjects ] mutableCopy];
 }
 
 // Splits the string with the given set and removes empty elements
+// Code in this method is adapted from stack overflow
 + (NSMutableArray<NSString *> *)splitString:(NSString *)str withSet:(NSCharacterSet *)set {
-    //Method proposed on stack overflow, which works great
     NSArray *split = [str componentsSeparatedByCharactersInSet:set];
     return [NSMutableArray arrayWithArray:[split filteredArrayUsingPredicate:
                                            [NSPredicate predicateWithFormat:@"SELF != ''"]]];
 }
 
-// Returns the data as an NSString
+/*
+ This method contacts the remote server and performs a GET request using the url provided.
+ Server is expected to return a string of characters, which is returned by the method
+ */
 + (NSString *)downloadString:(NSURL *)url {
     // Fetch the JSON response
     __block NSString *result;
