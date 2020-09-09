@@ -8,6 +8,8 @@
 
 #import "SelectFloatTableViewController.h"
 
+extern AppState *appStateManger;
+
 @interface SelectFloatTableViewController ()
 
 @end

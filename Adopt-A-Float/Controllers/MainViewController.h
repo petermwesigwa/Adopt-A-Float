@@ -12,6 +12,7 @@
 #import <math.h>
 #import "Instrument.h"
 #import "FloatData.h"
+#import "AppState.h"
 #import "mapIconView.h"
 
 

@@ -14,11 +14,12 @@
 
 @end
 
+extern AppState *appStateManager;
+
 @implementation OptionsViewController
 - (void)viewDidAppear:(BOOL)animated {
     self.currentInstrumentLabel.text = self.currentInstrument;
-    self.markerNumberLabel.text = [NSString stringWithFormat:@"Past %d location(s)", _markerNumber];
-
+    self.markerNumberLabel.text = [OptionsViewController labelForMarkerNumber:[appStateManager.markerNumbers objectAtIndex:appStateManager.selectedMarkerNumIndex]];
 }
 
 - (void)viewDidLoad {
@@ -55,10 +56,12 @@
 
 // change marker number with user selection from select marker number s
 - (IBAction)changeMarkerNumber: (UIStoryboardSegue*)unwindSegue {
-    SelectMarkerNumberViewController *source = unwindSegue.sourceViewController;
-    self.currentMarkerNumberIndex = source.selectedMarkerNumberIndex;
-    self.markerNumber = source.markerNumber;
-    self.markerNumberLabel.text = [NSString stringWithFormat:@"%d", source.markerNumber];
+    //SelectMarkerNumberViewController *source = unwindSegue.sourceViewController;
+//    self.currentMarkerNumberIndex = source.selectedMarkerNumberIndex;
+//    self.markerNumber = source.markerNumber;
+//    self.markerNumberLabel.text = [NSString stringWithFormat:@"%d", source.markerNumber];
+    self.currentMarkerNumberIndex = appStateManager.selectedMarkerNumIndex;
+    self.markerNumberLabel.text = [OptionsViewController labelForMarkerNumber:[appStateManager.markerNumbers objectAtIndex:appStateManager.selectedMarkerNumIndex]];
 }
 
 - (IBAction)changeFloatName:(UIStoryboardSegue*)unwindSegue {
@@ -66,5 +69,15 @@
     self.currentInstrument = source.selectedFloat;
     self.currentFloatNameIndex = source.selectedFloatIndex;
     self.currentInstrumentLabel.text = source.selectedFloat;
+}
+
++ (NSString *)labelForMarkerNumber: (NSNumber *)markerNo {
+    if ([markerNo intValue] == INT_MAX) {
+        return @"All Locations";
+    }
+    if ([markerNo intValue] == 1) {
+        return @"Most Recent Location";
+    }
+    return [NSString stringWithFormat:@"Past %d locations", [markerNo intValue]];
 }
 @end

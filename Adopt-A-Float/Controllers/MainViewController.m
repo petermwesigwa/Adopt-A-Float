@@ -10,6 +10,12 @@
 #import "MainViewController.h"
 #import "OptionsViewController.h"
 
+/*
+ This is an effort to maintain state in one place that is accessible throughout the application.
+ 
+ */
+extern AppState *appStateManager;
+
 
 /*
  This dictionary contains each of the instruments and the data that they have recorded
@@ -17,6 +23,7 @@
  file.
  */
 extern NSMutableDictionary<NSString *, Instrument *> *instruments;
+
 
 @implementation MainViewController
 
@@ -229,7 +236,7 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
     OptionsViewController *source = unwindSegue.sourceViewController;
     self.curr = [instruments objectForKey:source.currentInstrument];
     self.currentFloatIndex = source.currentFloatNameIndex;
-    self.markerNumber = source.markerNumber;
+    self.markerNumber = [[appStateManager.markerNumbers objectAtIndex:appStateManager.selectedMarkerNumIndex] intValue];
     self.currentMarkerNumberIndex = source.currentMarkerNumberIndex;
 }
 

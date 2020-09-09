@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <limits.h>
+#import "AppState.h"
 
 NS_ASSUME_NONNULL_BEGIN
 /*

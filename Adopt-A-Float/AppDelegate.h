@@ -10,6 +10,7 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "Instrument.h"
 #import "DataUtility.h"
+#import "AppState.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
