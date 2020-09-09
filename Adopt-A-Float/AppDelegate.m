@@ -8,6 +8,8 @@
 //
 
 #import "AppDelegate.h"
+
+AppState *appStateManager;
 /*
  This variable is used to store the intstruments and their data in order to be accesed by the
  map and is provided to the MainViewController after it it initialized in AppDelegate
@@ -55,6 +57,10 @@ NSMutableDictionary<NSString *, UIColor *> *organizations;
     if (!instruments)
         instruments = [[NSMutableDictionary alloc] init];
     instruments = [DataUtility createInstruments];
+    
+    if (!appStateManager) {
+        appStateManager = [[AppState alloc] initWithInstruments:instruments];
+    }
     
     // 
     organizations = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[UIColor blueColor], @"GeoAzur", [UIColor yellowColor], @"SUSTech", [UIColor orangeColor], @"Princeton", [UIColor redColor], @"JAMSTEC", [UIColor grayColor], @"Inactive", nil];

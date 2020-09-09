@@ -11,6 +11,7 @@
  Inherits from UITableViewController
  */
 #import <UIKit/UIKit.h>
+#import "AppState.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -20,6 +20,7 @@
 		AD720548202F598B00F55BD7 /* FloatData.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720547202F598B00F55BD7 /* FloatData.m */; };
 		AD72054B202F5D2900F55BD7 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720549202F5D2800F55BD7 /* MainViewController.m */; };
 		ADB225AA203922B4005B6CC8 /* source.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADB225A9203922B4005B6CC8 /* source.plist */; };
+		D030C8A124FC30D0009E279F /* AppState.m in Sources */ = {isa = PBXBuildFile; fileRef = D030C8A024FC30D0009E279F /* AppState.m */; };
 		D055B9352313DD38006CD40D /* SelectFloatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D055B9342313DD38006CD40D /* SelectFloatTableViewController.m */; };
 		D055B93823141F1C006CD40D /* SelectMarkerNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D055B93723141F1C006CD40D /* SelectMarkerNumberViewController.m */; };
 		D055B93B231422A4006CD40D /* OptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D055B93A231422A4006CD40D /* OptionsViewController.m */; };
@@ -64,6 +65,8 @@
 		AD72054A202F5D2900F55BD7 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		ADB225A9203922B4005B6CC8 /* source.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = source.plist; sourceTree = "<group>"; };
 		BAB9C0873338DDFA9F165195 /* libPods-Adopt-A-FloatTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Adopt-A-FloatTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D030C89F24FC30D0009E279F /* AppState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppState.h; sourceTree = "<group>"; };
+		D030C8A024FC30D0009E279F /* AppState.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppState.m; sourceTree = "<group>"; };
 		D055B9332313DD38006CD40D /* SelectFloatTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectFloatTableViewController.h; sourceTree = "<group>"; };
 		D055B9342313DD38006CD40D /* SelectFloatTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectFloatTableViewController.m; sourceTree = "<group>"; };
 		D055B93623141F1C006CD40D /* SelectMarkerNumberViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectMarkerNumberViewController.h; sourceTree = "<group>"; };
@@ -105,7 +108,6 @@
 				F93EFF74D5BA283451D8FF7D /* Pods-Adopt-A-FloatTests.debug.xcconfig */,
 				6885A0C0D9B83595BE40C048 /* Pods-Adopt-A-FloatTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -174,8 +176,8 @@
 				AD720547202F598B00F55BD7 /* FloatData.m */,
 				AD72053F202F58D800F55BD7 /* Instrument.h */,
 				AD720542202F58D900F55BD7 /* Instrument.m */,
-				D030C89C24FB08C2009E279F /* AppState.h */,
-				D030C89D24FB08C2009E279F /* AppState.m */,
+				D030C89F24FC30D0009E279F /* AppState.h */,
+				D030C8A024FC30D0009E279F /* AppState.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -381,11 +383,11 @@
 			files = (
 				D055B9352313DD38006CD40D /* SelectFloatTableViewController.m in Sources */,
 				AD720529202F553100F55BD7 /* main.m in Sources */,
-				D030C89E24FB08C2009E279F /* AppState.m in Sources */,
 				AD72054B202F5D2900F55BD7 /* MainViewController.m in Sources */,
 				AD720545202F58D900F55BD7 /* Instrument.m in Sources */,
 				AD720544202F58D900F55BD7 /* DataUtility.m in Sources */,
 				AD72051B202F553100F55BD7 /* AppDelegate.m in Sources */,
+				D030C8A124FC30D0009E279F /* AppState.m in Sources */,
 				D0571DAD22EF7BA800D88E1D /* mapIconView.m in Sources */,
 				D055B93B231422A4006CD40D /* OptionsViewController.m in Sources */,
 				D055B93823141F1C006CD40D /* SelectMarkerNumberViewController.m in Sources */,
