@@ -20,6 +20,7 @@
 		AD720548202F598B00F55BD7 /* FloatData.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720547202F598B00F55BD7 /* FloatData.m */; };
 		AD72054B202F5D2900F55BD7 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720549202F5D2800F55BD7 /* MainViewController.m */; };
 		ADB225AA203922B4005B6CC8 /* source.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADB225A9203922B4005B6CC8 /* source.plist */; };
+		D02FEE4F253E216B0040A80B /* MermaidLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = D02FEE4E253E216B0040A80B /* MermaidLogo.png */; };
 		D030C8A124FC30D0009E279F /* AppState.m in Sources */ = {isa = PBXBuildFile; fileRef = D030C8A024FC30D0009E279F /* AppState.m */; };
 		D055B9352313DD38006CD40D /* SelectFloatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D055B9342313DD38006CD40D /* SelectFloatTableViewController.m */; };
 		D055B93823141F1C006CD40D /* SelectMarkerNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D055B93723141F1C006CD40D /* SelectMarkerNumberViewController.m */; };
@@ -65,6 +66,7 @@
 		AD72054A202F5D2900F55BD7 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		ADB225A9203922B4005B6CC8 /* source.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = source.plist; sourceTree = "<group>"; };
 		BAB9C0873338DDFA9F165195 /* libPods-Adopt-A-FloatTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Adopt-A-FloatTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D02FEE4E253E216B0040A80B /* MermaidLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MermaidLogo.png; sourceTree = "<group>"; };
 		D030C89F24FC30D0009E279F /* AppState.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppState.h; sourceTree = "<group>"; };
 		D030C8A024FC30D0009E279F /* AppState.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppState.m; sourceTree = "<group>"; };
 		D055B9332313DD38006CD40D /* SelectFloatTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectFloatTableViewController.h; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 		AD72050D202F553100F55BD7 = {
 			isa = PBXGroup;
 			children = (
+				D02FEE4E253E216B0040A80B /* MermaidLogo.png */,
 				AD720518202F553100F55BD7 /* Adopt-A-Float */,
 				AD720531202F553100F55BD7 /* Adopt-A-FloatTests */,
 				AD720517202F553100F55BD7 /* Products */,
@@ -299,6 +302,7 @@
 				AD720523202F553100F55BD7 /* Assets.xcassets in Resources */,
 				AD720521202F553100F55BD7 /* Main.storyboard in Resources */,
 				D05E012F22CBD4FA00A55488 /* private.plist in Resources */,
+				D02FEE4F253E216B0040A80B /* MermaidLogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
