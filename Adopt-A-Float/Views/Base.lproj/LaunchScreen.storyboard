@@ -16,14 +16,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MermaidLogo.png" translatesAutoresizingMaskIntoConstraints="NO" id="oJQ-rH-wuy">
-                                <rect key="frame" x="88" y="234" width="200" height="200"/>
+                                <rect key="frame" x="113" y="259" width="150" height="149"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="6hn-QS-6Cj"/>
-                                    <constraint firstAttribute="width" constant="200" id="seR-1G-eFE"/>
+                                    <constraint firstAttribute="height" constant="150" id="6hn-QS-6Cj"/>
+                                    <constraint firstAttribute="width" constant="150" id="seR-1G-eFE"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.14730441369872532" blue="0.50777202072538863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="oJQ-rH-wuy" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="I9b-hR-LK6"/>
                             <constraint firstItem="oJQ-rH-wuy" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="beu-1F-QoR"/>
