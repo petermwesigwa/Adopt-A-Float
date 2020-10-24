@@ -1,12 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="L16-ay-9Yo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="L16-ay-9Yo">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Legend-->
+        <scene sceneID="C2P-Ag-ffb">
+            <objects>
+                <tableViewController id="toz-Xf-lYj" customClass="LegendScreen" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Y6o-Pq-j0R">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LegendCell" textLabel="FFo-h3-v4S" rowHeight="50" style="IBUITableViewCellStyleDefault" id="ach-Gg-1OB">
+                                <rect key="frame" x="0.0" y="28" width="375" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ach-Gg-1OB" id="wp6-gs-qdb">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FFo-h3-v4S">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="toz-Xf-lYj" id="tIW-mB-l8m"/>
+                            <outlet property="delegate" destination="toz-Xf-lYj" id="Fyc-CO-Lkr"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Legend" id="yVL-9u-iQ2"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oZt-tV-sHm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1623" y="1209"/>
+        </scene>
         <!--Map-->
         <scene sceneID="dvm-12-hpH">
             <objects>
@@ -38,6 +75,11 @@
                                 <segue destination="KJH-cc-18q" kind="show" identifier="GoToOptions" id="uC7-sX-I2q"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Legend" id="M9B-Ra-Rvg">
+                            <connections>
+                                <segue destination="toz-Xf-lYj" kind="show" identifier="GoToLegend" id="VeG-hQ-HmV"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="appMapView" destination="Abq-x1-K8v" id="Fet-Zn-WcR"/>
@@ -45,7 +87,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="alq-Or-B2m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-655.20000000000005" y="1325.4872563718143"/>
+            <point key="canvasLocation" x="-655" y="1209"/>
         </scene>
         <!--Options-->
         <scene sceneID="s4Q-jk-Qrp">
@@ -189,7 +231,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OVG-fh-Ef5" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="vRE-B3-ctq" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="231" y="2062"/>
+            <point key="canvasLocation" x="212" y="2033"/>
         </scene>
         <!--Select Float-->
         <scene sceneID="q6b-Ha-oEF">
@@ -237,7 +279,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hu9-8d-JwD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="SZE-3U-rjb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="212" y="1325"/>
+            <point key="canvasLocation" x="212" y="1209"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="8Qm-nC-Pfg">
@@ -256,7 +298,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Txc-00-GyF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-655.20000000000005" y="519.49025487256381"/>
+            <point key="canvasLocation" x="-655" y="421"/>
         </scene>
     </scenes>
 </document>

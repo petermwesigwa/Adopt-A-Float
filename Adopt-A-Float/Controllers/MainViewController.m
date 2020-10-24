@@ -24,6 +24,11 @@ extern AppState *appStateManager;
  */
 extern NSMutableDictionary<NSString *, Instrument *> *instruments;
 
+/*
+This dictionary con.
+*/
+extern NSMutableDictionary<NSString *, UIColor*> *organizations;
+
 
 @implementation MainViewController
 
@@ -136,31 +141,11 @@ extern NSMutableDictionary<NSString *, Instrument *> *instruments;
     [self updateCameraPositionWithAnimation:NO];
 }
 
+// moves google map camera to display the floats currently in focus
 - (void) updateCameraPositionWithAnimation:(BOOL)animation {
-//    double lonMin = MAXFLOAT;
-//    double lonMax = -MAXFLOAT;
-//    double latMin = MAXFLOAT;
-//    double latMax = -MAXFLOAT;
-//    for (GMSMarker *marker in self.onMarkers) {
-//        if (marker.position.longitude < lonMin)
-//            lonMin = marker.position.longitude;
-//        if (marker.position.longitude > lonMax)
-//            lonMax = marker.position.longitude;
-//        if (marker.position.latitude < latMin)
-//            latMin = marker.position.latitude;
-//        if (marker.position.latitude > latMax)
-//            latMax = marker.position.latitude;
-//    }
-//
-//    // Attetion: relating to which coord is more east and which is more west (wraparound)
-//    CLLocationCoordinate2D northEast = CLLocationCoordinate2DMake(latMax, lonMax);
-//    CLLocationCoordinate2D southWest = CLLocationCoordinate2DMake(latMin, lonMin);
-    
-    GMSCoordinateBounds *bounds = [GMSCoordinateBounds alloc];
-    
-    for (int i=0; i < [self.onMarkers count]; i++) {
-        GMSMarker *marker = [self.onMarkers objectAtIndex:i];
-        if (i == 0) {
+    GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] init];
+    for (GMSMarker *marker in _onMarkers) {
+        if (![bounds isValid]) {
             bounds = [bounds initWithCoordinate:marker.position coordinate:marker.position];
         } else {
             bounds = [bounds includingCoordinate:marker.position];
