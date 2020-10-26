@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "Instrument.h"
-#import <GoogleMaps/GoogleMaps.h>
-
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -28,12 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
 
     // index to locate selected instrument within array
     @property (assign) int selectedInstrIndex;
-
-    @property (strong) NSArray<NSNumber *> *mapViewTypes;
-
-    @property (assign) int selectedMapViewIndex;
-
-    @property (assign) bool showPlaces;
 
 
 // this creates the initial state object
