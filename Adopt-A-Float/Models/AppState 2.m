@@ -19,12 +19,6 @@
         _selectedInstr = @"All";
         _selectedInstrIndex = -1;
         _selectedMarkerNumIndex = 0;
-        _mapViewTypes = [NSArray arrayWithObjects:
-            [NSNumber numberWithInt:kGMSTypeHybrid],
-            [NSNumber numberWithInt:kGMSTypeSatellite],
-            [NSNumber numberWithInt:kGMSTypeNormal],
-            [NSNumber numberWithInt:kGMSTypeTerrain],nil];
-        _selectedMapViewIndex = 0;
     }
     return self;
 }

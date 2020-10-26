@@ -53,6 +53,9 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
         }
         self.navigationItem.title = @"All";
     }
+    
+    self.appMapView.mapType = [[appStateManager.mapViewTypes objectAtIndex:
+                                appStateManager.selectedMapViewIndex] intValue];
 }
 
 - (void)viewDidLoad {
@@ -135,7 +138,8 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     self.mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     self.appMapView.delegate = self;
     self.appMapView.camera = camera;
-    self.appMapView.mapType = kGMSTypeHybrid;
+    self.appMapView.mapType = [[appStateManager.mapViewTypes objectAtIndex:
+                               appStateManager.selectedMapViewIndex] intValue];
     
     //Update the camera position
     [self updateCameraPositionWithAnimation:NO];

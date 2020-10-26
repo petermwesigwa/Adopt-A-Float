@@ -36,8 +36,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *currentInstrumentLabel;
 
 // display element showing current number of past data points being displayed
+
 @property (weak, nonatomic) IBOutlet UILabel *markerNumberLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *mapTypeLabel;
+
+@property (weak, nonatomic) IBOutlet UISwitch *showPlaces;
 
 
 @end

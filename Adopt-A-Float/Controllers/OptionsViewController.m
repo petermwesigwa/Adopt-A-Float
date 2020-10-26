@@ -18,12 +18,12 @@ extern AppState *appStateManager;
 
 @implementation OptionsViewController
 - (void)viewDidAppear:(BOOL)animated {
-    self.currentInstrumentLabel.text = self.currentInstrument;
-    self.markerNumberLabel.text = [OptionsViewController labelForMarkerNumber:[appStateManager.markerNumbers objectAtIndex:appStateManager.selectedMarkerNumIndex]];
+    [self setup];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setup];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -56,12 +56,13 @@ extern AppState *appStateManager;
 
 // change marker number with user selection from select marker number s
 - (IBAction)changeMarkerNumber: (UIStoryboardSegue*)unwindSegue {
-    //SelectMarkerNumberViewController *source = unwindSegue.sourceViewController;
-//    self.currentMarkerNumberIndex = source.selectedMarkerNumberIndex;
-//    self.markerNumber = source.markerNumber;
-//    self.markerNumberLabel.text = [NSString stringWithFormat:@"%d", source.markerNumber];
     self.currentMarkerNumberIndex = appStateManager.selectedMarkerNumIndex;
     self.markerNumberLabel.text = [OptionsViewController labelForMarkerNumber:[appStateManager.markerNumbers objectAtIndex:appStateManager.selectedMarkerNumIndex]];
+}
+
+- (IBAction)changeMapType: (UIStoryboardSegue*) unwindSegue {
+    GMSMapViewType type = [[appStateManager.mapViewTypes objectAtIndex:appStateManager.selectedMapViewIndex] intValue];
+    self.mapTypeLabel.text = [OptionsViewController labelForMapViewType:type];
 }
 
 - (IBAction)changeFloatName:(UIStoryboardSegue*)unwindSegue {
@@ -71,13 +72,40 @@ extern AppState *appStateManager;
     self.currentInstrumentLabel.text = source.selectedFloat;
 }
 
+- (void) setup {
+    self.currentInstrumentLabel.text = self.currentInstrument;
+    self.markerNumberLabel.text = [OptionsViewController labelForMarkerNumber:
+                                   [appStateManager.markerNumbers objectAtIndex:
+                                    appStateManager.selectedMarkerNumIndex]];
+    self.mapTypeLabel.text = [OptionsViewController labelForMapViewType:
+                              [[appStateManager.mapViewTypes objectAtIndex:
+                                appStateManager.selectedMapViewIndex] intValue]];
+    self.showPlaces.on = NO;
+}
+
 + (NSString *)labelForMarkerNumber: (NSNumber *)markerNo {
     if ([markerNo intValue] == INT_MAX) {
-        return @"All Locations";
+        return @"All";
     }
     if ([markerNo intValue] == 1) {
-        return @"Most Recent Location";
+        return @"Most Recent";
     }
     return [NSString stringWithFormat:@"Past %d locations", [markerNo intValue]];
+}
+
++ (NSString *)labelForMapViewType: (GMSMapViewType)mapType {
+    if (mapType == kGMSTypeHybrid) {
+        return @"Satellite with Labels";
+    }
+    if (mapType == kGMSTypeNormal) {
+        return @"Standard";
+    }
+    if (mapType == kGMSTypeTerrain) {
+        return @"Standard with Terrain";
+    }
+    if (mapType == kGMSTypeSatellite) {
+        return @"Satellite";
+    }
+    return @"None";
 }
 @end

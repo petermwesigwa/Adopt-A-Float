@@ -29,6 +29,7 @@
 		D0571DAA22EF7A0900D88E1D /* mapmarkericonview.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0571DA922EF7A0900D88E1D /* mapmarkericonview.xib */; };
 		D0571DAD22EF7BA800D88E1D /* mapIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0571DAC22EF7BA800D88E1D /* mapIconView.m */; };
 		D05E012F22CBD4FA00A55488 /* private.plist in Resources */ = {isa = PBXBuildFile; fileRef = D05E012E22CBD4FA00A55488 /* private.plist */; };
+		D09D817D25475FB600F7A465 /* SelectMapTypeScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = D09D817C25475FB600F7A465 /* SelectMapTypeScreen.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +83,8 @@
 		D0571DAB22EF7BA800D88E1D /* mapIconView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mapIconView.h; sourceTree = "<group>"; };
 		D0571DAC22EF7BA800D88E1D /* mapIconView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = mapIconView.m; sourceTree = "<group>"; };
 		D05E012E22CBD4FA00A55488 /* private.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = private.plist; sourceTree = "<group>"; };
+		D09D817B25475FB600F7A465 /* SelectMapTypeScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectMapTypeScreen.h; sourceTree = "<group>"; };
+		D09D817C25475FB600F7A465 /* SelectMapTypeScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectMapTypeScreen.m; sourceTree = "<group>"; };
 		F93EFF74D5BA283451D8FF7D /* Pods-Adopt-A-FloatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Adopt-A-FloatTests.debug.xcconfig"; path = "Target Support Files/Pods-Adopt-A-FloatTests/Pods-Adopt-A-FloatTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -203,6 +206,8 @@
 				D055B9342313DD38006CD40D /* SelectFloatTableViewController.m */,
 				D055B93623141F1C006CD40D /* SelectMarkerNumberViewController.h */,
 				D055B93723141F1C006CD40D /* SelectMarkerNumberViewController.m */,
+				D09D817B25475FB600F7A465 /* SelectMapTypeScreen.h */,
+				D09D817C25475FB600F7A465 /* SelectMapTypeScreen.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -391,6 +396,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D055B9352313DD38006CD40D /* SelectFloatTableViewController.m in Sources */,
+				D09D817D25475FB600F7A465 /* SelectMapTypeScreen.m in Sources */,
 				AD720529202F553100F55BD7 /* main.m in Sources */,
 				AD72054B202F5D2900F55BD7 /* MainViewController.m in Sources */,
 				AD720545202F58D900F55BD7 /* Instrument.m in Sources */,
