@@ -30,6 +30,9 @@ NSMutableDictionary<NSString *, Instrument *> *instruments;
  */
 NSMutableDictionary<NSString *, UIColor *> *organizations;
 
+
+NSMutableDictionary<NSNumber *, NSString *> *mapTypes;
+
 @interface AppDelegate ()
 
 @end
@@ -64,6 +67,13 @@ NSMutableDictionary<NSString *, UIColor *> *organizations;
     
     // 
     organizations = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[UIColor blueColor], @"GeoAzur", [UIColor yellowColor], @"SUSTech", [UIColor orangeColor], @"Princeton", [UIColor redColor], @"JAMSTEC", [UIColor grayColor], @"Inactive", nil];
+    
+    mapTypes = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
+                    @"Satellite with labels", [NSNumber numberWithInt:kGMSTypeHybrid],
+                     @"Satellite", [NSNumber numberWithInt:kGMSTypeSatellite],
+                     @"Standard", [NSNumber numberWithInt:kGMSTypeNormal],
+                     @"Terrain", [NSNumber numberWithInt:kGMSTypeTerrain],
+                     nil];
     
     return YES;
 }
