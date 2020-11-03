@@ -14,16 +14,13 @@
 
 extern AppState *appStateManager;
 
+extern NSMutableDictionary<NSNumber *, NSString *> *mapTypes;
+
 @implementation SelectMapTypeScreen
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    _mapTypes = [NSArray arrayWithObjects:
-                         [NSNumber numberWithInt:kGMSTypeHybrid],
-                         [NSNumber numberWithInt:kGMSTypeSatellite],
-                         [NSNumber numberWithInt:kGMSTypeNormal],
-                         [NSNumber numberWithInt:kGMSTypeTerrain],nil];
+
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -38,7 +35,7 @@ extern AppState *appStateManager;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_mapTypes count];
+    return [mapTypes count];
 }
 
 
@@ -79,18 +76,6 @@ extern AppState *appStateManager;
 */
 
 + (NSString *)labelForMapViewType: (GMSMapViewType)mapType {
-    if (mapType == kGMSTypeHybrid) {
-        return @"Satellite with Labels";
-    }
-    if (mapType == kGMSTypeNormal) {
-        return @"Standard";
-    }
-    if (mapType == kGMSTypeTerrain) {
-        return @"Standard with Terrain";
-    }
-    if (mapType == kGMSTypeSatellite) {
-        return @"Satellite";
-    }
-    return @"None";
+    return [mapTypes objectForKey:[NSNumber numberWithInt:(int)mapType]];
 }
 @end

@@ -16,6 +16,8 @@
 
 extern AppState *appStateManager;
 
+extern NSMutableDictionary<NSNumber *, NSString *> *mapTypes;;
+
 @implementation OptionsViewController
 - (void)viewDidAppear:(BOOL)animated {
     [self setup];
@@ -94,18 +96,8 @@ extern AppState *appStateManager;
 }
 
 + (NSString *)labelForMapViewType: (GMSMapViewType)mapType {
-    if (mapType == kGMSTypeHybrid) {
-        return @"Satellite with Labels";
-    }
-    if (mapType == kGMSTypeNormal) {
-        return @"Standard";
-    }
-    if (mapType == kGMSTypeTerrain) {
-        return @"Standard with Terrain";
-    }
-    if (mapType == kGMSTypeSatellite) {
-        return @"Satellite";
-    }
-    return @"None";
+    NSNumber *intVal = [NSNumber numberWithInt:(int)mapType];
+    NSString *label = [mapTypes objectForKey:intVal];
+    return label;
 }
 @end
