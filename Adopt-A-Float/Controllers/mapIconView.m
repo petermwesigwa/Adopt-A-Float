@@ -20,12 +20,27 @@
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     [formatter setTimeStyle:NSDateFormatterMediumStyle];
     
+    NSString *latFormat = @"";
+    NSString *lonFormat = @"";
+    if ([data.gpsLat doubleValue] > 0) {
+        latFormat = @"%.2f N";
+    } else {
+        latFormat = @"%.2f S";
+    }
+    
+    if ([data.gpsLon doubleValue] > 0) {
+        lonFormat = @"%.2f E";
+    } else {
+        lonFormat = @"%.2f W";
+    }
     // populate each of the UIlabels for the view with information from the FloatData object
     // with the measurement
     self.deviceName.text = (NSString*) data.deviceName;
     self.gpsDate.text = [formatter stringFromDate:(NSDate*)data.gpsDate];
-    self.gpsLat.text = [data.gpsLat stringValue];
-    self.gpsLon.text = [data.gpsLon stringValue];
+    self.gpsLat.text = [NSString stringWithFormat:
+                        latFormat,fabsf([data.gpsLat floatValue])];
+    self.gpsLon.text = [NSString stringWithFormat:
+                        lonFormat, fabsf([data.gpsLon floatValue])];
     self.hdop.text = [NSString stringWithFormat:@"%@ m", data.hdop];
     self.vdop.text = [NSString stringWithFormat:@"%@ m", data.vdop];
     self.vBat.text =[NSString stringWithFormat:@"%@ mV", data.vbat];
