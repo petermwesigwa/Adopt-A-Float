@@ -180,6 +180,7 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
      mapIconView *iconView = [[[NSBundle mainBundle] loadNibNamed:@"mapmarkericonview" owner:self options:nil] objectAtIndex:0];
     FloatData *data = (FloatData *) marker.userData;
     [iconView provideFloatData:data];
+    iconView.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     iconView.layer.cornerRadius = 15;
     iconView.layer.opacity = 0.7;
     
