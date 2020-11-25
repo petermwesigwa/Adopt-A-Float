@@ -64,14 +64,10 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     [self setNeedsStatusBarAppearanceUpdate];
     
     //Basic initializations
-    self.polylineStrokeWidth = 3;
+    self.polylineStrokeWidth = 2;
     
     self.instrumentNames = [[instruments allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     self.currentFloatIndex = 0;
-    
-    //Make colors array
-    self.colors = @[[UIColor redColor], [UIColor greenColor], [UIColor blueColor], [UIColor cyanColor], [UIColor yellowColor], [UIColor magentaColor], [UIColor orangeColor], [UIColor brownColor], [UIColor purpleColor], [UIColor blackColor], [UIColor grayColor], [UIColor whiteColor], [UIColor darkGrayColor], [UIColor lightGrayColor]];
-
     
     // Create markers and paths for all positions of all floats
     self.markers = [[NSMutableDictionary alloc] init];
@@ -81,11 +77,6 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     NSArray* instrumentNames = [instruments allKeys];
     int j = 0;
     for(NSString *name in instrumentNames) {
-
-        //set icon color
-//        if (j == self.colors.count) j = 0; //to make sure there's no overflow
-//        UIImage *icon = [GMSMarker markerImageWithColor:[UIColor grayColor]];
-//
         
         // make an array of markers and a path for each object
         NSMutableArray* markersForInstr = [[NSMutableArray alloc] init];
@@ -241,7 +232,10 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     self.currentMarkerNumberIndex = source.currentMarkerNumberIndex;
 }
 
-
+/*
+ Prepares an instrument that has been selected for display
+ Turns on the instrument marker and the line joining them
+ */
 - (void) instrumentSetup:(Instrument*)instrument {
     //Turn on new markers and make new path
     GMSMutablePath *originalPath = [self.mutablePaths objectForKey:[instrument getName]];
@@ -260,14 +254,7 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     // Make the polyline
     GMSPolyline* newPolyline = [GMSPolyline polylineWithPath:mutablePathForPolyline];
     newPolyline.strokeWidth = self.polylineStrokeWidth;
-    
-    //set the polyline to the right color
-    int j = (int)[[instruments allKeys] indexOfObject:[instrument getName]];
-    while (j >= self.colors.count) {
-        j -= self.colors.count;
-    }
-    //to make sure there's no overflow
-    newPolyline.strokeColor = [self.colors objectAtIndex:j];
+    newPolyline.strokeColor = [instrument getColor];
     
     newPolyline.map = self.appMapView;
     [self.onPolylines addObject:newPolyline];
