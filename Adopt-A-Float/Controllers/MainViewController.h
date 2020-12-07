@@ -23,7 +23,12 @@
 
     // Stores a reference to the current instrument whose
     @property (strong) Instrument *curr;
+    @property (weak) IBOutlet UIImageView *optionsIcon;
     @property (weak) IBOutlet UILabel *titleLabel;
+    @property (weak) IBOutlet UILabel *legendLabel;
+    @property (weak, nonatomic) IBOutlet UIButton *optionsButton;
+    @property (weak) IBOutlet UIView *infoPanel;
+
     @property (assign) int defaultMarkerNumber;
     @property (assign) int markerNumber;
     @property (strong) NSMutableArray *onMarkers;

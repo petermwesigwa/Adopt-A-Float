@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 
     @property (assign) int selectedMapViewIndex;
 
-    @property (assign) bool showPlaces;
+    
 
 
 // this creates the initial state object

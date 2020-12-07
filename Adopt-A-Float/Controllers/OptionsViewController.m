@@ -52,29 +52,40 @@ extern NSMutableDictionary<NSNumber *, NSString *> *mapTypes;;
     }
 }
 
+/*
+ All the unwind segues are currently empty. Might be able to condense them into one
+ */
+
 - (IBAction)discardChanges:(UIStoryboardSegue*)unwindSegue {
     
 }
 
 // change marker number with user selection from select marker number s
 - (IBAction)changeMarkerNumber: (UIStoryboardSegue*)unwindSegue {
-    self.currentMarkerNumberIndex = appStateManager.selectedMarkerNumIndex;
-    self.markerNumberLabel.text = [OptionsViewController labelForMarkerNumber:[appStateManager.markerNumbers objectAtIndex:appStateManager.selectedMarkerNumIndex]];
+//    self.currentMarkerNumberIndex = appStateManager.selectedMarkerNumIndex;
+//    self.markerNumberLabel.text = [OptionsViewController labelForMarkerNumber:[appStateManager.markerNumbers objectAtIndex:appStateManager.selectedMarkerNumIndex]];
 }
 
 - (IBAction)changeMapType: (UIStoryboardSegue*) unwindSegue {
-    GMSMapViewType type = [[appStateManager.mapViewTypes objectAtIndex:appStateManager.selectedMapViewIndex] intValue];
-    self.mapTypeLabel.text = [OptionsViewController labelForMapViewType:type];
+//    GMSMapViewType type = [[appStateManager.mapViewTypes objectAtIndex:appStateManager.selectedMapViewIndex] intValue];
+//    self.mapTypeLabel.text = [OptionsViewController labelForMapViewType:type];
 }
 
 - (IBAction)changeFloatName:(UIStoryboardSegue*)unwindSegue {
-    SelectFloatTableViewController *source = unwindSegue.sourceViewController;
-    self.currentInstrument = source.selectedFloat;
-    self.currentFloatNameIndex = source.selectedFloatIndex;
-    self.currentInstrumentLabel.text = source.selectedFloat;
+//    SelectFloatTableViewController *source = unwindSegue.sourceViewController;
+//    self.currentInstrument = source.selectedFloat;
+//    self.currentFloatNameIndex = source.selectedFloatIndex;
+//    self.currentInstrumentLabel.text = self.currentInstrument;
 }
 
+//----------------------------------------------------------------------------------
+
+
+/*
+ Initalize all the labels whenever the screen is rendered
+ */
 - (void) setup {
+    self.currentInstrument = appStateManager.selectedInstr;
     self.currentInstrumentLabel.text = self.currentInstrument;
     self.markerNumberLabel.text = [OptionsViewController labelForMarkerNumber:
                                    [appStateManager.markerNumbers objectAtIndex:
