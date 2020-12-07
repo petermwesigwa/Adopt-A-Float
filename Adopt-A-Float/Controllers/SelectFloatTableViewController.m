@@ -8,7 +8,7 @@
 
 #import "SelectFloatTableViewController.h"
 
-extern AppState *appStateManger;
+extern AppState *appStateManager;
 
 @interface SelectFloatTableViewController ()
 
@@ -28,14 +28,14 @@ extern AppState *appStateManger;
 
 // needed for implementation of UITableViewController class
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _instruments.count;
+    return appStateManager.instrNames.count;
 }
 
 // needed for implementation of UITableViewController class
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"InstrumentNameCell" forIndexPath:indexPath];
-    cell.textLabel.text = [_instruments objectAtIndex:indexPath.row];
-    if (indexPath.row == _selectedFloatIndex) {
+    cell.textLabel.text = [appStateManager.instrNames objectAtIndex:indexPath.row];
+    if (indexPath.row == appStateManager.selectedInstrIndex) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -49,12 +49,12 @@ extern AppState *appStateManger;
     
     // deselect the previously selected row
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:
-                             [NSIndexPath indexPathForRow:_selectedFloatIndex inSection:0]];
+                             [NSIndexPath indexPathForRow:appStateManager.selectedInstrIndex inSection:0]];
     cell.accessoryType = UITableViewCellAccessoryNone;
     
     // set the current cell as the selected cell.
-    _selectedFloat = [_instruments objectAtIndex:indexPath.row];
-    _selectedFloatIndex = (int) indexPath.row;
+    appStateManager.selectedInstrIndex = (int) indexPath.row;
+    appStateManager.selectedInstr = [appStateManager.instrNames objectAtIndex:indexPath.row];
     cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     return indexPath;

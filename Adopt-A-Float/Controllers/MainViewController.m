@@ -34,7 +34,7 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
 
 
 - (void) viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+
     //take down all visible instruments
     for (Instrument *ins in [instruments allValues]) {
         [self instrumentTakeDown:ins];
@@ -43,7 +43,6 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     // if instrument is chosen set it up
     if (self.curr) {
         [self instrumentSetup:self.curr];
-        self.navigationItem.title = [self.curr getName];
     }
     
     // otherwise display all the instruments
@@ -51,19 +50,26 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
         for (Instrument *ins in [instruments allValues]) {
             [self instrumentSetup:ins];
         }
-        self.navigationItem.title = @"All";
     }
     
+    self.titleLabel.text = appStateManager.selectedInstr;
     self.appMapView.mapType = [[appStateManager.mapViewTypes objectAtIndex:
                                 appStateManager.selectedMapViewIndex] intValue];
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+  [self.navigationController setNavigationBarHidden:YES animated:animated];
+}
+
+- (void) viewWillDisappear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     //to make status bar white
     [self setNeedsStatusBarAppearanceUpdate];
-    
-    //Basic initializations
+    self.infoPanel.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     self.polylineStrokeWidth = 2;
     
     self.instrumentNames = [[instruments allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
@@ -121,7 +127,7 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
         [self instrumentSetup:ins];
     }
     
-    self.navigationItem.title = @"All";
+    self.titleLabel.text = @"All";
     
     
     // Create a GMSCameraPosition for the initial camera
@@ -207,29 +213,17 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"GoToOptions"]) {
-        OptionsViewController *destination = segue.destinationViewController;
-        destination.instruments = [[NSMutableArray alloc] initWithObjects:@"All", nil];
-        [destination.instruments addObjectsFromArray:self.instrumentNames];
-        if (self.curr) {
-            destination.currentInstrument= [self.curr getName];
-            destination.currentInstrumentLabel.text = [self.curr getName];
-            destination.currentFloatNameIndex = self.currentFloatIndex;
-        }
-        else {
-            destination.currentInstrument=@"All";
-        }
-        destination.currentMarkerNumberIndex = self.currentMarkerNumberIndex;
-        destination.markerNumber = self.markerNumber;
-        destination.markerNumberLabel.text = [NSString stringWithFormat:@"Past %d location(s)", self.markerNumber];
+        
     }
 }
 
 - (IBAction) backToMap:(UIStoryboardSegue *)unwindSegue {
-    OptionsViewController *source = unwindSegue.sourceViewController;
-    self.curr = [instruments objectForKey:source.currentInstrument];
-    self.currentFloatIndex = source.currentFloatNameIndex;
+    self.curr = [instruments objectForKey:appStateManager.selectedInstr];
     self.markerNumber = [[appStateManager.markerNumbers objectAtIndex:appStateManager.selectedMarkerNumIndex] intValue];
-    self.currentMarkerNumberIndex = source.currentMarkerNumberIndex;
+}
+
+- (IBAction)backFromLegend:(UIStoryboardSegue *)unwindSegue {
+    
 }
 
 /*
