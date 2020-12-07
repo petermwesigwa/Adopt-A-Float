@@ -68,7 +68,7 @@
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="elQ-iM-FiI">
-                                <rect key="frame" x="30" y="54" width="215" height="40"/>
+                                <rect key="frame" x="30" y="54" width="187" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bLh-15-uUI">
                                         <rect key="frame" x="2" y="4" width="35" height="32"/>
@@ -82,16 +82,16 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubM-nW-Ogp">
-                                        <rect key="frame" x="52" y="2" width="110" height="36"/>
+                                        <rect key="frame" x="52" y="2" width="75" height="36"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="110" id="I1q-vd-Aav"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="I1q-vd-Aav"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q48-dY-vDz">
-                                        <rect key="frame" x="167" y="2" width="46" height="36"/>
+                                        <rect key="frame" x="139" y="2" width="46" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="46" id="Tn3-y0-1JP"/>
                                         </constraints>
@@ -113,7 +113,7 @@
                                     <constraint firstItem="bLh-15-uUI" firstAttribute="leading" secondItem="elQ-iM-FiI" secondAttribute="leading" constant="2" id="WgP-Zl-RXU"/>
                                     <constraint firstAttribute="bottom" secondItem="q48-dY-vDz" secondAttribute="bottom" constant="2" id="cnD-vs-MSl"/>
                                     <constraint firstItem="ubM-nW-Ogp" firstAttribute="top" secondItem="elQ-iM-FiI" secondAttribute="top" constant="2" id="eE5-5l-ir9"/>
-                                    <constraint firstItem="q48-dY-vDz" firstAttribute="leading" secondItem="ubM-nW-Ogp" secondAttribute="trailing" constant="5" id="ksu-hV-2yB"/>
+                                    <constraint firstItem="q48-dY-vDz" firstAttribute="leading" secondItem="ubM-nW-Ogp" secondAttribute="trailing" constant="12" id="ksu-hV-2yB"/>
                                 </constraints>
                             </view>
                         </subviews>
