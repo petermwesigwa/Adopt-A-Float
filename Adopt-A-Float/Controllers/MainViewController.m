@@ -70,6 +70,8 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     //to make status bar white
     [self setNeedsStatusBarAppearanceUpdate];
     self.infoPanel.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+    self.infoPanel.layer.cornerRadius = 4;
+    self.infoPanel.layer.opacity = 0.85;
     self.polylineStrokeWidth = 2;
     
     self.instrumentNames = [[instruments allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
