@@ -68,13 +68,13 @@
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="elQ-iM-FiI">
-                                <rect key="frame" x="30" y="54" width="187" height="40"/>
+                                <rect key="frame" x="30" y="54" width="198" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bLh-15-uUI">
-                                        <rect key="frame" x="2" y="4" width="35" height="32"/>
+                                        <rect key="frame" x="2" y="4" width="40" height="37"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="35" id="xRX-Ir-z89"/>
+                                            <constraint firstAttribute="width" constant="40" id="xRX-Ir-z89"/>
                                         </constraints>
                                         <state key="normal" image="line.horizontal.3" catalog="system"/>
                                         <connections>
@@ -82,16 +82,16 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubM-nW-Ogp">
-                                        <rect key="frame" x="52" y="2" width="75" height="36"/>
+                                        <rect key="frame" x="57" y="2" width="75" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="I1q-vd-Aav"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q48-dY-vDz">
-                                        <rect key="frame" x="139" y="2" width="46" height="36"/>
+                                        <rect key="frame" x="150" y="2" width="46" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="46" id="Tn3-y0-1JP"/>
                                         </constraints>
@@ -104,7 +104,7 @@
                                 <constraints>
                                     <constraint firstItem="q48-dY-vDz" firstAttribute="top" secondItem="elQ-iM-FiI" secondAttribute="top" constant="2" id="1ah-xp-mCi"/>
                                     <constraint firstAttribute="bottom" secondItem="bLh-15-uUI" secondAttribute="bottom" constant="4" id="5Qw-Ab-SkL"/>
-                                    <constraint firstAttribute="height" constant="40" id="6hf-ip-tlW"/>
+                                    <constraint firstAttribute="height" constant="45" id="6hf-ip-tlW"/>
                                     <constraint firstItem="ubM-nW-Ogp" firstAttribute="leading" secondItem="bLh-15-uUI" secondAttribute="trailing" constant="15" id="A9c-3S-jMA"/>
                                     <constraint firstAttribute="trailing" secondItem="q48-dY-vDz" secondAttribute="trailing" constant="2" id="DhJ-nF-VBL"/>
                                     <constraint firstItem="bLh-15-uUI" firstAttribute="top" secondItem="elQ-iM-FiI" secondAttribute="top" constant="4" id="JNf-F9-elJ"/>
@@ -113,7 +113,7 @@
                                     <constraint firstItem="bLh-15-uUI" firstAttribute="leading" secondItem="elQ-iM-FiI" secondAttribute="leading" constant="2" id="WgP-Zl-RXU"/>
                                     <constraint firstAttribute="bottom" secondItem="q48-dY-vDz" secondAttribute="bottom" constant="2" id="cnD-vs-MSl"/>
                                     <constraint firstItem="ubM-nW-Ogp" firstAttribute="top" secondItem="elQ-iM-FiI" secondAttribute="top" constant="2" id="eE5-5l-ir9"/>
-                                    <constraint firstItem="q48-dY-vDz" firstAttribute="leading" secondItem="ubM-nW-Ogp" secondAttribute="trailing" constant="12" id="ksu-hV-2yB"/>
+                                    <constraint firstItem="q48-dY-vDz" firstAttribute="leading" secondItem="ubM-nW-Ogp" secondAttribute="trailing" constant="18" id="ksu-hV-2yB"/>
                                 </constraints>
                             </view>
                         </subviews>
