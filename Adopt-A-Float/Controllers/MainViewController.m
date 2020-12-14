@@ -166,7 +166,7 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     GMSMarker *marker = [[GMSMarker alloc] init];
 
     marker.position = CLLocationCoordinate2DMake([data.gpsLat floatValue], [data.gpsLon floatValue]);
-    marker.infoWindowAnchor = CGPointMake(0.44f, 0.45f);
+    marker.infoWindowAnchor = CGPointMake(0.5f, 1.0f);
     marker.map = nil;
     marker.icon = icon;
     marker.userData = data;
@@ -181,7 +181,7 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     [iconView provideFloatData:data];
     iconView.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     iconView.layer.cornerRadius = 15;
-    iconView.layer.opacity = 0.7;
+    iconView.layer.opacity = 0.95;
     
     return iconView;
 }
