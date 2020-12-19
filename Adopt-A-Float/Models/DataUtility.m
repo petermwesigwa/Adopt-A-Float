@@ -25,7 +25,7 @@ NSString *const URL_ONE = @"URL_ONE"; // retrieves url for the data for one inst
 
 
 + (NSMutableDictionary<NSString *, Instrument *> *)createInstruments {
-    NSMutableDictionary<NSString *, Instrument *> *result = [NSMutableDictionary new];
+    NSMutableDictionary<NSString *, Instrument *> *createdInstruments = [NSMutableDictionary new];
     NSArray *floatNames = [NSArray new];
     NSDictionary<NSString *, NSString*> *sourceUrls = [DataUtility getSourceURLs];
     
@@ -42,14 +42,27 @@ NSString *const URL_ONE = @"URL_ONE"; // retrieves url for the data for one inst
         // make a request to the url
         NSMutableArray<FloatData *> *float_data = [DataUtility getDataFromURL:data_url];
         
+        
+        // remove extra zeros from the name (eg from P0026 to P026)
+        // Names should have 4 characters
+        NSString* standardizedName = [DataUtility standardizeFloatName:name];
+        
+        
         // create instrument with data if request succeeded
         if ([float_data count] > 0) {
-            Instrument *i = [[Instrument alloc]
-                             initWithName:name andfloatData:float_data];
-            [result setObject:i forKey:name];
+            Instrument *ins = [[Instrument alloc]
+                             initWithName:standardizedName andfloatData:float_data];
+            [createdInstruments setObject:ins forKey:standardizedName];
         }
     }
-    return result;
+    return createdInstruments;
+}
+
++ (NSString *) standardizeFloatName: (NSString *) floatName {
+    if ([floatName length] == 4) {
+        return floatName;
+    }
+    return [floatName stringByReplacingOccurrencesOfString:@"00" withString:@"0"];
 }
 
 
