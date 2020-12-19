@@ -16,9 +16,8 @@
 - (void)provideFloatData:(FloatData *)data {
     // set up formatter to read in date
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-    [formatter setDateStyle:NSDateFormatterMediumStyle];
-    [formatter setTimeStyle:NSDateFormatterMediumStyle];
+    [formatter setDateFormat:@"MM/dd/yyyy HH:mm:ss"];
+
     
     NSString *latFormat = @"";
     NSString *lonFormat = @"";
