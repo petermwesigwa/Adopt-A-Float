@@ -24,6 +24,8 @@
 		D030C8A124FC30D0009E279F /* AppState.m in Sources */ = {isa = PBXBuildFile; fileRef = D030C8A024FC30D0009E279F /* AppState.m */; };
 		D03C37512586F33700004071 /* speech-25909_1280.png in Resources */ = {isa = PBXBuildFile; fileRef = D03C37502586F33700004071 /* speech-25909_1280.png */; };
 		D03C37532586F77000004071 /* talking-35462.png in Resources */ = {isa = PBXBuildFile; fileRef = D03C37522586F77000004071 /* talking-35462.png */; };
+		D03C3755258E8D1700004071 /* untitled.png in Resources */ = {isa = PBXBuildFile; fileRef = D03C3754258E8D1700004071 /* untitled.png */; };
+		D03C3757258E8F4200004071 /* mermaid_info_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = D03C3756258E8F4200004071 /* mermaid_info_bubble.png */; };
 		D0471E26254356BA008B781D /* LegendScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = D0471E25254356BA008B781D /* LegendScreen.m */; };
 		D055B9352313DD38006CD40D /* SelectFloatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D055B9342313DD38006CD40D /* SelectFloatTableViewController.m */; };
 		D055B93823141F1C006CD40D /* SelectMarkerNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D055B93723141F1C006CD40D /* SelectMarkerNumberViewController.m */; };
@@ -76,6 +78,8 @@
 		D03C374F2586F1AB00004071 /* speech-25909.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = "speech-25909.svg"; path = "/Users/peter/Desktop/Projects/Adopt-A-Float/speech-25909.svg"; sourceTree = "<absolute>"; };
 		D03C37502586F33700004071 /* speech-25909_1280.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "speech-25909_1280.png"; sourceTree = "<group>"; };
 		D03C37522586F77000004071 /* talking-35462.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "talking-35462.png"; sourceTree = "<group>"; };
+		D03C3754258E8D1700004071 /* untitled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = untitled.png; sourceTree = "<group>"; };
+		D03C3756258E8F4200004071 /* mermaid_info_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mermaid_info_bubble.png; sourceTree = "<group>"; };
 		D0471E24254356BA008B781D /* LegendScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LegendScreen.h; path = "Adopt-A-Float/Controllers/LegendScreen.h"; sourceTree = SOURCE_ROOT; };
 		D0471E25254356BA008B781D /* LegendScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LegendScreen.m; path = "Adopt-A-Float/Controllers/LegendScreen.m"; sourceTree = SOURCE_ROOT; };
 		D055B9332313DD38006CD40D /* SelectFloatTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectFloatTableViewController.h; sourceTree = "<group>"; };
@@ -127,6 +131,7 @@
 		AD72050D202F553100F55BD7 = {
 			isa = PBXGroup;
 			children = (
+				D03C3756258E8F4200004071 /* mermaid_info_bubble.png */,
 				D03C374F2586F1AB00004071 /* speech-25909.svg */,
 				D02FEE4E253E216B0040A80B /* MermaidLogo.png */,
 				AD720518202F553100F55BD7 /* Adopt-A-Float */,
@@ -149,6 +154,7 @@
 		AD720518202F553100F55BD7 /* Adopt-A-Float */ = {
 			isa = PBXGroup;
 			children = (
+				D03C3754258E8D1700004071 /* untitled.png */,
 				D03C37522586F77000004071 /* talking-35462.png */,
 				D03C37502586F33700004071 /* speech-25909_1280.png */,
 				AD720519202F553100F55BD7 /* AppDelegate.h */,
@@ -318,6 +324,8 @@
 				D03C37512586F33700004071 /* speech-25909_1280.png in Resources */,
 				ADB225AA203922B4005B6CC8 /* source.plist in Resources */,
 				AD720526202F553100F55BD7 /* LaunchScreen.storyboard in Resources */,
+				D03C3757258E8F4200004071 /* mermaid_info_bubble.png in Resources */,
+				D03C3755258E8D1700004071 /* untitled.png in Resources */,
 				D0571DAA22EF7A0900D88E1D /* mapmarkericonview.xib in Resources */,
 				AD720523202F553100F55BD7 /* Assets.xcassets in Resources */,
 				AD720521202F553100F55BD7 /* Main.storyboard in Resources */,

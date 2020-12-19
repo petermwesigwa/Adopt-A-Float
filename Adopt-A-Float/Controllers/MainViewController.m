@@ -166,7 +166,7 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     GMSMarker *marker = [[GMSMarker alloc] init];
 
     marker.position = CLLocationCoordinate2DMake([data.gpsLat floatValue], [data.gpsLon floatValue]);
-    marker.infoWindowAnchor = CGPointMake(0.5f, 1.0f);
+    marker.infoWindowAnchor = CGPointMake(0.5f, 0.5f);
     marker.map = nil;
     marker.icon = icon;
     marker.userData = data;
