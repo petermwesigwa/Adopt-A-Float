@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="330" height="312"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mermaid_info_bubble.png" id="1rT-mA-tLk">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mermaidInfoBubble.png" id="1rT-mA-tLk">
                     <rect key="frame" x="0.0" y="7" width="330" height="305"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
@@ -74,6 +74,6 @@
         </view>
     </objects>
     <resources>
-        <image name="mermaid_info_bubble.png" width="640" height="640"/>
+        <image name="mermaidInfoBubble.png" width="640" height="640"/>
     </resources>
 </document>
