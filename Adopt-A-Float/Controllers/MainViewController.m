@@ -79,17 +79,13 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     
     // Create markers and paths for all positions of all floats
     self.markers = [[NSMutableDictionary alloc] init];
-    self.mutablePaths = [[NSMutableDictionary alloc] init];
     self.onMarkers = [[NSMutableArray alloc] init];
-    self.onPolylines = [[NSMutableArray alloc] init];
     NSArray* instrumentNames = [instruments allKeys];
     int j = 0;
     for(NSString *name in instrumentNames) {
         
         // make an array of markers and a path for each object
         NSMutableArray* markersForInstr = [[NSMutableArray alloc] init];
-        GMSMutablePath *newPath = [GMSMutablePath path];
-        int i = 0;
         Instrument* instr = [instruments objectForKey:name];
         
         //set icon
@@ -108,15 +104,8 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
             [markersForInstr addObject:marker];
             
             //Add location to path
-            if (gps) {
-                [newPath addLatitude:[row.gpsLat doubleValue] longitude:[row.gpsLon doubleValue]];
-            }
-            else {
-                [newPath addLatitude:[row.gpsLon doubleValue] longitude:[row.gpsLon doubleValue]];
-            }
-            i++;
+
         }
-        [self.mutablePaths setObject:newPath forKey:name];
         [self.markers setObject:markersForInstr forKey:name];
         j++;
     }
@@ -124,12 +113,6 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     // Show most recent marker for instrument by default
     self.defaultMarkerNumber = 1;
     self.markerNumber = self.defaultMarkerNumber;
-    
-    for (Instrument *ins in [instruments allValues]) {
-        [self instrumentSetup:ins];
-    }
-    
-    self.titleLabel.text = @"All";
     
     
     // Create a GMSCameraPosition for the initial camera
@@ -234,8 +217,6 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
  */
 - (void) instrumentSetup:(Instrument*)instrument {
     //Turn on new markers and make new path
-    GMSMutablePath *originalPath = [self.mutablePaths objectForKey:[instrument getName]];
-    GMSMutablePath *mutablePathForPolyline = [GMSMutablePath path];
     int n = self.markerNumber;
     if (n > [[instrument getFloatData] count]) {
         n = (int) [[instrument getFloatData] count];
@@ -244,16 +225,7 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     for (int i = 0; i < n; i++) {
         float opac = 1 - (i/(n+1.0));
         [self turnOnMarker:[self.markers objectForKey:[instrument getName]][i] withOpacity:opac];
-        [mutablePathForPolyline addCoordinate:[originalPath coordinateAtIndex:i]];
     }
-    
-    // Make the polyline
-    GMSPolyline* newPolyline = [GMSPolyline polylineWithPath:mutablePathForPolyline];
-    newPolyline.strokeWidth = self.polylineStrokeWidth;
-    newPolyline.strokeColor = [instrument getColor];
-    
-    newPolyline.map = self.appMapView;
-    [self.onPolylines addObject:newPolyline];
     
     //Update the camera position
     [self updateCameraPositionWithAnimation:YES];
@@ -275,7 +247,6 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     for (GMSMarker* marker in [self.markers objectForKey:[old getName]]) {
         [self turnOffMarker:marker];
     }
-    [self clearOnPolylines];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
