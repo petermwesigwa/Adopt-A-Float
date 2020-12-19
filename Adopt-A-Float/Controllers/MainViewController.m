@@ -164,7 +164,7 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     [iconView provideFloatData:data];
     iconView.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     iconView.layer.cornerRadius = 15;
-    iconView.layer.opacity = 0.95;
+    iconView.layer.opacity = 0.98;
     
     return iconView;
 }
