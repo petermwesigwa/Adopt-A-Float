@@ -58,6 +58,11 @@ NSString *const URL_ONE = @"URL_ONE"; // retrieves url for the data for one inst
     return createdInstruments;
 }
 
+/*
+ Standardizes float names by ensuring they are 4 characters name. Some
+ floats have extra zeros (eg P0027) and thus must become (P027).
+ Chances are this method won't be needed once Frederik fixes the script
+ */
 + (NSString *) standardizeFloatName: (NSString *) floatName {
     if ([floatName length] == 4) {
         return floatName;
@@ -66,7 +71,8 @@ NSString *const URL_ONE = @"URL_ONE"; // retrieves url for the data for one inst
 }
 
 
-// THis method takes in the url and filters the data
+// THis method takes in the url and filters out the first column
+// When used with URL_ALL just returns names of all the floats
 + (NSMutableArray<NSString *> *) getFloatNames: (NSURL *) url {
     NSMutableArray *floatNames = [NSMutableArray new];
     
@@ -91,17 +97,15 @@ The parameter floatName is the name of the instrument. The uurl is construacted 
 format string format_URL (usually retrieved from the source.plist file as URL_ONE.
  
 Quick warning that this method might be refined in the near future as the way that the names
- are stored int he database is not the same way that they are inserted into the URL in order to
- get the instrument data.
+ are stored in the database is not the same way that they are inserted into the URL in order to
+ get the instrument data. Frederik will have to fix script on his end
 */
 + (NSURL *) getURLFromName: (NSString *) floatName usingFormat:(NSString *)format_URL {
     // Change all float names starting with N to P for the url (eg from N001 to P001)
     floatName = [floatName stringByReplacingOccurrencesOfString:@"N" withString:@"P"];
     
     // some strings have too many zeros (eg P0029) so replace multiple zeros with just one.
-    if ([floatName length] > 4) {
-        floatName = [floatName stringByReplacingOccurrencesOfString:@"00" withString:@"0"];
-    }
+    floatName = [DataUtility standardizeFloatName:floatName];
     
     return [NSURL URLWithString:[NSString stringWithFormat:
                                  format_URL, floatName]];
@@ -121,6 +125,10 @@ Quick warning that this method might be refined in the near future as the way th
     // Create a FloatData object for each raw data row
     for (NSMutableArray *rawData in [DataUtility splitDataRows:response]) {
         if ([FloatData isValidRaw:rawData]) {
+            // standardize the name of the instrument (remove extra zeros)
+            rawData[0] = [DataUtility standardizeFloatName:rawData[0]];
+            
+            // create floatdata object
             [dataSet addObject:[[FloatData alloc] initWithRaw:rawData]];
         }
     }
