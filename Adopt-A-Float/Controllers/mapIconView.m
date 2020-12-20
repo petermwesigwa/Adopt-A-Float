@@ -22,15 +22,15 @@
     NSString *latFormat = @"";
     NSString *lonFormat = @"";
     if ([data.gpsLat doubleValue] > 0) {
-        latFormat = @"%.2f N";
+        latFormat = @"%.2f \u00B0N";
     } else {
-        latFormat = @"%.2f S";
+        latFormat = @"%.2f \u00B0S";
     }
     
     if ([data.gpsLon doubleValue] > 0) {
-        lonFormat = @"%.2f E";
+        lonFormat = @"%.2f \u00B0E";
     } else {
-        lonFormat = @"%.2f W";
+        lonFormat = @"%.2f \u00B0W";
     }
     // populate each of the UIlabels for the view with information from the FloatData object
     // with the measurement
