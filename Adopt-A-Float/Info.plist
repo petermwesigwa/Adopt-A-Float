@@ -31,6 +31,13 @@
 				<key>NSIncludesSubDomains</key>
 				<true/>
 			</dict>
+			<key>www.gebco.net</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubDomains</key>
+				<true/>
+			</dict>
 		</dict>
 	</dict>
 	<key>UILaunchStoryboardName</key>
