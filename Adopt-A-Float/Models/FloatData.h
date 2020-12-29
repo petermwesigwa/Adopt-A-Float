@@ -24,16 +24,36 @@
 #import <UIKit/UIKit.h>
 
 @interface FloatData : NSObject
-    @property (strong, readonly) const NSString *deviceName;                // name of the mermaid
-    @property (strong, readonly) const NSDate *gpsDate;                     // date of reading
-    @property (strong, readonly) const NSNumber *gpsLat;                   //latitude
-    @property (strong, readonly) const NSNumber *gpsLon;                   //longitude
-    @property (strong, readonly) const NSNumber *hdop;                      //horizontal dilution of precision
-    @property (strong, readonly) const NSNumber *vdop;                     //vertical dilution of precision
-    @property (strong, readonly) const NSNumber *vbat;                      //battery level
-    @property (strong, readonly) const NSNumber *pInt;                      //internal pressure
-    @property (strong, readonly) const NSNumber *pExt;                      // external pressure
-    @property (strong, readonly) const UIColor *color;
+
+@property (strong, readonly) const NSString *deviceName;                // name of the mermaid
+@property (strong, readonly) const NSDate *gpsDate;                     // date of reading
+@property (strong, readonly) const NSNumber *gpsLat;                   //latitude
+@property (strong, readonly) const NSNumber *gpsLon;                   //longitude
+@property (strong, readonly) const NSNumber *hdop;                      //horizontal dilution of precision
+@property (strong, readonly) const NSNumber *vdop;                     //vertical dilution of precision
+@property (strong, readonly) const NSNumber *vbat;                      //battery level
+@property (strong, readonly) const NSNumber *pInt;                      //internal pressure
+@property (strong, readonly) const NSNumber *pExt;                      // external pressure
+
+// color of pin used to display this observation, depends on the instituion for each float
+@property (strong, readonly) const UIColor *color;
+
+@property (assign) double legLength;
+    
+@property (assign) double legTime;
+
+@property (assign) double legSpeed;
+
+@property (assign) double netDisplacement;
+
+@property (assign) double avgSpeed;
+
+@property (assign) double totalTime;
+
+@property (assign) double totalDistance;
+
+@property (assign) double gebcoDepth;
+
 
 // Returns a new FloatData object or NULL if orderedData is invalid
 - (id)initWithRaw:(NSMutableArray<NSString *> *)orderedData;
@@ -41,4 +61,7 @@
 // Returns YES if the rawData is in a valid format
 + (BOOL)isValidRaw:(NSMutableArray<NSString *> *)rawData;
 
+- (void) updateLegDataUsingPreviousFloat:(FloatData *)prevFloat andFirstFloat:(FloatData *)firstFloat;
+
++ (void) runTests;
 @end

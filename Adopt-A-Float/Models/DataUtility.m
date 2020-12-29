@@ -23,6 +23,7 @@ NSString *const SOURCE_TYPE = @"plist";
 NSString *const URL_ALL = @"URL_ALL"; // retrieves the url for all the instruments
 NSString *const URL_ONE = @"URL_ONE"; // retrieves url for the data for one instrument
 
+double const MIN_TIME = 0;
 
 + (NSMutableDictionary<NSString *, Instrument *> *)createInstruments {
     NSMutableDictionary<NSString *, Instrument *> *createdInstruments = [NSMutableDictionary new];
@@ -113,7 +114,7 @@ Quick warning that this method might be refined in the near future as the way th
 
 // Return an array of FloatData objects retrieved from the url
 + (NSMutableArray<FloatData *> *)getDataFromURL:(NSURL *)url {
-    NSMutableArray *dataSet = [NSMutableArray new];
+    NSMutableArray <FloatData *> *dataSet = [NSMutableArray new];
     // retrieve response from server
     NSString *response = [DataUtility downloadString:url];
     
@@ -131,6 +132,16 @@ Quick warning that this method might be refined in the near future as the way th
             // create floatdata object
             [dataSet addObject:[[FloatData alloc] initWithRaw:rawData]];
         }
+    }
+    
+    
+    // compute leg length, time, speed, totaldistance, totaltime, totalspeed.
+    for (int i= (int) dataSet.count - 2;i >= 0;i--) {
+        if ([dataSet[i].deviceName isEqualToString:@"NOO3"]) {
+            NSLog(@"hahaha");
+        }
+        [dataSet[i] updateLegDataUsingPreviousFloat:dataSet[i+1]
+                                      andFirstFloat:dataSet[dataSet.count-1]];
     }
     return dataSet;
 }

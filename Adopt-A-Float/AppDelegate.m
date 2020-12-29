@@ -75,6 +75,8 @@ NSMutableDictionary<NSNumber *, NSString *> *mapTypes;
                      @"Terrain", [NSNumber numberWithInt:kGMSTypeTerrain],
                      nil];
     
+//    [FloatData runTests];
+    
     return YES;
 }
 

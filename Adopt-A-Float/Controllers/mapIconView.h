@@ -27,6 +27,15 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *pInt;    // internal pressure
 @property (weak, nonatomic) IBOutlet UILabel *pExt;    // external pressure
 @property (weak, nonatomic) IBOutlet UILabel *gpsDate; // date of report
+@property (weak, nonatomic) IBOutlet UILabel *legLength;
+@property (weak, nonatomic) IBOutlet UILabel *legTime;
+@property (weak, nonatomic) IBOutlet UILabel *legSpeed;
+@property (weak, nonatomic) IBOutlet UILabel *totalDist;
+@property (weak, nonatomic) IBOutlet UILabel *totalTime;
+@property (weak, nonatomic) IBOutlet UILabel *avgSpeed;
+@property (weak, nonatomic) IBOutlet UILabel *netDisplacement;
+@property (weak, nonatomic) IBOutlet UILabel *WMSDepth;
+
 
 // initialize the view with data from a specific observation for a float.
 - (void) provideFloatData:(FloatData*)data;
