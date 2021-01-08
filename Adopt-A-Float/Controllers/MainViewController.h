@@ -16,7 +16,7 @@
 #import "mapIconView.h"
 
 
-@interface MainViewController : UIViewController<UIPickerViewDelegate, GMSMapViewDelegate>
+@interface MainViewController : UIViewController<CLLocationManagerDelegate,GMSMapViewDelegate>
     // THis is a dictionarny
     @property (strong) NSMutableDictionary *markers;
     @property (strong) NSMutableDictionary *mutablePaths;
@@ -24,8 +24,7 @@
     // Stores a reference to the current instrument whose
     @property (strong) Instrument *curr;
     @property (weak) IBOutlet UIImageView *optionsIcon;
-    @property (weak) IBOutlet UILabel *titleLabel;
-    @property (weak) IBOutlet UILabel *legendLabel;
+    @property (weak, nonatomic) IBOutlet UIButton *titleButton;
     @property (weak, nonatomic) IBOutlet UIButton *optionsButton;
     @property (weak) IBOutlet UIView *infoPanel;
 
@@ -40,4 +39,5 @@
     @property (assign) int currentFloatIndex;
     @property (assign) int currentMarkerNumberIndex;
     @property (strong) GMSMapView *mapView;
+    @property (strong) CLLocationManager *locationManager;
 @end

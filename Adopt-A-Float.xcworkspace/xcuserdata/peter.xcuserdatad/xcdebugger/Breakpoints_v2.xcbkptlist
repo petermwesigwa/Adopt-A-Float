@@ -51,8 +51,8 @@
             filePath = "Adopt-A-Float/Controllers/MainViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "-viewDidAppear:"
             landmarkType = "7">
          </BreakpointContent>
@@ -83,8 +83,8 @@
             filePath = "Adopt-A-Float/Models/FloatData.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
             landmarkName = "+runTests"
             landmarkType = "7">
          </BreakpointContent>
@@ -99,8 +99,8 @@
             filePath = "Adopt-A-Float/Models/FloatData.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "+runTests"
             landmarkType = "7">
             <Locations>
@@ -115,8 +115,8 @@
                   urlString = "file:///Users/peter/Desktop/Projects/Adopt-A-Float/Adopt-A-Float/Models/FloatData.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "195"
-                  endingLineNumber = "195"
+                  startingLineNumber = "194"
+                  endingLineNumber = "194"
                   offsetFromSymbolStart = "1083">
                </Location>
                <Location
@@ -130,8 +130,8 @@
                   urlString = "file:///Users/peter/Desktop/Projects/Adopt-A-Float/Adopt-A-Float/Models/FloatData.m"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "195"
-                  endingLineNumber = "195"
+                  startingLineNumber = "194"
+                  endingLineNumber = "194"
                   offsetFromSymbolStart = "1166">
                </Location>
             </Locations>
