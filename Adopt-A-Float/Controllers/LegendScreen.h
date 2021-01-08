@@ -2,16 +2,18 @@
 //  LegendScreen.h
 //  Adopt-A-Float
 //
-//  Created by Peter Mwesigwa on 10/23/20.
-//  Copyright © 2020 Frederik Simons. All rights reserved.
+//  Created by Peter Mwesigwa on 1/8/21.
+//  Copyright © 2021 Frederik Simons. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import <Googlemaps/GoogleMaps.h>
+#import <GoogleMaps/GoogleMaps.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LegendScreen : UITableViewController
+@interface LegendScreen : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UIView *contentView;
+- (IBAction)dismissModal:(id)sender;
 
 @end
 

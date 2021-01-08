@@ -27,7 +27,6 @@
 		D03C3755258E8D1700004071 /* untitled.png in Resources */ = {isa = PBXBuildFile; fileRef = D03C3754258E8D1700004071 /* untitled.png */; };
 		D03C3757258E8F4200004071 /* mermaid_info_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = D03C3756258E8F4200004071 /* mermaid_info_bubble.png */; };
 		D03C3759258EA33500004071 /* mermaidInfoBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = D03C3758258EA33400004071 /* mermaidInfoBubble.png */; };
-		D0471E26254356BA008B781D /* LegendScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = D0471E25254356BA008B781D /* LegendScreen.m */; };
 		D055B9352313DD38006CD40D /* SelectFloatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D055B9342313DD38006CD40D /* SelectFloatTableViewController.m */; };
 		D055B93823141F1C006CD40D /* SelectMarkerNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D055B93723141F1C006CD40D /* SelectMarkerNumberViewController.m */; };
 		D055B93B231422A4006CD40D /* OptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D055B93A231422A4006CD40D /* OptionsViewController.m */; };
@@ -35,6 +34,7 @@
 		D0571DAD22EF7BA800D88E1D /* mapIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0571DAC22EF7BA800D88E1D /* mapIconView.m */; };
 		D05E012F22CBD4FA00A55488 /* private.plist in Resources */ = {isa = PBXBuildFile; fileRef = D05E012E22CBD4FA00A55488 /* private.plist */; };
 		D09D817D25475FB600F7A465 /* SelectMapTypeScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = D09D817C25475FB600F7A465 /* SelectMapTypeScreen.m */; };
+		D09F915725A8E644007BDAB9 /* LegendScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = D09F915625A8E644007BDAB9 /* LegendScreen.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,8 +82,6 @@
 		D03C3754258E8D1700004071 /* untitled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = untitled.png; sourceTree = "<group>"; };
 		D03C3756258E8F4200004071 /* mermaid_info_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mermaid_info_bubble.png; sourceTree = "<group>"; };
 		D03C3758258EA33400004071 /* mermaidInfoBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mermaidInfoBubble.png; sourceTree = "<group>"; };
-		D0471E24254356BA008B781D /* LegendScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LegendScreen.h; path = "Adopt-A-Float/Controllers/LegendScreen.h"; sourceTree = SOURCE_ROOT; };
-		D0471E25254356BA008B781D /* LegendScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LegendScreen.m; path = "Adopt-A-Float/Controllers/LegendScreen.m"; sourceTree = SOURCE_ROOT; };
 		D055B9332313DD38006CD40D /* SelectFloatTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectFloatTableViewController.h; sourceTree = "<group>"; };
 		D055B9342313DD38006CD40D /* SelectFloatTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectFloatTableViewController.m; sourceTree = "<group>"; };
 		D055B93623141F1C006CD40D /* SelectMarkerNumberViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectMarkerNumberViewController.h; sourceTree = "<group>"; };
@@ -96,6 +94,8 @@
 		D05E012E22CBD4FA00A55488 /* private.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = private.plist; sourceTree = "<group>"; };
 		D09D817B25475FB600F7A465 /* SelectMapTypeScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectMapTypeScreen.h; sourceTree = "<group>"; };
 		D09D817C25475FB600F7A465 /* SelectMapTypeScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectMapTypeScreen.m; sourceTree = "<group>"; };
+		D09F915525A8E644007BDAB9 /* LegendScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LegendScreen.h; sourceTree = "<group>"; };
+		D09F915625A8E644007BDAB9 /* LegendScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LegendScreen.m; sourceTree = "<group>"; };
 		F93EFF74D5BA283451D8FF7D /* Pods-Adopt-A-FloatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Adopt-A-FloatTests.debug.xcconfig"; path = "Target Support Files/Pods-Adopt-A-FloatTests/Pods-Adopt-A-FloatTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -211,8 +211,6 @@
 		AD72054E202F5DBD00F55BD7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D0471E24254356BA008B781D /* LegendScreen.h */,
-				D0471E25254356BA008B781D /* LegendScreen.m */,
 				D0571DAB22EF7BA800D88E1D /* mapIconView.h */,
 				D0571DAC22EF7BA800D88E1D /* mapIconView.m */,
 				AD72054A202F5D2900F55BD7 /* MainViewController.h */,
@@ -225,6 +223,8 @@
 				D055B93723141F1C006CD40D /* SelectMarkerNumberViewController.m */,
 				D09D817B25475FB600F7A465 /* SelectMapTypeScreen.h */,
 				D09D817C25475FB600F7A465 /* SelectMapTypeScreen.m */,
+				D09F915525A8E644007BDAB9 /* LegendScreen.h */,
+				D09F915625A8E644007BDAB9 /* LegendScreen.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -422,7 +422,7 @@
 				AD720529202F553100F55BD7 /* main.m in Sources */,
 				AD72054B202F5D2900F55BD7 /* MainViewController.m in Sources */,
 				AD720545202F58D900F55BD7 /* Instrument.m in Sources */,
-				D0471E26254356BA008B781D /* LegendScreen.m in Sources */,
+				D09F915725A8E644007BDAB9 /* LegendScreen.m in Sources */,
 				AD720544202F58D900F55BD7 /* DataUtility.m in Sources */,
 				AD72051B202F553100F55BD7 /* AppDelegate.m in Sources */,
 				D030C8A124FC30D0009E279F /* AppState.m in Sources */,
