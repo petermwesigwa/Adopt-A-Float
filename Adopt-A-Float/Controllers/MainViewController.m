@@ -30,6 +30,7 @@ This dictionary con.
 extern NSMutableDictionary<NSString *, UIColor*> *organizations;
 
 
+
 @implementation MainViewController
 
 
@@ -51,14 +52,14 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
             [self instrumentSetup:ins];
         }
     }
-    
-    self.titleLabel.text = appStateManager.selectedInstr;
+    NSString *titleString =  [NSString stringWithFormat:@"Showing: %@", appStateManager.selectedInstr];
+    [self.titleButton setTitle:titleString forState:UIControlStateNormal];
     self.appMapView.mapType = [[appStateManager.mapViewTypes objectAtIndex:
                                 appStateManager.selectedMapViewIndex] intValue];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
-  [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
@@ -71,7 +72,8 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     [self setNeedsStatusBarAppearanceUpdate];
     self.infoPanel.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     self.infoPanel.layer.cornerRadius = 4;
-    self.infoPanel.layer.opacity = 0.85;
+    self.titleButton.layer.cornerRadius = 4;
+    self.infoPanel.layer.opacity = 0.8;
     self.polylineStrokeWidth = 2;
     
     self.instrumentNames = [[instruments allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
@@ -114,6 +116,16 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     self.defaultMarkerNumber = 1;
     self.markerNumber = self.defaultMarkerNumber;
     
+    // set up location manager
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.locationManager requestWhenInUseAuthorization];
+    self.locationManager.distanceFilter = 50;
+    [self.locationManager startUpdatingLocation];
+    self.locationManager.delegate = self;
+    
+    
     
     // Create a GMSCameraPosition for the initial camera
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:10.0 longitude:0.0 zoom:1];
@@ -125,6 +137,7 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     
     //Update the camera position
     [self updateCameraPositionWithAnimation:NO];
+    
 }
 
 // moves google map camera to display the floats currently in focus
@@ -204,7 +217,11 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
 
 - (IBAction) backToMap:(UIStoryboardSegue *)unwindSegue {
     self.curr = [instruments objectForKey:appStateManager.selectedInstr];
-    self.markerNumber = [[appStateManager.markerNumbers objectAtIndex:appStateManager.selectedMarkerNumIndex] intValue];
+    if (self.curr) {
+        self.markerNumber = 30;
+    } else {
+        self.markerNumber = 1;
+    }
 }
 
 - (IBAction)backFromLegend:(UIStoryboardSegue *)unwindSegue {
@@ -254,4 +271,42 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     return UIStatusBarStyleLightContent;
 }
 
+#pragma mark - CLLocationManagerDelegate
+
+- (void) locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    switch (status) {
+      case kCLAuthorizationStatusRestricted:
+        NSLog(@"Location access was restricted.");
+        break;
+      case kCLAuthorizationStatusDenied:
+        NSLog(@"User denied access to location.");
+      case kCLAuthorizationStatusNotDetermined:
+        NSLog(@"Location status not determined.");
+      case kCLAuthorizationStatusAuthorizedAlways:
+      case kCLAuthorizationStatusAuthorizedWhenInUse:
+        NSLog(@"Location status is OK.");
+        self.appMapView.settings.myLocationButton = YES;
+        self.appMapView.myLocationEnabled = YES;
+    }
+}
+ 
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    
+    NSString *locationErrorString = [NSString stringWithFormat:@"Error getting location: %@",error.localizedDescription];
+    UIAlertController *locationAlert = [UIAlertController alertControllerWithTitle:@"Allow location permissions" message:locationErrorString preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *allowLocation = [UIAlertAction actionWithTitle:@"Allow" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        [self.locationManager requestWhenInUseAuthorization];
+    }];
+    UIAlertAction *denyLocation = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){}];
+    
+    [locationAlert addAction:allowLocation];
+    [locationAlert addAction:denyLocation];
+    [self presentViewController:locationAlert animated:YES completion:nil];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+}
 @end
+

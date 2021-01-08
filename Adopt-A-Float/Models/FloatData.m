@@ -167,7 +167,6 @@ NSString *rawDataFour = @"obs4 13-Dec-2020 15:17:46 1.457550 -147.210900 0.700 1
     [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:
      ^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSString *result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"%@",result);
         if (error == nil) {
             NSArray<NSString *> *fields = [result componentsSeparatedByString:@"\'"];
             if (fields.count > 7) {
