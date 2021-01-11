@@ -312,10 +312,9 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     
-    NSString *locationErrorString = [NSString stringWithFormat:@"Error getting location: %@",error.localizedDescription];
-    UIAlertController *locationAlert = [UIAlertController alertControllerWithTitle:@"Allow location permissions" message:locationErrorString preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *locationAlert = [UIAlertController alertControllerWithTitle:@"Location Error " message:error.localizedDescription  preferredStyle:UIAlertControllerStyleAlert];
     
-    UIAlertAction *allowLocation = [UIAlertAction actionWithTitle:@"Allow" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+    UIAlertAction *allowLocation = [UIAlertAction actionWithTitle:@"Try again" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
         [self.locationManager requestWhenInUseAuthorization];
     }];
     UIAlertAction *denyLocation = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){}];
