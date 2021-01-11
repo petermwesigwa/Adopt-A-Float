@@ -121,7 +121,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q48-dY-vDz" userLabel="Legend Button">
-                                <rect key="frame" x="347" y="59" width="45" height="45"/>
+                                <rect key="frame" x="349" y="59" width="45" height="45"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="Tn3-y0-1JP"/>
@@ -141,7 +141,7 @@
                             <constraint firstItem="elQ-iM-FiI" firstAttribute="leading" secondItem="85t-cU-Taf" secondAttribute="trailing" constant="5" id="d8T-rQ-hpa"/>
                             <constraint firstItem="85t-cU-Taf" firstAttribute="leading" secondItem="Nf3-KV-SnW" secondAttribute="leadingMargin" constant="10" id="llT-gF-f0q"/>
                             <constraint firstItem="Abq-x1-K8v" firstAttribute="trailing" secondItem="Nf3-KV-SnW" secondAttribute="trailingMargin" constant="20" id="mwJ-f8-gEJ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="q48-dY-vDz" secondAttribute="trailing" constant="2" id="nbD-mA-ZXh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="q48-dY-vDz" secondAttribute="trailing" id="nbD-mA-ZXh"/>
                             <constraint firstItem="Abq-x1-K8v" firstAttribute="leading" secondItem="Nf3-KV-SnW" secondAttribute="leadingMargin" constant="-20" id="qKO-oW-LRT"/>
                             <constraint firstItem="wKM-bL-mjD" firstAttribute="top" secondItem="Abq-x1-K8v" secondAttribute="bottom" constant="-34" id="swT-ar-9OC"/>
                         </constraints>
