@@ -77,9 +77,9 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     //to make status bar white
     [self setNeedsStatusBarAppearanceUpdate];
     
+    self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     self.optionsButton.layer.cornerRadius = 22.5;
     self.legendButton.layer.cornerRadius = 22.5;
-    self.infoPanel.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     self.infoPanel.layer.cornerRadius = 20;
     self.titleButton.layer.cornerRadius = 20;
     self.infoPanel.layer.opacity = 0.99;

@@ -23,6 +23,7 @@ extern NSMutableDictionary<NSString *, UIColor *> *organizations;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     _organizationNames = [organizations allKeys];
     _contentView.layer.cornerRadius = 6;
     _hideLegendButton.layer.cornerRadius = 20;
