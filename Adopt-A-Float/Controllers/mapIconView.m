@@ -47,10 +47,10 @@
     self.pExt.text = [NSString stringWithFormat:@"%@ mbar", data.pExt];
     self.legLength.text = [NSString stringWithFormat:@"%.3f km",data.legLength];
     self.legTime.text = [NSString stringWithFormat:@"%.3f h",data.legTime];
-    self.legSpeed.text = [NSString stringWithFormat:@"%.3f km",data.legSpeed];
+    self.legSpeed.text = [NSString stringWithFormat:@"%.3f km/h",data.legSpeed];
     self.totalDist.text = [NSString stringWithFormat:@"%.3f km",data.totalDistance];
     self.totalTime.text = [NSString stringWithFormat:@"%.3f h",data.totalTime];
-    self.avgSpeed.text = [NSString stringWithFormat:@"%.3f km",data.avgSpeed];
+    self.avgSpeed.text = [NSString stringWithFormat:@"%.3f km/h",data.avgSpeed];
     self.WMSDepth.text = [NSString stringWithFormat:@"%.1f km", data.gebcoDepth];
 
 }

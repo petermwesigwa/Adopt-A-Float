@@ -29,13 +29,16 @@ This dictionary con.
 */
 extern NSMutableDictionary<NSString *, UIColor*> *organizations;
 
-
+@interface MainViewController ()
+/* Used to filter for organization, Each key value pair is an institution name and
+ a boolean value as an NSNumber (YES means instruments of this institution are displayed*/
+@end
 
 @implementation MainViewController
 
 
 - (void) viewDidAppear:(BOOL)animated {
-
+    [super viewDidAppear:animated];
     //take down all visible instruments
     for (Instrument *ins in [instruments allValues]) {
         [self instrumentTakeDown:ins];
@@ -49,20 +52,23 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     // otherwise display all the instruments
     else {
         for (Instrument *ins in [instruments allValues]) {
-            [self instrumentSetup:ins];
+            if (![appStateManager.orgFilters objectForKey:[ins getInstitution]]) {
+                [self instrumentSetup:ins];
+            }
         }
     }
-    NSString *titleString =  [NSString stringWithFormat:@"Showing: %@", appStateManager.selectedInstr];
-    [self.titleButton setTitle:titleString forState:UIControlStateNormal];
+    [self.titleButton setTitle:appStateManager.selectedInstr forState:UIControlStateNormal];
     self.appMapView.mapType = [[appStateManager.mapViewTypes objectAtIndex:
                                 appStateManager.selectedMapViewIndex] intValue];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
@@ -70,14 +76,19 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     [super viewDidLoad];
     //to make status bar white
     [self setNeedsStatusBarAppearanceUpdate];
+    
+    self.optionsButton.layer.cornerRadius = 22.5;
+    self.legendButton.layer.cornerRadius = 22.5;
     self.infoPanel.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
-    self.infoPanel.layer.cornerRadius = 4;
-    self.titleButton.layer.cornerRadius = 4;
-    self.infoPanel.layer.opacity = 0.8;
+    self.infoPanel.layer.cornerRadius = 20;
+    self.titleButton.layer.cornerRadius = 20;
+    self.infoPanel.layer.opacity = 0.99;
     self.polylineStrokeWidth = 2;
+    self.infoPanel.layer.masksToBounds = YES;
     
     self.instrumentNames = [[instruments allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     self.currentFloatIndex = 0;
+    
     
     // Create markers and paths for all positions of all floats
     self.markers = [[NSMutableDictionary alloc] init];
@@ -123,7 +134,6 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     [self.locationManager requestWhenInUseAuthorization];
     self.locationManager.distanceFilter = 50;
     [self.locationManager startUpdatingLocation];
-    self.locationManager.delegate = self;
     
     
     
@@ -209,6 +219,8 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
         [self turnOffMarker:[self.onMarkers lastObject]];
 }
 
+
+# pragma mark - Segues
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"GoToOptions"]) {
         
@@ -219,12 +231,19 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     self.curr = [instruments objectForKey:appStateManager.selectedInstr];
     if (self.curr) {
         self.markerNumber = 30;
+        
+        // reset all filters
+        [appStateManager.orgFilters removeAllObjects];
     } else {
         self.markerNumber = 1;
     }
 }
 
 - (IBAction)backFromLegend:(UIStoryboardSegue *)unwindSegue {
+    [self viewDidAppear:true];
+}
+
+- (IBAction)discardChanges:(UIStoryboardSegue *)unwindSegue {
     
 }
 
