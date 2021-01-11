@@ -33,6 +33,8 @@ NS_ASSUME_NONNULL_BEGIN
 
     @property (assign) int selectedMapViewIndex;
 
+    @property (strong) NSMutableDictionary<NSString *, NSNumber*> *orgFilters;
+
     
 
 

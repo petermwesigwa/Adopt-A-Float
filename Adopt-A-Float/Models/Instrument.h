@@ -28,4 +28,6 @@
 /* retrieve the color of the instrument for display on the map */
 - (UIColor *)getColor;
 
+/* retrieve the institution by which the float was deployed*/
+- (NSString *)getInstitution;
 @end

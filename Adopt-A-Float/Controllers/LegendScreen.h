@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <GoogleMaps/GoogleMaps.h>
+#import "AppState.h"
 
 NS_ASSUME_NONNULL_BEGIN
 

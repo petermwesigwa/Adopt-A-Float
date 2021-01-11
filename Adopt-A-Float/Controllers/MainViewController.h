@@ -27,6 +27,7 @@
     @property (weak, nonatomic) IBOutlet UIButton *titleButton;
     @property (weak, nonatomic) IBOutlet UIButton *optionsButton;
     @property (weak) IBOutlet UIView *infoPanel;
+    @property (weak, nonatomic) IBOutlet UIButton *legendButton;
 
     @property (assign) int defaultMarkerNumber;
     @property (assign) int markerNumber;

@@ -7,7 +7,11 @@
 //
 
 #import "LegendScreen.h"
-
+/*
+ This is an effort to maintain state in one place that is accessible throughout the application.
+ 
+ */
+extern AppState *appStateManager;
 extern NSMutableDictionary<NSString *, UIColor *> *organizations;
 
 @interface LegendScreen ()
@@ -38,17 +42,37 @@ extern NSMutableDictionary<NSString *, UIColor *> *organizations;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - UITableViewSource
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return _organizationNames.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LegendCell"];
-    NSString *cellLabel = [_organizationNames objectAtIndex:indexPath.row];
-    UIColor *imgColor = [organizations objectForKey:cellLabel];
-    cell.textLabel.text = cellLabel;
+    NSString *orgName = [_organizationNames objectAtIndex:indexPath.row];
+    UIColor *imgColor = [organizations objectForKey:orgName];
+    cell.textLabel.text = orgName;
+    if (![appStateManager.orgFilters objectForKey:orgName]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
     cell.imageView.image = [GMSMarker markerImageWithColor: imgColor];
     return cell;
 }
+
+#pragma mark - UITableViewDelegate
+
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSString *orgName = cell.textLabel.text;
+    if ([appStateManager.orgFilters objectForKey:orgName]) {
+        [appStateManager.orgFilters removeObjectForKey:orgName];
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        [appStateManager.orgFilters setValue:[NSNumber numberWithBool:NO] forKey:orgName];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+}
+
 @end

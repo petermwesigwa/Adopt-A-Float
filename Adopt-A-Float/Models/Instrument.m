@@ -17,7 +17,10 @@
     @property (strong, readonly) NSMutableArray<FloatData *> *floatData;
 
     /* Display color of instrument on map */
-    @property (strong, readonly) UIColor *color;
+    @property (strong) UIColor *color;
+    
+    /* institution to which the float belongs */
+    @property (strong) NSString *institution;
 
 @end
 
@@ -28,8 +31,8 @@
     if (self) {
         _name = name;
         _floatData = floatData;
-        _color = [Instrument assignColor:name];
     }
+    [self assignColorAndInstitution];
     return self;
 }
 - (NSString *)getName {
@@ -44,22 +47,36 @@
     return self.color;
 }
 
+-(NSString *)getInstitution {
+    return self.institution;
+}
 /* Assign an instrument its color based off of the organization it belongs to. We can deduce the organization from the instrument's name*/
-+ (UIColor *)assignColor:(NSString*)floatName {
-    int float_id = [[floatName substringFromIndex:1] intValue];
+-(void)assignColorAndInstitution {
+    int float_id = [[self.name substringFromIndex:1] intValue];
     if (float_id == 6) { // GeoAzur
-        return [UIColor blueColor];
+        self.color = [UIColor blueColor];
+        self.institution = @"GeoAzur";
     }
-    if (float_id == 3 || float_id == 7) { // Dead
-        return [UIColor grayColor];
+    else if (float_id == 3 || float_id == 7) { // Dead
+        //return [UIColor grayColor];
+        self.color = [UIColor grayColor];
+        self.institution = @"Inactive";
     }
-    if (float_id > 26 && float_id < 49) { // SUSTech
-        return [UIColor yellowColor];
+    else if (float_id > 26 && float_id < 49) { // SUSTech
+        //return [UIColor yellowColor];
+        self.color = [UIColor yellowColor];
+        self.institution = @"SUSTech";
     }
-    if ([floatName hasPrefix:@"P"]) { // Princeton
-        return [UIColor orangeColor];
+    else if ([_name hasPrefix:@"P"]) { // Princeton
+        //return [UIColor orangeColor];
+        self.color = [UIColor orangeColor];
+        self.institution = @"Princeton";
     }
-    return [UIColor redColor]; // JAMSTEC
+    else {
+        self.color = [UIColor redColor];
+        self.institution = @"JAMSTEC";
+    }
+    //return [UIColor redColor]; // JAMSTEC
 }
 
 @end

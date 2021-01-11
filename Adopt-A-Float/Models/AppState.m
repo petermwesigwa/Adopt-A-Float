@@ -25,6 +25,7 @@
             [NSNumber numberWithInt:kGMSTypeNormal],
             [NSNumber numberWithInt:kGMSTypeTerrain],nil];
         _selectedMapViewIndex = 0;
+        _orgFilters = [[NSMutableDictionary alloc] init];
     }
     return self;
 }
