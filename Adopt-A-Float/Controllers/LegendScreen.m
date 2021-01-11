@@ -24,7 +24,8 @@ extern NSMutableDictionary<NSString *, UIColor *> *organizations;
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _organizationNames = [organizations allKeys];
-    _contentView.layer.cornerRadius = 5;
+    _contentView.layer.cornerRadius = 6;
+    _hideLegendButton.layer.cornerRadius = 20;
     _contentView.layer.masksToBounds = YES;
 }
 

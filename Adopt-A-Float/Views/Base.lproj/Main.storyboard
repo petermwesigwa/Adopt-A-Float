@@ -179,11 +179,13 @@
                                 <rect key="frame" x="60" y="298" width="294" height="300"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Enh-7e-cHI">
-                                        <rect key="frame" x="224" y="10" width="60" height="33"/>
+                                        <rect key="frame" x="224" y="10" width="60" height="40"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="EO2-Si-JRP"/>
+                                            <constraint firstAttribute="height" constant="40" id="iaf-Ck-Fnh"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <state key="normal" title="Hide"/>
                                         <connections>
                                             <action selector="dismissModal:" destination="Ckb-ic-Qp6" eventType="touchUpInside" id="nXp-cQ-Ons"/>
@@ -191,13 +193,16 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Legend" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXx-EP-Bf8">
-                                        <rect key="frame" x="15" y="15" width="67.5" height="23"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                        <rect key="frame" x="15" y="15" width="81" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="4Xy-OY-UH9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HAL-Da-dql">
-                                        <rect key="frame" x="10" y="53" width="274" height="237"/>
+                                        <rect key="frame" x="10" y="60" width="274" height="230"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LegendCell" textLabel="nUf-nb-F7f" style="IBUITableViewCellStyleDefault" id="9nf-Tt-43q">
@@ -235,7 +240,6 @@
                                     <constraint firstAttribute="trailing" secondItem="HAL-Da-dql" secondAttribute="trailing" constant="10" id="Mms-ik-qaE"/>
                                     <constraint firstItem="sXx-EP-Bf8" firstAttribute="leading" secondItem="g88-nY-D1X" secondAttribute="leading" constant="15" id="Ycl-ZG-KNY"/>
                                     <constraint firstItem="HAL-Da-dql" firstAttribute="leading" secondItem="g88-nY-D1X" secondAttribute="leading" constant="10" id="pI5-Xs-kzS"/>
-                                    <constraint firstItem="Enh-7e-cHI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sXx-EP-Bf8" secondAttribute="trailing" constant="8" symbolic="YES" id="qBF-Sz-iH5"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -250,6 +254,7 @@
                     <navigationItem key="navigationItem" id="jLr-41-M06"/>
                     <connections>
                         <outlet property="contentView" destination="g88-nY-D1X" id="XI0-xl-Tmz"/>
+                        <outlet property="hideLegendButton" destination="Enh-7e-cHI" id="2y2-ZE-LhG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X2B-Yh-FJD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
