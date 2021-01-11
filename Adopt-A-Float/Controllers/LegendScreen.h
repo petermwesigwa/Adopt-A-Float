@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LegendScreen : UIViewController<UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UIView *contentView;
 - (IBAction)dismissModal:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *hideLegendButton;
 
 @end
 
