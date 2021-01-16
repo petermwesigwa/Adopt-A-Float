@@ -18,31 +18,15 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM/dd/yyyy HH:mm:ss"];
 
-    
-    NSString *latFormat = @"";
-    NSString *lonFormat = @"";
-    if ([data.gpsLat doubleValue] > 0) {
-        latFormat = @"%.2f \u00B0N";
-    } else {
-        latFormat = @"%.2f \u00B0S";
-    }
-    
-    if ([data.gpsLon doubleValue] > 0) {
-        lonFormat = @"%.2f \u00B0E";
-    } else {
-        lonFormat = @"%.2f \u00B0W";
-    }
     // populate each of the UIlabels for the view with information from the FloatData object
     // with the measurement
     self.deviceName.text = (NSString*) data.deviceName;
     self.gpsDate.text = [formatter stringFromDate:(NSDate*)data.gpsDate];
-    self.gpsLat.text = [NSString stringWithFormat:
-                        latFormat,fabsf([data.gpsLat floatValue])];
-    self.gpsLon.text = [NSString stringWithFormat:
-                        lonFormat, fabsf([data.gpsLon floatValue])];
-    self.hdop.text = [NSString stringWithFormat:@"%@ m", data.hdop];
-    self.vdop.text = [NSString stringWithFormat:@"%@ m", data.vdop];
-    self.vBat.text =[NSString stringWithFormat:@"%@ mV", data.vbat];
+    self.gpsLat.text = [NSString stringWithFormat:@"%.6f", [data.gpsLat floatValue]];
+    self.gpsLon.text = [NSString stringWithFormat:@"%.6f", [data.gpsLon floatValue]];
+    self.hdop.text = [NSString stringWithFormat:@"%@", data.hdop];
+    self.vdop.text = [NSString stringWithFormat:@"%@", data.vdop];
+    self.vBat.text = [NSString stringWithFormat:@"%@ mV", data.vbat];
     self.pInt.text = [NSString stringWithFormat:@"%@ Pa", data.pInt];
     self.pExt.text = [NSString stringWithFormat:@"%@ mbar", data.pExt];
     self.legLength.text = [NSString stringWithFormat:@"%.3f km",data.legLength];
@@ -51,8 +35,24 @@
     self.totalDist.text = [NSString stringWithFormat:@"%.3f km",data.totalDistance];
     self.totalTime.text = [NSString stringWithFormat:@"%.3f h",data.totalTime];
     self.avgSpeed.text = [NSString stringWithFormat:@"%.3f km/h",data.avgSpeed];
-    self.WMSDepth.text = [NSString stringWithFormat:@"%.1f km", data.gebcoDepth];
+    self.WMSDepth.text = [NSString stringWithFormat:@"%.1f m", data.gebcoDepth];
 
+}
+
++ (NSString *) printLatOrLon:(float)coord isLat:(BOOL)isLat {
+    NSString *format = @"";
+    
+    if (coord > 0 && isLat) {
+        format = @"%.6f \u00B0N";
+    } else if (isLat){
+        format = @"%.6f \u00B0S";
+    } else if (coord > 0) {
+        format = @"%.6f \u00B0E";
+    } else {
+        format = @"%.6f \u00B0W";
+    }
+    
+    return [NSString stringWithFormat:format, fabsf(coord)];
 }
 /*
 // Only override drawRect: if you perform custom drawing.

@@ -23,11 +23,11 @@
 
     // Stores a reference to the current instrument whose
     @property (strong) Instrument *curr;
-    @property (weak) IBOutlet UIImageView *optionsIcon;
     @property (weak, nonatomic) IBOutlet UIButton *titleButton;
     @property (weak, nonatomic) IBOutlet UIButton *optionsButton;
     @property (weak) IBOutlet UIView *infoPanel;
     @property (weak, nonatomic) IBOutlet UIButton *legendButton;
+    @property (weak, nonatomic) IBOutlet UIButton *refreshButton;
 
     @property (assign) int defaultMarkerNumber;
     @property (assign) int markerNumber;
@@ -35,6 +35,8 @@
     @property (strong) NSMutableArray *onPolylines;
     @property (strong) NSArray *colors;
     @property (assign) int polylineStrokeWidth;
+    @property (weak, nonatomic) IBOutlet UIButton *viewFloatsButton;
+    @property (weak, nonatomic) IBOutlet UIButton *myLocationButton;
     @property (strong) NSArray<NSString *> *instrumentNames;
     @property (weak) IBOutlet GMSMapView *appMapView;
     @property (assign) int currentFloatIndex;
