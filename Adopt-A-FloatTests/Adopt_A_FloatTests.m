@@ -8,11 +8,9 @@
 
 #import <XCTest/XCTest.h>
 
-
 @interface Adopt_A_FloatTests : XCTestCase
 
 @end
-
 
 @implementation Adopt_A_FloatTests
 

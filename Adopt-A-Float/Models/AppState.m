@@ -17,7 +17,7 @@
         [_instrNames addObjectsFromArray:[[instruments allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)]];
         _markerNumbers = @[@1, @5, @10, @20, @INT_MAX];;
         _selectedInstr = @"All";
-        _selectedInstrIndex = 0;
+        _selectedInstrIndex = -1;
         _selectedMarkerNumIndex = 0;
         _mapViewTypes = [NSArray arrayWithObjects:
             [NSNumber numberWithInt:kGMSTypeHybrid],
