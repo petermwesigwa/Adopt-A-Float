@@ -75,45 +75,10 @@ NSMutableDictionary<NSNumber *, NSString *> *mapTypes;
                      @"Terrain", [NSNumber numberWithInt:kGMSTypeTerrain],
                      nil];
     
-    NSMutableDictionary *rawDataDict = [[NSMutableDictionary alloc] init];
-    for (NSString *instrName in instruments) {
-        [rawDataDict setObject:[instruments[instrName] getRaw] forKey:instrName];
-    }
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:appStateManager.selectedInstr forKey:@"Current Instrument"];
-    [defaults setObject: (NSDictionary *) rawDataDict forKey:@"Instruments"];
-    
 //    [FloatData runTests];
     
     return YES;
 }
-- (void)applicationWillResignActive:(UIApplication *)application {
-    NSMutableDictionary *rawDataDict = [[NSMutableDictionary alloc] init];
-    for (NSString *instrName in instruments) {
-        [rawDataDict setObject:[instruments[instrName] getRaw] forKey:instrName];
-    }
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:appStateManager.selectedInstr forKey:@"Current Instrument"];
-    [defaults setObject: (NSDictionary *) rawDataDict forKey:@"Instruments"];
-}
 
-- (void)applicationDidBecomeActive:(UIApplication *)application {
 
-    NSUserDefaults *defaults= [NSUserDefaults standardUserDefaults];
-    if([[[defaults dictionaryRepresentation] allKeys] containsObject:@"Current Instrument"]){
-        appStateManager.selectedInstr = [defaults objectForKey:@"Current Instrument"];
-        NSLog(@"mykey found");
-    }
-    // Fetch instruments if not able to because of no server connection
-    if ([instruments count] == 0) {
-        instruments = [DataUtility createInstruments];
-    }
-
-    // If that fails, use the instruments that we already have stored
-    if ([instruments count] == 0) {
-        if([[[defaults dictionaryRepresentation] allKeys] containsObject:@"Instruments"]){
-            instruments = (NSMutableDictionary *)[[defaults objectForKey:@"Instruments"] mutableCopy];
-        }
-    }
-}
 @end
