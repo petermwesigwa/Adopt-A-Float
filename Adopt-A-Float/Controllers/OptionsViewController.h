@@ -32,12 +32,6 @@ NS_ASSUME_NONNULL_BEGIN
 // currently selected number of markers to display
 @property (assign) int markerNumber;
 
-// display element showing the name of the current instrument displayed (or 'All' if all instruments shown
-@property (weak, nonatomic) IBOutlet UILabel *currentInstrumentLabel;
-
-// display element showing current number of past data points being displayed
-
-@property (weak, nonatomic) IBOutlet UILabel *markerNumberLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *mapTypeLabel;
 

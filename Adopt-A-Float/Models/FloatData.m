@@ -11,15 +11,6 @@
 
 @interface FloatData ()
 
-/* Example of input:
- Device Name: P017
- Date :       19-Dec-2018 07:27:52
- Latitude:    -10.781833
- Longitude:   -137.062517
- altitude:     0.660
- 1.380    14715  13936 79207   353   20     7   0   0
- */
-
 @property (strong) NSCalendar *cal;
 
 @end
@@ -57,14 +48,14 @@ NSString *rawDataFour = @"obs4 13-Dec-2020 15:17:46 1.457550 -147.210900 0.700 1
 
 @implementation FloatData
 
-- (id)initWithRaw:(NSMutableArray<NSString *> *)orderedData {
+- (id)initWithRaw:(NSArray<NSString *> *)orderedData {
     self = [super init];
     if (self && [FloatData isValidRaw:orderedData]) {
         //set calendar
         _cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
         
         // read in the name of the instrument
-        _deviceName = orderedData[0];
+        _deviceName = [FloatData standardizeFloatName:orderedData[0]];
         
         // get the date at which the observation was made
         NSMutableString *dateString = [[NSMutableString alloc]initWithString:orderedData[1]];
@@ -73,15 +64,16 @@ NSString *rawDataFour = @"obs4 13-Dec-2020 15:17:46 1.457550 -147.210900 0.700 1
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
         [formatter setDateFormat:@"dd-MMM-yyyy HH:mm:ss"];
     
-        
+        //
         _gpsDate = [formatter dateFromString:dateString];
         _gpsLat = [NSNumber numberWithFloat:[orderedData[3] floatValue]];
         _gpsLon = [NSNumber numberWithFloat:[orderedData[4] floatValue]];
         _hdop = [NSNumber numberWithFloat:[orderedData[5] floatValue]];
         _vdop = [NSNumber numberWithFloat:[orderedData[6] floatValue]];
         _vbat = [NSNumber numberWithFloat:[orderedData[7] floatValue]];
-        _pInt = [NSNumber numberWithFloat:[orderedData[8] floatValue]];
-        _pExt = [NSNumber numberWithFloat:[orderedData[9] floatValue]];
+        // ignore column 8 as minimum voltage
+        _pInt = [NSNumber numberWithFloat:[orderedData[9] floatValue]];
+        _pExt = [NSNumber numberWithFloat:[orderedData[10] floatValue]];
         _legLength = 0;
         _legTime = 0;
         _legSpeed = 0;
@@ -94,7 +86,7 @@ NSString *rawDataFour = @"obs4 13-Dec-2020 15:17:46 1.457550 -147.210900 0.700 1
     return self;
 }
 
-+ (BOOL)isValidRaw:(NSMutableArray<NSString *> *)raw {
++ (BOOL)isValidRaw:(NSArray<NSString *> *)raw {
     if (raw.count < N_DATA_ELEMS) {
         return NO;
     }
@@ -176,6 +168,13 @@ NSString *rawDataFour = @"obs4 13-Dec-2020 15:17:46 1.457550 -147.210900 0.700 1
     }] resume];
     
     
+}
+
++ (NSString *) standardizeFloatName:(NSString *)floatName {
+    if ([floatName length] == 4) {
+        return floatName;
+    }
+    return [floatName stringByReplacingOccurrencesOfString:@"00" withString:@"0"];
 }
 
 + (void) runTests {

@@ -85,11 +85,6 @@ extern NSMutableDictionary<NSNumber *, NSString *> *mapTypes;;
  Initalize all the labels whenever the screen is rendered
  */
 - (void) setup {
-    self.currentInstrument = appStateManager.selectedInstr;
-    self.currentInstrumentLabel.text = self.currentInstrument;
-    self.markerNumberLabel.text = [OptionsViewController labelForMarkerNumber:
-                                   [appStateManager.markerNumbers objectAtIndex:
-                                    appStateManager.selectedMarkerNumIndex]];
     self.mapTypeLabel.text = [OptionsViewController labelForMapViewType:
                               [[appStateManager.mapViewTypes objectAtIndex:
                                 appStateManager.selectedMapViewIndex] intValue]];
