@@ -80,8 +80,9 @@ NSString *rawDataFour = @"obs4 13-Dec-2020 15:17:46 1.457550 -147.210900 0.700 1
         _hdop = [NSNumber numberWithFloat:[orderedData[5] floatValue]];
         _vdop = [NSNumber numberWithFloat:[orderedData[6] floatValue]];
         _vbat = [NSNumber numberWithFloat:[orderedData[7] floatValue]];
-        _pInt = [NSNumber numberWithFloat:[orderedData[8] floatValue]];
-        _pExt = [NSNumber numberWithFloat:[orderedData[9] floatValue]];
+        // ignore column 8 for now
+        _pInt = [NSNumber numberWithFloat:[orderedData[9] floatValue]];
+        _pExt = [NSNumber numberWithFloat:[orderedData[10] floatValue]];
         _legLength = 0;
         _legTime = 0;
         _legSpeed = 0;

@@ -30,8 +30,8 @@ This dictionary con.
 extern NSMutableDictionary<NSString *, UIColor*> *organizations;
 
 @interface MainViewController ()
-/* Used to filter for organization, Each key value pair is an institution name and
- a boolean value as an NSNumber (YES means instruments of this institution are displayed*/
+    /* bounds used to display all visible markers */
+    @property (strong) GMSCoordinateBounds *instrumentBounds;
 @end
 
 @implementation MainViewController
@@ -60,6 +60,19 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     [self.titleButton setTitle:appStateManager.selectedInstr forState:UIControlStateNormal];
     self.appMapView.mapType = [[appStateManager.mapViewTypes objectAtIndex:
                                 appStateManager.selectedMapViewIndex] intValue];
+    
+    [self addOnMarkersToMap];
+    
+    self.instrumentBounds = [[GMSCoordinateBounds alloc] init];
+    for (GMSMarker *marker in self.onMarkers) {
+        if (![_instrumentBounds isValid]) {
+            _instrumentBounds = [_instrumentBounds initWithCoordinate:marker.position coordinate:marker.position];
+        } else {
+            _instrumentBounds = [_instrumentBounds includingCoordinate:marker.position];
+        }
+    }
+    
+    [self updateCameraPositionWithAnimation:YES];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -82,6 +95,8 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     self.legendButton.layer.cornerRadius = 22.5;
     self.infoPanel.layer.cornerRadius = 20;
     self.titleButton.layer.cornerRadius = 20;
+    self.zoomToUserButton.layer.cornerRadius = 27.5;
+    self.zoomToMarkersButton.layer.cornerRadius = 27.5;
     self.infoPanel.layer.opacity = 0.99;
     self.polylineStrokeWidth = 2;
     self.infoPanel.layer.masksToBounds = YES;
@@ -142,26 +157,14 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     self.mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     self.appMapView.delegate = self;
     self.appMapView.camera = camera;
-    self.appMapView.mapType = [[appStateManager.mapViewTypes objectAtIndex:
-                               appStateManager.selectedMapViewIndex] intValue];
+    self.appMapView.padding = UIEdgeInsetsMake(150, 25, 70, 25);
     
-    //Update the camera position
-    [self updateCameraPositionWithAnimation:NO];
     
 }
 
 // moves google map camera to display the floats currently in focus
 - (void) updateCameraPositionWithAnimation:(BOOL)animation {
-    GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] init];
-    for (GMSMarker *marker in _onMarkers) {
-        if (![bounds isValid]) {
-            bounds = [bounds initWithCoordinate:marker.position coordinate:marker.position];
-        } else {
-            bounds = [bounds includingCoordinate:marker.position];
-        }
-    }
-    
-    GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds withPadding:15.0];
+    GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:_instrumentBounds withPadding:15.0];
     if (animation == NO)
         [self.appMapView moveCamera:update];
     else [self.appMapView animateWithCameraUpdate:update];
@@ -246,6 +249,15 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
 - (IBAction)discardChanges:(UIStoryboardSegue *)unwindSegue {
     
 }
+- (IBAction)markerFocus:(id)sender {
+    [self updateCameraPositionWithAnimation:YES];
+}
+- (IBAction)userFocus:(id)sender {
+    if (self.appMapView.myLocation) {
+        GMSCameraUpdate *update = [GMSCameraUpdate setTarget:self.appMapView.myLocation.coordinate zoom:12];
+        [self.appMapView animateWithCameraUpdate:update];
+    }
+}
 
 /*
  Prepares an instrument that has been selected for display
@@ -261,20 +273,6 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     for (int i = 0; i < n; i++) {
         float opac = 1 - (i/(n+1.0));
         [self turnOnMarker:[self.markers objectForKey:[instrument getName]][i] withOpacity:opac];
-    }
-    
-    //Update the camera position
-    [self updateCameraPositionWithAnimation:YES];
-    
-    //Add on markers to the map
-    [self addOnMarkersToMap];
-}
-
-- (void) clearOnPolylines {
-    while (self.onPolylines.count > 0) {
-        GMSPolyline *polylineToRemove = [self.onPolylines lastObject];
-        polylineToRemove.map = nil;
-        [self.onPolylines removeObject:polylineToRemove];
     }
 }
 
@@ -304,7 +302,6 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
       case kCLAuthorizationStatusAuthorizedAlways:
       case kCLAuthorizationStatusAuthorizedWhenInUse:
         NSLog(@"Location status is OK.");
-        self.appMapView.settings.myLocationButton = YES;
         self.appMapView.myLocationEnabled = YES;
     }
 }

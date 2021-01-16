@@ -28,7 +28,9 @@
     @property (weak, nonatomic) IBOutlet UIButton *optionsButton;
     @property (weak) IBOutlet UIView *infoPanel;
     @property (weak, nonatomic) IBOutlet UIButton *legendButton;
+    @property (weak, nonatomic) IBOutlet UIButton *zoomToUserButton;
 
+    @property (weak, nonatomic) IBOutlet UIButton *zoomToMarkersButton;
     @property (assign) int defaultMarkerNumber;
     @property (assign) int markerNumber;
     @property (strong) NSMutableArray *onMarkers;

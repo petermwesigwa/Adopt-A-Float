@@ -121,7 +121,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q48-dY-vDz" userLabel="Legend Button">
-                                <rect key="frame" x="349" y="59" width="45" height="45"/>
+                                <rect key="frame" x="339" y="59" width="45" height="45"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="Tn3-y0-1JP"/>
@@ -131,6 +131,30 @@
                                     <segue destination="Ckb-ic-Qp6" kind="presentation" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="zPm-GA-AhS"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tw4-l9-01Y">
+                                <rect key="frame" x="329" y="787" width="55" height="55"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="K7G-w9-eHd"/>
+                                    <constraint firstAttribute="width" constant="55" id="zmQ-cl-nl7"/>
+                                </constraints>
+                                <state key="normal" image="location.circle" catalog="system"/>
+                                <connections>
+                                    <action selector="userFocus:" destination="bSR-U5-Ig6" eventType="touchUpInside" id="wxI-kW-RMf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="huh-Mc-DNG">
+                                <rect key="frame" x="329" y="722" width="55" height="55"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="55" id="7qZ-tU-EGc"/>
+                                    <constraint firstAttribute="height" constant="55" id="Gg4-PS-MM8"/>
+                                </constraints>
+                                <state key="normal" image="mappin" catalog="system"/>
+                                <connections>
+                                    <action selector="markerFocus:" destination="bSR-U5-Ig6" eventType="touchUpInside" id="gFZ-W4-Nj8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -138,12 +162,16 @@
                             <constraint firstItem="elQ-iM-FiI" firstAttribute="top" secondItem="gB7-ph-Njj" secondAttribute="bottom" constant="15" id="9Qw-Wl-ztJ"/>
                             <constraint firstItem="Abq-x1-K8v" firstAttribute="top" secondItem="gB7-ph-Njj" secondAttribute="bottom" constant="-44" id="CxE-dM-6Qk"/>
                             <constraint firstItem="85t-cU-Taf" firstAttribute="top" secondItem="gB7-ph-Njj" secondAttribute="bottom" constant="15" id="ZXD-dO-ZN5"/>
+                            <constraint firstItem="huh-Mc-DNG" firstAttribute="trailing" secondItem="tw4-l9-01Y" secondAttribute="trailing" id="btM-fn-0i9"/>
                             <constraint firstItem="elQ-iM-FiI" firstAttribute="leading" secondItem="85t-cU-Taf" secondAttribute="trailing" constant="5" id="d8T-rQ-hpa"/>
+                            <constraint firstItem="tw4-l9-01Y" firstAttribute="top" secondItem="huh-Mc-DNG" secondAttribute="bottom" constant="10" id="hTz-3A-yF8"/>
                             <constraint firstItem="85t-cU-Taf" firstAttribute="leading" secondItem="Nf3-KV-SnW" secondAttribute="leadingMargin" constant="10" id="llT-gF-f0q"/>
                             <constraint firstItem="Abq-x1-K8v" firstAttribute="trailing" secondItem="Nf3-KV-SnW" secondAttribute="trailingMargin" constant="20" id="mwJ-f8-gEJ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="q48-dY-vDz" secondAttribute="trailing" id="nbD-mA-ZXh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="q48-dY-vDz" secondAttribute="trailing" constant="10" id="nbD-mA-ZXh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tw4-l9-01Y" secondAttribute="trailing" constant="10" id="p01-tU-Z4J"/>
                             <constraint firstItem="Abq-x1-K8v" firstAttribute="leading" secondItem="Nf3-KV-SnW" secondAttribute="leadingMargin" constant="-20" id="qKO-oW-LRT"/>
                             <constraint firstItem="wKM-bL-mjD" firstAttribute="top" secondItem="Abq-x1-K8v" secondAttribute="bottom" constant="-34" id="swT-ar-9OC"/>
+                            <constraint firstItem="wKM-bL-mjD" firstAttribute="top" secondItem="tw4-l9-01Y" secondAttribute="bottom" constant="20" id="zeB-Bn-vmn"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="ZLO-Bz-yY1">
@@ -157,6 +185,8 @@
                         <outlet property="legendButton" destination="q48-dY-vDz" id="7i4-s2-ybp"/>
                         <outlet property="optionsButton" destination="85t-cU-Taf" id="pKD-GP-ua8"/>
                         <outlet property="titleButton" destination="5pg-Zm-fR6" id="SHD-JS-SMg"/>
+                        <outlet property="zoomToMarkersButton" destination="huh-Mc-DNG" id="HlM-wF-iiW"/>
+                        <outlet property="zoomToUserButton" destination="tw4-l9-01Y" id="HOz-dz-UQQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="alq-Or-B2m" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -178,7 +208,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g88-nY-D1X">
                                 <rect key="frame" x="57" y="298" width="300" height="300"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Enh-7e-cHI">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Enh-7e-cHI">
                                         <rect key="frame" x="220" y="10" width="60" height="40"/>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <constraints>
@@ -231,7 +261,7 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Enh-7e-cHI" secondAttribute="trailing" constant="20" symbolic="YES" id="2BC-IO-1EZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Enh-7e-cHI" secondAttribute="trailing" constant="20" symbolic="YES" id="2BC-IO-1EZ"/>
                                     <constraint firstItem="sXx-EP-Bf8" firstAttribute="top" secondItem="g88-nY-D1X" secondAttribute="top" constant="15" id="49E-Tx-IvE"/>
                                     <constraint firstItem="HAL-Da-dql" firstAttribute="top" secondItem="Enh-7e-cHI" secondAttribute="bottom" constant="10" id="5ji-MR-3zx"/>
                                     <constraint firstAttribute="bottom" secondItem="HAL-Da-dql" secondAttribute="bottom" constant="10" id="7yr-br-u15"/>
@@ -456,5 +486,7 @@
     </scenes>
     <resources>
         <image name="line.horizontal.3" catalog="system" width="128" height="64"/>
+        <image name="location.circle" catalog="system" width="128" height="121"/>
+        <image name="mappin" catalog="system" width="105" height="128"/>
     </resources>
 </document>

@@ -20,6 +20,11 @@ extern AppState *appStateManager;
     [super viewDidLoad];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:appStateManager.selectedInstrIndex inSection:0];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:animated];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
