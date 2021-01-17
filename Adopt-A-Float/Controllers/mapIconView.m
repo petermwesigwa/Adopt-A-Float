@@ -14,11 +14,12 @@
 
 
 - (void)provideFloatData:(FloatData *)data {
-    // set up formatter to read in date
+    [data updateWithGebcoDepth];
+    
+
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MM/dd/yyyy HH:mm:ss"];
-    // populate each of the UIlabels for the view with information from the FloatData object
-    // with the measurement
+    
     self.deviceName.text = (NSString*) data.deviceName;
     self.gpsDate.text = [formatter stringFromDate:(NSDate*)data.gpsDate];
     self.gpsLat.text = [NSString stringWithFormat:@"%.6f", [data.gpsLat floatValue]];

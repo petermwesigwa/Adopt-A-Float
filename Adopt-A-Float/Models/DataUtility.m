@@ -36,24 +36,17 @@ double const MIN_TIME = 0;
     
     // obtain the data for all the instruments
     for (NSString *name in floatNames) {
-        // url for this specific instrument
-        NSURL *data_url = [DataUtility getURLFromName:name
-                                          usingFormat:[sourceUrls objectForKey:URL_ONE]];
-        
-        // make a request to the url
-        NSMutableArray<FloatData *> *float_data = [DataUtility getDataFromURL:data_url];
-        
+        NSURL *data_url = [DataUtility buildURLUsingName:name andFormat:sourceUrls[URL_ONE]];
+        NSArray<NSArray<NSString*>*>* parsedData = [DataUtility getDataFromURL:data_url];
         
         // remove extra zeros from the name (eg from P0026 to P026)
         // Names should have 4 characters
         NSString* standardizedName = [DataUtility standardizeFloatName:name];
         
-        
-        // create instrument with data if request succeeded
-        if ([float_data count] > 0) {
-            Instrument *ins = [[Instrument alloc]
-                             initWithName:standardizedName andfloatData:float_data];
-            [createdInstruments setObject:ins forKey:standardizedName];
+        // create instrument with data if
+        Instrument *ins = [[Instrument alloc] initWithName:standardizedName andData:parsedData];
+        if (ins) {
+            createdInstruments[standardizedName] = ins;
         }
     }
     return createdInstruments;
@@ -74,17 +67,17 @@ double const MIN_TIME = 0;
 
 // THis method takes in the url and filters out the first column
 // When used with URL_ALL just returns names of all the floats
-+ (NSMutableArray<NSString *> *) getFloatNames: (NSURL *) url {
++ (NSArray<NSString *> *) getFloatNames: (NSURL *) url {
     NSMutableArray *floatNames = [NSMutableArray new];
     
     // retrieve information from server
-    NSString *response = [DataUtility downloadString:url];
+    NSString *response = [DataUtility fetchData:url];
     
     // split by lines and then extract the first word of each line
-    NSMutableArray<NSString *> *lines = [DataUtility splitString:response withSet:
+    NSArray<NSString *> *lines = [DataUtility splitString:response withSet:
                                          [NSCharacterSet newlineCharacterSet]];
     for (NSString *line in lines) {
-        NSMutableArray<NSString *> *values = [DataUtility splitString:line withSet:
+        NSArray<NSString *> *values = [DataUtility splitString:line withSet:
                                               [NSCharacterSet whitespaceCharacterSet]];
         [floatNames addObject:[values objectAtIndex:0]];
     }
@@ -101,10 +94,9 @@ Quick warning that this method might be refined in the near future as the way th
  are stored in the database is not the same way that they are inserted into the URL in order to
  get the instrument data. Frederik will have to fix script on his end
 */
-+ (NSURL *) getURLFromName: (NSString *) floatName usingFormat:(NSString *)format_URL {
++ (NSURL *) buildURLUsingName:(NSString *) floatName andFormat:(NSString *)format_URL {
     // Change all float names starting with N to P for the url (eg from N001 to P001)
     floatName = [floatName stringByReplacingOccurrencesOfString:@"N" withString:@"P"];
-    
     // some strings have too many zeros (eg P0029) so replace multiple zeros with just one.
     floatName = [DataUtility standardizeFloatName:floatName];
     
@@ -113,36 +105,18 @@ Quick warning that this method might be refined in the near future as the way th
 }
 
 // Return an array of FloatData objects retrieved from the url
-+ (NSMutableArray<FloatData *> *)getDataFromURL:(NSURL *)url {
-    NSMutableArray <FloatData *> *dataSet = [NSMutableArray new];
++ (NSArray<NSArray<NSString *> *> *) getDataFromURL:(NSURL *)url {
+    NSArray *dataSet = [NSMutableArray new];
     // retrieve response from server
-    NSString *response = [DataUtility downloadString:url];
+    NSString *response = [DataUtility fetchData:url];
     
     // return empty dataset if resource not found
     if ([response containsString:@"404 Not Found"]) {
         return dataSet;
     }
     
-    // Create a FloatData object for each raw data row
-    for (NSMutableArray *rawData in [DataUtility splitDataRows:response]) {
-        if ([FloatData isValidRaw:rawData]) {
-            // standardize the name of the instrument (remove extra zeros)
-            rawData[0] = [DataUtility standardizeFloatName:rawData[0]];
-            
-            // create floatdata object
-            [dataSet addObject:[[FloatData alloc] initWithRaw:rawData]];
-        }
-    }
+    dataSet = [DataUtility splitDataRows:response];
     
-    
-    // compute leg length, time, speed, totaldistance, totaltime, totalspeed.
-    for (int i= (int) dataSet.count - 2;i >= 0;i--) {
-        if ([dataSet[i].deviceName isEqualToString:@"NOO3"]) {
-            NSLog(@"hahaha");
-        }
-        [dataSet[i] updateLegDataUsingPreviousFloat:dataSet[i+1]
-                                      andFirstFloat:dataSet[dataSet.count-1]];
-    }
     return dataSet;
 }
 
@@ -158,34 +132,33 @@ Quick warning that this method might be refined in the near future as the way th
 
 // Splits data string by lines and then by whitespace. Returns an array of arrays,
 // where each array contains the whitespace-delimited elements from its row.
-+ (NSMutableArray<NSMutableArray<NSString *> *> *)splitDataRows:(NSString *)rawData {
-    NSMutableArray<NSMutableArray<NSString *> *> *data = [NSMutableArray new];
++ (NSArray<NSArray<NSString *> *> *)splitDataRows:(NSString *)rawData {
+    NSMutableArray<NSArray<NSString *> *> *data = [NSMutableArray new];
     // split by lines and then whitespace
-    NSMutableArray<NSString *> *lines = [DataUtility splitString:rawData withSet:
+    NSArray<NSString *> *lines = [DataUtility splitString:rawData withSet:
                                        [NSCharacterSet newlineCharacterSet]];
     for (NSString *line in lines) {
-        NSMutableArray<NSString *> *values = [DataUtility splitString:line withSet:
+        NSArray<NSString *> *values = [DataUtility splitString:line withSet:
                                               [NSCharacterSet whitespaceCharacterSet]];
         [data addObject:values];
     }
     
-    return (NSMutableArray<NSMutableArray<NSString *> *> *)
-    [[[data reverseObjectEnumerator] allObjects ] mutableCopy];
+    return [[data reverseObjectEnumerator] allObjects ];
 }
 
 // Splits the string with the given set and removes empty elements
 // Code in this method is adapted from stack overflow
-+ (NSMutableArray<NSString *> *)splitString:(NSString *)str withSet:(NSCharacterSet *)set {
++ (NSArray<NSString *> *)splitString:(NSString *)str withSet:(NSCharacterSet *)set {
     NSArray *split = [str componentsSeparatedByCharactersInSet:set];
-    return [NSMutableArray arrayWithArray:[split filteredArrayUsingPredicate:
-                                           [NSPredicate predicateWithFormat:@"SELF != ''"]]];
+    return [split filteredArrayUsingPredicate:
+                                           [NSPredicate predicateWithFormat:@"SELF != ''"]];
 }
 
 /*
  This method contacts the remote server and performs a GET request using the url provided.
  Server is expected to return a string of characters, which is returned by the method
  */
-+ (NSString *)downloadString:(NSURL *)url {
++ (NSString *)fetchData:(NSURL *)url {
     // Fetch the JSON response
     __block NSString *result;
     dispatch_semaphore_t sem = dispatch_semaphore_create(0);

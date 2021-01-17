@@ -18,12 +18,14 @@
 
 @interface Instrument : NSObject
 /* Create an instrument by passing in its name and an array of FloatData objects for each of its readings */
-- (id)initWithName:(NSString *)name andfloatData:(NSMutableArray<FloatData *> *)floatData;
+- (id)initWithName:(NSString *)name andData:(NSArray<NSArray<NSString*>*>*) parsedData;
 
 /* retrieve the name of the instrument */
 - (NSString *)getName;
 
-- (NSMutableArray<FloatData *> *)getFloatData;
+- (NSArray<FloatData *> *)getFloatData;
+
+- (NSArray<NSArray<NSString *> *> *)getRawData;
 
 /* retrieve the color of the instrument for display on the map */
 - (UIColor *)getColor;
