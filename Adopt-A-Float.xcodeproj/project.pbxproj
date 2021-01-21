@@ -35,10 +35,18 @@
 		D05E012F22CBD4FA00A55488 /* private.plist in Resources */ = {isa = PBXBuildFile; fileRef = D05E012E22CBD4FA00A55488 /* private.plist */; };
 		D09D817D25475FB600F7A465 /* SelectMapTypeScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = D09D817C25475FB600F7A465 /* SelectMapTypeScreen.m */; };
 		D09F915725A8E644007BDAB9 /* LegendScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = D09F915625A8E644007BDAB9 /* LegendScreen.m */; };
+		D0F24A2825B73BB500E52901 /* Adopt_A_FloatUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F24A2725B73BB500E52901 /* Adopt_A_FloatUITests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		AD72052F202F553100F55BD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AD72050E202F553100F55BD7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AD720515202F553100F55BD7;
+			remoteInfo = "Adopt-A-Float";
+		};
+		D0F24A2A25B73BB500E52901 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AD72050E202F553100F55BD7 /* Project object */;
 			proxyType = 1;
@@ -96,6 +104,9 @@
 		D09D817C25475FB600F7A465 /* SelectMapTypeScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectMapTypeScreen.m; sourceTree = "<group>"; };
 		D09F915525A8E644007BDAB9 /* LegendScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LegendScreen.h; sourceTree = "<group>"; };
 		D09F915625A8E644007BDAB9 /* LegendScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LegendScreen.m; sourceTree = "<group>"; };
+		D0F24A2525B73BB500E52901 /* Adopt-A-FloatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Adopt-A-FloatUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0F24A2725B73BB500E52901 /* Adopt_A_FloatUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Adopt_A_FloatUITests.m; sourceTree = "<group>"; };
+		D0F24A2925B73BB500E52901 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F93EFF74D5BA283451D8FF7D /* Pods-Adopt-A-FloatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Adopt-A-FloatTests.debug.xcconfig"; path = "Target Support Files/Pods-Adopt-A-FloatTests/Pods-Adopt-A-FloatTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +124,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				416D31C9D349697AA36119EA /* libPods-Adopt-A-FloatTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0F24A2225B73BB500E52901 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +157,7 @@
 				D02FEE4E253E216B0040A80B /* MermaidLogo.png */,
 				AD720518202F553100F55BD7 /* Adopt-A-Float */,
 				AD720531202F553100F55BD7 /* Adopt-A-FloatTests */,
+				D0F24A2625B73BB500E52901 /* Adopt-A-FloatUITests */,
 				AD720517202F553100F55BD7 /* Products */,
 				262725B4959EAA7ADF151935 /* Pods */,
 				FD9D7B89DD0AEE5EDCC3E8EE /* Frameworks */,
@@ -150,6 +169,7 @@
 			children = (
 				AD720516202F553100F55BD7 /* Adopt-A-Float.app */,
 				AD72052E202F553100F55BD7 /* Adopt-A-FloatTests.xctest */,
+				D0F24A2525B73BB500E52901 /* Adopt-A-FloatUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -229,6 +249,15 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
+		D0F24A2625B73BB500E52901 /* Adopt-A-FloatUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D0F24A2725B73BB500E52901 /* Adopt_A_FloatUITests.m */,
+				D0F24A2925B73BB500E52901 /* Info.plist */,
+			);
+			path = "Adopt-A-FloatUITests";
+			sourceTree = "<group>";
+		};
 		FD9D7B89DD0AEE5EDCC3E8EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +308,24 @@
 			productReference = AD72052E202F553100F55BD7 /* Adopt-A-FloatTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		D0F24A2425B73BB500E52901 /* Adopt-A-FloatUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0F24A2E25B73BB500E52901 /* Build configuration list for PBXNativeTarget "Adopt-A-FloatUITests" */;
+			buildPhases = (
+				D0F24A2125B73BB500E52901 /* Sources */,
+				D0F24A2225B73BB500E52901 /* Frameworks */,
+				D0F24A2325B73BB500E52901 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D0F24A2B25B73BB500E52901 /* PBXTargetDependency */,
+			);
+			name = "Adopt-A-FloatUITests";
+			productName = "Adopt-A-FloatUITests";
+			productReference = D0F24A2525B73BB500E52901 /* Adopt-A-FloatUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -294,6 +341,11 @@
 					};
 					AD72052D202F553100F55BD7 = {
 						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = AD720515202F553100F55BD7;
+					};
+					D0F24A2425B73BB500E52901 = {
+						CreatedOnToolsVersion = 11.6;
 						ProvisioningStyle = Automatic;
 						TestTargetID = AD720515202F553100F55BD7;
 					};
@@ -314,6 +366,7 @@
 			targets = (
 				AD720515202F553100F55BD7 /* Adopt-A-Float */,
 				AD72052D202F553100F55BD7 /* Adopt-A-FloatTests */,
+				D0F24A2425B73BB500E52901 /* Adopt-A-FloatUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -339,6 +392,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		AD72052C202F553100F55BD7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0F24A2325B73BB500E52901 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -441,6 +501,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D0F24A2125B73BB500E52901 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0F24A2825B73BB500E52901 /* Adopt_A_FloatUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -448,6 +516,11 @@
 			isa = PBXTargetDependency;
 			target = AD720515202F553100F55BD7 /* Adopt-A-Float */;
 			targetProxy = AD72052F202F553100F55BD7 /* PBXContainerItemProxy */;
+		};
+		D0F24A2B25B73BB500E52901 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AD720515202F553100F55BD7 /* Adopt-A-Float */;
+			targetProxy = D0F24A2A25B73BB500E52901 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -651,6 +724,41 @@
 			};
 			name = Release;
 		};
+		D0F24A2C25B73BB500E52901 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SHB7FM7N96;
+				INFOPLIST_FILE = "Adopt-A-FloatUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.petermwesigwa.Adopt-A-FloatUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Adopt-A-Float";
+			};
+			name = Debug;
+		};
+		D0F24A2D25B73BB500E52901 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = SHB7FM7N96;
+				INFOPLIST_FILE = "Adopt-A-FloatUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.petermwesigwa.Adopt-A-FloatUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Adopt-A-Float";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -677,6 +785,15 @@
 			buildConfigurations = (
 				AD72053B202F553100F55BD7 /* Debug */,
 				AD72053C202F553100F55BD7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0F24A2E25B73BB500E52901 /* Build configuration list for PBXNativeTarget "Adopt-A-FloatUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0F24A2C25B73BB500E52901 /* Debug */,
+				D0F24A2D25B73BB500E52901 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

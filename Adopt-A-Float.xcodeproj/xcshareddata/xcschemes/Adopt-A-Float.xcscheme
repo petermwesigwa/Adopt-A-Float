@@ -28,6 +28,16 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D0F24A2425B73BB500E52901"
+               BuildableName = "Adopt-A-FloatUITests.xctest"
+               BlueprintName = "Adopt-A-FloatUITests"
+               ReferencedContainer = "container:Adopt-A-Float.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

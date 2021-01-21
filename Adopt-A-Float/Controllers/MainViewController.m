@@ -158,7 +158,10 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     self.appMapView.delegate = self;
     self.appMapView.camera = camera;
     self.appMapView.padding = UIEdgeInsetsMake(150, 25, 70, 25);
-    
+    self.appMapView.accessibilityElementsHidden = NO;
+    self.view.accessibilityIdentifier = @"MapView";
+    self.appMapView.accessibilityIdentifier = @"appMapView";
+    self.appMapView.accessibilityLabel = @"Map";
     
 }
 
@@ -179,6 +182,7 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     marker.map = nil;
     marker.icon = icon;
     marker.userData = data;
+    marker.icon.accessibilityIdentifier = [NSString stringWithFormat:@"Marker: %@", data.deviceName];
     
     return marker;
 }
