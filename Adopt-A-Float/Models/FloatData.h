@@ -56,12 +56,14 @@
 
 
 // Returns a new FloatData object or NULL if orderedData is invalid
-- (id)initWithRaw:(NSMutableArray<NSString *> *)orderedData;
+- (id)initWithRaw:(NSArray<NSString *> *)orderedData;
 
 // Returns YES if the rawData is in a valid format
-+ (BOOL)isValidRaw:(NSMutableArray<NSString *> *)rawData;
++ (BOOL)isValidRaw:(NSArray<NSString *> *)rawData;
 
 - (void) updateLegDataUsingPreviousFloat:(FloatData *)prevFloat andFirstFloat:(FloatData *)firstFloat;
+
+- (void) updateWithGebcoDepth;
 
 + (void) runTests;
 @end

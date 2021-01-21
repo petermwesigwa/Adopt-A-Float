@@ -7,6 +7,9 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "MainViewController.h"
+#import "DataUtility.h"
+#import "AppState.h"
 
 @interface Adopt_A_FloatTests : XCTestCase
 
@@ -27,12 +30,17 @@
 - (void)testExample {
     // This is an example of a functional test case.
     // Use XCTAssert and related functions to verify your tests produce the correct results.
+    AppState *testAppState = [[AppState alloc] initWithInstruments:[DataUtility createInstruments]];
+    XCTAssertTrue([testAppState.selectedInstr isEqualToString:@"All"]);
+    XCTAssertEqual(testAppState.selectedInstrIndex,0);
+    XCTAssertEqual(testAppState.selectedMapViewIndex,0);
 }
 
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
     [self measureBlock:^{
         // Put the code you want to measure the time of here.
+        NSMutableDictionary *instruments = [DataUtility createInstruments];
     }];
 }
 

@@ -29,12 +29,16 @@ This dictionary con.
 */
 extern NSMutableDictionary<NSString *, UIColor*> *organizations;
 
+@interface MainViewController ()
+    /* bounds used to display all visible markers */
+    @property (strong) GMSCoordinateBounds *instrumentBounds;
+@end
 
 @implementation MainViewController
 
 
 - (void) viewDidAppear:(BOOL)animated {
-
+    [super viewDidAppear:animated];
     //take down all visible instruments
     for (Instrument *ins in [instruments allValues]) {
         [self instrumentTakeDown:ins];
@@ -48,20 +52,36 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     // otherwise display all the instruments
     else {
         for (Instrument *ins in [instruments allValues]) {
-            [self instrumentSetup:ins];
+            if (![appStateManager.orgFilters objectForKey:[ins getInstitution]]) {
+                [self instrumentSetup:ins];
+            }
+        }
+    }
+    [self.titleButton setTitle:appStateManager.selectedInstr forState:UIControlStateNormal];
+    self.appMapView.mapType = [[appStateManager.mapViewTypes objectAtIndex:
+                                appStateManager.selectedMapViewIndex] intValue];
+    
+    [self addOnMarkersToMap];
+    
+    self.instrumentBounds = [[GMSCoordinateBounds alloc] init];
+    for (GMSMarker *marker in self.onMarkers) {
+        if (![_instrumentBounds isValid]) {
+            _instrumentBounds = [_instrumentBounds initWithCoordinate:marker.position coordinate:marker.position];
+        } else {
+            _instrumentBounds = [_instrumentBounds includingCoordinate:marker.position];
         }
     }
     
-    self.titleLabel.text = appStateManager.selectedInstr;
-    self.appMapView.mapType = [[appStateManager.mapViewTypes objectAtIndex:
-                                appStateManager.selectedMapViewIndex] intValue];
+    [self updateCameraPositionWithAnimation:YES];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
-  [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 
 - (void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
 }
 
@@ -69,13 +89,21 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     [super viewDidLoad];
     //to make status bar white
     [self setNeedsStatusBarAppearanceUpdate];
-    self.infoPanel.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
-    self.infoPanel.layer.cornerRadius = 4;
-    self.infoPanel.layer.opacity = 0.85;
+    
+    self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+    self.optionsButton.layer.cornerRadius = 22.5;
+    self.legendButton.layer.cornerRadius = 22.5;
+    self.infoPanel.layer.cornerRadius = 20;
+    self.titleButton.layer.cornerRadius = 20;
+    self.zoomToUserButton.layer.cornerRadius = 27.5;
+    self.zoomToMarkersButton.layer.cornerRadius = 27.5;
+    self.infoPanel.layer.opacity = 0.99;
     self.polylineStrokeWidth = 2;
+    self.infoPanel.layer.masksToBounds = YES;
     
     self.instrumentNames = [[instruments allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
     self.currentFloatIndex = 0;
+    
     
     // Create markers and paths for all positions of all floats
     self.markers = [[NSMutableDictionary alloc] init];
@@ -114,31 +142,32 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     self.defaultMarkerNumber = 1;
     self.markerNumber = self.defaultMarkerNumber;
     
+    // set up location manager
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    [self.locationManager requestWhenInUseAuthorization];
+    self.locationManager.distanceFilter = 50;
+    [self.locationManager startUpdatingLocation];
+    
+    
     
     // Create a GMSCameraPosition for the initial camera
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:10.0 longitude:0.0 zoom:1];
     self.mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     self.appMapView.delegate = self;
     self.appMapView.camera = camera;
-    self.appMapView.mapType = [[appStateManager.mapViewTypes objectAtIndex:
-                               appStateManager.selectedMapViewIndex] intValue];
+    self.appMapView.padding = UIEdgeInsetsMake(150, 25, 70, 25);
+    self.appMapView.accessibilityElementsHidden = NO;
+    self.view.accessibilityIdentifier = @"MapView";
+    self.appMapView.accessibilityIdentifier = @"appMapView";
+    self.appMapView.accessibilityLabel = @"Map";
     
-    //Update the camera position
-    [self updateCameraPositionWithAnimation:NO];
 }
 
 // moves google map camera to display the floats currently in focus
 - (void) updateCameraPositionWithAnimation:(BOOL)animation {
-    GMSCoordinateBounds *bounds = [[GMSCoordinateBounds alloc] init];
-    for (GMSMarker *marker in _onMarkers) {
-        if (![bounds isValid]) {
-            bounds = [bounds initWithCoordinate:marker.position coordinate:marker.position];
-        } else {
-            bounds = [bounds includingCoordinate:marker.position];
-        }
-    }
-    
-    GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:bounds withPadding:15.0];
+    GMSCameraUpdate *update = [GMSCameraUpdate fitBounds:_instrumentBounds withPadding:15.0];
     if (animation == NO)
         [self.appMapView moveCamera:update];
     else [self.appMapView animateWithCameraUpdate:update];
@@ -153,6 +182,7 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     marker.map = nil;
     marker.icon = icon;
     marker.userData = data;
+    marker.icon.accessibilityIdentifier = [NSString stringWithFormat:@"Marker: %@", data.deviceName];
     
     return marker;
 }
@@ -196,6 +226,8 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
         [self turnOffMarker:[self.onMarkers lastObject]];
 }
 
+
+# pragma mark - Segues
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"GoToOptions"]) {
         
@@ -204,11 +236,31 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
 
 - (IBAction) backToMap:(UIStoryboardSegue *)unwindSegue {
     self.curr = [instruments objectForKey:appStateManager.selectedInstr];
-    self.markerNumber = [[appStateManager.markerNumbers objectAtIndex:appStateManager.selectedMarkerNumIndex] intValue];
+    if (self.curr) {
+        self.markerNumber = 30;
+        
+        // reset all filters
+        [appStateManager.orgFilters removeAllObjects];
+    } else {
+        self.markerNumber = 1;
+    }
 }
 
 - (IBAction)backFromLegend:(UIStoryboardSegue *)unwindSegue {
+    [self viewDidAppear:true];
+}
+
+- (IBAction)discardChanges:(UIStoryboardSegue *)unwindSegue {
     
+}
+- (IBAction)markerFocus:(id)sender {
+    [self updateCameraPositionWithAnimation:YES];
+}
+- (IBAction)userFocus:(id)sender {
+    if (self.appMapView.myLocation) {
+        GMSCameraUpdate *update = [GMSCameraUpdate setTarget:self.appMapView.myLocation.coordinate zoom:12];
+        [self.appMapView animateWithCameraUpdate:update];
+    }
 }
 
 /*
@@ -226,20 +278,6 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
         float opac = 1 - (i/(n+1.0));
         [self turnOnMarker:[self.markers objectForKey:[instrument getName]][i] withOpacity:opac];
     }
-    
-    //Update the camera position
-    [self updateCameraPositionWithAnimation:YES];
-    
-    //Add on markers to the map
-    [self addOnMarkersToMap];
-}
-
-- (void) clearOnPolylines {
-    while (self.onPolylines.count > 0) {
-        GMSPolyline *polylineToRemove = [self.onPolylines lastObject];
-        polylineToRemove.map = nil;
-        [self.onPolylines removeObject:polylineToRemove];
-    }
 }
 
 - (void) instrumentTakeDown:(Instrument*) old {
@@ -254,4 +292,40 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     return UIStatusBarStyleLightContent;
 }
 
+#pragma mark - CLLocationManagerDelegate
+
+- (void) locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    switch (status) {
+      case kCLAuthorizationStatusRestricted:
+        NSLog(@"Location access was restricted.");
+        break;
+      case kCLAuthorizationStatusDenied:
+        NSLog(@"User denied access to location.");
+      case kCLAuthorizationStatusNotDetermined:
+        NSLog(@"Location status not determined.");
+      case kCLAuthorizationStatusAuthorizedAlways:
+      case kCLAuthorizationStatusAuthorizedWhenInUse:
+        NSLog(@"Location status is OK.");
+        self.appMapView.myLocationEnabled = YES;
+    }
+}
+ 
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    
+    UIAlertController *locationAlert = [UIAlertController alertControllerWithTitle:@"Location Error " message:error.localizedDescription  preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *allowLocation = [UIAlertAction actionWithTitle:@"Try again" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+        [self.locationManager requestWhenInUseAuthorization];
+    }];
+    UIAlertAction *denyLocation = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){}];
+    
+    [locationAlert addAction:allowLocation];
+    [locationAlert addAction:denyLocation];
+    [self presentViewController:locationAlert animated:YES completion:nil];
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+}
 @end
+

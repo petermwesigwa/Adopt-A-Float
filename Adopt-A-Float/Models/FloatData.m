@@ -57,9 +57,9 @@ NSString *rawDataFour = @"obs4 13-Dec-2020 15:17:46 1.457550 -147.210900 0.700 1
 
 @implementation FloatData
 
-- (id)initWithRaw:(NSMutableArray<NSString *> *)orderedData {
+- (id)initWithRaw:(NSArray<NSString *> *)orderedData {
     self = [super init];
-    if (self && [FloatData isValidRaw:orderedData]) {
+    if (self) {
         //set calendar
         _cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
         
@@ -80,8 +80,9 @@ NSString *rawDataFour = @"obs4 13-Dec-2020 15:17:46 1.457550 -147.210900 0.700 1
         _hdop = [NSNumber numberWithFloat:[orderedData[5] floatValue]];
         _vdop = [NSNumber numberWithFloat:[orderedData[6] floatValue]];
         _vbat = [NSNumber numberWithFloat:[orderedData[7] floatValue]];
-        _pInt = [NSNumber numberWithFloat:[orderedData[8] floatValue]];
-        _pExt = [NSNumber numberWithFloat:[orderedData[9] floatValue]];
+        // ignore column 8 for now
+        _pInt = [NSNumber numberWithFloat:[orderedData[9] floatValue]];
+        _pExt = [NSNumber numberWithFloat:[orderedData[10] floatValue]];
         _legLength = 0;
         _legTime = 0;
         _legSpeed = 0;
@@ -90,11 +91,11 @@ NSString *rawDataFour = @"obs4 13-Dec-2020 15:17:46 1.457550 -147.210900 0.700 1
         _totalTime = 0;
         _netDisplacement = 0;
     }
-    [self updateWithGebcoDepth];
+    // [self updateWithGebcoDepth];
     return self;
 }
 
-+ (BOOL)isValidRaw:(NSMutableArray<NSString *> *)raw {
++ (BOOL)isValidRaw:(NSArray<NSString *> *)raw {
     if (raw.count < N_DATA_ELEMS) {
         return NO;
     }
@@ -159,7 +160,6 @@ NSString *rawDataFour = @"obs4 13-Dec-2020 15:17:46 1.457550 -147.210900 0.700 1
     int pxw = 5, pxh = 5, pxx = 2, pxy = 2;
     
     NSString *urlString = [NSString stringWithFormat:@"http://www.gebco.net/data_and_products/gebco_web_services/web_map_service/mapserv?request=getfeatureinfo&service=wms&crs=EPSG:4326&layers=gebco_latest_2&query_layers=gebco_latest_2&BBOX=%f,%f,%f,%         f&info_format=text/plain&service=wms&x=%d&y=%d&width=%d&height=%d&version=1.3.0",lap,lop,lam,lom,pxx,pxy,pxw,pxh];
-    NSLog(@"%@",urlString);
     NSURL *url = [NSURL URLWithString:urlString];
     [request setHTTPMethod:@"GET"];
     [request setURL:url];
@@ -167,7 +167,6 @@ NSString *rawDataFour = @"obs4 13-Dec-2020 15:17:46 1.457550 -147.210900 0.700 1
     [[[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler:
      ^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         NSString *result = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"%@",result);
         if (error == nil) {
             NSArray<NSString *> *fields = [result componentsSeparatedByString:@"\'"];
             if (fields.count > 7) {

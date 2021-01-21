@@ -2,84 +2,33 @@
 //  LegendScreen.m
 //  Adopt-A-Float
 //
-//  Created by Peter Mwesigwa on 10/23/20.
-//  Copyright © 2020 Frederik Simons. All rights reserved.
+//  Created by Peter Mwesigwa on 1/8/21.
+//  Copyright © 2021 Frederik Simons. All rights reserved.
 //
 
 #import "LegendScreen.h"
+/*
+ This is an effort to maintain state in one place that is accessible throughout the application.
+ 
+ */
+extern AppState *appStateManager;
+extern NSMutableDictionary<NSString *, UIColor *> *organizations;
 
 @interface LegendScreen ()
-
+    @property(strong) NSArray<NSString *> *organizationNames;
 @end
-
-extern NSMutableDictionary<NSString *, UIColor *> *organizations;
 
 @implementation LegendScreen
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // Do any additional setup after loading the view.
+    self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+    _organizationNames = [organizations allKeys];
+    _contentView.layer.cornerRadius = 6;
+    _hideLegendButton.layer.cornerRadius = 20;
+    _contentView.layer.masksToBounds = YES;
 }
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [organizations count];
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LegendCell" forIndexPath:indexPath];
-    
-    NSString *org = [[organizations allKeys] objectAtIndex:indexPath.row];
-    cell.textLabel.text = org;
-    cell.imageView.image = [GMSMarker markerImageWithColor:[organizations objectForKey:org]];
-    return cell;
-}
-
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation
@@ -90,5 +39,42 @@ extern NSMutableDictionary<NSString *, UIColor *> *organizations;
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)dismissModal:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return _organizationNames.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LegendCell"];
+    NSString *orgName = [_organizationNames objectAtIndex:indexPath.row];
+    UIColor *imgColor = [organizations objectForKey:orgName];
+    cell.textLabel.text = orgName;
+    if (![appStateManager.orgFilters objectForKey:orgName]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    cell.imageView.image = [GMSMarker markerImageWithColor: imgColor];
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSString *orgName = cell.textLabel.text;
+    if ([appStateManager.orgFilters objectForKey:orgName]) {
+        [appStateManager.orgFilters removeObjectForKey:orgName];
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        [appStateManager.orgFilters setValue:[NSNumber numberWithBool:NO] forKey:orgName];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+}
 
 @end
