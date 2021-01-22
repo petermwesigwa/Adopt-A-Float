@@ -22,7 +22,7 @@ extern AppState *appStateManager;
 
 - (void)viewWillAppear:(BOOL)animated {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:appStateManager.selectedInstrIndex inSection:0];
-    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:animated];
+    [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:animated];
 }
 
 #pragma mark - Table view data source

@@ -63,6 +63,7 @@
 
 - (void) updateLegDataUsingPreviousFloat:(FloatData *)prevFloat andFirstFloat:(FloatData *)firstFloat;
 
+/*  Fetches the GEBCO WMS depth for the lat and long of this float */
 - (void) updateWithGebcoDepth;
 
 + (void) runTests;

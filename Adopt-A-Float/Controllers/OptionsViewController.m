@@ -19,13 +19,12 @@ extern AppState *appStateManager;
 extern NSMutableDictionary<NSNumber *, NSString *> *mapTypes;;
 
 @implementation OptionsViewController
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
     [self setup];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setup];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

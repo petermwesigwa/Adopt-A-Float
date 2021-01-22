@@ -18,7 +18,7 @@
     
 
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MM/dd/yyyy HH:mm:ss"];
+    [formatter setDateFormat:@"d MMM yyyy HH:mm:ss"];
     
     self.deviceName.text = (NSString*) data.deviceName;
     self.gpsDate.text = [formatter stringFromDate:(NSDate*)data.gpsDate];

@@ -28,27 +28,25 @@
 float const HAVERSINE_RADS_PER_DEGREE = M_PI / 180.0;
 
 // radius of the earth in km
-float const HAVERSINE_KM_RADIUS = 6371.0;
-
+float const HAVERSINE_KM_RADIUS = 6378.137;
 
 // number of columns of observation that each float records
 // for now this number is 10 but Frederik might change it in the future
 int const N_DATA_ELEMS = 10;
 
-/* time that a float is expected to spend underwater between surfacings.
- Can be safely assumed that any consecutive points within this time of each
- other are within the same surfacing, and so are any other points close to them
+/*  minimum time in hours that a float is expected to spend underwater between surfacings. Can be safely assumed that any consecutive points within this time of each other are within the same surfacing, and can be applied transitively for other
+    floats.
  
- This is used to filter between surface drift and subsurface drift (as they occur at different speeds)
+    This is used to filter between surface drift and subsurface drift. Any points that
+    are within this threshold from the preceding float are not used in leg calculations
+    and merely carry on results for.
  
- Setting it to ZERO measures drift without classification as surface or subsurface drift
- 
- Note that this number might change depending on the way the data is collected by Frederik et al.
+    Setting it to zero uses ALL points for leg calculations.
  */
 double const MIN_TIME_BETWEEN_SURFACINGS = 0.0;
 
 
-
+/* Variables for testing */
 NSString *rawDataOne = @"Obs1 21-Dec-2020 18:34:06 0 135.0 0.700 1.220 14560 12407 78574 375 20 7 2 2";
 NSString *rawDataTwo = @"Obs2 21-Dec-2020 18:23:55 0 -135.0 1.220 14560 12407 78574 375 20 7 2 2";
 NSString *rawDataThree = @"Obs3 13-Dec-2020 15:27:59 0 0 0.700 1.220 14560 12407 78574 375 20 7 2 2";
@@ -63,18 +61,13 @@ NSString *rawDataFour = @"obs4 13-Dec-2020 15:17:46 1.457550 -147.210900 0.700 1
         //set calendar
         _cal = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
         
-        // read in the name of the instrument
-        _deviceName = orderedData[0];
+        _deviceName = [FloatData standardizeName:orderedData[0]];
         
-        // get the date at which the observation was made
-        NSMutableString *dateString = [[NSMutableString alloc]initWithString:orderedData[1]];
-        [dateString appendString:@" "];
-        [dateString appendString:orderedData[2]];
+        NSString *dateString = [NSString stringWithFormat:@"%@ %@", orderedData[1], orderedData[2]];
         NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
         [formatter setDateFormat:@"dd-MMM-yyyy HH:mm:ss"];
-    
-        
         _gpsDate = [formatter dateFromString:dateString];
+        
         _gpsLat = [NSNumber numberWithFloat:[orderedData[3] floatValue]];
         _gpsLon = [NSNumber numberWithFloat:[orderedData[4] floatValue]];
         _hdop = [NSNumber numberWithFloat:[orderedData[5] floatValue]];
@@ -91,7 +84,6 @@ NSString *rawDataFour = @"obs4 13-Dec-2020 15:17:46 1.457550 -147.210900 0.700 1
         _totalTime = 0;
         _netDisplacement = 0;
     }
-    // [self updateWithGebcoDepth];
     return self;
 }
 
@@ -106,10 +98,12 @@ NSString *rawDataFour = @"obs4 13-Dec-2020 15:17:46 1.457550 -147.210900 0.700 1
     }
     return YES;
 }
-- (void) updateLegDataUsingPreviousFloat:(FloatData *)prevFloat andFirstFloat: (FloatData *) firstFloat{
+
+- (void) updateLegDataUsingPreviousFloat:(FloatData *)prevFloat andFirstFloat: (FloatData *)firstFloat {
     double legTime = [self durationBetween:prevFloat];
     double legLength = [self distanceFrom:prevFloat];
     
+    // only update if not part of same surfacing
     if (legTime > MIN_TIME_BETWEEN_SURFACINGS) {
         _legLength = legLength;
         _legTime = legTime;
@@ -127,21 +121,22 @@ NSString *rawDataFour = @"obs4 13-Dec-2020 15:17:46 1.457550 -147.210900 0.700 1
         _avgSpeed = prevFloat.avgSpeed;
         _netDisplacement = [self distanceFrom:firstFloat];
     }
-    
 }
 
-// compute haversine distance between floats
+// compute haversine distance to another float
 - (double) distanceFrom:(FloatData *)that {
     double lat1 = [_gpsLat doubleValue] * HAVERSINE_RADS_PER_DEGREE;
     double lon1 = [_gpsLon doubleValue] * HAVERSINE_RADS_PER_DEGREE;
     double lat2 = [that.gpsLat doubleValue] * HAVERSINE_RADS_PER_DEGREE;
     double lon2 = [that.gpsLon doubleValue] * HAVERSINE_RADS_PER_DEGREE;
-    double havDLat = 0.5 - 0.5 * cos(lat2 - lat1);
-    double havDLon = 0.5 - 0.5 * cos(lon2 - lon1);
-    double haversine = havDLat + cos(lat1) * cos(lat2) * havDLon;
+    double havLatDiff = 0.5 - 0.5 * cos(lat2 - lat1);
+    double havLonDiff = 0.5 - 0.5 * cos(lon2 - lon1);
+    double haversine = havLatDiff + cos(lat1) * cos(lat2) * havLonDiff;
     double centralAngle = 2 * atan2(sqrt(haversine), sqrt(1-haversine));
     return centralAngle * HAVERSINE_KM_RADIUS;
 }
+
+// time difference in hours to another float
 - (double) durationBetween:(FloatData *)that {
     double time1 = (double) [_gpsDate timeIntervalSince1970];
     double time2 = (double) [that.gpsDate timeIntervalSince1970];
@@ -149,17 +144,21 @@ NSString *rawDataFour = @"obs4 13-Dec-2020 15:17:46 1.457550 -147.210900 0.700 1
 }
 
 - (void) updateWithGebcoDepth {
+    // request object to query GEBCO server
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-   
-    double bb = 1.0 / 60.0;
-    double lap = [_gpsLat doubleValue] - bb;
-    double lop = [_gpsLon doubleValue] - bb;
-    double lam = [_gpsLat doubleValue] + bb;
-    double lom = [_gpsLon doubleValue] + bb;
     
+    /*  Essentially we have to create a square around the point within which to
+        find a depth */
+    double boxRadius = 1.0/60.0/2.00; // weird syntax but this is what works
+    double bottom = [_gpsLat doubleValue] - boxRadius;
+    double left = [_gpsLon doubleValue] - boxRadius;
+    double top = [_gpsLat doubleValue] + boxRadius;
+    double right = [_gpsLon doubleValue] + boxRadius;
+    
+    // more vars for creating the box. Again determined through experimentation
     int pxw = 5, pxh = 5, pxx = 2, pxy = 2;
     
-    NSString *urlString = [NSString stringWithFormat:@"http://www.gebco.net/data_and_products/gebco_web_services/web_map_service/mapserv?request=getfeatureinfo&service=wms&crs=EPSG:4326&layers=gebco_latest_2&query_layers=gebco_latest_2&BBOX=%f,%f,%f,%         f&info_format=text/plain&service=wms&x=%d&y=%d&width=%d&height=%d&version=1.3.0",lap,lop,lam,lom,pxx,pxy,pxw,pxh];
+    NSString *urlString = [NSString stringWithFormat:@"http://www.gebco.net/data_and_products/gebco_web_services/web_map_service/mapserv?request=getfeatureinfo&service=wms&crs=EPSG:4326&layers=gebco_latest_2&query_layers=gebco_latest_2&BBOX=%f,%f,%f,%         f&info_format=text/plain&service=wms&x=%d&y=%d&width=%d&height=%d&version=1.3.0",bottom,left,top,right,pxx,pxy,pxw,pxh];
     NSURL *url = [NSURL URLWithString:urlString];
     [request setHTTPMethod:@"GET"];
     [request setURL:url];
@@ -176,6 +175,14 @@ NSString *rawDataFour = @"obs4 13-Dec-2020 15:17:46 1.457550 -147.210900 0.700 1
     }] resume];
     
     
+}
+
+// remove any extra zeroes from float name (eg P0034 to P034)
++ (NSString *)standardizeName:(NSString *) floatName {
+    if ([floatName length] <= 4) {
+        return floatName;
+    }
+    return [floatName stringByReplacingOccurrencesOfString:@"00" withString:@"0"];
 }
 
 + (void) runTests {

@@ -36,43 +36,10 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
 
 @implementation MainViewController
 
-
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    //take down all visible instruments
-    for (Instrument *ins in [instruments allValues]) {
-        [self instrumentTakeDown:ins];
-    }
-    
-    // if instrument is chosen set it up
-    if (self.curr) {
-        [self instrumentSetup:self.curr];
-    }
-    
-    // otherwise display all the instruments
-    else {
-        for (Instrument *ins in [instruments allValues]) {
-            if (![appStateManager.orgFilters objectForKey:[ins getInstitution]]) {
-                [self instrumentSetup:ins];
-            }
-        }
-    }
-    [self.titleButton setTitle:appStateManager.selectedInstr forState:UIControlStateNormal];
     self.appMapView.mapType = [[appStateManager.mapViewTypes objectAtIndex:
-                                appStateManager.selectedMapViewIndex] intValue];
-    
-    [self addOnMarkersToMap];
-    
-    self.instrumentBounds = [[GMSCoordinateBounds alloc] init];
-    for (GMSMarker *marker in self.onMarkers) {
-        if (![_instrumentBounds isValid]) {
-            _instrumentBounds = [_instrumentBounds initWithCoordinate:marker.position coordinate:marker.position];
-        } else {
-            _instrumentBounds = [_instrumentBounds includingCoordinate:marker.position];
-        }
-    }
-    
-    [self updateCameraPositionWithAnimation:YES];
+    appStateManager.selectedMapViewIndex] intValue];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -150,9 +117,7 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     self.locationManager.distanceFilter = 50;
     [self.locationManager startUpdatingLocation];
     
-    
-    
-    // Create a GMSCameraPosition for the initial camera
+    // mapview setup
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:10.0 longitude:0.0 zoom:1];
     self.mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     self.appMapView.delegate = self;
@@ -163,6 +128,37 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     self.appMapView.accessibilityIdentifier = @"appMapView";
     self.appMapView.accessibilityLabel = @"Map";
     
+    [self prepareInstrumentsForViewing];
+}
+
+- (void) prepareInstrumentsForViewing {
+    for (Instrument *ins in [instruments allValues]) {
+        [self instrumentTakeDown:ins];
+    }
+    
+    if (self.curr) {
+        [self instrumentSetup:self.curr];
+    } else {
+        for (Instrument *ins in [instruments allValues]) {
+            if (![appStateManager.orgFilters objectForKey:[ins getInstitution]]) {
+                [self instrumentSetup:ins];
+            }
+        }
+    }
+    [self.titleButton setTitle:appStateManager.selectedInstr forState:UIControlStateNormal];
+    
+    [self addOnMarkersToMap];
+    
+    self.instrumentBounds = [[GMSCoordinateBounds alloc] init];
+    for (GMSMarker *marker in self.onMarkers) {
+        if (![_instrumentBounds isValid]) {
+            _instrumentBounds = [_instrumentBounds initWithCoordinate:marker.position coordinate:marker.position];
+        } else {
+            _instrumentBounds = [_instrumentBounds includingCoordinate:marker.position];
+        }
+    }
+    
+    [self updateCameraPositionWithAnimation:YES];
 }
 
 // moves google map camera to display the floats currently in focus
@@ -234,24 +230,26 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     }
 }
 
-- (IBAction) backToMap:(UIStoryboardSegue *)unwindSegue {
+- (IBAction) backFromLegend:(UIStoryboardSegue *)unwindSegue {
+    [self prepareInstrumentsForViewing];
+}
+
+- (IBAction) backFromOptions:(UIStoryboardSegue *)unwindSegue {
+    // changes here handled in viewdidappear
+}
+
+- (IBAction) changeDisplayedInstrument:(UIStoryboardSegue *)unwindSegue {
     self.curr = [instruments objectForKey:appStateManager.selectedInstr];
     if (self.curr) {
         self.markerNumber = 30;
-        
-        // reset all filters
         [appStateManager.orgFilters removeAllObjects];
     } else {
         self.markerNumber = 1;
     }
+    [self prepareInstrumentsForViewing];
 }
-
-- (IBAction)backFromLegend:(UIStoryboardSegue *)unwindSegue {
-    [self viewDidAppear:true];
-}
-
 - (IBAction)discardChanges:(UIStoryboardSegue *)unwindSegue {
-    
+    // do nothing here
 }
 - (IBAction)markerFocus:(id)sender {
     [self updateCameraPositionWithAnimation:YES];
