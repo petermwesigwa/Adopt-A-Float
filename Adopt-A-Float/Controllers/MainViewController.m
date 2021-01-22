@@ -122,6 +122,7 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     self.mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     self.appMapView.delegate = self;
     self.appMapView.camera = camera;
+    // Defines the boundary around the edges of the instrument cluster
     self.appMapView.padding = UIEdgeInsetsMake(150, 25, 70, 25);
     self.appMapView.accessibilityElementsHidden = NO;
     self.view.accessibilityIdentifier = @"MapView";
