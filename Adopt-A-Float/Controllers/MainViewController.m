@@ -2,9 +2,9 @@
 //  MainViewController.m
 //  Adopt-A-Float
 //
-//  Created by Ben Leizman on 6/20/15.
-//  Modified by Peter Mwesigwa on 8/18/20.
-//  Copyright © 2018 Frederik Simons. All rights reserved.
+//  Last modified by Peter Mwesigwa on 01/22/2021
+//  Created by Ben Leizman on 6/20/15
+//  Copyright © 2021 Frederik Simons. All rights reserved.
 //
 
 #import "MainViewController.h"
@@ -122,6 +122,7 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     self.mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     self.appMapView.delegate = self;
     self.appMapView.camera = camera;
+    // Defines the boundary around the edges of the instrument cluster
     self.appMapView.padding = UIEdgeInsetsMake(150, 25, 70, 25);
     self.appMapView.accessibilityElementsHidden = NO;
     self.view.accessibilityIdentifier = @"MapView";
