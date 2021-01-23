@@ -21,9 +21,9 @@
     [formatter setDateFormat:@"d MMM yyyy HH:mm:ss"];
     
     self.deviceName.text = (NSString*) data.deviceName;
-    self.gpsDate.text = [formatter stringFromDate:(NSDate*)data.gpsDate];
-    self.gpsLat.text = [NSString stringWithFormat:@"%.6f", [data.gpsLat floatValue]];
-    self.gpsLon.text = [NSString stringWithFormat:@"%.6f", [data.gpsLon floatValue]];
+    self.gpsDate.text = [NSString stringWithFormat:@"%@ GMT",[formatter stringFromDate:(NSDate*)data.gpsDate]];
+    self.gpsLat.text = [NSString stringWithFormat:@"%11.6f", [data.gpsLat floatValue]];
+    self.gpsLon.text = [NSString stringWithFormat:@"%11.6f", [data.gpsLon floatValue]];
     self.hdop.text = [NSString stringWithFormat:@"%@", data.hdop];
     self.vdop.text = [NSString stringWithFormat:@"%@", data.vdop];
     self.vBat.text =[NSString stringWithFormat:@"%@ mV", data.vbat];
@@ -60,5 +60,4 @@
     // Drawing code
 }
 */
-
 @end
