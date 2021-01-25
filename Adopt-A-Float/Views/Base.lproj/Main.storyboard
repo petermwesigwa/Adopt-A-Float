@@ -108,6 +108,22 @@
                                     <constraint firstAttribute="bottomMargin" secondItem="oT4-lL-le8" secondAttribute="bottom" constant="2" id="xgK-0v-Ssq"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFQ-gE-Fzi">
+                                <rect key="frame" x="209.5" y="757" width="55" height="55"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <state key="normal" image="arrowtriangle.right.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="showNextMarkerinSequence:" destination="bSR-U5-Ig6" eventType="touchUpInside" id="gT9-hz-kJo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pfw-bd-meN">
+                                <rect key="frame" x="149.5" y="757" width="55" height="55"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <state key="normal" image="arrowtriangle.left.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="showPrevMarkerInSequence:" destination="bSR-U5-Ig6" eventType="touchUpInside" id="szT-Nl-HQW"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="85t-cU-Taf">
                                 <rect key="frame" x="30" y="59" width="45" height="45"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -161,16 +177,24 @@
                             <constraint firstItem="q48-dY-vDz" firstAttribute="top" secondItem="gB7-ph-Njj" secondAttribute="bottom" constant="15" id="4eK-LZ-T75"/>
                             <constraint firstItem="elQ-iM-FiI" firstAttribute="top" secondItem="gB7-ph-Njj" secondAttribute="bottom" constant="15" id="9Qw-Wl-ztJ"/>
                             <constraint firstItem="Abq-x1-K8v" firstAttribute="top" secondItem="gB7-ph-Njj" secondAttribute="bottom" constant="-44" id="CxE-dM-6Qk"/>
+                            <constraint firstItem="vFQ-gE-Fzi" firstAttribute="width" secondItem="huh-Mc-DNG" secondAttribute="width" id="EFD-Xj-v9V"/>
+                            <constraint firstItem="Pfw-bd-meN" firstAttribute="height" secondItem="vFQ-gE-Fzi" secondAttribute="height" id="Ngw-2A-IrC"/>
                             <constraint firstItem="85t-cU-Taf" firstAttribute="top" secondItem="gB7-ph-Njj" secondAttribute="bottom" constant="15" id="ZXD-dO-ZN5"/>
                             <constraint firstItem="huh-Mc-DNG" firstAttribute="trailing" secondItem="tw4-l9-01Y" secondAttribute="trailing" id="btM-fn-0i9"/>
+                            <constraint firstItem="wKM-bL-mjD" firstAttribute="top" secondItem="vFQ-gE-Fzi" secondAttribute="bottom" constant="50" id="cfx-cR-whA"/>
                             <constraint firstItem="elQ-iM-FiI" firstAttribute="leading" secondItem="85t-cU-Taf" secondAttribute="trailing" constant="5" id="d8T-rQ-hpa"/>
+                            <constraint firstItem="wKM-bL-mjD" firstAttribute="top" secondItem="Pfw-bd-meN" secondAttribute="bottom" constant="50" id="dvx-z1-39g"/>
                             <constraint firstItem="tw4-l9-01Y" firstAttribute="top" secondItem="huh-Mc-DNG" secondAttribute="bottom" constant="10" id="hTz-3A-yF8"/>
                             <constraint firstItem="85t-cU-Taf" firstAttribute="leading" secondItem="Nf3-KV-SnW" secondAttribute="leadingMargin" constant="10" id="llT-gF-f0q"/>
                             <constraint firstItem="Abq-x1-K8v" firstAttribute="trailing" secondItem="Nf3-KV-SnW" secondAttribute="trailingMargin" constant="20" id="mwJ-f8-gEJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="q48-dY-vDz" secondAttribute="trailing" constant="10" id="nbD-mA-ZXh"/>
+                            <constraint firstItem="Pfw-bd-meN" firstAttribute="width" secondItem="vFQ-gE-Fzi" secondAttribute="width" id="nhr-eU-tgb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tw4-l9-01Y" secondAttribute="trailing" constant="10" id="p01-tU-Z4J"/>
+                            <constraint firstItem="Pfw-bd-meN" firstAttribute="centerX" secondItem="Nf3-KV-SnW" secondAttribute="centerX" constant="-30" id="prQ-wG-GYQ"/>
                             <constraint firstItem="Abq-x1-K8v" firstAttribute="leading" secondItem="Nf3-KV-SnW" secondAttribute="leadingMargin" constant="-20" id="qKO-oW-LRT"/>
                             <constraint firstItem="wKM-bL-mjD" firstAttribute="top" secondItem="Abq-x1-K8v" secondAttribute="bottom" constant="-34" id="swT-ar-9OC"/>
+                            <constraint firstItem="vFQ-gE-Fzi" firstAttribute="height" secondItem="huh-Mc-DNG" secondAttribute="height" id="uNe-81-SOG"/>
+                            <constraint firstItem="vFQ-gE-Fzi" firstAttribute="centerX" secondItem="Nf3-KV-SnW" secondAttribute="centerX" constant="30" id="zVg-3s-PeC"/>
                             <constraint firstItem="wKM-bL-mjD" firstAttribute="top" secondItem="tw4-l9-01Y" secondAttribute="bottom" constant="20" id="zeB-Bn-vmn"/>
                         </constraints>
                     </view>
@@ -183,7 +207,9 @@
                         <outlet property="appMapView" destination="Abq-x1-K8v" id="Fet-Zn-WcR"/>
                         <outlet property="infoPanel" destination="elQ-iM-FiI" id="ym1-hp-zKf"/>
                         <outlet property="legendButton" destination="q48-dY-vDz" id="7i4-s2-ybp"/>
+                        <outlet property="nextFloatButton" destination="vFQ-gE-Fzi" id="zah-b0-xVM"/>
                         <outlet property="optionsButton" destination="85t-cU-Taf" id="pKD-GP-ua8"/>
+                        <outlet property="prevFloatButton" destination="Pfw-bd-meN" id="TbU-Xw-lJu"/>
                         <outlet property="titleButton" destination="5pg-Zm-fR6" id="SHD-JS-SMg"/>
                         <outlet property="zoomToMarkersButton" destination="huh-Mc-DNG" id="HlM-wF-iiW"/>
                         <outlet property="zoomToUserButton" destination="tw4-l9-01Y" id="HOz-dz-UQQ"/>
@@ -461,6 +487,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrowtriangle.left.fill" catalog="system" width="128" height="113"/>
+        <image name="arrowtriangle.right.fill" catalog="system" width="128" height="113"/>
         <image name="line.horizontal.3" catalog="system" width="128" height="64"/>
         <image name="location.circle" catalog="system" width="128" height="121"/>
         <image name="mappin" catalog="system" width="105" height="128"/>
