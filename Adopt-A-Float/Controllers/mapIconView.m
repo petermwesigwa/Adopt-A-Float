@@ -12,7 +12,6 @@
 
 @implementation mapIconView
 
-
 - (void)provideFloatData:(FloatData *)data {
     [data updateWithGebcoDepth];
     

@@ -69,7 +69,6 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     self.zoomToUserButton.layer.cornerRadius = 27.5;
     self.zoomToMarkersButton.layer.cornerRadius = 27.5;
     self.infoPanel.layer.opacity = 0.99;
-    self.polylineStrokeWidth = 2;
     self.infoPanel.layer.masksToBounds = YES;
     self.prevFloatButton.hidden = YES;
     self.nextFloatButton.hidden = YES;
@@ -174,7 +173,7 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     marker.map = nil;
     marker.icon = icon;
     marker.userData = data;
-    marker.icon.accessibilityIdentifier = [NSString stringWithFormat:@"Marker: %@", data.deviceName];
+    
     
     return marker;
 }
@@ -256,6 +255,7 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     iconView.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     iconView.layer.cornerRadius = 15;
     iconView.layer.opacity = 0.98;
+    iconView.accessibilityElementsHidden = NO;
     
     return iconView;
 }
@@ -296,9 +296,11 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
 - (IBAction)discardChanges:(UIStoryboardSegue *)unwindSegue {
     // do nothing here
 }
+/* called when user clicks on zoomToMarkers Button */
 - (IBAction)markerFocus:(id)sender {
     [self updateCameraPositionWithAnimation:YES];
 }
+/* Called when user clicks on the zoomToUser button */
 - (IBAction)userFocus:(id)sender {
     if (self.appMapView.myLocation) {
         [_appMapView setSelectedMarker:nil];
@@ -306,8 +308,9 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
         [self.appMapView animateWithCameraUpdate:update];
     }
 }
+/* Called when user clicks on right arrow*/
 - (IBAction)showNextMarkerinSequence:(id)sender {
-    if (_focusedOnMarkerIdx == (int) _onMarkers.count - 1) {
+    if (_focusedOnMarkerIdx == (int)_onMarkers.count - 1) {
         _focusedOnMarkerIdx = 0;
     } else {
         _focusedOnMarkerIdx += 1;
@@ -318,9 +321,10 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     self.nextFloatButton.hidden = NO;
     self.prevFloatButton.hidden = NO;
 }
+/* called when user clicks on left arrow */
 - (IBAction)showPrevMarkerInSequence:(id)sender {
     if (_focusedOnMarkerIdx == 0) {
-        _focusedOnMarkerIdx = (int) self.markers.count - 1;
+        _focusedOnMarkerIdx = (int)_onMarkers.count - 1;
    } else {
        _focusedOnMarkerIdx -= 1;
    }

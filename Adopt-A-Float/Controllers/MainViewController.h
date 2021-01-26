@@ -37,11 +37,8 @@
     @property (assign) int markerNumber;
     @property (strong) NSMutableArray<GMSMarker *> *onMarkers;
     @property (strong) NSArray *colors;
-    @property (assign) int polylineStrokeWidth;
     @property (strong) NSArray<NSString *> *instrumentNames;
     @property (weak) IBOutlet GMSMapView *appMapView;
-    @property (assign) int currentFloatIndex;
-    @property (assign) int currentMarkerNumberIndex;
     @property (strong) GMSMapView *mapView;
     @property (strong) CLLocationManager *locationManager;
 @end
