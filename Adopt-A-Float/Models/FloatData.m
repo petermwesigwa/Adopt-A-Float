@@ -143,17 +143,20 @@ NSString *rawDataFour = @"obs4 13-Dec-2020 15:17:46 1.457550 -147.210900 0.700 1
     return fabs(time1 - time2) / 3600.0;
 }
 
-- (void) updateWithGebcoDepth {
+
+
++ (double) retrieveGebcoDepth:(FloatData *)dataPoint {
     // request object to query GEBCO server
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    __block double gebcoDepth;
     
     /*  Essentially we have to create a square around the point within which to
         find a depth */
     double boxRadius = 1.0/60.0/2.00; // weird syntax but this is what works
-    double bottom = [_gpsLat doubleValue] - boxRadius;
-    double left = [_gpsLon doubleValue] - boxRadius;
-    double top = [_gpsLat doubleValue] + boxRadius;
-    double right = [_gpsLon doubleValue] + boxRadius;
+    double bottom = [dataPoint.gpsLat doubleValue] - boxRadius;
+    double left = [dataPoint.gpsLon doubleValue] - boxRadius;
+    double top = [dataPoint.gpsLat doubleValue] + boxRadius;
+    double right = [dataPoint.gpsLon doubleValue] + boxRadius;
     
     // more vars for creating the box. Again determined through experimentation
     int pxw = 5, pxh = 5, pxx = 2, pxy = 2;
@@ -169,12 +172,12 @@ NSString *rawDataFour = @"obs4 13-Dec-2020 15:17:46 1.457550 -147.210900 0.700 1
         if (error == nil) {
             NSArray<NSString *> *fields = [result componentsSeparatedByString:@"\'"];
             if (fields.count > 7) {
-                self.gebcoDepth = [fields[7] doubleValue];
+                gebcoDepth = [fields[7] doubleValue];
             }
         }
     }] resume];
     
-    
+    return gebcoDepth;
 }
 
 // remove any extra zeroes from float name (eg P0034 to P034)

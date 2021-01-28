@@ -13,9 +13,8 @@
 @implementation mapIconView
 
 - (void)provideFloatData:(FloatData *)data {
-    [data updateWithGebcoDepth];
+    double gebcoDepth = [FloatData retrieveGebcoDepth:data];
     
-
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"d MMM yyyy HH:mm:ss"];
     
@@ -34,7 +33,7 @@
     self.totalDist.text = [NSString stringWithFormat:@"%.3f km",data.totalDistance];
     self.totalTime.text = [NSString stringWithFormat:@"%.3f h",data.totalTime];
     self.avgSpeed.text = [NSString stringWithFormat:@"%.3f km/h",data.avgSpeed];
-    self.WMSDepth.text = [NSString stringWithFormat:@"%.1f m", data.gebcoDepth];
+    self.WMSDepth.text = [NSString stringWithFormat:@"%.1f m", gebcoDepth];
 
 }
 
