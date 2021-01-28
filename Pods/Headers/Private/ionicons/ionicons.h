@@ -1,1 +1,0 @@
-../../../ionicons/ionicons/ionicons.h

@@ -27,6 +27,7 @@
 		D03C3755258E8D1700004071 /* untitled.png in Resources */ = {isa = PBXBuildFile; fileRef = D03C3754258E8D1700004071 /* untitled.png */; };
 		D03C3757258E8F4200004071 /* mermaid_info_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = D03C3756258E8F4200004071 /* mermaid_info_bubble.png */; };
 		D03C3759258EA33500004071 /* mermaidInfoBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = D03C3758258EA33400004071 /* mermaidInfoBubble.png */; };
+		D04E24DD25C0CA44009F5997 /* SelectFloatScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = D04E24DC25C0CA44009F5997 /* SelectFloatScreen.m */; };
 		D055B9352313DD38006CD40D /* SelectFloatTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D055B9342313DD38006CD40D /* SelectFloatTableViewController.m */; };
 		D055B93823141F1C006CD40D /* SelectMarkerNumberViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D055B93723141F1C006CD40D /* SelectMarkerNumberViewController.m */; };
 		D055B93B231422A4006CD40D /* OptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D055B93A231422A4006CD40D /* OptionsViewController.m */; };
@@ -35,6 +36,7 @@
 		D05E012F22CBD4FA00A55488 /* private.plist in Resources */ = {isa = PBXBuildFile; fileRef = D05E012E22CBD4FA00A55488 /* private.plist */; };
 		D09D817D25475FB600F7A465 /* SelectMapTypeScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = D09D817C25475FB600F7A465 /* SelectMapTypeScreen.m */; };
 		D09F915725A8E644007BDAB9 /* LegendScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = D09F915625A8E644007BDAB9 /* LegendScreen.m */; };
+		D0D87B5825C360C100DD39F4 /* SelectFloatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D87B5725C360C100DD39F4 /* SelectFloatViewController.swift */; };
 		D0F24A2825B73BB500E52901 /* Adopt_A_FloatUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F24A2725B73BB500E52901 /* Adopt_A_FloatUITests.m */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +92,8 @@
 		D03C3754258E8D1700004071 /* untitled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = untitled.png; sourceTree = "<group>"; };
 		D03C3756258E8F4200004071 /* mermaid_info_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mermaid_info_bubble.png; sourceTree = "<group>"; };
 		D03C3758258EA33400004071 /* mermaidInfoBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mermaidInfoBubble.png; sourceTree = "<group>"; };
+		D04E24DB25C0CA44009F5997 /* SelectFloatScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectFloatScreen.h; sourceTree = "<group>"; };
+		D04E24DC25C0CA44009F5997 /* SelectFloatScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectFloatScreen.m; sourceTree = "<group>"; };
 		D055B9332313DD38006CD40D /* SelectFloatTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectFloatTableViewController.h; sourceTree = "<group>"; };
 		D055B9342313DD38006CD40D /* SelectFloatTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectFloatTableViewController.m; sourceTree = "<group>"; };
 		D055B93623141F1C006CD40D /* SelectMarkerNumberViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectMarkerNumberViewController.h; sourceTree = "<group>"; };
@@ -104,6 +108,8 @@
 		D09D817C25475FB600F7A465 /* SelectMapTypeScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectMapTypeScreen.m; sourceTree = "<group>"; };
 		D09F915525A8E644007BDAB9 /* LegendScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LegendScreen.h; sourceTree = "<group>"; };
 		D09F915625A8E644007BDAB9 /* LegendScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LegendScreen.m; sourceTree = "<group>"; };
+		D0D87B5425C35FB600DD39F4 /* Adopt-A-Float-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Adopt-A-Float-Bridging-Header.h"; sourceTree = "<group>"; };
+		D0D87B5725C360C100DD39F4 /* SelectFloatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFloatViewController.swift; sourceTree = "<group>"; };
 		D0F24A2525B73BB500E52901 /* Adopt-A-FloatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Adopt-A-FloatUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0F24A2725B73BB500E52901 /* Adopt_A_FloatUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Adopt_A_FloatUITests.m; sourceTree = "<group>"; };
 		D0F24A2925B73BB500E52901 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -182,6 +188,7 @@
 				D03C37502586F33700004071 /* speech-25909_1280.png */,
 				AD720519202F553100F55BD7 /* AppDelegate.h */,
 				AD72051A202F553100F55BD7 /* AppDelegate.m */,
+				D0D87B5425C35FB600DD39F4 /* Adopt-A-Float-Bridging-Header.h */,
 				AD72054D202F5D9F00F55BD7 /* Models */,
 				AD72054C202F5D9100F55BD7 /* Views */,
 				AD72054E202F5DBD00F55BD7 /* Controllers */,
@@ -245,6 +252,9 @@
 				D09D817C25475FB600F7A465 /* SelectMapTypeScreen.m */,
 				D09F915525A8E644007BDAB9 /* LegendScreen.h */,
 				D09F915625A8E644007BDAB9 /* LegendScreen.m */,
+				D04E24DB25C0CA44009F5997 /* SelectFloatScreen.h */,
+				D04E24DC25C0CA44009F5997 /* SelectFloatScreen.m */,
+				D0D87B5725C360C100DD39F4 /* SelectFloatViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -337,6 +347,7 @@
 				TargetAttributes = {
 					AD720515202F553100F55BD7 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1160;
 						ProvisioningStyle = Automatic;
 					};
 					AD72052D202F553100F55BD7 = {
@@ -477,6 +488,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D04E24DD25C0CA44009F5997 /* SelectFloatScreen.m in Sources */,
 				D055B9352313DD38006CD40D /* SelectFloatTableViewController.m in Sources */,
 				D09D817D25475FB600F7A465 /* SelectMapTypeScreen.m in Sources */,
 				AD720529202F553100F55BD7 /* main.m in Sources */,
@@ -486,6 +498,7 @@
 				AD720544202F58D900F55BD7 /* DataUtility.m in Sources */,
 				AD72051B202F553100F55BD7 /* AppDelegate.m in Sources */,
 				D030C8A124FC30D0009E279F /* AppState.m in Sources */,
+				D0D87B5825C360C100DD39F4 /* SelectFloatViewController.swift in Sources */,
 				D0571DAD22EF7BA800D88E1D /* mapIconView.m in Sources */,
 				D055B93B231422A4006CD40D /* OptionsViewController.m in Sources */,
 				D055B93823141F1C006CD40D /* SelectMarkerNumberViewController.m in Sources */,
@@ -657,17 +670,21 @@
 			baseConfigurationReference = 7E65C46C84E9F40C51C47920 /* Pods-Adopt-A-Float.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SHB7FM7N96;
 				INFOPLIST_FILE = "Adopt-A-Float/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "frederik.Adopt-A-Float";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Adopt-A-Float/Adopt-A-Float-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -677,17 +694,20 @@
 			baseConfigurationReference = 6D1C5C91A0607AA852A53BE7 /* Pods-Adopt-A-Float.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = SHB7FM7N96;
 				INFOPLIST_FILE = "Adopt-A-Float/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.2;
+				MARKETING_VERSION = 2.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "frederik.Adopt-A-Float";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Adopt-A-Float/Adopt-A-Float-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -696,6 +716,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F93EFF74D5BA283451D8FF7D /* Pods-Adopt-A-FloatTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SHB7FM7N96;
@@ -712,6 +733,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6885A0C0D9B83595BE40C048 /* Pods-Adopt-A-FloatTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SHB7FM7N96;
@@ -727,6 +749,7 @@
 		D0F24A2C25B73BB500E52901 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SHB7FM7N96;
@@ -745,6 +768,7 @@
 		D0F24A2D25B73BB500E52901 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SHB7FM7N96;

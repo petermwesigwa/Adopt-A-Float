@@ -7,6 +7,9 @@
 //
 
 #import "AppState.h"
+@interface AppState ()
+    
+@end
 
 @implementation AppState
  

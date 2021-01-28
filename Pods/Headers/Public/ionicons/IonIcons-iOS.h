@@ -1,1 +1,0 @@
-../../../ionicons/ionicons/IonIcons-iOS.h
