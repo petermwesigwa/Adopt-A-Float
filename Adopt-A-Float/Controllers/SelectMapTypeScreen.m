@@ -20,6 +20,7 @@ extern NSMutableDictionary<NSNumber *, NSString *> *mapTypes;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
