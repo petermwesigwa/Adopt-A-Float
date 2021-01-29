@@ -300,7 +300,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="gPD-j0-uYi" kind="unwind" unwindAction="changeMapType:" id="JDO-AU-Cfr"/>
+                                    <segue destination="gPD-j0-uYi" kind="unwind" unwindAction="unwindToOptions:" id="DzS-nd-dLr"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

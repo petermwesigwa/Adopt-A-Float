@@ -31,9 +31,6 @@ extern NSMutableDictionary<NSNumber *, NSString *> *mapTypes;;
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-#pragma mark - Table view data source
-
-
 /*
  Initalize all the labels whenever the screen is rendered
  */
@@ -60,5 +57,11 @@ extern NSMutableDictionary<NSNumber *, NSString *> *mapTypes;;
     NSNumber *intVal = [NSNumber numberWithInt:(int)mapType];
     NSString *label = [mapTypes objectForKey:intVal];
     return label;
+}
+
+#pragma mark Unwind Segues
+
+- (IBAction)unwindToOptions:(UIStoryboardSegue *)unwindSegue {
+   // no need to do anything here
 }
 @end

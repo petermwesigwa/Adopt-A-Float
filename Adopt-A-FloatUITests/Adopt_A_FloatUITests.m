@@ -93,6 +93,25 @@
     XCUIApplication *app = [[XCUIApplication alloc] init];
     [app launch];
     
+    XCUIElement *lineHorizontal3Button = app/*@START_MENU_TOKEN@*/.buttons[@"line.horizontal.3"]/*[[".otherElements[@\"MapView\"].buttons[@\"line.horizontal.3\"]",".buttons[@\"line.horizontal.3\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/;
+    [lineHorizontal3Button tap];
+    
+    XCUIElementQuery *tablesQuery = app.tables;
+    XCUIElement *satelliteWithLabelsStaticText = tablesQuery/*@START_MENU_TOKEN@*/.staticTexts[@"Satellite with labels"]/*[[".cells.staticTexts[@\"Satellite with labels\"]",".staticTexts[@\"Satellite with labels\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/;
+    [satelliteWithLabelsStaticText tap];
+    
+    XCUIElement *terrainStaticText = tablesQuery/*@START_MENU_TOKEN@*/.staticTexts[@"Terrain"]/*[[".cells.staticTexts[@\"Terrain\"]",".staticTexts[@\"Terrain\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/;
+    [terrainStaticText tap];
+    
+    XCUIElement *backToMapButton = app.navigationBars[@"Options"].buttons[@"Back to Map"];
+    [backToMapButton tap];
+    [lineHorizontal3Button tap];
+    
+    [terrainStaticText tap];
+    [satelliteWithLabelsStaticText tap];
+    [backToMapButton tap];
+    
+        
 }
 
 - (void) testLocationFeature {
