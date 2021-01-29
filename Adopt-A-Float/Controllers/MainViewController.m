@@ -302,10 +302,30 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
 }
 /* Called when user clicks on the zoomToUser button */
 - (IBAction)userFocus:(id)sender {
-    if (self.appMapView.myLocation) {
-        [_appMapView setSelectedMarker:nil];
-        GMSCameraUpdate *update = [GMSCameraUpdate setTarget:self.appMapView.myLocation.coordinate zoom:12];
-        [self.appMapView animateWithCameraUpdate:update];
+    switch ([CLLocationManager authorizationStatus]) {
+        case kCLAuthorizationStatusDenied:
+        case kCLAuthorizationStatusRestricted:
+        {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Location Permissions Denied" message:@"Enable in Settings -> Privacy -> Location"  preferredStyle:UIAlertControllerStyleAlert];
+               
+            UIAlertAction * alertButton = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                   [self.locationManager requestWhenInUseAuthorization];
+               }];
+               
+            [alert addAction:alertButton];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+            break;
+        case kCLAuthorizationStatusNotDetermined:
+            [self.locationManager requestWhenInUseAuthorization];
+            break;
+        default:
+            if (self.appMapView.myLocation) {
+                [_appMapView setSelectedMarker:nil];
+                GMSCameraUpdate *update = [GMSCameraUpdate setTarget:self.appMapView.myLocation.coordinate zoom:12];
+                [self.appMapView animateWithCameraUpdate:update];
+            }
+            break;
     }
 }
 /* Called when user clicks on right arrow*/
@@ -355,17 +375,35 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
  
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-    
-    UIAlertController *locationAlert = [UIAlertController alertControllerWithTitle:@"Location Error " message:error.localizedDescription  preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction *allowLocation = [UIAlertAction actionWithTitle:@"Try again" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
-        [self.locationManager requestWhenInUseAuthorization];
-    }];
-    UIAlertAction *denyLocation = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action){}];
-    
-    [locationAlert addAction:allowLocation];
-    [locationAlert addAction:denyLocation];
-    [self presentViewController:locationAlert animated:YES completion:nil];
+    switch ([CLLocationManager authorizationStatus]) {
+        case kCLAuthorizationStatusRestricted:
+        case kCLAuthorizationStatusDenied:
+            {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Location Permissions Denied" message:@"Enable in Settings -> Privacy -> Location"  preferredStyle:UIAlertControllerStyleAlert];
+                
+                UIAlertAction * alertButton = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                    [self.locationManager requestWhenInUseAuthorization];
+                }];
+                
+                [alert addAction:alertButton];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+            break;
+        case kCLAuthorizationStatusNotDetermined:
+            [_locationManager requestWhenInUseAuthorization];
+        default:
+        {
+            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Location Error " message:error.localizedDescription  preferredStyle:UIAlertControllerStyleAlert];
+            
+            UIAlertAction * alertButton = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action){
+                [self.locationManager requestWhenInUseAuthorization];
+            }];
+            
+            [alert addAction:alertButton];
+            [self presentViewController:alert animated:YES completion:nil];
+        }
+            break;
+    }
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {

@@ -314,7 +314,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EC7-Ou-Stt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="gPD-j0-uYi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="74" y="2705"/>
+            <point key="canvasLocation" x="1164" y="2701"/>
         </scene>
         <!--Options-->
         <scene sceneID="s4Q-jk-Qrp">
@@ -379,55 +379,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2sZ-ZB-LLb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="pRa-Wf-kVy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="75" y="1961"/>
-        </scene>
-        <!--History-->
-        <scene sceneID="aG5-p1-Ido">
-            <objects>
-                <tableViewController id="poa-Yi-JDN" customClass="SelectMarkerNumberViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="gdW-Oy-MNg">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HistoryCell" textLabel="Joo-ar-mOt" style="IBUITableViewCellStyleDefault" id="okv-06-d7H">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="okv-06-d7H" id="x84-ZI-lxl">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Joo-ar-mOt">
-                                            <rect key="frame" x="20" y="0.0" width="374" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="vRE-B3-ctq" kind="unwind" unwindAction="changeMarkerNumber:" id="GAk-qA-KOx"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="poa-Yi-JDN" id="xMT-MW-f9u"/>
-                            <outlet property="delegate" destination="poa-Yi-JDN" id="Zqc-pz-0p3"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="History" id="ZxL-np-5uX">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="3Bk-de-z0v">
-                            <connections>
-                                <segue destination="vRE-B3-ctq" kind="unwind" unwindAction="discardChanges:" id="Vg0-sZ-yYQ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OVG-fh-Ef5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="vRE-B3-ctq" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="-299" y="581"/>
+            <point key="canvasLocation" x="1164" y="1966"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="a8Z-7i-HiA">
@@ -542,7 +494,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u71-sm-mle" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="czM-6K-cLH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2049.275362318841" y="1925.8928571428571"/>
+            <point key="canvasLocation" x="2083" y="1943"/>
         </scene>
     </scenes>
     <resources>

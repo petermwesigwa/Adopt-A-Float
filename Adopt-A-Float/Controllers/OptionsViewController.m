@@ -7,8 +7,6 @@
 //
 
 #import "OptionsViewController.h"
-#import "SelectFloatTableViewController.h"
-#import "SelectMarkerNumberViewController.h"
 
 @interface OptionsViewController ()
 
@@ -38,17 +36,6 @@ extern NSMutableDictionary<NSNumber *, NSString *> *mapTypes;;
 // Prepare for segue into either the Select Instrumment Screen or seleec
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // segueing into Select Float Name screen
-    if ([segue.identifier isEqualToString:@"SelectCurrentInstrument"]) {
-        SelectFloatTableViewController * destination = segue.destinationViewController;
-        destination.instruments = _instruments;
-        destination.selectedFloat = _currentInstrument;
-        destination.selectedFloatIndex = _currentFloatNameIndex;
-    }
-    // segueing into select history number screen
-    else if ([segue.identifier isEqualToString:@"SelectHistory"]) {
-        SelectMarkerNumberViewController *dest = segue.destinationViewController;
-        dest.selectedMarkerNumberIndex = self.currentMarkerNumberIndex;
-    }
 }
 
 /*
