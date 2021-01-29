@@ -17,31 +17,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OptionsViewController : UITableViewController
 
-// name of the current istrument on display (eg 'P007') or 'All' if all instruments being shown
-@property (strong) NSString *currentInstrument;
-
-// names of all the instruments
-@property (strong) NSMutableArray<NSString*>* instruments;
-
-// keeps track of which float is being displayed
-@property (assign) int currentFloatNameIndex;
-
-// keep track of the currently selected marker number option
-@property (assign) int currentMarkerNumberIndex;
-
-// currently selected number of markers to display
-@property (assign) int markerNumber;
-
-// display element showing the name of the current instrument displayed (or 'All' if all instruments shown
-@property (weak, nonatomic) IBOutlet UILabel *currentInstrumentLabel;
-
-// display element showing current number of past data points being displayed
-
-@property (weak, nonatomic) IBOutlet UILabel *markerNumberLabel;
-
+/* shows map type used in the MainViewController GMSMapView. */
 @property (weak, nonatomic) IBOutlet UILabel *mapTypeLabel;
 
-@property (weak, nonatomic) IBOutlet UISwitch *showPlaces;
+/* supposed to be an option to settle if the user wants their location shown or not */
+@property (weak, nonatomic) IBOutlet UISwitch *showPlaces; // currently deprecated
 
 
 @end

@@ -33,55 +33,18 @@ extern NSMutableDictionary<NSNumber *, NSString *> *mapTypes;;
 
 #pragma mark - Table view data source
 
-// Prepare for segue into either the Select Instrumment Screen or seleec
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // segueing into Select Float Name screen
-}
-
-/*
- All the unwind segues are currently empty. Might be able to condense them into one
- */
-
-- (IBAction)discardChanges:(UIStoryboardSegue*)unwindSegue {
-    
-}
-
-// change marker number with user selection from select marker number s
-- (IBAction)changeMarkerNumber: (UIStoryboardSegue*)unwindSegue {
-//    self.currentMarkerNumberIndex = appStateManager.selectedMarkerNumIndex;
-//    self.markerNumberLabel.text = [OptionsViewController labelForMarkerNumber:[appStateManager.markerNumbers objectAtIndex:appStateManager.selectedMarkerNumIndex]];
-}
-
-- (IBAction)changeMapType: (UIStoryboardSegue*) unwindSegue {
-//    GMSMapViewType type = [[appStateManager.mapViewTypes objectAtIndex:appStateManager.selectedMapViewIndex] intValue];
-//    self.mapTypeLabel.text = [OptionsViewController labelForMapViewType:type];
-}
-
-- (IBAction)changeFloatName:(UIStoryboardSegue*)unwindSegue {
-//    SelectFloatTableViewController *source = unwindSegue.sourceViewController;
-//    self.currentInstrument = source.selectedFloat;
-//    self.currentFloatNameIndex = source.selectedFloatIndex;
-//    self.currentInstrumentLabel.text = self.currentInstrument;
-}
-
-//----------------------------------------------------------------------------------
-
 
 /*
  Initalize all the labels whenever the screen is rendered
  */
 - (void) setup {
-    self.currentInstrument = appStateManager.selectedInstr;
-    self.currentInstrumentLabel.text = self.currentInstrument;
-    self.markerNumberLabel.text = [OptionsViewController labelForMarkerNumber:
-                                   [appStateManager.markerNumbers objectAtIndex:
-                                    appStateManager.selectedMarkerNumIndex]];
     self.mapTypeLabel.text = [OptionsViewController labelForMapViewType:
                               [[appStateManager.mapViewTypes objectAtIndex:
                                 appStateManager.selectedMapViewIndex] intValue]];
     self.showPlaces.on = NO;
 }
 
+// deprecated
 + (NSString *)labelForMarkerNumber: (NSNumber *)markerNo {
     if ([markerNo intValue] == INT_MAX) {
         return @"All";
@@ -92,6 +55,7 @@ extern NSMutableDictionary<NSNumber *, NSString *> *mapTypes;;
     return [NSString stringWithFormat:@"Past %d locations", [markerNo intValue]];
 }
 
+// String label used for mapViewType
 + (NSString *)labelForMapViewType: (GMSMapViewType)mapType {
     NSNumber *intVal = [NSNumber numberWithInt:(int)mapType];
     NSString *label = [mapTypes objectForKey:intVal];
