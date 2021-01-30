@@ -24,6 +24,7 @@ extern AppState *appStateManager;
     self.buttonView.layer.cornerRadius = 20;
     self.buttonView.layer.masksToBounds = YES;
     self.cancelButton.layer.cornerRadius = 20;
+    self.view.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     _instrNames = appStateManager.instrNames;
 }
 
