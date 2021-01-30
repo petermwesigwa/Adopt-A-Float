@@ -35,7 +35,9 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
 
     /* index to locate currently displayed marker in self.onMarkers, -1 if none selected */
     @property (assign) int focusedOnMarkerIdx;
-    @property (assign) BOOL isSwipingBetweenMarkers;
+
+    @property (strong) NSArray<NSString *> *organizationNames;
+    @property (strong) NSMutableDictionary<NSString *, NSNumber*> *legendFilter;
 @end
 
 @implementation MainViewController
@@ -45,12 +47,13 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     self.appMapView.mapType = [[appStateManager.mapViewTypes objectAtIndex:
     appStateManager.selectedMapViewIndex] intValue];
 }
-
+/* use this to hide navigation bar*/
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
 }
 
+/* needed to enable navigation bar on other screens */
 - (void) viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
@@ -58,12 +61,12 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //to make status bar white
-    [self setNeedsStatusBarAppearanceUpdate];
-    
+    self.legendTableView.delegate = self;
+    self.legendTableView.dataSource = self;
     self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     self.optionsButton.layer.cornerRadius = 22.5;
     self.legendButton.layer.cornerRadius = 22.5;
+    self.legendButton.layer.masksToBounds = YES;
     self.infoPanel.layer.cornerRadius = 20;
     self.titleButton.layer.cornerRadius = 20;
     self.zoomToUserButton.layer.cornerRadius = 27.5;
@@ -72,9 +75,11 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     self.infoPanel.layer.masksToBounds = YES;
     self.prevFloatButton.hidden = YES;
     self.nextFloatButton.hidden = YES;
-    self.focusedOnMarkerIdx = -1;
+    self.legendTableView.hidden = YES;
     
+    self.focusedOnMarkerIdx = -1;
     self.instrumentNames = [[instruments allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    self.organizationNames = [organizations allKeys];
     
     
     // Create markers and paths for all positions of all floats
@@ -83,7 +88,6 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     NSArray* instrumentNames = [instruments allKeys];
     int j = 0;
     for(NSString *name in instrumentNames) {
-        
         // make an array of markers and a path for each object
         NSMutableArray* markersForInstr = [[NSMutableArray alloc] init];
         Instrument* instr = [instruments objectForKey:name];
@@ -101,6 +105,10 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     // Show most recent marker for instrument by default
     self.defaultMarkerNumber = 1;
     self.markerNumber = self.defaultMarkerNumber;
+    self.legendFilter = [[NSMutableDictionary alloc] init];
+    for (NSString *org in self.organizationNames) {
+        self.legendFilter[org] = [NSNumber numberWithBool:YES];
+    }
     
     // set up location manager
     self.locationManager = [[CLLocationManager alloc] init];
@@ -108,7 +116,6 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     [self.locationManager requestWhenInUseAuthorization];
     self.locationManager.distanceFilter = 50;
-    [self.locationManager startUpdatingLocation];
     
     // mapview setup
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:10.0 longitude:0.0 zoom:1];
@@ -132,10 +139,11 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     
     if (self.curr) {
         [self instrumentSetup:self.curr];
+        
     } else {
         for (NSString *instrName in appStateManager.instrNames) {
             Instrument* ins = instruments[instrName];
-            if (![appStateManager.orgFilters objectForKey:[ins getInstitution]]) {
+            if (self.legendFilter[[ins getInstitution]]) {
                 [self instrumentSetup:ins];
             }
         }
@@ -259,8 +267,11 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     
     return iconView;
 }
-
+- (void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
+    self.legendTableView.hidden = YES;
+}
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
+    self.legendTableView.hidden = YES;
     self.focusedOnMarkerIdx = [self indexForOnMarker:marker];
     return NO;
 }
@@ -274,6 +285,14 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
 # pragma mark - Segues and Actions
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 }
+- (IBAction)toggleTableView:(id)sender {
+    [self.appMapView setSelectedMarker:nil];
+    if (_legendTableView.hidden) {
+        _legendTableView.hidden = NO;
+    } else {
+        _legendTableView.hidden = YES;
+    }
+}
 
 - (IBAction) backFromLegend:(UIStoryboardSegue *)unwindSegue {
     [self prepareInstrumentsForViewing];
@@ -284,14 +303,20 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
 }
 
 - (IBAction) changeDisplayedInstrument:(UIStoryboardSegue *)unwindSegue {
+    [self.legendFilter removeAllObjects];
     self.curr = [instruments objectForKey:appStateManager.selectedInstr];
     if (self.curr) {
         self.markerNumber = 30;
-        [appStateManager.orgFilters removeAllObjects];
+        self.legendTableView.allowsSelection = NO;
     } else {
         self.markerNumber = 1;
+        self.legendTableView.allowsSelection = YES;
+        for (NSString *org in _organizationNames) {
+            _legendFilter[org] = [NSNumber numberWithBool:YES];
+        }
     }
     [self prepareInstrumentsForViewing];
+    [self.legendTableView reloadData];
 }
 - (IBAction)discardChanges:(UIStoryboardSegue *)unwindSegue {
     // do nothing here
@@ -359,17 +384,15 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
 
 - (void) locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
     switch (status) {
-      case kCLAuthorizationStatusRestricted:
-        NSLog(@"Location access was restricted.");
-        break;
-      case kCLAuthorizationStatusDenied:
-        NSLog(@"User denied access to location.");
-      case kCLAuthorizationStatusNotDetermined:
-        NSLog(@"Location status not determined.");
-      case kCLAuthorizationStatusAuthorizedAlways:
-      case kCLAuthorizationStatusAuthorizedWhenInUse:
-        NSLog(@"Location status is OK.");
-        self.appMapView.myLocationEnabled = YES;
+        case kCLAuthorizationStatusRestricted:
+        case kCLAuthorizationStatusDenied:
+        case kCLAuthorizationStatusNotDetermined:
+            [manager stopUpdatingLocation];
+        case kCLAuthorizationStatusAuthorizedAlways:
+        case kCLAuthorizationStatusAuthorizedWhenInUse:
+            NSLog(@"Location status is OK.");
+            [manager startUpdatingLocation];
+            self.appMapView.myLocationEnabled = YES;
     }
 }
  
@@ -407,6 +430,46 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
 }
 
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+}
+
+
+#pragma mark UITableViewDataSource
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return _organizationNames.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LegendCell"];
+    NSString *orgName = _organizationNames[(int) indexPath.row];
+    cell.textLabel.text = orgName;
+    cell.imageView.image = [GMSMarker markerImageWithColor:organizations[orgName]];
+    if (_legendFilter[orgName]) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    return cell;
+}
+
+#pragma mark UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    NSString *orgName = cell.textLabel.text;
+    if (_legendFilter[orgName]) {
+        [_legendFilter removeObjectForKey:orgName];
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    } else {
+        [_legendFilter setValue:[NSNumber numberWithBool:YES] forKey:orgName];
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    [self prepareInstrumentsForViewing];
 }
 @end
 

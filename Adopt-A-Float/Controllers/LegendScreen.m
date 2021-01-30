@@ -63,8 +63,6 @@ extern NSMutableDictionary<NSString *, UIColor *> *organizations;
 
 #pragma mark - UITableViewDelegate
 
-
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     NSString *orgName = cell.textLabel.text;

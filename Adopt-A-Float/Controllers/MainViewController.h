@@ -16,7 +16,7 @@
 #import "mapIconView.h"
 
 
-@interface MainViewController : UIViewController<CLLocationManagerDelegate,GMSMapViewDelegate>
+@interface MainViewController : UIViewController<CLLocationManagerDelegate,GMSMapViewDelegate, UITableViewDelegate, UITableViewDataSource>
     // THis is a dictionarny
     @property (strong) NSMutableDictionary *markers;
     @property (strong) NSMutableDictionary *mutablePaths;
@@ -30,6 +30,7 @@
     @property (weak, nonatomic) IBOutlet UIButton *zoomToUserButton;
     @property (weak, nonatomic) IBOutlet UIButton *nextFloatButton;
     @property (weak, nonatomic) IBOutlet UIButton *prevFloatButton;
+    @property (weak, nonatomic) IBOutlet UITableView *legendTableView;
 
 
     @property (weak, nonatomic) IBOutlet UIButton *zoomToMarkersButton;
