@@ -32,7 +32,6 @@
 		D0571DAD22EF7BA800D88E1D /* mapIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0571DAC22EF7BA800D88E1D /* mapIconView.m */; };
 		D05E012F22CBD4FA00A55488 /* private.plist in Resources */ = {isa = PBXBuildFile; fileRef = D05E012E22CBD4FA00A55488 /* private.plist */; };
 		D09D817D25475FB600F7A465 /* SelectMapTypeScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = D09D817C25475FB600F7A465 /* SelectMapTypeScreen.m */; };
-		D09F915725A8E644007BDAB9 /* LegendScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = D09F915625A8E644007BDAB9 /* LegendScreen.m */; };
 		D0D87B6525C3C6D500DD39F4 /* SelectFloatScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D87B6425C3C6D500DD39F4 /* SelectFloatScreen.m */; };
 		D0F24A2825B73BB500E52901 /* Adopt_A_FloatUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F24A2725B73BB500E52901 /* Adopt_A_FloatUITests.m */; };
 /* End PBXBuildFile section */
@@ -97,8 +96,6 @@
 		D05E012E22CBD4FA00A55488 /* private.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = private.plist; sourceTree = "<group>"; };
 		D09D817B25475FB600F7A465 /* SelectMapTypeScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectMapTypeScreen.h; sourceTree = "<group>"; };
 		D09D817C25475FB600F7A465 /* SelectMapTypeScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectMapTypeScreen.m; sourceTree = "<group>"; };
-		D09F915525A8E644007BDAB9 /* LegendScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LegendScreen.h; sourceTree = "<group>"; };
-		D09F915625A8E644007BDAB9 /* LegendScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LegendScreen.m; sourceTree = "<group>"; };
 		D0D87B6425C3C6D500DD39F4 /* SelectFloatScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectFloatScreen.m; sourceTree = "<group>"; };
 		D0D87B6625C3C6E100DD39F4 /* SelectFloatScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectFloatScreen.h; sourceTree = "<group>"; };
 		D0F24A2525B73BB500E52901 /* Adopt-A-FloatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Adopt-A-FloatUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -238,8 +235,6 @@
 				D055B93A231422A4006CD40D /* OptionsViewController.m */,
 				D09D817B25475FB600F7A465 /* SelectMapTypeScreen.h */,
 				D09D817C25475FB600F7A465 /* SelectMapTypeScreen.m */,
-				D09F915525A8E644007BDAB9 /* LegendScreen.h */,
-				D09F915625A8E644007BDAB9 /* LegendScreen.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -477,7 +472,6 @@
 				AD720529202F553100F55BD7 /* main.m in Sources */,
 				AD72054B202F5D2900F55BD7 /* MainViewController.m in Sources */,
 				AD720545202F58D900F55BD7 /* Instrument.m in Sources */,
-				D09F915725A8E644007BDAB9 /* LegendScreen.m in Sources */,
 				AD720544202F58D900F55BD7 /* DataUtility.m in Sources */,
 				AD72051B202F553100F55BD7 /* AppDelegate.m in Sources */,
 				D030C8A124FC30D0009E279F /* AppState.m in Sources */,
@@ -653,7 +647,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = SHB7FM7N96;
 				INFOPLIST_FILE = "Adopt-A-Float/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
@@ -673,7 +667,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = SHB7FM7N96;
 				INFOPLIST_FILE = "Adopt-A-Float/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;

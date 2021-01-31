@@ -76,6 +76,7 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     self.prevFloatButton.hidden = YES;
     self.nextFloatButton.hidden = YES;
     self.legendTableView.hidden = YES;
+    self.legendTableView.layer.cornerRadius = 7.5;
     
     self.focusedOnMarkerIdx = -1;
     self.instrumentNames = [[instruments allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];

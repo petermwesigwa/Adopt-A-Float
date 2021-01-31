@@ -13,19 +13,15 @@
 -(id)initWithInstruments:(NSMutableDictionary<NSString *, Instrument*> *)instruments {
     self = [super init];
     if (self) {
-        _instrNames = [[NSMutableArray alloc] initWithObjects:@"All", nil];
-        [_instrNames addObjectsFromArray:[[instruments allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)]];
-        _markerNumbers = @[@1, @5, @10, @20, @INT_MAX];;
+        _instrNames = [[instruments allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
         _selectedInstr = @"All";
-        _selectedInstrIndex = 0;
-        _selectedMarkerNumIndex = 0;
+        _selectedInstrIndex = -1;
         _mapViewTypes = [NSArray arrayWithObjects:
             [NSNumber numberWithInt:kGMSTypeHybrid],
             [NSNumber numberWithInt:kGMSTypeSatellite],
             [NSNumber numberWithInt:kGMSTypeNormal],
             [NSNumber numberWithInt:kGMSTypeTerrain],nil];
         _selectedMapViewIndex = 0;
-        _orgFilters = [[NSMutableDictionary alloc] init];
     }
     return self;
 }

@@ -80,5 +80,12 @@ NSMutableDictionary<NSNumber *, NSString *> *mapTypes;
     return YES;
 }
 
+#pragma mark - Core Data stack
+
+
+
+#pragma mark - Core Data Saving support
+
+
 
 @end

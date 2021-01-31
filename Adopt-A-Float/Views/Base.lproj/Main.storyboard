@@ -123,12 +123,12 @@
                                     <action selector="markerFocus:" destination="bSR-U5-Ig6" eventType="touchUpInside" id="gFZ-W4-Nj8"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kNK-bS-SR4">
-                                <rect key="frame" x="35" y="527" width="200" height="250"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kNK-bS-SR4">
+                                <rect key="frame" x="35" y="547" width="200" height="230"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="SdN-Sx-tJ9"/>
-                                    <constraint firstAttribute="height" constant="250" id="sJ4-gj-mcY"/>
+                                    <constraint firstAttribute="height" constant="230" id="sJ4-gj-mcY"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LegendCell" textLabel="QeB-Hx-XeC" rowHeight="35" style="IBUITableViewCellStyleDefault" id="1Lc-Lh-E5H">
@@ -502,12 +502,30 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="rc7-EY-ce8"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tv6-v3-VYR">
+                                <rect key="frame" x="212" y="59" width="90" height="45"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="00o-TU-mJt"/>
+                                    <constraint firstAttribute="height" constant="45" id="lnI-ws-ub9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Select All">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="displayAll:" destination="dix-ve-GOn" eventType="touchUpInside" id="MlT-Jl-9GH"/>
+                                    <segue destination="czM-6K-cLH" kind="unwind" unwindAction="changeDisplayedInstrument:" id="hBh-0p-sxx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.40069322183098594" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Tv6-v3-VYR" firstAttribute="top" secondItem="xbk-H8-IzF" secondAttribute="bottom" constant="15" id="8gf-8K-rHq"/>
                             <constraint firstItem="HK0-BD-G41" firstAttribute="leading" secondItem="zD0-7r-R3j" secondAttribute="leading" id="8xe-eI-YiK"/>
                             <constraint firstItem="zD0-7r-R3j" firstAttribute="leading" secondItem="GkD-i1-beT" secondAttribute="leadingMargin" constant="60" id="Jkh-Pr-ABY"/>
                             <constraint firstItem="zD0-7r-R3j" firstAttribute="top" secondItem="xbk-H8-IzF" secondAttribute="bottom" constant="15" id="VSa-HC-3TZ"/>
+                            <constraint firstItem="Tv6-v3-VYR" firstAttribute="leading" secondItem="zD0-7r-R3j" secondAttribute="trailing" constant="5" id="cPi-07-dIA"/>
                             <constraint firstItem="HK0-BD-G41" firstAttribute="top" secondItem="zD0-7r-R3j" secondAttribute="bottom" constant="20" id="cT6-0d-eue"/>
                         </constraints>
                     </view>
@@ -519,13 +537,14 @@
                     <connections>
                         <outlet property="buttonView" destination="zD0-7r-R3j" id="neD-84-G4T"/>
                         <outlet property="cancelButton" destination="A47-Qa-2g4" id="JZU-p2-dci"/>
+                        <outlet property="selectAllButton" destination="Tv6-v3-VYR" id="pA6-Zo-Eic"/>
                         <outlet property="table" destination="HK0-BD-G41" id="ZnH-pT-GeE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u71-sm-mle" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="czM-6K-cLH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2083" y="1943"/>
+            <point key="canvasLocation" x="2082.608695652174" y="1942.6339285714284"/>
         </scene>
     </scenes>
     <resources>

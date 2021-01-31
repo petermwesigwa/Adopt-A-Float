@@ -57,6 +57,9 @@
     [app.tables.staticTexts[@"P037"] tap];
     XCTAssertTrue(!app.buttons[@"P016"].exists);
     XCTAssertTrue(app.buttons[@"P037"].exists);
+    [app.buttons[@"P037"] tap];
+    [app.buttons[@"Select All"] tap];
+    XCTAssertTrue(app.buttons[@"All"].exists);
     
 }
 

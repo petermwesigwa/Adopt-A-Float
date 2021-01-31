@@ -14,14 +14,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AppState : NSObject
-    // Options available are the past 1, 5, 10 and 20 locations
-    @property (strong) NSArray<NSNumber *> *markerNumbers;
-
-    // keep track of currently selected option
-    @property (assign) int selectedMarkerNumIndex;
-
     // lost of all the instrument names
-    @property (strong) NSMutableArray<NSString *> *instrNames;
+    @property (strong) NSArray<NSString *> *instrNames;
 
     // name of the currently selected instrument
     @property (strong) NSString *selectedInstr;
@@ -32,9 +26,6 @@ NS_ASSUME_NONNULL_BEGIN
     @property (strong) NSArray<NSNumber *> *mapViewTypes;
 
     @property (assign) int selectedMapViewIndex;
-
-    @property (strong) NSMutableDictionary<NSString *, NSNumber*> *orgFilters;
-
     
 
 

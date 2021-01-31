@@ -24,13 +24,16 @@ extern AppState *appStateManager;
     self.buttonView.layer.cornerRadius = 20;
     self.buttonView.layer.masksToBounds = YES;
     self.cancelButton.layer.cornerRadius = 20;
+    self.selectAllButton.layer.cornerRadius = 20;
     self.view.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     _instrNames = appStateManager.instrNames;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSIndexPath *selectedRow = [NSIndexPath indexPathForRow:appStateManager.selectedInstrIndex inSection:0];
-    [self.table selectRowAtIndexPath:selectedRow animated:animated scrollPosition:UITableViewScrollPositionMiddle];
+    if (appStateManager.selectedInstrIndex >= 0) {
+        NSIndexPath *selectedRow = [NSIndexPath indexPathForRow:appStateManager.selectedInstrIndex inSection:0];
+        [self.table selectRowAtIndexPath:selectedRow animated:animated scrollPosition:UITableViewScrollPositionMiddle];
+    }
 }
 
 #pragma mark UITableViewDataSource
@@ -67,6 +70,16 @@ extern AppState *appStateManager;
     return indexPath;
 }
 
+- (IBAction)displayAll:(id)sender {
+    NSIndexPath *selectedRow = [self.table indexPathForSelectedRow];
+    if (selectedRow) {
+        UITableViewCell *selectedCell = [self.table cellForRowAtIndexPath:selectedRow];
+        [self.table deselectRowAtIndexPath:selectedRow animated:YES];
+        selectedCell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    appStateManager.selectedInstrIndex = -1;
+    appStateManager.selectedInstr = @"All";
+}
 
 
 @end

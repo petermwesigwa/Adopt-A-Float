@@ -11,11 +11,11 @@
 #import "Instrument.h"
 #import "DataUtility.h"
 #import "AppState.h"
+#import <CoreData/CoreData.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
 
 @end
 
