@@ -33,6 +33,9 @@
 		D05E012F22CBD4FA00A55488 /* private.plist in Resources */ = {isa = PBXBuildFile; fileRef = D05E012E22CBD4FA00A55488 /* private.plist */; };
 		D09D817D25475FB600F7A465 /* SelectMapTypeScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = D09D817C25475FB600F7A465 /* SelectMapTypeScreen.m */; };
 		D0D87B6525C3C6D500DD39F4 /* SelectFloatScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D87B6425C3C6D500DD39F4 /* SelectFloatScreen.m */; };
+		D0D87BAC25C74CD600DD39F4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D87BAB25C74CD600DD39F4 /* CoreData.framework */; };
+		D0D87BAF25C759DC00DD39F4 /* Adopt-A-Float.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0D87BAD25C759DC00DD39F4 /* Adopt-A-Float.xcdatamodeld */; };
+		D0D87BB225C75A8100DD39F4 /* DataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D87BB125C75A8100DD39F4 /* DataPoint.m */; };
 		D0F24A2825B73BB500E52901 /* Adopt_A_FloatUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F24A2725B73BB500E52901 /* Adopt_A_FloatUITests.m */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +101,10 @@
 		D09D817C25475FB600F7A465 /* SelectMapTypeScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectMapTypeScreen.m; sourceTree = "<group>"; };
 		D0D87B6425C3C6D500DD39F4 /* SelectFloatScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectFloatScreen.m; sourceTree = "<group>"; };
 		D0D87B6625C3C6E100DD39F4 /* SelectFloatScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectFloatScreen.h; sourceTree = "<group>"; };
+		D0D87BAB25C74CD600DD39F4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D0D87BAE25C759DC00DD39F4 /* Adopt-A-Float.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Adopt-A-Float.xcdatamodel"; sourceTree = "<group>"; };
+		D0D87BB025C75A8100DD39F4 /* DataPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataPoint.h; sourceTree = "<group>"; };
+		D0D87BB125C75A8100DD39F4 /* DataPoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataPoint.m; sourceTree = "<group>"; };
 		D0F24A2525B73BB500E52901 /* Adopt-A-FloatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Adopt-A-FloatUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0F24A2725B73BB500E52901 /* Adopt_A_FloatUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Adopt_A_FloatUITests.m; sourceTree = "<group>"; };
 		D0F24A2925B73BB500E52901 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -109,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0D87BAC25C74CD600DD39F4 /* CoreData.framework in Frameworks */,
 				113137612E1A707722F8296F /* libPods-Adopt-A-Float.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -184,6 +192,7 @@
 				ADB225A9203922B4005B6CC8 /* source.plist */,
 				AD720528202F553100F55BD7 /* main.m */,
 				D05E012E22CBD4FA00A55488 /* private.plist */,
+				D0D87BAD25C759DC00DD39F4 /* Adopt-A-Float.xcdatamodeld */,
 			);
 			path = "Adopt-A-Float";
 			sourceTree = "<group>";
@@ -218,6 +227,8 @@
 				AD720542202F58D900F55BD7 /* Instrument.m */,
 				D030C89F24FC30D0009E279F /* AppState.h */,
 				D030C8A024FC30D0009E279F /* AppState.m */,
+				D0D87BB025C75A8100DD39F4 /* DataPoint.h */,
+				D0D87BB125C75A8100DD39F4 /* DataPoint.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -251,6 +262,7 @@
 		FD9D7B89DD0AEE5EDCC3E8EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D0D87BAB25C74CD600DD39F4 /* CoreData.framework */,
 				1E905623F5C64F276C620210 /* libPods-Adopt-A-Float.a */,
 				BAB9C0873338DDFA9F165195 /* libPods-Adopt-A-FloatTests.a */,
 			);
@@ -470,6 +482,7 @@
 				D0D87B6525C3C6D500DD39F4 /* SelectFloatScreen.m in Sources */,
 				D09D817D25475FB600F7A465 /* SelectMapTypeScreen.m in Sources */,
 				AD720529202F553100F55BD7 /* main.m in Sources */,
+				D0D87BAF25C759DC00DD39F4 /* Adopt-A-Float.xcdatamodeld in Sources */,
 				AD72054B202F5D2900F55BD7 /* MainViewController.m in Sources */,
 				AD720545202F58D900F55BD7 /* Instrument.m in Sources */,
 				AD720544202F58D900F55BD7 /* DataUtility.m in Sources */,
@@ -477,6 +490,7 @@
 				D030C8A124FC30D0009E279F /* AppState.m in Sources */,
 				D0571DAD22EF7BA800D88E1D /* mapIconView.m in Sources */,
 				D055B93B231422A4006CD40D /* OptionsViewController.m in Sources */,
+				D0D87BB225C75A8100DD39F4 /* DataPoint.m in Sources */,
 				AD720548202F598B00F55BD7 /* FloatData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -787,6 +801,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D0D87BAD25C759DC00DD39F4 /* Adopt-A-Float.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D0D87BAE25C759DC00DD39F4 /* Adopt-A-Float.xcdatamodel */,
+			);
+			currentVersion = D0D87BAE25C759DC00DD39F4 /* Adopt-A-Float.xcdatamodel */;
+			path = "Adopt-A-Float.xcdatamodeld";
+			sourceTree = SOURCE_ROOT;
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = AD72050E202F553100F55BD7 /* Project object */;
 }

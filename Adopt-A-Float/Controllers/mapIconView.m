@@ -14,7 +14,6 @@
 
 - (void)provideFloatData:(FloatData *)data {
     double gebcoDepth = [FloatData retrieveGebcoDepth:data];
-    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"d MMM yyyy HH:mm:ss"];
     

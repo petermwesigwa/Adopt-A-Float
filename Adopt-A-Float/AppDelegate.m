@@ -87,5 +87,4 @@ NSMutableDictionary<NSNumber *, NSString *> *mapTypes;
 #pragma mark - Core Data Saving support
 
 
-
 @end

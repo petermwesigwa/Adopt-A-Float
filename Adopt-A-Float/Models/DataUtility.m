@@ -25,6 +25,22 @@ NSString *const URL_ONE = @"URL_ONE"; // retrieves url for the data for one inst
 
 double const MIN_TIME = 0;
 
+- (id)init {
+    self = [super init];
+    if (!self) return nil;
+    self.persistentContainer = [[NSPersistentContainer alloc] initWithName:@"Adopt-A-Float"];
+    [self.persistentContainer loadPersistentStoresWithCompletionHandler:^(NSPersistentStoreDescription *description, NSError *error) {
+        if (error != nil) {
+            NSLog(@"Error loading core data stack: %@", error);
+            abort(); 
+        }
+    }];
+    return self;
+}
+
+- (void) initializeCoreData {
+}
+
 + (NSMutableDictionary<NSString *, Instrument *> *)createInstruments {
     NSMutableDictionary<NSString *, Instrument *> *createdInstruments = [NSMutableDictionary new];
     NSArray *floatNames = [NSArray new];

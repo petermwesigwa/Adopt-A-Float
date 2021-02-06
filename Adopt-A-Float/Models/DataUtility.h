@@ -8,7 +8,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 #import "FloatData.h"
+#import "DataPoint.h"
 #import "Instrument.h"
 
 /*
@@ -18,7 +20,9 @@ Description:
 
 @interface DataUtility : NSObject
 
+@property (strong, nonatomic) NSPersistentContainer *persistentContainer;
 
+- (id) init;
 // This is the most important method provided by this class. This method creates all the instruments, initializing them with all the necessary observations using data fetched from the remote server. Returns a dictionary where each instrument can be retrieved by name.
 + (NSMutableDictionary<NSString *, Instrument *> *)createInstruments;
 

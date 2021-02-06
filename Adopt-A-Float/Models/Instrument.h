@@ -14,22 +14,32 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
 #import "FloatData.h"
 
-@interface Instrument : NSObject
-/* Create an instrument by passing in its name and an array of FloatData objects for each of its readings */
-- (id)initWithName:(NSString *)name andData:(NSArray<NSArray<NSString*>*>*) parsedData;
+@interface Instrument : NSManagedObject
 
-/* retrieve the name of the instrument */
-- (NSString *)getName;
+@property (nonatomic, strong) NSString *name;
 
-- (NSArray<FloatData *> *)getFloatData;
+@property (nonatomic, strong) NSString *rawData;
 
-- (NSArray<NSArray<NSString *> *> *)getRawData;
+@property (nonatomic, strong) NSString *institution;
+///* Create an instrument by passing in its name and an array of FloatData objects for each of its readings */
+//- (id)initWithName:(NSString *)name andData:(NSArray<NSArray<NSString*>*>*) parsedData;
+//
+///* retrieve the name of the instrument */
+//- (NSString *)getName;
+//
+//- (NSArray<FloatData *> *)getFloatData;
+//
+//- (NSArray<NSArray<NSString *> *> *)getRawData;
+//
+///* retrieve the color of the instrument for display on the map */
+//- (UIColor *)getColor;
+//
+///* retrieve the institution by which the float was deployed*/
+//- (NSString *)getInstitution;
 
-/* retrieve the color of the instrument for display on the map */
-- (UIColor *)getColor;
 
-/* retrieve the institution by which the float was deployed*/
-- (NSString *)getInstitution;
++ (void) save;
 @end

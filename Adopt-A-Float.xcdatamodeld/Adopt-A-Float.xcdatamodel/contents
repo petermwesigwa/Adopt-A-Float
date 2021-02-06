@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="DataPoint" representedClassName="DataPoint" syncable="YES" codeGenerationType="class">
+        <attribute name="avgSpeed" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="deviceName" attributeType="String"/>
+        <attribute name="extPressure" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="gpsDate" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="gpsLat" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="gpsLon" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="hDop" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="intPressure" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="legLength" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="legSpeed" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="legTime" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="netDisplacement" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="totalDistance" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="totalTime" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="vBat" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="vDop" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="Instrument" representedClassName="Instrument" syncable="YES" codeGenerationType="class">
+        <attribute name="name" attributeType="String"/>
+        <attribute name="rawData" attributeType="String"/>
+        <relationship name="data" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="DataPoint"/>
+    </entity>
+    <elements>
+        <element name="Instrument" positionX="-45" positionY="0" width="128" height="88"/>
+        <element name="DataPoint" positionX="-18" positionY="27" width="128" height="283"/>
+    </elements>
+</model>
