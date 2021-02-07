@@ -16,8 +16,6 @@
 		AD720529202F553100F55BD7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720528202F553100F55BD7 /* main.m */; };
 		AD720533202F553100F55BD7 /* Adopt_A_FloatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720532202F553100F55BD7 /* Adopt_A_FloatTests.m */; };
 		AD720544202F58D900F55BD7 /* DataUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720540202F58D800F55BD7 /* DataUtility.m */; };
-		AD720545202F58D900F55BD7 /* Instrument.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720542202F58D900F55BD7 /* Instrument.m */; };
-		AD720548202F598B00F55BD7 /* FloatData.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720547202F598B00F55BD7 /* FloatData.m */; };
 		AD72054B202F5D2900F55BD7 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD720549202F5D2800F55BD7 /* MainViewController.m */; };
 		ADB225AA203922B4005B6CC8 /* source.plist in Resources */ = {isa = PBXBuildFile; fileRef = ADB225A9203922B4005B6CC8 /* source.plist */; };
 		D02FEE4F253E216B0040A80B /* MermaidLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = D02FEE4E253E216B0040A80B /* MermaidLogo.png */; };
@@ -27,6 +25,20 @@
 		D03C3755258E8D1700004071 /* untitled.png in Resources */ = {isa = PBXBuildFile; fileRef = D03C3754258E8D1700004071 /* untitled.png */; };
 		D03C3757258E8F4200004071 /* mermaid_info_bubble.png in Resources */ = {isa = PBXBuildFile; fileRef = D03C3756258E8F4200004071 /* mermaid_info_bubble.png */; };
 		D03C3759258EA33500004071 /* mermaidInfoBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = D03C3758258EA33400004071 /* mermaidInfoBubble.png */; };
+		D03FC4FD25CF7A7C004B26BF /* Adopt-A-Float.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0D87BAD25C759DC00DD39F4 /* Adopt-A-Float.xcdatamodeld */; };
+		D03FC4FE25CF7A7D004B26BF /* Adopt-A-Float.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0D87BAD25C759DC00DD39F4 /* Adopt-A-Float.xcdatamodeld */; };
+		D03FC50725CF7AF6004B26BF /* Instrument+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D03FC50125CF7AF6004B26BF /* Instrument+CoreDataClass.m */; };
+		D03FC50825CF7AF6004B26BF /* Instrument+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D03FC50125CF7AF6004B26BF /* Instrument+CoreDataClass.m */; };
+		D03FC50925CF7AF6004B26BF /* Instrument+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D03FC50125CF7AF6004B26BF /* Instrument+CoreDataClass.m */; };
+		D03FC50A25CF7AF6004B26BF /* Instrument+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = D03FC50225CF7AF6004B26BF /* Instrument+CoreDataProperties.m */; };
+		D03FC50B25CF7AF6004B26BF /* Instrument+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = D03FC50225CF7AF6004B26BF /* Instrument+CoreDataProperties.m */; };
+		D03FC50C25CF7AF6004B26BF /* Instrument+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = D03FC50225CF7AF6004B26BF /* Instrument+CoreDataProperties.m */; };
+		D03FC50D25CF7AF6004B26BF /* DataPoint+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D03FC50525CF7AF6004B26BF /* DataPoint+CoreDataClass.m */; };
+		D03FC50E25CF7AF6004B26BF /* DataPoint+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D03FC50525CF7AF6004B26BF /* DataPoint+CoreDataClass.m */; };
+		D03FC50F25CF7AF6004B26BF /* DataPoint+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D03FC50525CF7AF6004B26BF /* DataPoint+CoreDataClass.m */; };
+		D03FC51025CF7AF6004B26BF /* DataPoint+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = D03FC50625CF7AF6004B26BF /* DataPoint+CoreDataProperties.m */; };
+		D03FC51125CF7AF6004B26BF /* DataPoint+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = D03FC50625CF7AF6004B26BF /* DataPoint+CoreDataProperties.m */; };
+		D03FC51225CF7AF6004B26BF /* DataPoint+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = D03FC50625CF7AF6004B26BF /* DataPoint+CoreDataProperties.m */; };
 		D055B93B231422A4006CD40D /* OptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D055B93A231422A4006CD40D /* OptionsViewController.m */; };
 		D0571DAA22EF7A0900D88E1D /* mapmarkericonview.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0571DA922EF7A0900D88E1D /* mapmarkericonview.xib */; };
 		D0571DAD22EF7BA800D88E1D /* mapIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0571DAC22EF7BA800D88E1D /* mapIconView.m */; };
@@ -35,7 +47,6 @@
 		D0D87B6525C3C6D500DD39F4 /* SelectFloatScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D87B6425C3C6D500DD39F4 /* SelectFloatScreen.m */; };
 		D0D87BAC25C74CD600DD39F4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0D87BAB25C74CD600DD39F4 /* CoreData.framework */; };
 		D0D87BAF25C759DC00DD39F4 /* Adopt-A-Float.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D0D87BAD25C759DC00DD39F4 /* Adopt-A-Float.xcdatamodeld */; };
-		D0D87BB225C75A8100DD39F4 /* DataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D0D87BB125C75A8100DD39F4 /* DataPoint.m */; };
 		D0F24A2825B73BB500E52901 /* Adopt_A_FloatUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F24A2725B73BB500E52901 /* Adopt_A_FloatUITests.m */; };
 /* End PBXBuildFile section */
 
@@ -73,11 +84,7 @@
 		AD720532202F553100F55BD7 /* Adopt_A_FloatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Adopt_A_FloatTests.m; sourceTree = "<group>"; };
 		AD720534202F553100F55BD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AD72053E202F58D700F55BD7 /* DataUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataUtility.h; sourceTree = "<group>"; };
-		AD72053F202F58D800F55BD7 /* Instrument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instrument.h; sourceTree = "<group>"; };
 		AD720540202F58D800F55BD7 /* DataUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataUtility.m; sourceTree = "<group>"; wrapsLines = 0; };
-		AD720542202F58D900F55BD7 /* Instrument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instrument.m; sourceTree = "<group>"; };
-		AD720546202F598B00F55BD7 /* FloatData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatData.h; sourceTree = "<group>"; };
-		AD720547202F598B00F55BD7 /* FloatData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatData.m; sourceTree = "<group>"; };
 		AD720549202F5D2800F55BD7 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		AD72054A202F5D2900F55BD7 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		ADB225A9203922B4005B6CC8 /* source.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = source.plist; sourceTree = "<group>"; };
@@ -91,6 +98,14 @@
 		D03C3754258E8D1700004071 /* untitled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = untitled.png; sourceTree = "<group>"; };
 		D03C3756258E8F4200004071 /* mermaid_info_bubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mermaid_info_bubble.png; sourceTree = "<group>"; };
 		D03C3758258EA33400004071 /* mermaidInfoBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mermaidInfoBubble.png; sourceTree = "<group>"; };
+		D03FC4FF25CF7AF6004B26BF /* Instrument+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Instrument+CoreDataProperties.h"; sourceTree = "<group>"; };
+		D03FC50025CF7AF6004B26BF /* Instrument+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Instrument+CoreDataClass.h"; sourceTree = "<group>"; };
+		D03FC50125CF7AF6004B26BF /* Instrument+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Instrument+CoreDataClass.m"; sourceTree = "<group>"; };
+		D03FC50225CF7AF6004B26BF /* Instrument+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Instrument+CoreDataProperties.m"; sourceTree = "<group>"; };
+		D03FC50325CF7AF6004B26BF /* DataPoint+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataPoint+CoreDataProperties.h"; sourceTree = "<group>"; };
+		D03FC50425CF7AF6004B26BF /* DataPoint+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DataPoint+CoreDataClass.h"; sourceTree = "<group>"; };
+		D03FC50525CF7AF6004B26BF /* DataPoint+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DataPoint+CoreDataClass.m"; sourceTree = "<group>"; };
+		D03FC50625CF7AF6004B26BF /* DataPoint+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "DataPoint+CoreDataProperties.m"; sourceTree = "<group>"; };
 		D055B939231422A4006CD40D /* OptionsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OptionsViewController.h; sourceTree = "<group>"; };
 		D055B93A231422A4006CD40D /* OptionsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OptionsViewController.m; sourceTree = "<group>"; };
 		D0571DA922EF7A0900D88E1D /* mapmarkericonview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = mapmarkericonview.xib; sourceTree = "<group>"; };
@@ -103,8 +118,6 @@
 		D0D87B6625C3C6E100DD39F4 /* SelectFloatScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectFloatScreen.h; sourceTree = "<group>"; };
 		D0D87BAB25C74CD600DD39F4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D0D87BAE25C759DC00DD39F4 /* Adopt-A-Float.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Adopt-A-Float.xcdatamodel"; sourceTree = "<group>"; };
-		D0D87BB025C75A8100DD39F4 /* DataPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataPoint.h; sourceTree = "<group>"; };
-		D0D87BB125C75A8100DD39F4 /* DataPoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataPoint.m; sourceTree = "<group>"; };
 		D0F24A2525B73BB500E52901 /* Adopt-A-FloatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Adopt-A-FloatUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0F24A2725B73BB500E52901 /* Adopt_A_FloatUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Adopt_A_FloatUITests.m; sourceTree = "<group>"; };
 		D0F24A2925B73BB500E52901 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -219,16 +232,18 @@
 		AD72054D202F5D9F00F55BD7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D03FC4FF25CF7AF6004B26BF /* Instrument+CoreDataProperties.h */,
+				D03FC50025CF7AF6004B26BF /* Instrument+CoreDataClass.h */,
+				D03FC50125CF7AF6004B26BF /* Instrument+CoreDataClass.m */,
+				D03FC50225CF7AF6004B26BF /* Instrument+CoreDataProperties.m */,
+				D03FC50325CF7AF6004B26BF /* DataPoint+CoreDataProperties.h */,
+				D03FC50425CF7AF6004B26BF /* DataPoint+CoreDataClass.h */,
+				D03FC50525CF7AF6004B26BF /* DataPoint+CoreDataClass.m */,
+				D03FC50625CF7AF6004B26BF /* DataPoint+CoreDataProperties.m */,
 				AD72053E202F58D700F55BD7 /* DataUtility.h */,
 				AD720540202F58D800F55BD7 /* DataUtility.m */,
-				AD720546202F598B00F55BD7 /* FloatData.h */,
-				AD720547202F598B00F55BD7 /* FloatData.m */,
-				AD72053F202F58D800F55BD7 /* Instrument.h */,
-				AD720542202F58D900F55BD7 /* Instrument.m */,
 				D030C89F24FC30D0009E279F /* AppState.h */,
 				D030C8A024FC30D0009E279F /* AppState.m */,
-				D0D87BB025C75A8100DD39F4 /* DataPoint.h */,
-				D0D87BB125C75A8100DD39F4 /* DataPoint.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -482,16 +497,17 @@
 				D0D87B6525C3C6D500DD39F4 /* SelectFloatScreen.m in Sources */,
 				D09D817D25475FB600F7A465 /* SelectMapTypeScreen.m in Sources */,
 				AD720529202F553100F55BD7 /* main.m in Sources */,
+				D03FC50D25CF7AF6004B26BF /* DataPoint+CoreDataClass.m in Sources */,
 				D0D87BAF25C759DC00DD39F4 /* Adopt-A-Float.xcdatamodeld in Sources */,
 				AD72054B202F5D2900F55BD7 /* MainViewController.m in Sources */,
-				AD720545202F58D900F55BD7 /* Instrument.m in Sources */,
 				AD720544202F58D900F55BD7 /* DataUtility.m in Sources */,
+				D03FC50725CF7AF6004B26BF /* Instrument+CoreDataClass.m in Sources */,
 				AD72051B202F553100F55BD7 /* AppDelegate.m in Sources */,
 				D030C8A124FC30D0009E279F /* AppState.m in Sources */,
+				D03FC51025CF7AF6004B26BF /* DataPoint+CoreDataProperties.m in Sources */,
 				D0571DAD22EF7BA800D88E1D /* mapIconView.m in Sources */,
+				D03FC50A25CF7AF6004B26BF /* Instrument+CoreDataProperties.m in Sources */,
 				D055B93B231422A4006CD40D /* OptionsViewController.m in Sources */,
-				D0D87BB225C75A8100DD39F4 /* DataPoint.m in Sources */,
-				AD720548202F598B00F55BD7 /* FloatData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,7 +515,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D03FC51125CF7AF6004B26BF /* DataPoint+CoreDataProperties.m in Sources */,
+				D03FC50825CF7AF6004B26BF /* Instrument+CoreDataClass.m in Sources */,
 				AD720533202F553100F55BD7 /* Adopt_A_FloatTests.m in Sources */,
+				D03FC50E25CF7AF6004B26BF /* DataPoint+CoreDataClass.m in Sources */,
+				D03FC50B25CF7AF6004B26BF /* Instrument+CoreDataProperties.m in Sources */,
+				D03FC4FD25CF7A7C004B26BF /* Adopt-A-Float.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,7 +528,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D03FC51225CF7AF6004B26BF /* DataPoint+CoreDataProperties.m in Sources */,
+				D03FC50925CF7AF6004B26BF /* Instrument+CoreDataClass.m in Sources */,
 				D0F24A2825B73BB500E52901 /* Adopt_A_FloatUITests.m in Sources */,
+				D03FC50F25CF7AF6004B26BF /* DataPoint+CoreDataClass.m in Sources */,
+				D03FC50C25CF7AF6004B26BF /* Instrument+CoreDataProperties.m in Sources */,
+				D03FC4FE25CF7A7D004B26BF /* Adopt-A-Float.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

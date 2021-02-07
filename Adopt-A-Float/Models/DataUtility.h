@@ -9,9 +9,8 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "FloatData.h"
-#import "DataPoint.h"
-#import "Instrument.h"
+#import "DataPoint+CoreDataClass.h"
+#import "Instrument+CoreDataClass.h"
 
 /*
 Description:
@@ -24,6 +23,6 @@ Description:
 
 - (id) init;
 // This is the most important method provided by this class. This method creates all the instruments, initializing them with all the necessary observations using data fetched from the remote server. Returns a dictionary where each instrument can be retrieved by name.
-+ (NSMutableDictionary<NSString *, Instrument *> *)createInstruments;
+- (NSMutableDictionary<NSString *, Instrument *> *)createInstruments;
 
 @end

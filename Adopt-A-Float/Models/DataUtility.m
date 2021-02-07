@@ -38,10 +38,7 @@ double const MIN_TIME = 0;
     return self;
 }
 
-- (void) initializeCoreData {
-}
-
-+ (NSMutableDictionary<NSString *, Instrument *> *)createInstruments {
+- (NSMutableDictionary<NSString *, Instrument *> *)createInstruments {
     NSMutableDictionary<NSString *, Instrument *> *createdInstruments = [NSMutableDictionary new];
     NSArray *floatNames = [NSArray new];
     NSDictionary<NSString *, NSString*> *sourceUrls = [DataUtility getSourceURLs];
@@ -59,8 +56,8 @@ double const MIN_TIME = 0;
         // Names should have 4 characters
         NSString* standardizedName = [DataUtility standardizeFloatName:name];
         
-        // create instrument with data if
-        Instrument *ins = [[Instrument alloc] initWithName:standardizedName andData:parsedData];
+        Instrument *ins = [NSEntityDescription insertNewObjectForEntityForName:@"Instrument" inManagedObjectContext:_persistentContainer.viewContext];
+        [ins provideName:standardizedName andData:parsedData];
         if (ins) {
             createdInstruments[standardizedName] = ins;
         }

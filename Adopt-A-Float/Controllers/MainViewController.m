@@ -124,7 +124,7 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     self.appMapView.delegate = self;
     self.appMapView.camera = camera;
     // Defines the boundary around the edges of the instrument cluster
-    self.appMapView.padding = UIEdgeInsetsMake(150, 25, 70, 25);
+    self.appMapView.padding = UIEdgeInsetsMake(150, 25, 150, 25);
     self.appMapView.accessibilityElementsHidden = NO;
     self.view.accessibilityIdentifier = @"MapView";
     self.appMapView.accessibilityIdentifier = @"appMapView";
@@ -285,6 +285,7 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
 
 # pragma mark - Segues and Actions
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    self.legendTableView.hidden = YES;
 }
 - (IBAction)toggleTableView:(id)sender {
     [self.appMapView setSelectedMarker:nil];
