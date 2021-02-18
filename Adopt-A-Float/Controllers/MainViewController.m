@@ -124,7 +124,7 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     self.appMapView.delegate = self;
     self.appMapView.camera = camera;
     // Defines the boundary around the edges of the instrument cluster
-    self.appMapView.padding = UIEdgeInsetsMake(150, 25, 70, 25);
+    self.appMapView.padding = UIEdgeInsetsMake(150, 25, 150, 25);
     self.appMapView.accessibilityElementsHidden = NO;
     self.view.accessibilityIdentifier = @"MapView";
     self.appMapView.accessibilityIdentifier = @"appMapView";

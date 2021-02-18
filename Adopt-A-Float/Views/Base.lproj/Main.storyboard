@@ -201,119 +201,6 @@
             </objects>
             <point key="canvasLocation" x="1163.768115942029" y="1208.0357142857142"/>
         </scene>
-        <!--Legend Screen-->
-        <scene sceneID="QmI-04-cfr">
-            <objects>
-                <viewController id="Ckb-ic-Qp6" customClass="LegendScreen" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Syv-gI-zvl"/>
-                        <viewControllerLayoutGuide type="bottom" id="Uaq-c0-bGL"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="k5F-JB-ubc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pQN-gU-llO">
-                                <rect key="frame" x="339" y="59" width="45" height="45"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="TOi-lp-KZs"/>
-                                    <constraint firstAttribute="width" constant="45" id="kCO-c4-hLZ"/>
-                                </constraints>
-                                <state key="normal" image="xmark.circle" catalog="system"/>
-                                <connections>
-                                    <action selector="dismissModal:" destination="Ckb-ic-Qp6" eventType="touchUpInside" id="bGD-Gx-kV4"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g88-nY-D1X">
-                                <rect key="frame" x="57" y="298" width="300" height="300"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Enh-7e-cHI">
-                                        <rect key="frame" x="220" y="10" width="60" height="40"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="EO2-Si-JRP"/>
-                                            <constraint firstAttribute="height" constant="40" id="iaf-Ck-Fnh"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <state key="normal" title="Hide"/>
-                                        <connections>
-                                            <action selector="dismissModal:" destination="Ckb-ic-Qp6" eventType="touchUpInside" id="nXp-cQ-Ons"/>
-                                            <segue destination="Thu-IY-pco" kind="unwind" unwindAction="backFromLegend:" id="Meu-6r-bdO"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Legend" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXx-EP-Bf8">
-                                        <rect key="frame" x="15" y="15" width="81" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="4Xy-OY-UH9"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HAL-Da-dql">
-                                        <rect key="frame" x="10" y="60" width="280" height="230"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="nUf-nb-F7f" style="IBUITableViewCellStyleDefault" id="9nf-Tt-43q">
-                                                <rect key="frame" x="0.0" y="28" width="280" height="43.5"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9nf-Tt-43q" id="Lfa-qj-FXl">
-                                                    <rect key="frame" x="0.0" y="0.0" width="280" height="43.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nUf-nb-F7f">
-                                                            <rect key="frame" x="16" y="0.0" width="248" height="43.5"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </tableViewCellContentView>
-                                            </tableViewCell>
-                                        </prototypes>
-                                        <connections>
-                                            <outlet property="dataSource" destination="Ckb-ic-Qp6" id="5Rg-3d-Ytv"/>
-                                            <outlet property="delegate" destination="Ckb-ic-Qp6" id="BJC-JS-Z7a"/>
-                                        </connections>
-                                    </tableView>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Enh-7e-cHI" secondAttribute="trailing" constant="20" symbolic="YES" id="2BC-IO-1EZ"/>
-                                    <constraint firstItem="sXx-EP-Bf8" firstAttribute="top" secondItem="g88-nY-D1X" secondAttribute="top" constant="15" id="49E-Tx-IvE"/>
-                                    <constraint firstItem="HAL-Da-dql" firstAttribute="top" secondItem="Enh-7e-cHI" secondAttribute="bottom" constant="10" id="5ji-MR-3zx"/>
-                                    <constraint firstAttribute="bottom" secondItem="HAL-Da-dql" secondAttribute="bottom" constant="10" id="7yr-br-u15"/>
-                                    <constraint firstItem="Enh-7e-cHI" firstAttribute="top" secondItem="g88-nY-D1X" secondAttribute="top" constant="10" id="DnB-dh-wHH"/>
-                                    <constraint firstAttribute="height" constant="300" id="Dqi-Hv-uSj"/>
-                                    <constraint firstAttribute="trailing" secondItem="HAL-Da-dql" secondAttribute="trailing" constant="10" id="Mms-ik-qaE"/>
-                                    <constraint firstItem="sXx-EP-Bf8" firstAttribute="leading" secondItem="g88-nY-D1X" secondAttribute="leading" constant="15" id="Ycl-ZG-KNY"/>
-                                    <constraint firstItem="Enh-7e-cHI" firstAttribute="leading" relation="lessThanOrEqual" secondItem="sXx-EP-Bf8" secondAttribute="trailing" constant="134" id="axo-el-MTx"/>
-                                    <constraint firstAttribute="width" constant="300" id="pFJ-4R-1DW"/>
-                                    <constraint firstItem="HAL-Da-dql" firstAttribute="leading" secondItem="g88-nY-D1X" secondAttribute="leading" constant="10" id="pI5-Xs-kzS"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="0.018933875486254692" green="0.0031731082126498222" blue="0.0015868592308834195" alpha="0.40201364436619719" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="pQN-gU-llO" firstAttribute="top" secondItem="Syv-gI-zvl" secondAttribute="bottom" constant="15" id="EsA-uH-6qr"/>
-                            <constraint firstItem="g88-nY-D1X" firstAttribute="centerX" secondItem="k5F-JB-ubc" secondAttribute="centerX" id="gCf-xG-Mnh"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="pQN-gU-llO" secondAttribute="trailing" constant="10" id="ppP-Bm-zDd"/>
-                            <constraint firstItem="g88-nY-D1X" firstAttribute="centerY" secondItem="k5F-JB-ubc" secondAttribute="centerY" id="znf-kK-u4g"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="jLr-41-M06"/>
-                    <connections>
-                        <outlet property="contentView" destination="g88-nY-D1X" id="XI0-xl-Tmz"/>
-                        <outlet property="hideLegendButton" destination="pQN-gU-llO" id="FLz-nK-uyh"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="X2B-Yh-FJD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="Thu-IY-pco" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="2082.608695652174" y="1208.7053571428571"/>
-        </scene>
         <!--Select Map Type-->
         <scene sceneID="be0-Je-gmw">
             <objects>
@@ -345,7 +232,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EC7-Ou-Stt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="gPD-j0-uYi" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1164" y="2701"/>
+            <point key="canvasLocation" x="2049" y="1929"/>
         </scene>
         <!--Options-->
         <scene sceneID="s4Q-jk-Qrp">
@@ -410,7 +297,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2sZ-ZB-LLb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="pRa-Wf-kVy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1164" y="1966"/>
+            <point key="canvasLocation" x="1164" y="1929"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="a8Z-7i-HiA">
@@ -431,7 +318,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="207-TD-XGI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="253.62318840579712" y="1208.0357142857142"/>
+            <point key="canvasLocation" x="270" y="1207"/>
         </scene>
         <!--Select Float-->
         <scene sceneID="3aL-Tm-teR">
@@ -544,7 +431,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u71-sm-mle" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="czM-6K-cLH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2082.608695652174" y="1942.6339285714284"/>
+            <point key="canvasLocation" x="2049" y="1208"/>
         </scene>
     </scenes>
     <resources>
@@ -554,6 +441,5 @@
         <image name="location.circle" catalog="system" width="128" height="121"/>
         <image name="mappin" catalog="system" width="105" height="128"/>
         <image name="x.circle" catalog="system" width="128" height="121"/>
-        <image name="xmark.circle" catalog="system" width="128" height="121"/>
     </resources>
 </document>
