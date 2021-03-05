@@ -9,6 +9,8 @@
 
 #import "AppDelegate.h"
 
+DataUtility *utility;
+
 AppState *appStateManager;
 /*
  This variable is used to store the intstruments and their data in order to be accesed by the
@@ -54,19 +56,20 @@ NSMutableDictionary<NSNumber *, NSString *> *mapTypes;
     // To get your API key visit: https://developers.google.com/maps/documentation/ios-sdk/
     NSString *privatePath = [[NSBundle mainBundle] pathForResource:@"private" ofType:@"plist"];
     NSDictionary *privateContents = [NSDictionary dictionaryWithContentsOfFile: privatePath];
-    [GMSServices provideAPIKey:[privateContents objectForKey:@"GoogleMapsAPIKey"]];
+    [GMSServices provideAPIKey:[privateContents objectForKey:@"GoogleMapsAPIKey"]];\
+    
+    //
+    organizations = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[UIColor blueColor], @"GeoAzur", [UIColor yellowColor], @"SUSTech", [UIColor orangeColor], @"Princeton", [UIColor redColor], @"JAMSTEC", [UIColor grayColor], @"Inactive", nil];
     
     // Create the instrumments with their reported data
     if (!instruments)
         instruments = [[NSMutableDictionary alloc] init];
-    instruments = [DataUtility createInstruments];
+    utility = [[DataUtility alloc] init];
+    instruments = [utility createInstruments];
     
     if (!appStateManager) {
         appStateManager = [[AppState alloc] initWithInstruments:instruments];
     }
-    
-    // 
-    organizations = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[UIColor blueColor], @"GeoAzur", [UIColor yellowColor], @"SUSTech", [UIColor orangeColor], @"Princeton", [UIColor redColor], @"JAMSTEC", [UIColor grayColor], @"Inactive", nil];
     
     mapTypes = [[NSMutableDictionary alloc]initWithObjectsAndKeys:
                     @"Satellite with labels", [NSNumber numberWithInt:kGMSTypeHybrid],

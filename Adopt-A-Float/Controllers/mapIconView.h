@@ -12,7 +12,8 @@
  */
 
 #import <UIKit/UIKit.h>
-#import "../Models/FloatData.h"
+#import "DataPoint+CoreDataClass.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -38,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 // initialize the view with data from a specific observation for a float.
-- (void) provideFloatData:(FloatData*)data;
+- (void) provideFloatData:(DataPoint*)data;
 
 @end
 

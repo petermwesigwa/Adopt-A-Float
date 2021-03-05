@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19H524" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="DataPoint" representedClassName="DataPoint" syncable="YES">
         <attribute name="avgSpeed" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="deviceName" attributeType="String"/>
@@ -12,7 +12,7 @@
         <attribute name="legLength" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="legSpeed" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="legTime" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="netDisplacement" attributeType="Decimal" defaultValueString="0.0"/>
+        <attribute name="netDisplacement" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="totalDistance" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="totalTime" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="vBat" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -20,12 +20,13 @@
         <relationship name="instrument" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Instrument" inverseName="dataPoints" inverseEntity="Instrument"/>
     </entity>
     <entity name="Instrument" representedClassName="Instrument" syncable="YES">
+        <attribute name="institution" optional="YES" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
-        <attribute name="rawData" attributeType="String"/>
+        <attribute name="rawData" optional="YES" attributeType="String"/>
         <relationship name="dataPoints" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="DataPoint" inverseName="instrument" inverseEntity="DataPoint"/>
     </entity>
     <elements>
         <element name="DataPoint" positionX="-18" positionY="27" width="128" height="298"/>
-        <element name="Instrument" positionX="-45" positionY="0" width="128" height="88"/>
+        <element name="Instrument" positionX="-45" positionY="0" width="128" height="103"/>
     </elements>
 </model>

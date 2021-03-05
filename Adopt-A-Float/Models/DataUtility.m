@@ -39,13 +39,27 @@ double const MIN_TIME = 0;
 }
 
 - (NSMutableDictionary<NSString *, Instrument *> *)createInstruments {
-    NSMutableDictionary<NSString *, Instrument *> *createdInstruments = [NSMutableDictionary new];
+    NSMutableDictionary<NSString *, Instrument *> *instrumentDict = [NSMutableDictionary new];
     NSArray *floatNames = [NSArray new];
     NSDictionary<NSString *, NSString*> *sourceUrls = [DataUtility getSourceURLs];
     
     // read in the names of all the floats
     floatNames = [DataUtility getFloatNames:
                   [NSURL URLWithString:[sourceUrls objectForKey:URL_ALL]]];
+    
+    NSManagedObjectContext *context = _persistentContainer.viewContext;
+    
+    // get instruments currently stored in context
+    NSError *error = nil;
+    NSArray<Instrument*> *fetchedInstruments = [context executeFetchRequest:[Instrument fetchRequest] error:&error];
+    
+    // delete Datapoints during testing
+    NSBatchDeleteRequest *deleteRequest = [[NSBatchDeleteRequest alloc] initWithFetchRequest:[DataPoint fetchRequest]];
+    [context executeRequest:deleteRequest error:&error];
+    
+    for (Instrument *ins in fetchedInstruments) {
+        instrumentDict[ins.name] = ins;
+    }
     
     // obtain the data for all the instruments
     for (NSString *name in floatNames) {
@@ -56,13 +70,22 @@ double const MIN_TIME = 0;
         // Names should have 4 characters
         NSString* standardizedName = [DataUtility standardizeFloatName:name];
         
-        Instrument *ins = [NSEntityDescription insertNewObjectForEntityForName:@"Instrument" inManagedObjectContext:_persistentContainer.viewContext];
-        [ins provideName:standardizedName andData:parsedData];
-        if (ins) {
-            createdInstruments[standardizedName] = ins;
+        Instrument *ins;
+        if ([instrumentDict objectForKey:standardizedName]) {
+            ins = [instrumentDict objectForKey:standardizedName];
+        } else {
+            ins = [NSEntityDescription insertNewObjectForEntityForName:@"Instrument" inManagedObjectContext:context];
+            [ins setName:standardizedName];
         }
+        
+        [ins provideData:parsedData];
+        NSLog(@"%d", (int) ins.dataPoints.count);
+        instrumentDict[ins.name] = ins;
     }
-    return createdInstruments;
+//    if ([context save:&error] == NO) {
+//        NSAssert(NO, @"Error saving context: %@\n%@", [error localizedDescription], [error userInfo]);
+//    }
+    return instrumentDict;
 }
 
 /*

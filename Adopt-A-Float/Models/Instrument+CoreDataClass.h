@@ -8,6 +8,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 #import "DataPoint+CoreDataClass.h"
 
@@ -17,9 +18,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Instrument : NSManagedObject
 
-- (void) provideName:(NSString *)instrName andData:(NSArray<NSArray<NSString*>*>*)rawData;
+//+ (Instrument*) instrumentWithName:(NSString*) name data:(NSArray<NSArray<NSString*>*>*)data fromContext:(NSManagedObjectContext*)context;
 
+- (void) provideData:(NSArray<NSArray<NSString*>*>*)raw;
 - (void) save;
+
+- (UIColor *) getColor;
+
+- (BOOL) isEqualToInstrument:(Instrument *) that;
+
 @end
 
 NS_ASSUME_NONNULL_END

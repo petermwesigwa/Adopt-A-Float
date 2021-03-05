@@ -18,5 +18,5 @@
 @dynamic name;
 @dynamic rawData;
 @dynamic dataPoints;
-
+@dynamic institution;
 @end

@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nullable, nonatomic, copy) NSString *name;
 @property (nullable, nonatomic, copy) NSString *rawData;
+@property (nullable, nonatomic, copy) NSString *institution;
 @property (nullable, nonatomic, retain) NSOrderedSet<DataPoint *> *dataPoints;
 
 @end

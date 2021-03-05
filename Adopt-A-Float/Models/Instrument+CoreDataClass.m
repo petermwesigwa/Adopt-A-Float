@@ -9,12 +9,15 @@
 
 #import "Instrument+CoreDataClass.h"
 
-@implementation Instrument
+extern NSMutableDictionary<NSString *, UIColor *> *organizations;
 
-- (void) provideName:(NSString *)instrName andData:(NSArray<NSArray<NSString*>*>*)rawData {
-    self.name = instrName;
-    [self addDataFromRaw:rawData];
-}
+@implementation Instrument
+//+ (Instrument*) instrumentWithName:(NSString*) name data:(NSArray<NSArray<NSString*>*>*)data fromContext:(NSManagedObjectContext*)context {
+//    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Instrument"];
+//    request.predicate = [NSPredicate predicateWithFormat:"name LIKE %@", name];
+//    //NSArray *results = [
+//}
+
 
 - (void) save {
     NSError *error = nil;
@@ -23,18 +26,49 @@
     }
 }
 
-- (void) addDataFromRaw:(NSArray<NSArray<NSString*>*>*)raw {
-    NSMutableArray<DataPoint*>*dataPoints = [NSMutableArray new];
+- (void) provideData:(NSArray<NSArray<NSString *> *> *)raw {
+    self.institution = [Instrument assignInstitutionFor:self.name];
     for (NSArray<NSString*>*dataRow in raw) {
         DataPoint *dp = [NSEntityDescription insertNewObjectForEntityForName:@"DataPoint" inManagedObjectContext:[self managedObjectContext]];
         
         [dp addDataFromRaw:dataRow];
-        dp.instrument = self;
-        [dataPoints addObject:dp];
+        if ([self.dataPoints containsObject:dp]) {
+            continue;
+        }
+        [dp addLegDataUsingPreviousPoint:[self.dataPoints lastObject] andFirstPoint:[self.dataPoints firstObject]];
+        
+        [self addDataPointsObject:dp];
     }
-    
-    for (int i = (int)dataPoints.count - 2; i >= 0; i--) {
-        [dataPoints[i] addLegDataUsingPreviousPoint:dataPoints[i+1] andFirstPoint:[dataPoints lastObject]];
+}
+
+- (BOOL) isEqualToInstrument:(Instrument *)that {
+    return [self.name isEqualToString:that.name];
+}
+- (UIColor *)getColor {
+    return organizations[self.institution];
+}
+
+/* Assign an instrument its color based off of the organization it belongs to. We can deduce the organization from the instrument's name*/
++ (NSString *)assignInstitutionFor:(NSString *)instrName {
+    int float_id = [[instrName substringFromIndex:1] intValue];
+    if (float_id == 6) { // GeoAzur
+       return @"GeoAzur";
     }
+    else if (float_id == 3 || float_id == 7) { // Dead
+        //return [UIColor grayColor];
+        return @"Inactive";
+    }
+    else if (float_id > 26 && float_id < 49) { // SUSTech
+        //return [UIColor yellowColor];
+       return @"SUSTech";
+    }
+    else if ([instrName hasPrefix:@"P"]) { // Princeton
+        //return [UIColor orangeColor];
+        return @"Princeton";
+    }
+    else {
+        return @"JAMSTEC";
+    }
+    //return [UIColor redColor]; // JAMSTEC
 }
 @end

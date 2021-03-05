@@ -10,16 +10,15 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import <QuartzCore/QuartzCore.h>
 #import <math.h>
-#import "Instrument.h"
-#import "FloatData.h"
+#import "Instrument+CoreDataClass.h"
+#import "DataPoint+CoreDataClass.h"
 #import "AppState.h"
 #import "mapIconView.h"
 
 
 @interface MainViewController : UIViewController<CLLocationManagerDelegate,GMSMapViewDelegate, UITableViewDelegate, UITableViewDataSource>
     // THis is a dictionarny
-    @property (strong) NSMutableDictionary *markers;
-    @property (strong) NSMutableDictionary *mutablePaths;
+    @property (strong) NSMutableDictionary<NSString*, NSArray<GMSMarker*>*> *markers;
 
     // Stores a reference to the current instrument whose
     @property (strong) Instrument *curr;

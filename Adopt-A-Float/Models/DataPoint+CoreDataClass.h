@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void) save;
 
 - (void) addLegDataUsingPreviousPoint:(DataPoint*)prevPoint andFirstPoint:(DataPoint*)firstPoint;
+
+- (BOOL) isEqualToDataPoint:(DataPoint *)that;
 @end
 
 NS_ASSUME_NONNULL_END

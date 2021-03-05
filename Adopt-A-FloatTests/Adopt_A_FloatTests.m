@@ -36,6 +36,10 @@
     XCTAssertEqual(testAppState.selectedMapViewIndex,0);
 }
 
+- (void) testUniqueness {
+    DataUtility *dataUtility = [d]
+}
+
 - (void)testPerformanceExample {
     // This is an example of a performance test case.
     [self measureBlock:^{

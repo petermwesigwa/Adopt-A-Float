@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) double legLength;
 @property (nonatomic) double legSpeed;
 @property (nonatomic) double legTime;
-@property (nullable, nonatomic, copy) NSDecimalNumber *netDisplacement;
+@property (nonatomic) double netDisplacement;
 @property (nonatomic) double totalDistance;
 @property (nonatomic) double totalTime;
 @property (nonatomic) double vBat;

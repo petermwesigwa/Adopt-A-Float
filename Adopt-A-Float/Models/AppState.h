@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Instrument.h"
+#import "Instrument+CoreDataClass.h"
 #import <GoogleMaps/GoogleMaps.h>
 
 

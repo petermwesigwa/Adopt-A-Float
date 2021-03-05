@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <GoogleMaps/GoogleMaps.h>
-#import "Instrument.h"
+#import "Instrument+CoreDataClass.h"
 #import "DataUtility.h"
+#import "MainViewController.h"
 #import "AppState.h"
 #import <CoreData/CoreData.h>
 

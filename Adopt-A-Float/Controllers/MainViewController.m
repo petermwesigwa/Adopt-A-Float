@@ -92,10 +92,11 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
         // make an array of markers and a path for each object
         NSMutableArray* markersForInstr = [[NSMutableArray alloc] init];
         Instrument* instr = [instruments objectForKey:name];
+        NSLog(@"%d", (int) instruments[name].dataPoints.count);
         
         //set icon
         UIImage *icon = [GMSMarker markerImageWithColor:[instr getColor]];
-        for (FloatData *row in [instr getFloatData]) {
+        for (DataPoint *row in [instr dataPoints]) {
             GMSMarker* marker = [self createMarkerWithData:row andIcon:icon];
             [markersForInstr addObject:marker];
         }
@@ -144,9 +145,10 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     } else {
         for (NSString *instrName in appStateManager.instrNames) {
             Instrument* ins = instruments[instrName];
-            if (self.legendFilter[[ins getInstitution]]) {
-                [self instrumentSetup:ins];
-            }
+//            if (self.legendFilter[[ins getInstitution]]) {
+//                [self instrumentSetup:ins];
+//            }
+            [self instrumentSetup:ins];
         }
     }
     [self.titleButton setTitle:appStateManager.selectedInstr forState:UIControlStateNormal];
@@ -174,10 +176,10 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
 }
 
 // Creates a GMSmarker for each FloatData object
-- (GMSMarker*)createMarkerWithData:(FloatData*)data andIcon:(UIImage*)icon {
+- (GMSMarker*)createMarkerWithData:(DataPoint*)data andIcon:(UIImage*)icon {
     GMSMarker *marker = [[GMSMarker alloc] init];
 
-    marker.position = CLLocationCoordinate2DMake([data.gpsLat floatValue], [data.gpsLon floatValue]);
+    marker.position = CLLocationCoordinate2DMake(data.gpsLat, data.gpsLon);
     marker.infoWindowAnchor = CGPointMake(0.5f, 0.5f);
     marker.map = nil;
     marker.icon = icon;
@@ -220,20 +222,24 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
  */
 - (void) instrumentSetup:(Instrument*)instrument {
     //Turn on new markers and make new path
+    NSLog(@"%@", instrument.name);
+    NSLog(@"%d", (int) instrument.dataPoints.count);
     int n = self.markerNumber;
-    if (n > [[instrument getFloatData] count]) {
-        n = (int) [[instrument getFloatData] count];
+    if (n > [instrument.dataPoints count]) {
+        n = (int) [instrument.dataPoints count];
     }
     
     for (int i = 0; i < n; i++) {
         float opac = 1 - (i/(n+1.0));
-        [self turnOnMarker:[self.markers objectForKey:[instrument getName]][i] withOpacity:opac];
+        [self turnOnMarker:[self.markers objectForKey:[instrument name]][i] withOpacity:opac];
     }
 }
 
 - (void) instrumentTakeDown:(Instrument*) old {
     // currently takes O(num_instruments x datapoints_per_instrument)
-    for (GMSMarker* marker in [self.markers objectForKey:[old getName]]) {
+    NSLog(@"%@", old.name);
+    NSLog(@"%d", (int) self.markers);
+    for (GMSMarker* marker in [self.markers objectForKey:old.name]) {
         [self turnOffMarker:marker];
     }
 }
@@ -259,7 +265,7 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
     self.prevFloatButton.hidden = NO;
     
      mapIconView *iconView = [[[NSBundle mainBundle] loadNibNamed:@"mapmarkericonview" owner:self options:nil] objectAtIndex:0];
-    FloatData *data = (FloatData *) marker.userData;
+    DataPoint *data = (DataPoint *) marker.userData;
     [iconView provideFloatData:data];
     iconView.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
     iconView.layer.cornerRadius = 15;
@@ -271,6 +277,7 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
 - (void)mapView:(GMSMapView *)mapView didTapAtCoordinate:(CLLocationCoordinate2D)coordinate {
     self.legendTableView.hidden = YES;
 }
+
 - (BOOL)mapView:(GMSMapView *)mapView didTapMarker:(GMSMarker *)marker {
     self.legendTableView.hidden = YES;
     self.focusedOnMarkerIdx = [self indexForOnMarker:marker];
@@ -287,6 +294,7 @@ extern NSMutableDictionary<NSString *, UIColor*> *organizations;
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     self.legendTableView.hidden = YES;
 }
+
 - (IBAction)toggleTableView:(id)sender {
     [self.appMapView setSelectedMarker:nil];
     if (_legendTableView.hidden) {
